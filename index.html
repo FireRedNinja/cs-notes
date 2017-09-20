@@ -1,25 +1,35 @@
----
-layout: default
-title: Home
-cover: false
-about: 'about.html'
----
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<header class="main-header {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
+    <title>Your New Jekyll Site - Blogging about stuffs</title>
+    <meta name="description" content="Your New Jekyll Site, Blogging about stuffs" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header no-cover">
     <nav class="main-nav overlay clearfix">
-            {% if page.logo %}
-                <a class="blog-logo" href="{{ site.baseurl }}">
-                    <img src="{{ page.logo }}" alt="Blog Logo" />
-                </a>
-            {% endif %}
-        <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribe</a>
+            
+        <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">{{ site.name }}</h1>
+            <h1 class="page-title">Your New Jekyll Site</h1>
             <h2 class="page-description">
-                {% if site.description %} {{ site.description }}. {% endif %}
-                {% if page.about %} <a href='{{ site.baseurl }}{{ page.about }}'> About me </a> {% endif %}
+                 Blogging about stuffs. 
+                 <a href='/about.html'> About me </a> 
             </h2>
         </div>
     </div>
@@ -31,34 +41,76 @@ about: 'about.html'
 
 
     <div class="extra-pagination inner">
-        {% include pagination.html %}
+        <nav class="pagination" role="pagination">
+    
+    <span class="page-number"> Page 1 of 1 </span>
+     
+</nav>
     </div>
 
-    {% for post in paginator.posts %}
+    
 
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <h2 class="post-title"><a href="/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html">Welcome to Jekyll!</a></h2>
         </header>
         <section class="post-excerpt">
-            {{ post.excerpt }} <a class="read-more" href="{{ post.url }}">&raquo;</a>
+            <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory - edit this post and re-build (or run with the <code class="highlighter-rouge">-w</code> switch) to see your changes!
+To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention: YYYY-MM-DD-name-of-post.ext.</p>
+
+ <a class="read-more" href="/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html">&raquo;</a>
         </section>
         <footer class="post-meta">
-            {% if site.author %}
+            
                 <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                {{ site.author }}
-            {% endif %}
-            {% if post.categories.size > 0 %} 
-                {{ post.categories | array_to_sentence_string | prepend: 'on ' }} 
-            {% endif %}
-            <time class="post-date" datetime="{{ post.date | date:"%Y-%m-%d" }}">
-                {{ post.date | date_to_string }}
+                Your Name
+            
+             
+                on Thriller, Comedy, and Horror 
+            
+            <time class="post-date" datetime="2013-11-10">
+                10 Nov 2013
             </time> 
         </footer>
     </article>
 
-    {% endfor %}
+    
 
-    {% include pagination.html %}
+    <nav class="pagination" role="pagination">
+    
+    <span class="page-number"> Page 1 of 1 </span>
+     
+</nav>
 
 </main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="/">Your New Jekyll Site</a> &copy; 
+              2017 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>
