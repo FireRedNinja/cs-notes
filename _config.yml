@@ -59,7 +59,7 @@ lsi: false
 username: fireredninja
 repo: cs-notes
 branch: gh-pages
-relative_source: ../jasper/
+relative_source: ./
 destination: ../jasper-pages/
 production_url:  https://fireredninja.github.io/cs-notes/
 source_url:      https://github.com/fireredninja/cs-notes/
