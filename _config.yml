@@ -6,7 +6,7 @@ markdown: kramdown
 highlighter: rouge
 logo: false
 paginate: 15
-baseurl: /
+baseurl: /cs-notes
 domain_name: 'https://fireredninja.github.io/cs-notes'
 google_analytics: 'UA-XXXXXXXX-X'
 gems: [jekyll-paginate]
