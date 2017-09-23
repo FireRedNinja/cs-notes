@@ -9,7 +9,7 @@ paginate: 15
 baseurl: /
 domain_name: 'https://fireredninja.github.io'
 google_analytics: 'UA-XXXXXXXX-X'
-gems: []
+gems: [jekyll-paginate]
 
 # Details for the RSS feed generator
 url:            'blog url'
