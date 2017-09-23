@@ -5,8 +5,8 @@
     <description>Blogging about stuffs</description>
     <link>http://localhost:4000/cs-notes/</link>
     <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 23 Sep 2017 16:52:23 +0100</pubDate>
-    <lastBuildDate>Sat, 23 Sep 2017 16:52:23 +0100</lastBuildDate>
+    <pubDate>Sat, 23 Sep 2017 16:54:55 +0100</pubDate>
+    <lastBuildDate>Sat, 23 Sep 2017 16:54:55 +0100</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
