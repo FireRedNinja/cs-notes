@@ -2,7 +2,7 @@
 layout: post
 title:  "Algorithmics 1"
 date:   2017-09-23 18:50:00
-categories: Thriller Comedy Horror
+categories: Level3 Semester1
 ---
 
 You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!

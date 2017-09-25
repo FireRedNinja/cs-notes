@@ -2,7 +2,7 @@
 layout: post
 title:  "Data Fundamentals"
 date:   2017-09-23 18:50:00
-categories:
+categories: Level3 Semester1
 ---
 
 You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!

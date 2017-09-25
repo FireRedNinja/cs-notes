@@ -2,23 +2,25 @@
 layout: post
 title:  "Advanced Programming"
 date:   2017-09-23 18:50:00
-categories: Thriller Comedy Horror
+categories: Level3 Semester1
 ---
 
-You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
-To add new posts, simply add a file in the `_posts` directory that follows the convention: YYYY-MM-DD-name-of-post.ext.
+#### Introduction
 
-Jekyll also offers powerful support for code snippets:
+##### Application Level
+Java - Strong Types<br>
+Python - Auto Memory Mgt<br>
+Hasket - Abstract Resources<br>
+... - IDE
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
-
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
+##### Systems Level
+Languages: C, Rust, OCaml<br>
+Used for:<br>
+	OS
+	Communications
+	Numerical
+Drivers
+Embedded Systems
 
 [jekyll-gh]: https://github.com/mojombo/jekyll
 [jekyll]:    http://jekyllrb.com
