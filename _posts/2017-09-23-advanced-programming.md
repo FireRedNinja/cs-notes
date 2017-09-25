@@ -15,12 +15,12 @@ Hasket - Abstract Resources<br>
 
 ##### Systems Level
 Languages: C, Rust, OCaml<br>
-Used for:<br>
-	OS
-	Communications
-	Numerical
-Drivers
-Embedded Systems
+Used for:
+	* OS
+	* Communications
+	* Numerical
+	* Drivers
+	* Embedded Systems
 
 [jekyll-gh]: https://github.com/mojombo/jekyll
 [jekyll]:    http://jekyllrb.com
