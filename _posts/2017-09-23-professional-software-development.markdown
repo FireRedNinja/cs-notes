@@ -82,7 +82,7 @@ categories: Level3 Semester1
     inspections cost about three times a much in total time
     compared with test driven development
 
-![initial costs of software inspections](images/soft_insp1.png)
+![initial costs of software inspections](images/soft_insp1.PNG)
 
 * When to conduct an inspection?
     * Periodically as part of a clean-up or refactoring exercise
@@ -95,7 +95,7 @@ categories: Level3 Semester1
     * Author(s): >=1 team members who make >=1 software atifacts for inspection
     * Inspector(s): responsibelf ro identifying defects in artifact during inspection
 
-![software inspection process](../images/soft_insp2.png)
+![software inspection process](../images/soft_insp2.PNG)
 
 * Choosing what to review
     * if artifact's been changed, must be inspected before change can be committed to prod
