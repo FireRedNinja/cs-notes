@@ -125,6 +125,10 @@ categories: Level3 Semester1
     * checklist directed
     * senarios
 
+* Linus' Law
+> Given enough eyeballs, all bugs are shallow
+
+Key Point
 > Inspections are an essential quality assurance tool
 
 
