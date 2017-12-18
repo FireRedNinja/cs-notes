@@ -5,9 +5,9 @@
     <description>My notes on CS Level 3</description>
     <link>http://localhost:4000/cs-notes/</link>
     <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 25 Sep 2017 14:50:44 +0100</pubDate>
-    <lastBuildDate>Mon, 25 Sep 2017 14:50:44 +0100</lastBuildDate>
-    <generator>Jekyll v3.5.2</generator>
+    <pubDate>Mon, 18 Dec 2017 21:52:28 +0000</pubDate>
+    <lastBuildDate>Mon, 18 Dec 2017 21:52:28 +0000</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>Professional Software Development</title>
@@ -42,6 +42,143 @@
 &lt;h4 id=&quot;video-lecture-23&quot;&gt;Video Lecture 23&lt;/h4&gt;
 
 &lt;h4 id=&quot;video-lecture-26&quot;&gt;Video Lecture 26&lt;/h4&gt;
+&lt;h5 id=&quot;software-inspection-techniques&quot;&gt;Software Inspection Techniques&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;What are Inspections?&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Managing an Inspection&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;What can be the subject of an inspection?
+    &lt;ul&gt;
+      &lt;li&gt;application source code packages, classes or methods&lt;/li&gt;
+      &lt;li&gt;source code documentation&lt;/li&gt;
+      &lt;li&gt;test harnesses&lt;/li&gt;
+      &lt;li&gt;design descriptions, such as UML component or class diagrams&lt;/li&gt;
+      &lt;li&gt;requirements specications, such as user stories&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Why take inspections?
+    &lt;ul&gt;
+      &lt;li&gt;Deteck defects in software&lt;/li&gt;
+      &lt;li&gt;identify opportunities for refactoring&lt;/li&gt;
+      &lt;li&gt;as part of white/glass box testing process, or QA activities&lt;/li&gt;
+      &lt;li&gt;develop a shared understanding of the purpose and function of a system&lt;/li&gt;
+      &lt;li&gt;share good practice between team&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dont use inspections for&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Identifying poor performance&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;inspections should be used to identify improvement&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;total defects = target method + other methods + + undetected&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;defect detection rate = (target method) / (total defects)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;How effective is it?
+    &lt;ul&gt;
+      &lt;li&gt;Fagan [1976] reported a DDR of 66% and 82% for two IBM case studies employing a comprehensive inspection process&lt;/li&gt;
+      &lt;li&gt;Jones [1986] reported a DDR of 60% for design inspections alone, compared to a DDR of just 25% for unit testing&lt;/li&gt;
+      &lt;li&gt;Boehm [1981] surveyed four case studies reported between1978 and 1980, finding that inspections discovered between 63% and 75% of defects&lt;/li&gt;
+      &lt;li&gt;Wilkerson et al. [2012] found that inspections led to fewer defects left in a system than a test driven development approach to implementation&lt;/li&gt;
+      &lt;li&gt;Runeson et al. [2006] reported a more complex picture from a survey of 12 case studies&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cost of inspections?
+    &lt;ul&gt;
+      &lt;li&gt;Fagan [1986] reported several anecdotal case studies where
+  development and/or maintenance costs were signicantly
+  reduced as a net result of applying inspections. One project
+  experienced a 95% reduction in maintenance costs&lt;/li&gt;
+      &lt;li&gt;Boehm [1981]’s survey of case studies reported that code
+  inspections could produce between 10 and 120 delivered lines
+  of source code per person hour, compared with 5-24 lines for
+  unit testing&lt;/li&gt;
+      &lt;li&gt;Wilkerson et al. [2012] found that applying software
+  inspections cost about three times a much in total time
+  compared with test driven development&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;images/soft_insp1.PNG&quot; alt=&quot;initial costs of software inspections&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;When to conduct an inspection?
+    &lt;ul&gt;
+      &lt;li&gt;Periodically as part of a clean-up or refactoring exercise&lt;/li&gt;
+      &lt;li&gt;After a period of requirements gathering and specication&lt;/li&gt;
+      &lt;li&gt;During staging of a new feature implementation&lt;/li&gt;
+      &lt;li&gt;As a feature is implemented (pair programming)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Roles in inspection
+    &lt;ul&gt;
+      &lt;li&gt;Mod: responsible for coordinating the arrangements for the inspection&lt;/li&gt;
+      &lt;li&gt;Author(s): &amp;gt;=1 team members who make &amp;gt;=1 software atifacts for inspection&lt;/li&gt;
+      &lt;li&gt;Inspector(s): responsibelf ro identifying defects in artifact during inspection&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/soft_insp2.PNG&quot; alt=&quot;software inspection process&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Choosing what to review
+    &lt;ul&gt;
+      &lt;li&gt;if artifact’s been changed, must be inspected before change can be committed to prod&lt;/li&gt;
+      &lt;li&gt;if artifact is associated with high priority feature&lt;/li&gt;
+      &lt;li&gt;if artifact has been associated with large no of defect reports&lt;/li&gt;
+      &lt;li&gt;if artifact has been subject to a large number of recent changes&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Static analysis tools
+    &lt;ul&gt;
+      &lt;li&gt;Design metrics, used to identify parts of system that are poorly structured&lt;/li&gt;
+      &lt;li&gt;Source code metrics
+        &lt;ul&gt;
+          &lt;li&gt;No. of lines of code per funct/module&lt;/li&gt;
+          &lt;li&gt;Ratio btwn executable and comment lines of code&lt;/li&gt;
+          &lt;li&gt;No. of spelling mistakes&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Soft process metrics
+        &lt;ul&gt;
+          &lt;li&gt;No. of changes per commit for module or over a period&lt;/li&gt;
+          &lt;li&gt;No of defects discovered over a period for a module&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Rules for conducting an inspection
+    &lt;ul&gt;
+      &lt;li&gt;Focus on identifying imporovement opportunities, not recrimination&lt;/li&gt;
+      &lt;li&gt;purposde of inspections is to uncover defects, not recommend remedial actions&lt;/li&gt;
+      &lt;li&gt;allow inspectors to take breaks. too much concentration leads to defects being missed&lt;/li&gt;
+      &lt;li&gt;desseminate and act on recommended actions quickly&lt;/li&gt;
+      &lt;li&gt;monitor remedial action to make sure it addresses the identified problems&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Strats for identifying defects
+    &lt;ul&gt;
+      &lt;li&gt;adhoc&lt;/li&gt;
+      &lt;li&gt;checklist directed&lt;/li&gt;
+      &lt;li&gt;senarios&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Linus’ Law&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given enough eyeballs, all bugs are shallow&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Key Point&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Inspections are an essential quality assurance tool&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h4 id=&quot;video-lecture-27&quot;&gt;Video Lecture 27&lt;/h4&gt;
 

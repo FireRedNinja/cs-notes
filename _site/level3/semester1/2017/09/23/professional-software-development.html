@@ -90,6 +90,143 @@
 <h4 id="video-lecture-23">Video Lecture 23</h4>
 
 <h4 id="video-lecture-26">Video Lecture 26</h4>
+<h5 id="software-inspection-techniques">Software Inspection Techniques</h5>
+<ul>
+  <li>What are Inspections?</li>
+  <li>
+    <p>Managing an Inspection</p>
+  </li>
+  <li>What can be the subject of an inspection?
+    <ul>
+      <li>application source code packages, classes or methods</li>
+      <li>source code documentation</li>
+      <li>test harnesses</li>
+      <li>design descriptions, such as UML component or class diagrams</li>
+      <li>requirements specications, such as user stories</li>
+    </ul>
+  </li>
+  <li>Why take inspections?
+    <ul>
+      <li>Deteck defects in software</li>
+      <li>identify opportunities for refactoring</li>
+      <li>as part of white/glass box testing process, or QA activities</li>
+      <li>develop a shared understanding of the purpose and function of a system</li>
+      <li>share good practice between team</li>
+    </ul>
+  </li>
+  <li>Dont use inspections for</li>
+  <li>
+    <p>Identifying poor performance</p>
+  </li>
+  <li>
+    <p>inspections should be used to identify improvement</p>
+  </li>
+  <li>total defects = target method + other methods + + undetected</li>
+  <li>
+    <p>defect detection rate = (target method) / (total defects)</p>
+  </li>
+  <li>How effective is it?
+    <ul>
+      <li>Fagan [1976] reported a DDR of 66% and 82% for two IBM case studies employing a comprehensive inspection process</li>
+      <li>Jones [1986] reported a DDR of 60% for design inspections alone, compared to a DDR of just 25% for unit testing</li>
+      <li>Boehm [1981] surveyed four case studies reported between1978 and 1980, finding that inspections discovered between 63% and 75% of defects</li>
+      <li>Wilkerson et al. [2012] found that inspections led to fewer defects left in a system than a test driven development approach to implementation</li>
+      <li>Runeson et al. [2006] reported a more complex picture from a survey of 12 case studies</li>
+    </ul>
+  </li>
+  <li>Cost of inspections?
+    <ul>
+      <li>Fagan [1986] reported several anecdotal case studies where
+  development and/or maintenance costs were signicantly
+  reduced as a net result of applying inspections. One project
+  experienced a 95% reduction in maintenance costs</li>
+      <li>Boehm [1981]’s survey of case studies reported that code
+  inspections could produce between 10 and 120 delivered lines
+  of source code per person hour, compared with 5-24 lines for
+  unit testing</li>
+      <li>Wilkerson et al. [2012] found that applying software
+  inspections cost about three times a much in total time
+  compared with test driven development</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="images/soft_insp1.PNG" alt="initial costs of software inspections" /></p>
+
+<ul>
+  <li>When to conduct an inspection?
+    <ul>
+      <li>Periodically as part of a clean-up or refactoring exercise</li>
+      <li>After a period of requirements gathering and specication</li>
+      <li>During staging of a new feature implementation</li>
+      <li>As a feature is implemented (pair programming)</li>
+    </ul>
+  </li>
+  <li>Roles in inspection
+    <ul>
+      <li>Mod: responsible for coordinating the arrangements for the inspection</li>
+      <li>Author(s): &gt;=1 team members who make &gt;=1 software atifacts for inspection</li>
+      <li>Inspector(s): responsibelf ro identifying defects in artifact during inspection</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../images/soft_insp2.PNG" alt="software inspection process" /></p>
+
+<ul>
+  <li>Choosing what to review
+    <ul>
+      <li>if artifact’s been changed, must be inspected before change can be committed to prod</li>
+      <li>if artifact is associated with high priority feature</li>
+      <li>if artifact has been associated with large no of defect reports</li>
+      <li>if artifact has been subject to a large number of recent changes</li>
+    </ul>
+  </li>
+  <li>Static analysis tools
+    <ul>
+      <li>Design metrics, used to identify parts of system that are poorly structured</li>
+      <li>Source code metrics
+        <ul>
+          <li>No. of lines of code per funct/module</li>
+          <li>Ratio btwn executable and comment lines of code</li>
+          <li>No. of spelling mistakes</li>
+        </ul>
+      </li>
+      <li>Soft process metrics
+        <ul>
+          <li>No. of changes per commit for module or over a period</li>
+          <li>No of defects discovered over a period for a module</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Rules for conducting an inspection
+    <ul>
+      <li>Focus on identifying imporovement opportunities, not recrimination</li>
+      <li>purposde of inspections is to uncover defects, not recommend remedial actions</li>
+      <li>allow inspectors to take breaks. too much concentration leads to defects being missed</li>
+      <li>desseminate and act on recommended actions quickly</li>
+      <li>monitor remedial action to make sure it addresses the identified problems</li>
+    </ul>
+  </li>
+  <li>Strats for identifying defects
+    <ul>
+      <li>adhoc</li>
+      <li>checklist directed</li>
+      <li>senarios</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Linus’ Law</p>
+<blockquote>
+  <p>Given enough eyeballs, all bugs are shallow</p>
+</blockquote>
+
+<p>Key Point</p>
+<blockquote>
+  <p>Inspections are an essential quality assurance tool</p>
+</blockquote>
 
 <h4 id="video-lecture-27">Video Lecture 27</h4>
 
