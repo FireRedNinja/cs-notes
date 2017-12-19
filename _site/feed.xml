@@ -3,10 +3,10 @@
   <channel>
     <title></title>
     <description>My notes on CS Level 3</description>
-    <link>https://fireredninja.github.io/cs-notes//cs-notes/</link>
-    <atom:link href="https://fireredninja.github.io/cs-notes//cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Dec 2017 15:20:34 +0000</pubDate>
-    <lastBuildDate>Sun, 17 Dec 2017 15:20:34 +0000</lastBuildDate>
+    <link>http://localhost:4000/cs-notes/</link>
+    <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 18 Dec 2017 21:52:28 +0000</pubDate>
+    <lastBuildDate>Mon, 18 Dec 2017 21:52:28 +0000</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -118,7 +118,7 @@
     &lt;ul&gt;
       &lt;li&gt;Mod: responsible for coordinating the arrangements for the inspection&lt;/li&gt;
       &lt;li&gt;Author(s): &amp;gt;=1 team members who make &amp;gt;=1 software atifacts for inspection&lt;/li&gt;
-      &lt;li&gt;Inspector(s): responsibel for identifying defects in artifact during inspection&lt;/li&gt;
+      &lt;li&gt;Inspector(s): responsibelf ro identifying defects in artifact during inspection&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
