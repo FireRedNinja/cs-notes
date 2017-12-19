@@ -3,11 +3,11 @@
   <channel>
     <title></title>
     <description>My notes on CS Level 3</description>
-    <link>http://localhost:4000/cs-notes/</link>
-    <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 25 Sep 2017 14:50:44 +0100</pubDate>
-    <lastBuildDate>Mon, 25 Sep 2017 14:50:44 +0100</lastBuildDate>
-    <generator>Jekyll v3.5.2</generator>
+    <link>https://fireredninja.github.io/cs-notes//cs-notes/</link>
+    <atom:link href="https://fireredninja.github.io/cs-notes//cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 17 Dec 2017 15:20:34 +0000</pubDate>
+    <lastBuildDate>Sun, 17 Dec 2017 15:20:34 +0000</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>Professional Software Development</title>
@@ -42,6 +42,143 @@
 &lt;h4 id=&quot;video-lecture-23&quot;&gt;Video Lecture 23&lt;/h4&gt;
 
 &lt;h4 id=&quot;video-lecture-26&quot;&gt;Video Lecture 26&lt;/h4&gt;
+&lt;h5 id=&quot;software-inspection-techniques&quot;&gt;Software Inspection Techniques&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;What are Inspections?&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Managing an Inspection&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;What can be the subject of an inspection?
+    &lt;ul&gt;
+      &lt;li&gt;application source code packages, classes or methods&lt;/li&gt;
+      &lt;li&gt;source code documentation&lt;/li&gt;
+      &lt;li&gt;test harnesses&lt;/li&gt;
+      &lt;li&gt;design descriptions, such as UML component or class diagrams&lt;/li&gt;
+      &lt;li&gt;requirements specications, such as user stories&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Why take inspections?
+    &lt;ul&gt;
+      &lt;li&gt;Deteck defects in software&lt;/li&gt;
+      &lt;li&gt;identify opportunities for refactoring&lt;/li&gt;
+      &lt;li&gt;as part of white/glass box testing process, or QA activities&lt;/li&gt;
+      &lt;li&gt;develop a shared understanding of the purpose and function of a system&lt;/li&gt;
+      &lt;li&gt;share good practice between team&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dont use inspections for&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Identifying poor performance&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;inspections should be used to identify improvement&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;total defects = target method + other methods + + undetected&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;defect detection rate = (target method) / (total defects)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;How effective is it?
+    &lt;ul&gt;
+      &lt;li&gt;Fagan [1976] reported a DDR of 66% and 82% for two IBM case studies employing a comprehensive inspection process&lt;/li&gt;
+      &lt;li&gt;Jones [1986] reported a DDR of 60% for design inspections alone, compared to a DDR of just 25% for unit testing&lt;/li&gt;
+      &lt;li&gt;Boehm [1981] surveyed four case studies reported between1978 and 1980, finding that inspections discovered between 63% and 75% of defects&lt;/li&gt;
+      &lt;li&gt;Wilkerson et al. [2012] found that inspections led to fewer defects left in a system than a test driven development approach to implementation&lt;/li&gt;
+      &lt;li&gt;Runeson et al. [2006] reported a more complex picture from a survey of 12 case studies&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cost of inspections?
+    &lt;ul&gt;
+      &lt;li&gt;Fagan [1986] reported several anecdotal case studies where
+  development and/or maintenance costs were signicantly
+  reduced as a net result of applying inspections. One project
+  experienced a 95% reduction in maintenance costs&lt;/li&gt;
+      &lt;li&gt;Boehm [1981]’s survey of case studies reported that code
+  inspections could produce between 10 and 120 delivered lines
+  of source code per person hour, compared with 5-24 lines for
+  unit testing&lt;/li&gt;
+      &lt;li&gt;Wilkerson et al. [2012] found that applying software
+  inspections cost about three times a much in total time
+  compared with test driven development&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;images/soft_insp1.PNG&quot; alt=&quot;initial costs of software inspections&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;When to conduct an inspection?
+    &lt;ul&gt;
+      &lt;li&gt;Periodically as part of a clean-up or refactoring exercise&lt;/li&gt;
+      &lt;li&gt;After a period of requirements gathering and specication&lt;/li&gt;
+      &lt;li&gt;During staging of a new feature implementation&lt;/li&gt;
+      &lt;li&gt;As a feature is implemented (pair programming)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Roles in inspection
+    &lt;ul&gt;
+      &lt;li&gt;Mod: responsible for coordinating the arrangements for the inspection&lt;/li&gt;
+      &lt;li&gt;Author(s): &amp;gt;=1 team members who make &amp;gt;=1 software atifacts for inspection&lt;/li&gt;
+      &lt;li&gt;Inspector(s): responsibel for identifying defects in artifact during inspection&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/soft_insp2.PNG&quot; alt=&quot;software inspection process&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Choosing what to review
+    &lt;ul&gt;
+      &lt;li&gt;if artifact’s been changed, must be inspected before change can be committed to prod&lt;/li&gt;
+      &lt;li&gt;if artifact is associated with high priority feature&lt;/li&gt;
+      &lt;li&gt;if artifact has been associated with large no of defect reports&lt;/li&gt;
+      &lt;li&gt;if artifact has been subject to a large number of recent changes&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Static analysis tools
+    &lt;ul&gt;
+      &lt;li&gt;Design metrics, used to identify parts of system that are poorly structured&lt;/li&gt;
+      &lt;li&gt;Source code metrics
+        &lt;ul&gt;
+          &lt;li&gt;No. of lines of code per funct/module&lt;/li&gt;
+          &lt;li&gt;Ratio btwn executable and comment lines of code&lt;/li&gt;
+          &lt;li&gt;No. of spelling mistakes&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Soft process metrics
+        &lt;ul&gt;
+          &lt;li&gt;No. of changes per commit for module or over a period&lt;/li&gt;
+          &lt;li&gt;No of defects discovered over a period for a module&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Rules for conducting an inspection
+    &lt;ul&gt;
+      &lt;li&gt;Focus on identifying imporovement opportunities, not recrimination&lt;/li&gt;
+      &lt;li&gt;purposde of inspections is to uncover defects, not recommend remedial actions&lt;/li&gt;
+      &lt;li&gt;allow inspectors to take breaks. too much concentration leads to defects being missed&lt;/li&gt;
+      &lt;li&gt;desseminate and act on recommended actions quickly&lt;/li&gt;
+      &lt;li&gt;monitor remedial action to make sure it addresses the identified problems&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Strats for identifying defects
+    &lt;ul&gt;
+      &lt;li&gt;adhoc&lt;/li&gt;
+      &lt;li&gt;checklist directed&lt;/li&gt;
+      &lt;li&gt;senarios&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Linus’ Law&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given enough eyeballs, all bugs are shallow&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Key Point&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Inspections are an essential quality assurance tool&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h4 id=&quot;video-lecture-27&quot;&gt;Video Lecture 27&lt;/h4&gt;
 
@@ -63,8 +200,8 @@
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/professional-software-development.html</link>
-        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/professional-software-development.html</guid>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</guid>
         
         
         <category>Level3</category>
@@ -90,8 +227,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/interactive-systems.html</link>
-        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/interactive-systems.html</guid>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</guid>
         
         
         <category>Level3</category>
@@ -117,8 +254,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</link>
-        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</guid>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</guid>
         
         
         <category>Level3</category>
@@ -144,8 +281,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</guid>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</guid>
         
         
         <category>Level3</category>
@@ -156,27 +293,471 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
     
       <item>
         <title>Advanced Programming</title>
-        <description>&lt;h4 id=&quot;introduction&quot;&gt;Introduction&lt;/h4&gt;
+        <description>&lt;h4 id=&quot;lecture-1&quot;&gt;Lecture 1&lt;/h4&gt;
+&lt;h4 id=&quot;introduction&quot;&gt;Introduction&lt;/h4&gt;
 
 &lt;h5 id=&quot;application-level&quot;&gt;Application Level&lt;/h5&gt;
-&lt;p&gt;Java - Strong Types&lt;br /&gt;
-Python - Auto Memory Mgt&lt;br /&gt;
-Hasket - Abstract Resources&lt;br /&gt;
-… - IDE&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Java - Strong Types&lt;/li&gt;
+  &lt;li&gt;Python - Auto Memory Mgt&lt;/li&gt;
+  &lt;li&gt;Haskel - Abstract Resources&lt;/li&gt;
+  &lt;li&gt;… - IDE&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h5 id=&quot;systems-level&quot;&gt;Systems Level&lt;/h5&gt;
-&lt;p&gt;Languages: C, Rust, OCaml&lt;br /&gt;
-Used for:
-	* OS
-	* Communications
-	* Numerical
-	* Drivers
-	* Embedded Systems&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Languages: C, Rust, OCaml&lt;/li&gt;
+  &lt;li&gt;Used for:
+    &lt;ul&gt;
+      &lt;li&gt;OS&lt;/li&gt;
+      &lt;li&gt;Communications&lt;/li&gt;
+      &lt;li&gt;Numerical&lt;/li&gt;
+      &lt;li&gt;Drivers&lt;/li&gt;
+      &lt;li&gt;Embedded Systems&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;C/C++ most heavily used programming language&lt;/li&gt;
+  &lt;li&gt;Used in OS and embeded systems&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;edit---compile---link---execute-cycle&quot;&gt;Edit - Compile - Link - Execute Cycle&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Source Files &amp;gt; Compiler &amp;gt; Bin &amp;gt; Linker &amp;gt; Executable
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;test.o
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;memory-layout&quot;&gt;Memory Layout&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Higher Mem address
+    &lt;ul&gt;
+      &lt;li&gt;stack&lt;/li&gt;
+      &lt;li&gt;heap&lt;/li&gt;
+      &lt;li&gt;bss segment
+        &lt;ul&gt;
+          &lt;li&gt;stores uninitialized variables&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;data segment
+        &lt;ul&gt;
+          &lt;li&gt;initialized data is stord&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;test segment
+        &lt;ul&gt;
+          &lt;li&gt;read-only, holds instructions that the processor understands&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Lower mem adress&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;stack &amp;amp; heap shared memory&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;makefiles&quot;&gt;Makefiles&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;makes compiling bigger programs easier
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_a.c
+gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_b.c
+gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_a.o mod_b.o &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; app_x
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;becomes
+```Makefile
+app_x: mod_a.o mod_b.o
+  gcc mod_a.o mod_b.o -o app_x&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;mod_a.o: mod_a.c global.h
+	gcc -c mod_a.c&lt;/p&gt;
+
+&lt;p&gt;mod_b.o: mod_b.c global.g
+	gcc -c mod_a.c&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;CFLAGS = -W -Wall
+%.o : %.c
+	gcc -c $(CFLAGS) $&amp;lt; -o $@
+OBJECTS = mod_a.o mod_b.o&lt;/p&gt;
+
+&lt;p&gt;app_x: $(OBJECTS)
+	gcc $(OBJECTS) –o app_x&lt;/p&gt;
+
+&lt;p&gt;mod_a.o: mod_a.c global.h
+mod_b.o: mod_b.c global.h&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+# Lecture 2
+# Overview of C
+
+* Must contain main()
+```C
+int main(){
+	// something
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+printf()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;char - 8 bits&lt;/li&gt;
+  &lt;li&gt;short - 16 bits&lt;/li&gt;
+  &lt;li&gt;long - 32 bits&lt;/li&gt;
+  &lt;li&gt;float - 32 bit&lt;/li&gt;
+  &lt;li&gt;long long - 64 bits&lt;/li&gt;
+  &lt;li&gt;double - 64-bit&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;printf-formatting&quot;&gt;printf formatting&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;%d - print as a decimal integer&lt;/li&gt;
+  &lt;li&gt;%6d - print as a decimal integer at least 6 characters wide with leading blanks&lt;/li&gt;
+  &lt;li&gt;%06d - print as a decimal integer at least 6 characters wide with leading zeros&lt;/li&gt;
+  &lt;li&gt;%f - print as a floating point number&lt;/li&gt;
+  &lt;li&gt;%6f - print as a floating point number at least 6 characters wide&lt;/li&gt;
+  &lt;li&gt;%.2f - print as a floating point number with 2 digits after the decimal point&lt;/li&gt;
+  &lt;li&gt;%6.2f - print as a floating point number at least 6 characters wide with 2 digits after the decimal point&lt;/li&gt;
+  &lt;li&gt;%c - print as a character&lt;/li&gt;
+  &lt;li&gt;%s - print as a string&lt;/li&gt;
+  &lt;li&gt;%x - print as a hexadecimal integer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;while(condition) {
+	statement;
+}
+
+for (int = i; i &amp;lt; length; ++i) {
+	statement;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;//Constant
+#define LOWER 0
+#define UPPER 300
+#define STEP 20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// Character input
+#include &amp;lt;stdio.h&amp;gt;
+...
+for (c = getchar(); c!=EOF;c=getchar()){
+	statement;
+}
+// or
+while ((c = getchar()) != EOF) {
+	statement;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;arrays&quot;&gt;Arrays&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int numbers[10];
+numbers[4];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;functions&quot;&gt;Functions&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// Must use prototype before
+return-type function-name (parameter declarations, if any);
+....
+return-type function-name (parameter declarations, if any) {
+	statements;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;call by value
+    &lt;ul&gt;
+      &lt;li&gt;manipulate actual values&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;call by reference
+    &lt;ul&gt;
+      &lt;li&gt;cannot manipulate actual values&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;arrays passewd by reference&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;/// External Variables
+extern type varName;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;signed
+    &lt;ul&gt;
+      &lt;li&gt;can be negative or positive ($2^-(n-1)$ to $2^(n-1)$)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;unsigned
+    &lt;ul&gt;
+      &lt;li&gt;always positive or 0&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;escape-sequences&quot;&gt;escape sequences&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\a - alert (bell) character
+\b - backspace
+\f - formfeed
+\n - newline
+\r - carriage return
+\t - horizontal tab
+\v - vertical tab
+\\ - backslash
+\?
+\'
+\&quot;
+\ooo - octal number
+\xhh - hexadecimal number
+\0 - null character (EOS)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;‘x’ - integer representing value of letter x&lt;/li&gt;
+  &lt;li&gt;“x” - array of 2 chars, ‘x’ and ‘\0’&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// enum
+enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;variables-default-initialized&quot;&gt;Variables default initialized&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;external
+    &lt;ul&gt;
+      &lt;li&gt;0&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;automatic
+    &lt;ul&gt;
+      &lt;li&gt;undefined&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“const” can be used with array arguments to functions, to tell the function not to change the array
+    &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int strlen(const char[])
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Conversion takes place across assignments; the value of the right hand side is converted to the type of the left hand side, which is the type of the result&lt;/li&gt;
+  &lt;li&gt;Longer integers are converted to shorter ones by dropping the excess high order bits&lt;/li&gt;
+  &lt;li&gt;float to int conversions cause truncation of any fractional part&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;cast&quot;&gt;cast&lt;/h4&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;++n // increments before value us used
+n++ // increments after value is used
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;bitwise-operations&quot;&gt;Bitwise operations&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&amp;amp; - AND&lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;- OR&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;^ - EXOR&lt;/li&gt;
+  &lt;li&gt;« - left shift&lt;/li&gt;
+  &lt;li&gt;
+    &lt;blockquote&gt;
+      &lt;blockquote&gt;
+        &lt;ul&gt;
+          &lt;li&gt;right shift&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/blockquote&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;~ - one’s complement&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;n = n &amp;amp; 0xff;
+/*sets all bits of n to 0 except the low order 8 bits */
+n = n &amp;amp; ~0xff;
+/* zeroes the low order 8 bits */
+n = n | 0x11;
+/* sets bits 0 and 4 to 1, leaving all others alone */
+n = n ^ 0x11;
+/* if n’s bit 0 has a value of 0, set it to 1; if it is 1, set it to
+0; same for bit 4 */
+n = n &amp;lt;&amp;lt; 2;
+/* shift n’s value 2 bits left, filling with 0’s; equivalent to
+multiplying by 4 */
+n = n &amp;gt;&amp;gt; 3;
+/* shift n’s value 3 bits right; if n is signed, fill vacated
+bits with the sign bit; if unsigned, fill with 0; equivalent
+to division by 8 */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;x = expr1 ? expr2 : expr3;
+// is the same as
+if (expr1) {
+	x = expr2;
+} else {
+	x = expr3;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Operations&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Associativity&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;() [] -&amp;gt; .&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;! ~ ++ – + - * &amp;amp; (type) sizeof&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;right to left&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;* / %&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;+ -&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;« »&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;lt; &amp;lt;= &amp;gt; &amp;gt;=&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;== !=&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;amp;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;^&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;|&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&amp;amp;&amp;amp;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;||&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;?;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;right to left&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;= += -= *= /= %= &amp;amp;= ^= |= «= »=&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;right to left&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;,&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;left to right&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;chapter-3&quot;&gt;Chapter 3&lt;/h1&gt;
+&lt;h2 id=&quot;control-statements&quot;&gt;Control statements&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;if (/* condition */) {
+	/* code */
+} else if (/* condition */) {
+	/* code */
+} else {
+	/* code */
+}
+
+while (/* condition */) {
+	/* code */
+}
+
+for (size_t i = 0; i &amp;lt; count; i++) {
+	/* code */
+}
+
+do {
+	/* code */
+} while(/* condition */);
+
+switch (/* expression */) {
+	case /* value */:
+		/* statement */;
+		break;
+	default /* value */ :
+		/* statement */;
+		break;
+}
+
+for (. . .)
+	for (. . .) {
+		. . .
+		if (disaster)
+			goto error;
+		. . .
+	}
+
+error:
+/* cleanup the mess */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;chapter-4&quot;&gt;Chapter 4&lt;/h1&gt;
+&lt;h2 id=&quot;functions-1&quot;&gt;Functions&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// always use prototypes
+return-type name(/* arguments */);
+
+return-type name(/* arguments */) {
+	/* code */
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;if funciton doesn’t have a type, it is set to int as default&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;static-variables&quot;&gt;Static Variables&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;static int sp;
+// can only use this variable inside the file it's declared in
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+  &lt;li&gt;internal static variables are local to a particular function, just as automatic variables are, but unlike automatics, they remain in existence rather than coming and going each time that the function is activated&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;register-variables&quot;&gt;Register Variables&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;The keyword register hints to compiler that a given variable can be put in a register. It’s compiler’s choice to put it in a register or not&lt;/li&gt;
+  &lt;li&gt;Registers are faster than memory to access, so the variables which are most frequently used in a C program can be put in registers using register keyword&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;register int x;
+&lt;/code&gt;&lt;/pre&gt;
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/advanced-programming.html</link>
-        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/advanced-programming.html</guid>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/advanced-programming.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/advanced-programming.html</guid>
         
         
         <category>Level3</category>
@@ -202,8 +783,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sun, 10 Nov 2013 10:18:00 +0000</pubDate>
-        <link>http://localhost:4000/cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://localhost:4000/cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</guid>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</guid>
         
         
         <category>Thriller</category>

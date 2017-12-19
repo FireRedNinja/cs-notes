@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="http://localhost:4000">
+            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -59,22 +59,466 @@
         <!-- <h1 class="post-title">Advanced Programming</h1> -->
 
         <section class="post-content">
-            <h4 id="introduction">Introduction</h4>
+            <h4 id="lecture-1">Lecture 1</h4>
+<h4 id="introduction">Introduction</h4>
 
 <h5 id="application-level">Application Level</h5>
-<p>Java - Strong Types<br />
-Python - Auto Memory Mgt<br />
-Hasket - Abstract Resources<br />
-… - IDE</p>
+<ul>
+  <li>Java - Strong Types</li>
+  <li>Python - Auto Memory Mgt</li>
+  <li>Haskel - Abstract Resources</li>
+  <li>… - IDE</li>
+</ul>
 
 <h5 id="systems-level">Systems Level</h5>
-<p>Languages: C, Rust, OCaml<br />
-Used for:
-	* OS
-	* Communications
-	* Numerical
-	* Drivers
-	* Embedded Systems</p>
+<ul>
+  <li>Languages: C, Rust, OCaml</li>
+  <li>Used for:
+    <ul>
+      <li>OS</li>
+      <li>Communications</li>
+      <li>Numerical</li>
+      <li>Drivers</li>
+      <li>Embedded Systems</li>
+    </ul>
+  </li>
+  <li>C/C++ most heavily used programming language</li>
+  <li>Used in OS and embeded systems</li>
+</ul>
+
+<h2 id="edit---compile---link---execute-cycle">Edit - Compile - Link - Execute Cycle</h2>
+<ul>
+  <li>Source Files &gt; Compiler &gt; Bin &gt; Linker &gt; Executable
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-o</span> <span class="nb">test </span>test.o
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="memory-layout">Memory Layout</h2>
+<ul>
+  <li>Higher Mem address
+    <ul>
+      <li>stack</li>
+      <li>heap</li>
+      <li>bss segment
+        <ul>
+          <li>stores uninitialized variables</li>
+        </ul>
+      </li>
+      <li>data segment
+        <ul>
+          <li>initialized data is stord</li>
+        </ul>
+      </li>
+      <li>test segment
+        <ul>
+          <li>read-only, holds instructions that the processor understands</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Lower mem adress</p>
+  </li>
+  <li>stack &amp; heap shared memory</li>
+</ul>
+
+<h2 id="makefiles">Makefiles</h2>
+<ul>
+  <li>makes compiling bigger programs easier
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-c</span> mod_a.c
+gcc <span class="nt">-c</span> mod_b.c
+gcc <span class="nt">-c</span> mod_a.o mod_b.o <span class="nt">-o</span> app_x
+</code></pre></div>    </div>
+    <p>becomes
+```Makefile
+app_x: mod_a.o mod_b.o
+  gcc mod_a.o mod_b.o -o app_x</p>
+  </li>
+</ul>
+
+<p>mod_a.o: mod_a.c global.h
+	gcc -c mod_a.c</p>
+
+<p>mod_b.o: mod_b.c global.g
+	gcc -c mod_a.c</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+<p>CFLAGS = -W -Wall
+%.o : %.c
+	gcc -c $(CFLAGS) $&lt; -o $@
+OBJECTS = mod_a.o mod_b.o</p>
+
+<p>app_x: $(OBJECTS)
+	gcc $(OBJECTS) –o app_x</p>
+
+<p>mod_a.o: mod_a.c global.h
+mod_b.o: mod_b.c global.h</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+# Lecture 2
+# Overview of C
+
+* Must contain main()
+```C
+int main(){
+	// something
+	return 0;
+}
+</code></pre></div></div>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+printf()
+</code></pre>
+
+<ul>
+  <li>char - 8 bits</li>
+  <li>short - 16 bits</li>
+  <li>long - 32 bits</li>
+  <li>float - 32 bit</li>
+  <li>long long - 64 bits</li>
+  <li>double - 64-bit<br /></li>
+</ul>
+
+<h4 id="printf-formatting">printf formatting</h4>
+<ul>
+  <li>%d - print as a decimal integer</li>
+  <li>%6d - print as a decimal integer at least 6 characters wide with leading blanks</li>
+  <li>%06d - print as a decimal integer at least 6 characters wide with leading zeros</li>
+  <li>%f - print as a floating point number</li>
+  <li>%6f - print as a floating point number at least 6 characters wide</li>
+  <li>%.2f - print as a floating point number with 2 digits after the decimal point</li>
+  <li>%6.2f - print as a floating point number at least 6 characters wide with 2 digits after the decimal point</li>
+  <li>%c - print as a character</li>
+  <li>%s - print as a string</li>
+  <li>%x - print as a hexadecimal integer</li>
+</ul>
+
+<pre><code class="language-C">while(condition) {
+	statement;
+}
+
+for (int = i; i &lt; length; ++i) {
+	statement;
+}
+</code></pre>
+
+<pre><code class="language-C">//Constant
+#define LOWER 0
+#define UPPER 300
+#define STEP 20
+</code></pre>
+
+<pre><code class="language-C">// Character input
+#include &lt;stdio.h&gt;
+...
+for (c = getchar(); c!=EOF;c=getchar()){
+	statement;
+}
+// or
+while ((c = getchar()) != EOF) {
+	statement;
+}
+</code></pre>
+
+<h4 id="arrays">Arrays</h4>
+<pre><code class="language-C">int numbers[10];
+numbers[4];
+</code></pre>
+
+<h4 id="functions">Functions</h4>
+<pre><code class="language-C">// Must use prototype before
+return-type function-name (parameter declarations, if any);
+....
+return-type function-name (parameter declarations, if any) {
+	statements;
+}
+</code></pre>
+
+<ul>
+  <li>call by value
+    <ul>
+      <li>manipulate actual values</li>
+    </ul>
+  </li>
+  <li>call by reference
+    <ul>
+      <li>cannot manipulate actual values</li>
+    </ul>
+  </li>
+  <li>arrays passewd by reference</li>
+</ul>
+
+<pre><code class="language-C">/// External Variables
+extern type varName;
+</code></pre>
+
+<ul>
+  <li>signed
+    <ul>
+      <li>can be negative or positive ($2^-(n-1)$ to $2^(n-1)$)</li>
+    </ul>
+  </li>
+  <li>unsigned
+    <ul>
+      <li>always positive or 0</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="escape-sequences">escape sequences</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\a - alert (bell) character
+\b - backspace
+\f - formfeed
+\n - newline
+\r - carriage return
+\t - horizontal tab
+\v - vertical tab
+\\ - backslash
+\?
+\'
+\"
+\ooo - octal number
+\xhh - hexadecimal number
+\0 - null character (EOS)
+</code></pre></div></div>
+
+<ul>
+  <li>‘x’ - integer representing value of letter x</li>
+  <li>“x” - array of 2 chars, ‘x’ and ‘\0’</li>
+</ul>
+
+<pre><code class="language-C">// enum
+enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
+</code></pre>
+
+<h3 id="variables-default-initialized">Variables default initialized</h3>
+<ul>
+  <li>external
+    <ul>
+      <li>0</li>
+    </ul>
+  </li>
+  <li>automatic
+    <ul>
+      <li>undefined</li>
+    </ul>
+  </li>
+  <li>“const” can be used with array arguments to functions, to tell the function not to change the array
+    <pre><code class="language-C">int strlen(const char[])
+</code></pre>
+  </li>
+  <li>Conversion takes place across assignments; the value of the right hand side is converted to the type of the left hand side, which is the type of the result</li>
+  <li>Longer integers are converted to shorter ones by dropping the excess high order bits</li>
+  <li>float to int conversions cause truncation of any fractional part</li>
+</ul>
+
+<h4 id="cast">cast</h4>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="n">expression</span>
+</code></pre></div></div>
+
+<pre><code class="language-C">++n // increments before value us used
+n++ // increments after value is used
+</code></pre>
+
+<h4 id="bitwise-operations">Bitwise operations</h4>
+<ul>
+  <li>&amp; - AND</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>- OR</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>^ - EXOR</li>
+  <li>« - left shift</li>
+  <li>
+    <blockquote>
+      <blockquote>
+        <ul>
+          <li>right shift</li>
+        </ul>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>~ - one’s complement</li>
+</ul>
+
+<pre><code class="language-C">n = n &amp; 0xff;
+/*sets all bits of n to 0 except the low order 8 bits */
+n = n &amp; ~0xff;
+/* zeroes the low order 8 bits */
+n = n | 0x11;
+/* sets bits 0 and 4 to 1, leaving all others alone */
+n = n ^ 0x11;
+/* if n’s bit 0 has a value of 0, set it to 1; if it is 1, set it to
+0; same for bit 4 */
+n = n &lt;&lt; 2;
+/* shift n’s value 2 bits left, filling with 0’s; equivalent to
+multiplying by 4 */
+n = n &gt;&gt; 3;
+/* shift n’s value 3 bits right; if n is signed, fill vacated
+bits with the sign bit; if unsigned, fill with 0; equivalent
+to division by 8 */
+</code></pre>
+
+<pre><code class="language-C">x = expr1 ? expr2 : expr3;
+// is the same as
+if (expr1) {
+	x = expr2;
+} else {
+	x = expr3;
+}
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Operations</th>
+      <th style="text-align: left">Associativity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">() [] -&gt; .</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">! ~ ++ – + - * &amp; (type) sizeof</td>
+      <td style="text-align: left">right to left</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">* / %</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">+ -</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">« »</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&lt; &lt;= &gt; &gt;=</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">== !=</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&amp;</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">|</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&amp;&amp;</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">||</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">?;</td>
+      <td style="text-align: left">right to left</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">= += -= *= /= %= &amp;= ^= |= «= »=</td>
+      <td style="text-align: left">right to left</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">,</td>
+      <td style="text-align: left">left to right</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="chapter-3">Chapter 3</h1>
+<h2 id="control-statements">Control statements</h2>
+
+<pre><code class="language-C">if (/* condition */) {
+	/* code */
+} else if (/* condition */) {
+	/* code */
+} else {
+	/* code */
+}
+
+while (/* condition */) {
+	/* code */
+}
+
+for (size_t i = 0; i &lt; count; i++) {
+	/* code */
+}
+
+do {
+	/* code */
+} while(/* condition */);
+
+switch (/* expression */) {
+	case /* value */:
+		/* statement */;
+		break;
+	default /* value */ :
+		/* statement */;
+		break;
+}
+
+for (. . .)
+	for (. . .) {
+		. . .
+		if (disaster)
+			goto error;
+		. . .
+	}
+
+error:
+/* cleanup the mess */
+</code></pre>
+
+<h1 id="chapter-4">Chapter 4</h1>
+<h2 id="functions-1">Functions</h2>
+
+<pre><code class="language-C">// always use prototypes
+return-type name(/* arguments */);
+
+return-type name(/* arguments */) {
+	/* code */
+	return 0;
+}
+</code></pre>
+
+<ul>
+  <li>if funciton doesn’t have a type, it is set to int as default</li>
+</ul>
+
+<h4 id="static-variables">Static Variables</h4>
+<pre><code class="language-C">static int sp;
+// can only use this variable inside the file it's declared in
+</code></pre>
+<ul>
+  <li>internal static variables are local to a particular function, just as automatic variables are, but unlike automatics, they remain in existence rather than coming and going each time that the function is activated</li>
+</ul>
+
+<h4 id="register-variables">Register Variables</h4>
+<ul>
+  <li>The keyword register hints to compiler that a given variable can be put in a register. It’s compiler’s choice to put it in a register or not</li>
+  <li>Registers are faster than memory to access, so the variables which are most frequently used in a C program can be put in registers using register keyword</li>
+</ul>
+
+<pre><code class="language-C">register int x;
+</code></pre>
 
 
         </section>

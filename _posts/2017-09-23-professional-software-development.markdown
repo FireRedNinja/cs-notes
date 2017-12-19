@@ -93,7 +93,7 @@ categories: Level3 Semester1
 * Roles in inspection
     * Mod: responsible for coordinating the arrangements for the inspection
     * Author(s): >=1 team members who make >=1 software atifacts for inspection
-    * Inspector(s): responsibelf ro identifying defects in artifact during inspection
+    * Inspector(s): responsibel for identifying defects in artifact during inspection
 
 ![software inspection process](../images/soft_insp2.PNG)
 
