@@ -6,6 +6,7 @@ categories: Level3 Semester1
 ---
 
 #### Video Lecture 3
+<!--excerpt-->
 
 #### Video Lecture 5
 

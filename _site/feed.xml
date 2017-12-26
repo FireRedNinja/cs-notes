@@ -5,13 +5,14 @@
     <description>My notes on CS Level 3</description>
     <link>http://localhost:4000/cs-notes/</link>
     <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 18 Dec 2017 21:52:28 +0000</pubDate>
-    <lastBuildDate>Mon, 18 Dec 2017 21:52:28 +0000</lastBuildDate>
+    <pubDate>Tue, 26 Dec 2017 17:38:07 +0000</pubDate>
+    <lastBuildDate>Tue, 26 Dec 2017 17:38:07 +0000</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>Professional Software Development</title>
         <description>&lt;h4 id=&quot;video-lecture-3&quot;&gt;Video Lecture 3&lt;/h4&gt;
+&lt;!--excerpt--&gt;
 
 &lt;h4 id=&quot;video-lecture-5&quot;&gt;Video Lecture 5&lt;/h4&gt;
 
@@ -118,7 +119,7 @@
     &lt;ul&gt;
       &lt;li&gt;Mod: responsible for coordinating the arrangements for the inspection&lt;/li&gt;
       &lt;li&gt;Author(s): &amp;gt;=1 team members who make &amp;gt;=1 software atifacts for inspection&lt;/li&gt;
-      &lt;li&gt;Inspector(s): responsibelf ro identifying defects in artifact during inspection&lt;/li&gt;
+      &lt;li&gt;Inspector(s): responsibel for identifying defects in artifact during inspection&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -200,8 +201,8 @@
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/professional-software-development.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/professional-software-development.html</guid>
         
         
         <category>Level3</category>
@@ -227,8 +228,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/interactive-systems.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/interactive-systems.html</guid>
         
         
         <category>Level3</category>
@@ -254,8 +255,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</guid>
         
         
         <category>Level3</category>
@@ -281,8 +282,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</guid>
         
         
         <category>Level3</category>
@@ -301,7 +302,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
   &lt;li&gt;Java - Strong Types&lt;/li&gt;
   &lt;li&gt;Python - Auto Memory Mgt&lt;/li&gt;
   &lt;li&gt;Haskel - Abstract Resources&lt;/li&gt;
-  &lt;li&gt;… - IDE&lt;/li&gt;
+  &lt;li&gt;… - IDE
+&lt;!--excerpt--&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h5 id=&quot;systems-level&quot;&gt;Systems Level&lt;/h5&gt;
@@ -364,40 +366,44 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_b.c
 gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_a.o mod_b.o &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; app_x
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;becomes
-```Makefile
-app_x: mod_a.o mod_b.o
-  gcc mod_a.o mod_b.o -o app_x&lt;/p&gt;
   &lt;/li&gt;
+  &lt;li&gt;becomes&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;mod_a.o: mod_a.c global.h
-	gcc -c mod_a.c&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Makefile&quot;&gt;app_x: mod_a.o mod_b.o
+	gcc mod_a.o mod_b.o -o app_x
 
-&lt;p&gt;mod_b.o: mod_b.c global.g
-	gcc -c mod_a.c&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;CFLAGS = -W -Wall
+mod_a.o: mod_a.c global.h
+	gcc -c mod_a.c
+
+mod_b.o: mod_b.c global.g
+	gcc -c mod_a.c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CFLAGS = -W -Wall
 %.o : %.c
 	gcc -c $(CFLAGS) $&amp;lt; -o $@
-OBJECTS = mod_a.o mod_b.o&lt;/p&gt;
+OBJECTS = mod_a.o mod_b.o
 
-&lt;p&gt;app_x: $(OBJECTS)
-	gcc $(OBJECTS) –o app_x&lt;/p&gt;
+app_x: $(OBJECTS)
+	gcc $(OBJECTS) –o app_x
 
-&lt;p&gt;mod_a.o: mod_a.c global.h
-mod_b.o: mod_b.c global.h&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-# Lecture 2
-# Overview of C
-
-* Must contain main()
-```C
-int main(){
-	// something
-	return 0;
-}
+mod_a.o: mod_a.c global.h
+mod_b.o: mod_b.c global.h
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;lecture-2&quot;&gt;Lecture 2&lt;/h1&gt;
+&lt;h1 id=&quot;overview-of-c&quot;&gt;Overview of C&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Must contain main()
+    &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int main(){
+  // something
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
 printf()
@@ -752,12 +758,430 @@ return-type name(/* arguments */) {
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;register int x;
+int f(register unsigned m, register long n) {…}
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;preprocessor&quot;&gt;Preprocessor&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// file inclusion
+#include &quot;filename&quot;
+#include &amp;lt;filename&amp;gt;
+
+// macro substitution
+#define name replacement-text
+// use &quot;\&quot; to continue for multiple lines
+#define name replacement-textreplacement-textreplacement-textreplacement-text\
+replacement-textreplacement-textreplacement-text\
+replacement-textreplacement-textreplacement-text
+// ## can concatenate arguments
+#define paste(front, back) front ## back
+paste(name, 1);
+// will give
+name1;
+
+// Conditional evaluation
+#if
+	#endif
+	#else
+	#elif
+// eg
+#if SYSTEM == SYSV
+	#define HDR “sysv.h”
+#elif SYSTEM == BSD
+	#define HDR “bsd.h”
+#elif SYSTEM == MSDOS
+	#define HDR “msdos.h”
+#else
+	#define HDR “default.h”
+#endif /* SYSTEM */
+#include HDR
+
+
+#ifdef
+#ifndef
+// ifdef/ifndef is the same as checks if contents of a header file is only included once
+#if !defined(_HDR_H_)
+#define _HDR_H_
+/* contents of hdr.h go here */
+#endif /*_HDR_H_ */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Automatic variable
+    &lt;ul&gt;
+      &lt;li&gt;lives inside function&lt;/li&gt;
+      &lt;li&gt;allocated upon function call&lt;/li&gt;
+      &lt;li&gt;deallocated upon function return&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;External variable
+    &lt;ul&gt;
+      &lt;li&gt;lives outside functions&lt;/li&gt;
+      &lt;li&gt;allocated upon program start&lt;/li&gt;
+      &lt;li&gt;never deallocated&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;visibility-of-variables&quot;&gt;Visibility of variables&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;As default all top-level names are visible everywhere&lt;/li&gt;
+  &lt;li&gt;use static to restrict visibility&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;chapter-5&quot;&gt;Chapter 5&lt;/h2&gt;
+&lt;h3 id=&quot;pointers&quot;&gt;pointers&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// points to a value of type int
+int*;
+// points to a value of type int*
+int**;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;purpose&quot;&gt;purpose?&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;call-by-reference&lt;/li&gt;
+  &lt;li&gt;linked data structures&lt;/li&gt;
+  &lt;li&gt;array indexing&lt;/li&gt;
+  &lt;li&gt;higher order functions - functions that call some of their own arguments&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// stores address of int X in P
+int *P = &amp;amp;X;
+
+// writes 42 to the address pointed to by P
+*P = 42;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&amp;amp; cannot be used for register variables or complex expressions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int x = 1, y = 2;
+int z[10];
+int *p, *q; /* p and q are pointers to int */
+
+p = &amp;amp;x; /* p now points to x */
+y = *p; /* y is now 1 */
+*p = 0; /* x is now 0 */
+q = &amp;amp;z[3]; /* q now points to z[3] */
+p = q; /* p now points to z[3] */
+while (p == q) /* loop exits on 1st iter */
+	break;
+if (p != NULL) /* address of z[3] != 0 */
+	p = &amp;amp;z[0]; /* p now points to z[0] */
+if (q)
+	q = &amp;amp;z[0]; /* q now equals p; */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use pointers to call by reference
+    &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;swap(&amp;amp;a[i], &amp;amp;a[j])
+// instead of
+swap(intx , int y)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int a[10];
+int *pa;
+
+pa = a; // points to a[0]
+pa++; // points to a[1]
+
+// given pointers q, p that points to the same array
+q-p; // is the number of array elements between pointers p ad q
+
+//-------------
+
+char amsg[] = &quot;this is a string&quot;; // array of 17 characters including '\0'
+char *pmsg = &quot;this is a string&quot; // pointer to an array of the same 17 chars
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;pmsg can be resized but amsg can’t;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;memory-management&quot;&gt;Memory management&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;malloc(); // requests given no. of bytes adn returns a void * to the first byte
+sizeof(t); // no. of bytes required to store a value of type t
+
+free(); // deallocates memory that was malloced;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;given
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./program hello world
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// in int main(int argc *argv[]);
+argc == 3
+argv[0] == &quot;./program&quot;;
+argv[1] == &quot;hello&quot;;
+argv[2] == &quot;world&quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;function-pointers&quot;&gt;Function pointers&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;void sort(char *lineptr[], int left, int right, int (*comp)(void *, void *));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;chapter-7&quot;&gt;Chapter 7&lt;/h2&gt;
+&lt;h4 id=&quot;standard-input-and-output&quot;&gt;Standard Input and output&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+
+int getchar(void); // read one character at a time
+int getchat(); // return next input char, returns EOF on end
+int putchar(int ch); // prints ch to stdout
+printf(); // prints to stdout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;formated-io&quot;&gt;Formated I/O&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// Format string determines type of remaining arguments
+int printf(const char *format, ...);
+printf(&quot;%d\n&quot;, 8);
+
+int scanf(char *format, ...); // same as printf formatting
+int day, year;
+char monthname[20];
+scanf(“%d %s %d”, &amp;amp;day, monthname, &amp;amp;year);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Character&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Input Data&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;d&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;decimal int&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;i&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;integer. integer may be octal(leading 0) or hexadecimal(leading 0x/0X)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;o&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;octal int(with/without leading 0)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;u&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;unsigned int&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;x&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;hexadecimal int&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;c&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;char&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;s&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;string&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;e,f,g&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;floating point with optional sight/decimal point/exponential&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;%&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;literal %, no assignment is made&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;file-io&quot;&gt;File I/O&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;FILE *fopen(char *name, char *mode);
+int getc(FILE *fp);
+int putc(int c, FILE *fp);
+int fclose(FILE *fp);
+
+// printf and scanf variants
+int fscanf(FILE *fp, char *format, ...);
+int fprintf(FILE *fp, char *format, ...);
+
+// line buffered input/output
+char *fgets(char *line, int maxline, FILE *fp);
+int fputs(char *line, FILE *fp);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;chapter-6&quot;&gt;Chapter 6&lt;/h2&gt;
+&lt;h4 id=&quot;structs&quot;&gt;Structs&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;struct [tag] {
+	member declarations
+};
+
+struct point {
+	int x;
+	int y;
+};
+
+struct point p = {320, 200};
+struct point q;
+struct point *r;
+
+q = p; // struct assignment
+r = &amp;amp;q; // address of struct variable q
+
+q.y; // access struct member y
+r-&amp;gt;x; // dereference
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Legal Operations
+    &lt;ul&gt;
+      &lt;li&gt;copying&lt;/li&gt;
+      &lt;li&gt;passing to a function&lt;/li&gt;
+      &lt;li&gt;returning from a function&lt;/li&gt;
+      &lt;li&gt;taking the address with &amp;amp;&lt;/li&gt;
+      &lt;li&gt;accessing members&lt;/li&gt;
+      &lt;li&gt;assigning to members&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Illegal Operations
+    &lt;ul&gt;
+      &lt;li&gt;arithmetic&lt;/li&gt;
+      &lt;li&gt;comparisons&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;self-referential-structs&quot;&gt;Self-referential structs&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;struct tnode {
+	int value; // payload
+	struct tnode *left; // ptr to left child
+	struct tnode *right; // ptr to right child
+};
+
+struct tnode *;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;typedefs&quot;&gt;Typedefs&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;create new data type synonyms
+    &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;typedef type synonym;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;```C
+typedef int Length; // Length is synonym for int
+typedef char *String; // String is synonym for char *&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Length len, maxlen; // Length variables
+Length *lengths; // ptr to (array of) Length
+String lineptr[MAXLINES]; // array of String
+Length strlen(String s); // prototype&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+#### Unions
+- Variable that may hold objects of different types and sizes
+```C
+union const_value { // type declaration
+	int ival;
+	double dval;
+	char *sval;
+};
+union const_value val; // variable definition
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;assignment to any union member turns all other members into garbage&lt;/li&gt;
+  &lt;li&gt;compiler doesn’t track this&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;differences-between-java-and-c&quot;&gt;Differences between Java and C&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Interface support
+    &lt;ul&gt;
+      &lt;li&gt;Java compiler checks that a class implements its interface&lt;/li&gt;
+      &lt;li&gt;C compiler doesn’t check that .c file defines what .h declares&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Memory management
+    &lt;ul&gt;
+      &lt;li&gt;Java garbage collector&lt;/li&gt;
+      &lt;li&gt;In C unused memory mused be freed explicitly&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Memory protection
+    &lt;ul&gt;
+      &lt;li&gt;Java - private attributes cannot be tampered with&lt;/li&gt;
+      &lt;li&gt;Pointers to opaque structs can still be dereferenced
+        &lt;ul&gt;
+          &lt;li&gt;never leak pointers to internal data structures, for security reasons.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;threads-and-concurrency&quot;&gt;Threads and Concurrency&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Concurency&lt;/em&gt; means multiple computations are happening at the same time.&lt;/p&gt;
+
+&lt;h4 id=&quot;process&quot;&gt;Process&lt;/h4&gt;
+&lt;p&gt;A &lt;em&gt;process&lt;/em&gt; is an instance of a running program that is isolated from other processes on the same machine. In particular, it has its own private section of the machine’s memory.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Processes has:
+    &lt;ul&gt;
+      &lt;li&gt;An address space&lt;/li&gt;
+      &lt;li&gt;A collection of OS state&lt;/li&gt;
+      &lt;li&gt;A CPU context - a thread of control&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;threads&quot;&gt;Threads&lt;/h4&gt;
+&lt;p&gt;A &lt;em&gt;thread&lt;/em&gt; is a locus of control inside a running program. Think of it as a place in the program that is being run, plus the stack of method calls that led to that place (so the thread can go back up the stack when it reaches return statements).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Why use threads?
+    &lt;ul&gt;
+      &lt;li&gt;Split program into routines to execute in parallel&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Shares a process address space with &amp;gt;= 0 threads&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;thread-models&quot;&gt;Thread Models&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Manager/Worker
+    &lt;ul&gt;
+      &lt;li&gt;Manager handles I/O and assignes work to worker threads&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Peer
+    &lt;ul&gt;
+      &lt;li&gt;similar to manager/worker, but after the main thread creates other threads it participates in the work&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Pipeline
+    &lt;ul&gt;
+      &lt;li&gt;Each thread handles a different stage of an assemply line&lt;/li&gt;
+      &lt;li&gt;Threads hand word to each other in producer-consumer relationship&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;generic-threading-concepts&quot;&gt;Generic Threading Concepts&lt;/h2&gt;
+
+&lt;h2 id=&quot;java-support-for-multi-threading&quot;&gt;Java support for multi-threading&lt;/h2&gt;
+
+&lt;h2 id=&quot;pthreads&quot;&gt;PThreads&lt;/h2&gt;
+
+&lt;h2 id=&quot;thread-safe-adts&quot;&gt;Thread Safe ADTs&lt;/h2&gt;
+
+&lt;h2 id=&quot;memory-management-1&quot;&gt;Memory Management&lt;/h2&gt;
+
+&lt;h2 id=&quot;openmp&quot;&gt;OpenMP&lt;/h2&gt;
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/advanced-programming.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/advanced-programming.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/advanced-programming.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/advanced-programming.html</guid>
         
         
         <category>Level3</category>
@@ -783,8 +1207,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sun, 10 Nov 2013 10:18:00 +0000</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</guid>
+        <link>http://localhost:4000/cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</guid>
         
         
         <category>Thriller</category>

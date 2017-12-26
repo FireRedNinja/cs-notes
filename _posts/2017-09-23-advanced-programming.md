@@ -13,6 +13,7 @@ categories: Level3 Semester1
 * Python - Auto Memory Mgt
 * Haskel - Abstract Resources
 * ... - IDE
+<!--excerpt-->
 
 ##### Systems Level
 * Languages: C, Rust, OCaml
@@ -54,7 +55,8 @@ gcc -c mod_a.c
 gcc -c mod_b.c
 gcc -c mod_a.o mod_b.o -o app_x
 ```
-becomes
+- becomes
+
 ```Makefile
 app_x: mod_a.o mod_b.o
 	gcc mod_a.o mod_b.o -o app_x
@@ -65,6 +67,7 @@ mod_a.o: mod_a.c global.h
 mod_b.o: mod_b.c global.g
 	gcc -c mod_a.c
 ```
+
 ```
 CFLAGS = -W -Wall
 %.o : %.c
@@ -358,9 +361,344 @@ static int sp;
 
 ```C
 register int x;
+int f(register unsigned m, register long n) {…}
 ```
 
+#### Preprocessor
 
+```C
+// file inclusion
+#include "filename"
+#include <filename>
+
+// macro substitution
+#define name replacement-text
+// use "\" to continue for multiple lines
+#define name replacement-textreplacement-textreplacement-textreplacement-text\
+replacement-textreplacement-textreplacement-text\
+replacement-textreplacement-textreplacement-text
+// ## can concatenate arguments
+#define paste(front, back) front ## back
+paste(name, 1);
+// will give
+name1;
+
+// Conditional evaluation
+#if
+	#endif
+	#else
+	#elif
+// eg
+#if SYSTEM == SYSV
+	#define HDR “sysv.h”
+#elif SYSTEM == BSD
+	#define HDR “bsd.h”
+#elif SYSTEM == MSDOS
+	#define HDR “msdos.h”
+#else
+	#define HDR “default.h”
+#endif /* SYSTEM */
+#include HDR
+
+
+#ifdef
+#ifndef
+// ifdef/ifndef is the same as checks if contents of a header file is only included once
+#if !defined(_HDR_H_)
+#define _HDR_H_
+/* contents of hdr.h go here */
+#endif /*_HDR_H_ */
+```
+
+- Automatic variable
+	- lives inside function
+	- allocated upon function call
+	- deallocated upon function return
+
+- External variable
+	- lives outside functions
+	- allocated upon program start
+	- never deallocated
+
+#### Visibility of variables
+- As default all top-level names are visible everywhere
+- use static to restrict visibility
+
+## Chapter 5
+### pointers
+
+```C
+// points to a value of type int
+int*;
+// points to a value of type int*
+int**;
+```
+
+#### purpose?
+- call-by-reference
+- linked data structures
+- array indexing
+- higher order functions - functions that call some of their own arguments
+
+
+```C
+// stores address of int X in P
+int *P = &X;
+
+// writes 42 to the address pointed to by P
+*P = 42;
+```
+
+- & cannot be used for register variables or complex expressions
+
+```C
+int x = 1, y = 2;
+int z[10];
+int *p, *q; /* p and q are pointers to int */
+
+p = &x; /* p now points to x */
+y = *p; /* y is now 1 */
+*p = 0; /* x is now 0 */
+q = &z[3]; /* q now points to z[3] */
+p = q; /* p now points to z[3] */
+while (p == q) /* loop exits on 1st iter */
+	break;
+if (p != NULL) /* address of z[3] != 0 */
+	p = &z[0]; /* p now points to z[0] */
+if (q)
+	q = &z[0]; /* q now equals p; */
+```
+
+- Use pointers to call by reference
+```C
+swap(&a[i], &a[j])
+// instead of
+swap(intx , int y)
+```
+
+```C
+int a[10];
+int *pa;
+
+pa = a; // points to a[0]
+pa++; // points to a[1]
+
+// given pointers q, p that points to the same array
+q-p; // is the number of array elements between pointers p ad q
+
+//-------------
+
+char amsg[] = "this is a string"; // array of 17 characters including '\0'
+char *pmsg = "this is a string" // pointer to an array of the same 17 chars
+```
+
+- pmsg can be resized but amsg can't;
+
+
+#### Memory management
+
+```C
+malloc(); // requests given no. of bytes adn returns a void * to the first byte
+sizeof(t); // no. of bytes required to store a value of type t
+
+free(); // deallocates memory that was malloced;
+```
+
+- given
+```bash
+./program hello world
+```
+
+```C
+// in int main(int argc *argv[]);
+argc == 3
+argv[0] == "./program";
+argv[1] == "hello";
+argv[2] == "world";
+```
+
+#### Function pointers
+```C
+void sort(char *lineptr[], int left, int right, int (*comp)(void *, void *));
+```
+
+## Chapter 7
+#### Standard Input and output
+```C
+#include <stdio.h>
+
+int getchar(void); // read one character at a time
+int getchat(); // return next input char, returns EOF on end
+int putchar(int ch); // prints ch to stdout
+printf(); // prints to stdout
+```
+
+#### Formated I/O
+```C
+// Format string determines type of remaining arguments
+int printf(const char *format, ...);
+printf("%d\n", 8);
+
+int scanf(char *format, ...); // same as printf formatting
+int day, year;
+char monthname[20];
+scanf(“%d %s %d”, &day, monthname, &year);
+```
+
+| Character | Input Data |
+| :------------- | :------------- |
+| d | decimal int |
+| i  | integer. integer may be octal(leading 0) or hexadecimal(leading 0x/0X)  |
+| o   | octal int(with/without leading 0)  |
+| u  | unsigned int  |
+| x  | hexadecimal int  |
+| c  | char  |
+| s  | string  |
+| e,f,g  | floating point with optional sight/decimal point/exponential  |
+| %   | literal %, no assignment is made |
+
+#### File I/O
+```C
+FILE *fopen(char *name, char *mode);
+int getc(FILE *fp);
+int putc(int c, FILE *fp);
+int fclose(FILE *fp);
+
+// printf and scanf variants
+int fscanf(FILE *fp, char *format, ...);
+int fprintf(FILE *fp, char *format, ...);
+
+// line buffered input/output
+char *fgets(char *line, int maxline, FILE *fp);
+int fputs(char *line, FILE *fp);
+```
+
+## Chapter 6
+#### Structs
+```C
+struct [tag] {
+	member declarations
+};
+
+struct point {
+	int x;
+	int y;
+};
+
+struct point p = {320, 200};
+struct point q;
+struct point *r;
+
+q = p; // struct assignment
+r = &q; // address of struct variable q
+
+q.y; // access struct member y
+r->x; // dereference
+```
+
+- Legal Operations
+	- copying
+	- passing to a function
+	- returning from a function
+	- taking the address with &
+	- accessing members
+	- assigning to members
+- Illegal Operations
+	- arithmetic
+	- comparisons
+
+#### Self-referential structs
+```C
+struct tnode {
+	int value; // payload
+	struct tnode *left; // ptr to left child
+	struct tnode *right; // ptr to right child
+};
+
+struct tnode *;
+```
+#### Typedefs
+- create new data type synonyms
+```C
+typedef type synonym;
+```
+```C
+typedef int Length; // Length is synonym for int
+typedef char *String; // String is synonym for char *
+
+Length len, maxlen; // Length variables
+Length *lengths; // ptr to (array of) Length
+String lineptr[MAXLINES]; // array of String
+Length strlen(String s); // prototype
+```
+
+#### Unions
+- Variable that may hold objects of different types and sizes
+```C
+union const_value { // type declaration
+	int ival;
+	double dval;
+	char *sval;
+};
+union const_value val; // variable definition
+```
+- assignment to any union member turns all other members into garbage
+- compiler doesn't track this
+
+#### Differences between Java and C
+- Interface support
+	- Java compiler checks that a class implements its interface
+	- C compiler doesn't check that .c file defines what .h declares
+- Memory management
+	- Java garbage collector
+	- In C unused memory mused be freed explicitly
+- Memory protection
+	- Java - private attributes cannot be tampered with
+	- Pointers to opaque structs can still be dereferenced
+		- never leak pointers to internal data structures, for security reasons.
+
+## Threads and Concurrency
+*Concurency* means multiple computations are happening at the same time.
+
+#### Process
+A *process* is an instance of a running program that is isolated from other processes on the same machine. In particular, it has its own private section of the machine’s memory.
+
+
+- Processes has:
+	- An address space
+	- A collection of OS state
+	- A CPU context - a thread of control
+
+#### Threads
+A *thread* is a locus of control inside a running program. Think of it as a place in the program that is being run, plus the stack of method calls that led to that place (so the thread can go back up the stack when it reaches return statements).
+
+- Why use threads?
+	- Split program into routines to execute in parallel
+
+- Shares a process address space with >= 0 threads
+
+#### Thread Models
+- Manager/Worker
+	- Manager handles I/O and assignes work to worker threads
+- Peer
+	- similar to manager/worker, but after the main thread creates other threads it participates in the work
+- Pipeline
+	- Each thread handles a different stage of an assemply line
+	- Threads hand word to each other in producer-consumer relationship
+
+
+
+## Generic Threading Concepts
+
+## Java support for multi-threading
+
+## PThreads
+
+## Thread Safe ADTs
+
+## Memory Management
+
+## OpenMP
 
 [jekyll-gh]: https://github.com/mojombo/jekyll
 [jekyll]:    http://jekyllrb.com

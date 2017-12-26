@@ -14,3 +14,6 @@ gems: [jekyll-paginate]
 # Details for the RSS feed generator
 url:            'https://fireredninja.github.io/cs-notes/'
 author:         'Noel Rajan'
+
+# Site settings
+excerpt_separator: <!--excerpt-->
