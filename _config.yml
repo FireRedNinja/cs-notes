@@ -9,11 +9,16 @@ paginate: 15
 baseurl: '/cs-notes'
 domain_name: 'https://fireredninja.github.io/'
 google_analytics: 'UA-XXXXXXXX-X'
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
 url:            'https://fireredninja.github.io/cs-notes/'
-author:         'Noel Rajan'
+
+# Author details.
+noel:
+  name: Noel Rajan
+dasha:
+  name: Dasha Shumitskiy
 
 # Site settings
 excerpt_separator: <!--excerpt-->

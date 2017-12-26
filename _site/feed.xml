@@ -5,260 +5,9 @@
     <description>My notes on CS Level 3</description>
     <link>https://fireredninja.github.io/cs-notes//cs-notes/</link>
     <atom:link href="https://fireredninja.github.io/cs-notes//cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 26 Dec 2017 21:00:43 +0000</pubDate>
-    <lastBuildDate>Tue, 26 Dec 2017 21:00:43 +0000</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
-    
-      <item>
-        <title>Professional Software Development</title>
-        <description>&lt;h4 id=&quot;video-lecture-3&quot;&gt;Video Lecture 3&lt;/h4&gt;
-&lt;!--excerpt--&gt;
-
-&lt;h4 id=&quot;video-lecture-5&quot;&gt;Video Lecture 5&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-6&quot;&gt;Video Lecture 6&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-7&quot;&gt;Video Lecture 7&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-8&quot;&gt;Video Lecture 8&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-9&quot;&gt;Video Lecture 9&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-10&quot;&gt;Video Lecture 10&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-12&quot;&gt;Video Lecture 12&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-13&quot;&gt;Video Lecture 13&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-14&quot;&gt;Video Lecture 14&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-15&quot;&gt;Video Lecture 15&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-16&quot;&gt;Video Lecture 16&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-19&quot;&gt;Video Lecture 19&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-22&quot;&gt;Video Lecture 22&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-23&quot;&gt;Video Lecture 23&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-26&quot;&gt;Video Lecture 26&lt;/h4&gt;
-&lt;p&gt;##### Software Inspection Techniques
-* What are Inspections?
-* Managing an Inspection&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;What can be the subject of an inspection?
-    &lt;ul&gt;
-      &lt;li&gt;application source code packages, classes or methods&lt;/li&gt;
-      &lt;li&gt;source code documentation&lt;/li&gt;
-      &lt;li&gt;test harnesses&lt;/li&gt;
-      &lt;li&gt;design descriptions, such as UML component or class diagrams&lt;/li&gt;
-      &lt;li&gt;requirements specications, such as user stories&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Why take inspections?
-    &lt;ul&gt;
-      &lt;li&gt;Deteck defects in software&lt;/li&gt;
-      &lt;li&gt;identify opportunities for refactoring&lt;/li&gt;
-      &lt;li&gt;as part of white/glass box testing process, or QA activities&lt;/li&gt;
-      &lt;li&gt;develop a shared understanding of the purpose and function of a system&lt;/li&gt;
-      &lt;li&gt;share good practice between team&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Dont use inspections for&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Identifying poor performance&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;inspections should be used to identify improvement&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;total defects = target method + other methods + + undetected&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;defect detection rate = (target method) / (total defects)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;How effective is it?
-    &lt;ul&gt;
-      &lt;li&gt;Fagan [1976] reported a DDR of 66% and 82% for two IBM case studies employing a comprehensive inspection process&lt;/li&gt;
-      &lt;li&gt;Jones [1986] reported a DDR of 60% for design inspections alone, compared to a DDR of just 25% for unit testing&lt;/li&gt;
-      &lt;li&gt;Boehm [1981] surveyed four case studies reported between1978 and 1980, finding that inspections discovered between 63% and 75% of defects&lt;/li&gt;
-      &lt;li&gt;Wilkerson et al. [2012] found that inspections led to fewer defects left in a system than a test driven development approach to implementation&lt;/li&gt;
-      &lt;li&gt;Runeson et al. [2006] reported a more complex picture from a survey of 12 case studies&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Cost of inspections?
-    &lt;ul&gt;
-      &lt;li&gt;Fagan [1986] reported several anecdotal case studies where
-  development and/or maintenance costs were signicantly
-  reduced as a net result of applying inspections. One project
-  experienced a 95% reduction in maintenance costs&lt;/li&gt;
-      &lt;li&gt;Boehm [1981]’s survey of case studies reported that code
-  inspections could produce between 10 and 120 delivered lines
-  of source code per person hour, compared with 5-24 lines for
-  unit testing&lt;/li&gt;
-      &lt;li&gt;Wilkerson et al. [2012] found that applying software
-  inspections cost about three times a much in total time
-  compared with test driven development&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;images/soft_insp1.PNG&quot; alt=&quot;initial costs of software inspections&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;When to conduct an inspection?
-    &lt;ul&gt;
-      &lt;li&gt;Periodically as part of a clean-up or refactoring exercise&lt;/li&gt;
-      &lt;li&gt;After a period of requirements gathering and specication&lt;/li&gt;
-      &lt;li&gt;During staging of a new feature implementation&lt;/li&gt;
-      &lt;li&gt;As a feature is implemented (pair programming)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Roles in inspection
-    &lt;ul&gt;
-      &lt;li&gt;Mod: responsible for coordinating the arrangements for the inspection&lt;/li&gt;
-      &lt;li&gt;Author(s): &amp;gt;=1 team members who make &amp;gt;=1 software atifacts for inspection&lt;/li&gt;
-      &lt;li&gt;Inspector(s): responsibel for identifying defects in artifact during inspection&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../images/soft_insp2.PNG&quot; alt=&quot;software inspection process&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Choosing what to review
-    &lt;ul&gt;
-      &lt;li&gt;if artifact’s been changed, must be inspected before change can be committed to prod&lt;/li&gt;
-      &lt;li&gt;if artifact is associated with high priority feature&lt;/li&gt;
-      &lt;li&gt;if artifact has been associated with large no of defect reports&lt;/li&gt;
-      &lt;li&gt;if artifact has been subject to a large number of recent changes&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Static analysis tools
-    &lt;ul&gt;
-      &lt;li&gt;Design metrics, used to identify parts of system that are poorly structured&lt;/li&gt;
-      &lt;li&gt;Source code metrics
-        &lt;ul&gt;
-          &lt;li&gt;No. of lines of code per funct/module&lt;/li&gt;
-          &lt;li&gt;Ratio btwn executable and comment lines of code&lt;/li&gt;
-          &lt;li&gt;No. of spelling mistakes&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Soft process metrics
-        &lt;ul&gt;
-          &lt;li&gt;No. of changes per commit for module or over a period&lt;/li&gt;
-          &lt;li&gt;No of defects discovered over a period for a module&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Rules for conducting an inspection
-    &lt;ul&gt;
-      &lt;li&gt;Focus on identifying imporovement opportunities, not recrimination&lt;/li&gt;
-      &lt;li&gt;purposde of inspections is to uncover defects, not recommend remedial actions&lt;/li&gt;
-      &lt;li&gt;allow inspectors to take breaks. too much concentration leads to defects being missed&lt;/li&gt;
-      &lt;li&gt;desseminate and act on recommended actions quickly&lt;/li&gt;
-      &lt;li&gt;monitor remedial action to make sure it addresses the identified problems&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Strats for identifying defects
-    &lt;ul&gt;
-      &lt;li&gt;adhoc&lt;/li&gt;
-      &lt;li&gt;checklist directed&lt;/li&gt;
-      &lt;li&gt;senarios&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Linus’ Law
-&amp;gt; Given enough eyeballs, all bugs are shallow&lt;/p&gt;
-
-&lt;p&gt;Key Point
-&amp;gt; Inspections are an essential quality assurance tool&lt;/p&gt;
-
-&lt;h4 id=&quot;video-lecture-27&quot;&gt;Video Lecture 27&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-27a&quot;&gt;Video Lecture 27a&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-28&quot;&gt;Video Lecture 28&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-29&quot;&gt;Video Lecture 29&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-30&quot;&gt;Video Lecture 30&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-30a&quot;&gt;Video Lecture 30a&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-31&quot;&gt;Video Lecture 31&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-32&quot;&gt;Video Lecture 32&lt;/h4&gt;
-
-&lt;h4 id=&quot;video-lecture-33&quot;&gt;Video Lecture 33&lt;/h4&gt;
-
-</description>
-        <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</guid>
-        
-        
-        <category>Level3</category>
-        
-        <category>Semester1</category>
-        
-      </item>
-    
-      <item>
-        <title>Interactive Systems</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code class=&quot;highlighter-rouge&quot;&gt;-w&lt;/code&gt; switch) to see your changes!
-To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</guid>
-        
-        
-        <category>Level3</category>
-        
-        <category>Semester1</category>
-        
-      </item>
-    
-      <item>
-        <title>Data Fundamentals</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code class=&quot;highlighter-rouge&quot;&gt;-w&lt;/code&gt; switch) to see your changes!
-To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</guid>
-        
-        
-        <category>Level3</category>
-        
-        <category>Semester1</category>
-        
-      </item>
+    <pubDate>Tue, 26 Dec 2017 21:51:13 +0000</pubDate>
+    <lastBuildDate>Tue, 26 Dec 2017 21:51:13 +0000</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>Algorithmics 1</title>
@@ -269,10 +18,9 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 &lt;ul&gt;
   &lt;li&gt;M.T. Goodrich &amp;amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002&lt;/li&gt;
   &lt;li&gt;D. Harel &amp;amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
+  &lt;li&gt;M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
 &lt;!--excerpt--&gt;
-##### Revision - Algorithm Analysis&lt;/p&gt;
+    &lt;h5 id=&quot;revision---algorithm-analysis&quot;&gt;Revision - Algorithm Analysis&lt;/h5&gt;
   &lt;/li&gt;
   &lt;li&gt;Time and space complexity is written as a function of input size&lt;/li&gt;
   &lt;li&gt;Worst case - gives a guarantee of algorithm’s performance&lt;/li&gt;
@@ -488,98 +236,92 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;h6 id=&quot;heap-class-implementation-in-java&quot;&gt;Heap class implementation in Java&lt;/h6&gt;
 
-&lt;p&gt;```javascript
-public class Heap {&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Heap&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
-&lt;p&gt;int size;
-  int[] items;&lt;/p&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;// create empty heap of max capacity n&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Heap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+    &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;// create heap of capacity n containing items from array a&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Heap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// impose heap property&lt;/span&gt;
+    
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;// create empty heap of max capacity n
-  public Heap(int n) {&lt;/p&gt;
+&lt;span class=&quot;c1&quot;&gt;// build a heap on current items&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;size = 0;
-items = new int[n];
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+  &lt;span class=&quot;c1&quot;&gt;// for each non-leaf node in bottom-to-top right-to-left order&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// start at parent of final leaf&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;impose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;}&lt;/p&gt;
+&lt;span class=&quot;c1&quot;&gt;// insert item k&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// current position(starting at new leaf node)&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//swap with parent&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// new position is position of parent&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// finalise location of item&lt;/span&gt;
 
-&lt;p&gt;// create heap of capacity n containing items from array a
-  public Heap(int n, int[] a) {&lt;/p&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;size = a.length;
-items = new int[n];
-for (int i = 0; i &amp;lt; a.length; i++)
-  items[i] = a[i];
-build(); // impose heap property
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;span class=&quot;c1&quot;&gt;// delete and return the max&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;deleteMax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// root&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// swap root with last leaf&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;impose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// on bad value in root&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;}&lt;/p&gt;
+&lt;span class=&quot;c1&quot;&gt;// impose property on node i&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;impose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;finished&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;finished&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+    &lt;span class=&quot;c1&quot;&gt;// find larger child&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// assume left child first&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// change if right exists and is larger&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// bad node&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// swap&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// new position&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;finished&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not bad node&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// finalise location&lt;/span&gt;
 
-&lt;p&gt;}&lt;/p&gt;
-
-&lt;p&gt;// build a heap on current items
-private void build() {&lt;/p&gt;
-
-&lt;p&gt;// for each non-leaf node in bottom-to-top right-to-left order
-  for (int i = (size-1)/2; i &amp;gt;= 0; i–) // start at parent of final leaf
-    impose(i);&lt;/p&gt;
-
-&lt;p&gt;}&lt;/p&gt;
-
-&lt;p&gt;// insert item k
-public void insert(int k) {&lt;/p&gt;
-
-&lt;p&gt;size++;
-  int i = size-1; // current position(starting at new leaf node)&lt;/p&gt;
-
-&lt;p&gt;while (i &amp;gt; 0 &amp;amp;&amp;amp; items[(i-1)/2] &amp;lt; k) {
-    items[i] = items[(i-1)/2]; //swap with parent
-    i = (i-1)/2; // new position is position of parent
-  }&lt;/p&gt;
-
-&lt;p&gt;items[i] = k; // finalise location of item&lt;/p&gt;
-
-&lt;p&gt;}&lt;/p&gt;
-
-&lt;p&gt;// delete and return the max
-public int deleteMax() {&lt;/p&gt;
-
-&lt;p&gt;int k = items[0]; // root
-  items[0] = items[size-1] // swap root with last leaf
-  size–;
-  impose(0); // on bad value in root
-  return k;&lt;/p&gt;
-
-&lt;p&gt;}&lt;/p&gt;
-
-&lt;p&gt;// impose property on node i
-private void impose(int i) {&lt;/p&gt;
-
-&lt;p&gt;int temp = items[i];
-  int current = i;
-  boolean finished = false;&lt;/p&gt;
-
-&lt;p&gt;while (2*current+1 &amp;lt; size &amp;amp;&amp;amp; !finished) {&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// find larger child
-int next = 2*current+1; // assume left child first
-if (next+1 &amp;lt; size &amp;amp;&amp;amp; items[next+1] &amp;gt; items[next])
-  next++; // change if right exists and is larger
-if (temp &amp;lt; items[next]) { // bad node
-  items[current] = items[next]; // swap
-  current = next; // new position
-}
-else finished = true; // not bad node   }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;items[current] = temp; // finalise location&lt;/p&gt;
-
-&lt;p&gt;}
-```
-&lt;a name=&quot;heapsort&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;heapsort&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;heapsort-pseudocode&quot;&gt;Heapsort pseudocode&lt;/h6&gt;
 
@@ -607,8 +349,223 @@ else finished = true; // not bad node   }
   &lt;li&gt;loop is iterated &lt;code class=&quot;highlighter-rouge&quot;&gt;n - 1&lt;/code&gt; times&lt;/li&gt;
   &lt;li&gt;each iteration takes O(log n) time&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+        <pubDate>Tue, 26 Dec 2017 18:50:00 +0000</pubDate>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/12/26/algorithmics-1.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/12/26/algorithmics-1.html</guid>
+        
+        
+        <category>Level3</category>
+        
+        <category>Semester1</category>
+        
+      </item>
+    
+      <item>
+        <title>Professional Software Development</title>
+        <description>&lt;h4 id=&quot;video-lecture-3&quot;&gt;Video Lecture 3&lt;/h4&gt;
+&lt;!--excerpt--&gt;
 
-&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code class=&quot;highlighter-rouge&quot;&gt;-w&lt;/code&gt; switch) to see your changes!
+&lt;h4 id=&quot;video-lecture-5&quot;&gt;Video Lecture 5&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-6&quot;&gt;Video Lecture 6&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-7&quot;&gt;Video Lecture 7&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-8&quot;&gt;Video Lecture 8&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-9&quot;&gt;Video Lecture 9&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-10&quot;&gt;Video Lecture 10&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-12&quot;&gt;Video Lecture 12&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-13&quot;&gt;Video Lecture 13&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-14&quot;&gt;Video Lecture 14&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-15&quot;&gt;Video Lecture 15&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-16&quot;&gt;Video Lecture 16&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-19&quot;&gt;Video Lecture 19&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-22&quot;&gt;Video Lecture 22&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-23&quot;&gt;Video Lecture 23&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-26&quot;&gt;Video Lecture 26&lt;/h4&gt;
+&lt;h5 id=&quot;software-inspection-techniques&quot;&gt;Software Inspection Techniques&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;What are Inspections?&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Managing an Inspection&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;What can be the subject of an inspection?
+    &lt;ul&gt;
+      &lt;li&gt;application source code packages, classes or methods&lt;/li&gt;
+      &lt;li&gt;source code documentation&lt;/li&gt;
+      &lt;li&gt;test harnesses&lt;/li&gt;
+      &lt;li&gt;design descriptions, such as UML component or class diagrams&lt;/li&gt;
+      &lt;li&gt;requirements specications, such as user stories&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Why take inspections?
+    &lt;ul&gt;
+      &lt;li&gt;Deteck defects in software&lt;/li&gt;
+      &lt;li&gt;identify opportunities for refactoring&lt;/li&gt;
+      &lt;li&gt;as part of white/glass box testing process, or QA activities&lt;/li&gt;
+      &lt;li&gt;develop a shared understanding of the purpose and function of a system&lt;/li&gt;
+      &lt;li&gt;share good practice between team&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dont use inspections for&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Identifying poor performance&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;inspections should be used to identify improvement&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;total defects = target method + other methods + + undetected&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;defect detection rate = (target method) / (total defects)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;How effective is it?
+    &lt;ul&gt;
+      &lt;li&gt;Fagan [1976] reported a DDR of 66% and 82% for two IBM case studies employing a comprehensive inspection process&lt;/li&gt;
+      &lt;li&gt;Jones [1986] reported a DDR of 60% for design inspections alone, compared to a DDR of just 25% for unit testing&lt;/li&gt;
+      &lt;li&gt;Boehm [1981] surveyed four case studies reported between1978 and 1980, finding that inspections discovered between 63% and 75% of defects&lt;/li&gt;
+      &lt;li&gt;Wilkerson et al. [2012] found that inspections led to fewer defects left in a system than a test driven development approach to implementation&lt;/li&gt;
+      &lt;li&gt;Runeson et al. [2006] reported a more complex picture from a survey of 12 case studies&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cost of inspections?
+    &lt;ul&gt;
+      &lt;li&gt;Fagan [1986] reported several anecdotal case studies where
+  development and/or maintenance costs were signicantly
+  reduced as a net result of applying inspections. One project
+  experienced a 95% reduction in maintenance costs&lt;/li&gt;
+      &lt;li&gt;Boehm [1981]’s survey of case studies reported that code
+  inspections could produce between 10 and 120 delivered lines
+  of source code per person hour, compared with 5-24 lines for
+  unit testing&lt;/li&gt;
+      &lt;li&gt;Wilkerson et al. [2012] found that applying software
+  inspections cost about three times a much in total time
+  compared with test driven development&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;images/soft_insp1.PNG&quot; alt=&quot;initial costs of software inspections&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;When to conduct an inspection?
+    &lt;ul&gt;
+      &lt;li&gt;Periodically as part of a clean-up or refactoring exercise&lt;/li&gt;
+      &lt;li&gt;After a period of requirements gathering and specication&lt;/li&gt;
+      &lt;li&gt;During staging of a new feature implementation&lt;/li&gt;
+      &lt;li&gt;As a feature is implemented (pair programming)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Roles in inspection
+    &lt;ul&gt;
+      &lt;li&gt;Mod: responsible for coordinating the arrangements for the inspection&lt;/li&gt;
+      &lt;li&gt;Author(s): &amp;gt;=1 team members who make &amp;gt;=1 software atifacts for inspection&lt;/li&gt;
+      &lt;li&gt;Inspector(s): responsibel for identifying defects in artifact during inspection&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/soft_insp2.PNG&quot; alt=&quot;software inspection process&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Choosing what to review
+    &lt;ul&gt;
+      &lt;li&gt;if artifact’s been changed, must be inspected before change can be committed to prod&lt;/li&gt;
+      &lt;li&gt;if artifact is associated with high priority feature&lt;/li&gt;
+      &lt;li&gt;if artifact has been associated with large no of defect reports&lt;/li&gt;
+      &lt;li&gt;if artifact has been subject to a large number of recent changes&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Static analysis tools
+    &lt;ul&gt;
+      &lt;li&gt;Design metrics, used to identify parts of system that are poorly structured&lt;/li&gt;
+      &lt;li&gt;Source code metrics
+        &lt;ul&gt;
+          &lt;li&gt;No. of lines of code per funct/module&lt;/li&gt;
+          &lt;li&gt;Ratio btwn executable and comment lines of code&lt;/li&gt;
+          &lt;li&gt;No. of spelling mistakes&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Soft process metrics
+        &lt;ul&gt;
+          &lt;li&gt;No. of changes per commit for module or over a period&lt;/li&gt;
+          &lt;li&gt;No of defects discovered over a period for a module&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Rules for conducting an inspection
+    &lt;ul&gt;
+      &lt;li&gt;Focus on identifying imporovement opportunities, not recrimination&lt;/li&gt;
+      &lt;li&gt;purposde of inspections is to uncover defects, not recommend remedial actions&lt;/li&gt;
+      &lt;li&gt;allow inspectors to take breaks. too much concentration leads to defects being missed&lt;/li&gt;
+      &lt;li&gt;desseminate and act on recommended actions quickly&lt;/li&gt;
+      &lt;li&gt;monitor remedial action to make sure it addresses the identified problems&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Strats for identifying defects
+    &lt;ul&gt;
+      &lt;li&gt;adhoc&lt;/li&gt;
+      &lt;li&gt;checklist directed&lt;/li&gt;
+      &lt;li&gt;senarios&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Linus’ Law&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given enough eyeballs, all bugs are shallow&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Key Point&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Inspections are an essential quality assurance tool&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;video-lecture-27&quot;&gt;Video Lecture 27&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-27a&quot;&gt;Video Lecture 27a&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-28&quot;&gt;Video Lecture 28&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-29&quot;&gt;Video Lecture 29&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-30&quot;&gt;Video Lecture 30&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-30a&quot;&gt;Video Lecture 30a&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-31&quot;&gt;Video Lecture 31&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-32&quot;&gt;Video Lecture 32&lt;/h4&gt;
+
+&lt;h4 id=&quot;video-lecture-33&quot;&gt;Video Lecture 33&lt;/h4&gt;
+
+</description>
+        <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</guid>
+        
+        
+        <category>Level3</category>
+        
+        <category>Semester1</category>
+        
+      </item>
+    
+      <item>
+        <title>Interactive Systems</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code class=&quot;highlighter-rouge&quot;&gt;-w&lt;/code&gt; switch) to see your changes!
 To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
 
 &lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
@@ -616,15 +573,42 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/algorithmics-1.html</guid>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</guid>
+        
+        
+        <category>Level3</category>
+        
+        <category>Semester1</category>
+        
+      </item>
+    
+      <item>
+        <title>Data Fundamentals</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code class=&quot;highlighter-rouge&quot;&gt;-w&lt;/code&gt; switch) to see your changes!
+To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
+        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</link>
+        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</guid>
         
         
         <category>Level3</category>
@@ -636,7 +620,7 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
       <item>
         <title>Advanced Programming</title>
         <description>&lt;h4 id=&quot;lecture-1&quot;&gt;Lecture 1&lt;/h4&gt;
-&lt;p&gt;#### Introduction&lt;/p&gt;
+&lt;h4 id=&quot;introduction&quot;&gt;Introduction&lt;/h4&gt;
 
 &lt;h5 id=&quot;application-level&quot;&gt;Application Level&lt;/h5&gt;
 &lt;ul&gt;
@@ -666,9 +650,9 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 &lt;h2 id=&quot;edit---compile---link---execute-cycle&quot;&gt;Edit - Compile - Link - Execute Cycle&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Source Files &amp;gt; Compiler &amp;gt; Bin &amp;gt; Linker &amp;gt; Executable
-&lt;code class=&quot;highlighter-rouge&quot;&gt;bash
-gcc -o test test.o
-&lt;/code&gt;&lt;/li&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;test.o
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;memory-layout&quot;&gt;Memory Layout&lt;/h2&gt;
@@ -703,55 +687,52 @@ gcc -o test test.o
 &lt;h2 id=&quot;makefiles&quot;&gt;Makefiles&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;makes compiling bigger programs easier
-&lt;code class=&quot;highlighter-rouge&quot;&gt;bash
-gcc -c mod_a.c
-gcc -c mod_b.c
-gcc -c mod_a.o mod_b.o -o app_x
-&lt;/code&gt;&lt;/li&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_a.c
+gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_b.c
+gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_a.o mod_b.o &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; app_x
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
   &lt;li&gt;becomes&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;```Makefile
-app_x: mod_a.o mod_b.o
-	gcc mod_a.o mod_b.o -o app_x&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Makefile&quot;&gt;app_x: mod_a.o mod_b.o
+	gcc mod_a.o mod_b.o -o app_x
 
-&lt;p&gt;mod_a.o: mod_a.c global.h
-	gcc -c mod_a.c&lt;/p&gt;
-
-&lt;p&gt;mod_b.o: mod_b.c global.g
+mod_a.o: mod_a.c global.h
 	gcc -c mod_a.c
-```&lt;/p&gt;
 
-&lt;p&gt;```
-CFLAGS = -W -Wall
+mod_b.o: mod_b.c global.g
+	gcc -c mod_a.c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CFLAGS = -W -Wall
 %.o : %.c
 	gcc -c $(CFLAGS) $&amp;lt; -o $@
-OBJECTS = mod_a.o mod_b.o&lt;/p&gt;
+OBJECTS = mod_a.o mod_b.o
 
-&lt;p&gt;app_x: $(OBJECTS)
-	gcc $(OBJECTS) –o app_x&lt;/p&gt;
+app_x: $(OBJECTS)
+	gcc $(OBJECTS) –o app_x
 
-&lt;p&gt;mod_a.o: mod_a.c global.h
+mod_a.o: mod_a.c global.h
 mod_b.o: mod_b.c global.h
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;lecture-2&quot;&gt;Lecture 2&lt;/h1&gt;
-&lt;p&gt;# Overview of C&lt;/p&gt;
+&lt;h1 id=&quot;overview-of-c&quot;&gt;Overview of C&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Must contain main()
-&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-int main(){
+    &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int main(){
   // something
   return 0;
 }
-&lt;/code&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-#include &amp;lt;stdio.h&amp;gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
 printf()
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;char - 8 bits&lt;/li&gt;
@@ -776,25 +757,22 @@ printf()
   &lt;li&gt;%x - print as a hexadecimal integer&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;```C
-while(condition) {
-	statement;
-}&lt;/p&gt;
-
-&lt;p&gt;for (int = i; i &amp;lt; length; ++i) {
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;while(condition) {
 	statement;
 }
-```&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-//Constant
+for (int = i; i &amp;lt; length; ++i) {
+	statement;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;//Constant
 #define LOWER 0
 #define UPPER 300
 #define STEP 20
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-// Character input
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// Character input
 #include &amp;lt;stdio.h&amp;gt;
 ...
 for (c = getchar(); c!=EOF;c=getchar()){
@@ -804,23 +782,21 @@ for (c = getchar(); c!=EOF;c=getchar()){
 while ((c = getchar()) != EOF) {
 	statement;
 }
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;arrays&quot;&gt;Arrays&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-int numbers[10];
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int numbers[10];
 numbers[4];
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;functions&quot;&gt;Functions&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-// Must use prototype before
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// Must use prototype before
 return-type function-name (parameter declarations, if any);
 ....
 return-type function-name (parameter declarations, if any) {
 	statements;
 }
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;call by value
@@ -836,10 +812,9 @@ return-type function-name (parameter declarations, if any) {
   &lt;li&gt;arrays passewd by reference&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-/// External Variables
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;/// External Variables
 extern type varName;
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;signed
@@ -855,8 +830,7 @@ extern type varName;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;escape-sequences&quot;&gt;escape sequences&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
-\a - alert (bell) character
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\a - alert (bell) character
 \b - backspace
 \f - formfeed
 \n - newline
@@ -865,22 +839,21 @@ extern type varName;
 \v - vertical tab
 \\ - backslash
 \?
-\&#39;
+\'
 \&quot;
 \ooo - octal number
 \xhh - hexadecimal number
 \0 - null character (EOS)
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;‘x’ - integer representing value of letter x&lt;/li&gt;
   &lt;li&gt;“x” - array of 2 chars, ‘x’ and ‘\0’&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-// enum
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// enum
 enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;variables-default-initialized&quot;&gt;Variables default initialized&lt;/h3&gt;
 &lt;ul&gt;
@@ -894,11 +867,9 @@ enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
       &lt;li&gt;undefined&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;“const” can be used with array arguments to functions, to tell the function not to change the array
-&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-int strlen(const char[])
-&lt;/code&gt;&lt;/p&gt;
+  &lt;li&gt;“const” can be used with array arguments to functions, to tell the function not to change the array
+    &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int strlen(const char[])
+&lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;Conversion takes place across assignments; the value of the right hand side is converted to the type of the left hand side, which is the type of the result&lt;/li&gt;
   &lt;li&gt;Longer integers are converted to shorter ones by dropping the excess high order bits&lt;/li&gt;
@@ -906,14 +877,12 @@ int strlen(const char[])
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;cast&quot;&gt;cast&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;c
-(type) expression
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-++n // increments before value us used
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;++n // increments before value us used
 n++ // increments after value is used
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;bitwise-operations&quot;&gt;Bitwise operations&lt;/h4&gt;
 &lt;ul&gt;
@@ -941,8 +910,7 @@ n++ // increments after value is used
   &lt;li&gt;~ - one’s complement&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-n = n &amp;amp; 0xff;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;n = n &amp;amp; 0xff;
 /*sets all bits of n to 0 except the low order 8 bits */
 n = n &amp;amp; ~0xff;
 /* zeroes the low order 8 bits */
@@ -958,17 +926,16 @@ n = n &amp;gt;&amp;gt; 3;
 /* shift n’s value 3 bits right; if n is signed, fill vacated
 bits with the sign bit; if unsigned, fill with 0; equivalent
 to division by 8 */
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-x = expr1 ? expr2 : expr3;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;x = expr1 ? expr2 : expr3;
 // is the same as
 if (expr1) {
 	x = expr2;
 } else {
 	x = expr3;
 }
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -1042,73 +1009,72 @@ if (expr1) {
 &lt;/table&gt;
 
 &lt;h1 id=&quot;chapter-3&quot;&gt;Chapter 3&lt;/h1&gt;
-&lt;p&gt;## Control statements&lt;/p&gt;
+&lt;h2 id=&quot;control-statements&quot;&gt;Control statements&lt;/h2&gt;
 
-&lt;p&gt;```C
-if (/* condition &lt;em&gt;/) {
-	/&lt;/em&gt; code &lt;em&gt;/
-} else if (/&lt;/em&gt; condition &lt;em&gt;/) {
-	/&lt;/em&gt; code &lt;em&gt;/
-} else {
-	/&lt;/em&gt; code */
-}&lt;/p&gt;
-
-&lt;p&gt;while (/* condition &lt;em&gt;/) {
-	/&lt;/em&gt; code */
-}&lt;/p&gt;
-
-&lt;p&gt;for (size_t i = 0; i &amp;lt; count; i++) {
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;if (/* condition */) {
 	/* code */
-}&lt;/p&gt;
+} else if (/* condition */) {
+	/* code */
+} else {
+	/* code */
+}
 
-&lt;p&gt;do {
-	/* code &lt;em&gt;/
-} while(/&lt;/em&gt; condition */);&lt;/p&gt;
+while (/* condition */) {
+	/* code */
+}
 
-&lt;p&gt;switch (/* expression &lt;em&gt;/) {
-	case /&lt;/em&gt; value &lt;em&gt;/:
-		/&lt;/em&gt; statement &lt;em&gt;/;
+for (size_t i = 0; i &amp;lt; count; i++) {
+	/* code */
+}
+
+do {
+	/* code */
+} while(/* condition */);
+
+switch (/* expression */) {
+	case /* value */:
+		/* statement */;
 		break;
-	default /&lt;/em&gt; value &lt;em&gt;/ :
-		/&lt;/em&gt; statement */;
+	default /* value */ :
+		/* statement */;
 		break;
-}&lt;/p&gt;
+}
 
-&lt;p&gt;for (. . .)
+for (. . .)
 	for (. . .) {
 		. . .
 		if (disaster)
 			goto error;
 		. . .
-	}&lt;/p&gt;
+	}
 
-&lt;p&gt;error:
+error:
 /* cleanup the mess */
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&quot;chapter-4&quot;&gt;Chapter 4&lt;/h1&gt;
-&lt;p&gt;## Functions&lt;/p&gt;
+&lt;h2 id=&quot;functions-1&quot;&gt;Functions&lt;/h2&gt;
 
-&lt;p&gt;```C
-// always use prototypes
-return-type name(/* arguments */);&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// always use prototypes
+return-type name(/* arguments */);
 
-&lt;p&gt;return-type name(/* arguments &lt;em&gt;/) {
-	/&lt;/em&gt; code */
+return-type name(/* arguments */) {
+	/* code */
 	return 0;
 }
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;if funciton doesn’t have a type, it is set to int as default&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;static-variables&quot;&gt;Static Variables&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-static int sp;
-// can only use this variable inside the file it&#39;s declared in
-&lt;/code&gt;
-* internal static variables are local to a particular function, just as automatic variables are, but unlike automatics, they remain in existence rather than coming and going each time that the function is activated&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;static int sp;
+// can only use this variable inside the file it's declared in
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+  &lt;li&gt;internal static variables are local to a particular function, just as automatic variables are, but unlike automatics, they remain in existence rather than coming and going each time that the function is activated&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h4 id=&quot;register-variables&quot;&gt;Register Variables&lt;/h4&gt;
 &lt;ul&gt;
@@ -1116,21 +1082,19 @@ static int sp;
   &lt;li&gt;Registers are faster than memory to access, so the variables which are most frequently used in a C program can be put in registers using register keyword&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-register int x;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;register int x;
 int f(register unsigned m, register long n) {…}
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;preprocessor&quot;&gt;Preprocessor&lt;/h4&gt;
 
-&lt;p&gt;```C
-// file inclusion
-#include “filename”
-#include &lt;filename&gt;&lt;/filename&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// file inclusion
+#include &quot;filename&quot;
+#include &amp;lt;filename&amp;gt;
 
-&lt;p&gt;// macro substitution
+// macro substitution
 #define name replacement-text
-// use “&quot; to continue for multiple lines
+// use &quot;\&quot; to continue for multiple lines
 #define name replacement-textreplacement-textreplacement-textreplacement-text\
 replacement-textreplacement-textreplacement-text\
 replacement-textreplacement-textreplacement-text
@@ -1138,9 +1102,9 @@ replacement-textreplacement-textreplacement-text
 #define paste(front, back) front ## back
 paste(name, 1);
 // will give
-name1;&lt;/p&gt;
+name1;
 
-&lt;p&gt;// Conditional evaluation
+// Conditional evaluation
 #if
 	#endif
 	#else
@@ -1155,16 +1119,17 @@ name1;&lt;/p&gt;
 #else
 	#define HDR “default.h”
 #endif /* SYSTEM */
-#include HDR&lt;/p&gt;
+#include HDR
 
-&lt;h1 id=&quot;ifdef&quot;&gt;ifdef&lt;/h1&gt;
-&lt;p&gt;#ifndef
+
+#ifdef
+#ifndef
 // ifdef/ifndef is the same as checks if contents of a header file is only included once
-#if !defined(&lt;em&gt;HDR_H&lt;/em&gt;)
-#define &lt;em&gt;HDR_H&lt;/em&gt;
-/* contents of hdr.h go here &lt;em&gt;/
-#endif /&lt;/em&gt;&lt;em&gt;HDR_H&lt;/em&gt; */
-```&lt;/p&gt;
+#if !defined(_HDR_H_)
+#define _HDR_H_
+/* contents of hdr.h go here */
+#endif /*_HDR_H_ */
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Automatic variable
@@ -1190,14 +1155,13 @@ name1;&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;chapter-5&quot;&gt;Chapter 5&lt;/h2&gt;
-&lt;p&gt;### pointers&lt;/p&gt;
+&lt;h3 id=&quot;pointers&quot;&gt;pointers&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-// points to a value of type int
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// points to a value of type int
 int*;
 // points to a value of type int*
 int**;
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;purpose&quot;&gt;purpose?&lt;/h4&gt;
 &lt;ul&gt;
@@ -1207,60 +1171,57 @@ int**;
   &lt;li&gt;higher order functions - functions that call some of their own arguments&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;```C
-// stores address of int X in P
-int *P = &amp;amp;X;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// stores address of int X in P
+int *P = &amp;amp;X;
 
-&lt;p&gt;// writes 42 to the address pointed to by P
+// writes 42 to the address pointed to by P
 *P = 42;
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&amp;amp; cannot be used for register variables or complex expressions&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;```C
-int x = 1, y = 2;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int x = 1, y = 2;
 int z[10];
-int &lt;em&gt;p, *q; /&lt;/em&gt; p and q are pointers to int */&lt;/p&gt;
+int *p, *q; /* p and q are pointers to int */
 
-&lt;p&gt;p = &amp;amp;x; /* p now points to x &lt;em&gt;/
-y = *p; /&lt;/em&gt; y is now 1 &lt;em&gt;/
-*p = 0; /&lt;/em&gt; x is now 0 &lt;em&gt;/
-q = &amp;amp;z[3]; /&lt;/em&gt; q now points to z[3] &lt;em&gt;/
-p = q; /&lt;/em&gt; p now points to z[3] &lt;em&gt;/
-while (p == q) /&lt;/em&gt; loop exits on 1st iter &lt;em&gt;/
+p = &amp;amp;x; /* p now points to x */
+y = *p; /* y is now 1 */
+*p = 0; /* x is now 0 */
+q = &amp;amp;z[3]; /* q now points to z[3] */
+p = q; /* p now points to z[3] */
+while (p == q) /* loop exits on 1st iter */
 	break;
-if (p != NULL) /&lt;/em&gt; address of z[3] != 0 &lt;em&gt;/
-	p = &amp;amp;z[0]; /&lt;/em&gt; p now points to z[0] &lt;em&gt;/
+if (p != NULL) /* address of z[3] != 0 */
+	p = &amp;amp;z[0]; /* p now points to z[0] */
 if (q)
-	q = &amp;amp;z[0]; /&lt;/em&gt; q now equals p; */
-```&lt;/p&gt;
+	q = &amp;amp;z[0]; /* q now equals p; */
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Use pointers to call by reference
-&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-swap(&amp;amp;a[i], &amp;amp;a[j])
+    &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;swap(&amp;amp;a[i], &amp;amp;a[j])
 // instead of
 swap(intx , int y)
-&lt;/code&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;```C
-int a[10];
-int *pa;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;int a[10];
+int *pa;
 
-&lt;p&gt;pa = a; // points to a[0]
-pa++; // points to a[1]&lt;/p&gt;
+pa = a; // points to a[0]
+pa++; // points to a[1]
 
-&lt;p&gt;// given pointers q, p that points to the same array
-q-p; // is the number of array elements between pointers p ad q&lt;/p&gt;
+// given pointers q, p that points to the same array
+q-p; // is the number of array elements between pointers p ad q
 
-&lt;p&gt;//————-&lt;/p&gt;
+//-------------
 
-&lt;p&gt;char amsg[] = “this is a string”; // array of 17 characters including ‘\0’
-char *pmsg = “this is a string” // pointer to an array of the same 17 chars
-```&lt;/p&gt;
+char amsg[] = &quot;this is a string&quot;; // array of 17 characters including '\0'
+char *pmsg = &quot;this is a string&quot; // pointer to an array of the same 17 chars
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;pmsg can be resized but amsg can’t;&lt;/li&gt;
@@ -1268,55 +1229,50 @@ char *pmsg = “this is a string” // pointer to an array of the same 17 chars
 
 &lt;h4 id=&quot;memory-management&quot;&gt;Memory management&lt;/h4&gt;
 
-&lt;p&gt;```C
-malloc(); // requests given no. of bytes adn returns a void * to the first byte
-sizeof(t); // no. of bytes required to store a value of type t&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;malloc(); // requests given no. of bytes adn returns a void * to the first byte
+sizeof(t); // no. of bytes required to store a value of type t
 
-&lt;p&gt;free(); // deallocates memory that was malloced;
-```&lt;/p&gt;
+free(); // deallocates memory that was malloced;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;given
-&lt;code class=&quot;highlighter-rouge&quot;&gt;bash
-./program hello world
-&lt;/code&gt;&lt;/li&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./program hello world
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-// in int main(int argc *argv[]);
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// in int main(int argc *argv[]);
 argc == 3
 argv[0] == &quot;./program&quot;;
 argv[1] == &quot;hello&quot;;
 argv[2] == &quot;world&quot;;
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;function-pointers&quot;&gt;Function pointers&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C
-void sort(char *lineptr[], int left, int right, int (*comp)(void *, void *));
-&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;void sort(char *lineptr[], int left, int right, int (*comp)(void *, void *));
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;chapter-7&quot;&gt;Chapter 7&lt;/h2&gt;
-&lt;p&gt;#### Standard Input and output
-```C
-#include &lt;stdio.h&gt;&lt;/stdio.h&gt;&lt;/p&gt;
+&lt;h4 id=&quot;standard-input-and-output&quot;&gt;Standard Input and output&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
 
-&lt;p&gt;int getchar(void); // read one character at a time
+int getchar(void); // read one character at a time
 int getchat(); // return next input char, returns EOF on end
 int putchar(int ch); // prints ch to stdout
 printf(); // prints to stdout
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;formated-io&quot;&gt;Formated I/O&lt;/h4&gt;
-&lt;p&gt;```C
-// Format string determines type of remaining arguments
-int printf(const char *format, …);
-printf(“%d\n”, 8);&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;// Format string determines type of remaining arguments
+int printf(const char *format, ...);
+printf(&quot;%d\n&quot;, 8);
 
-&lt;p&gt;int scanf(char *format, …); // same as printf formatting
+int scanf(char *format, ...); // same as printf formatting
 int day, year;
 char monthname[20];
 scanf(“%d %s %d”, &amp;amp;day, monthname, &amp;amp;year);
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -1366,43 +1322,41 @@ scanf(“%d %s %d”, &amp;amp;day, monthname, &amp;amp;year);
 &lt;/table&gt;
 
 &lt;h4 id=&quot;file-io&quot;&gt;File I/O&lt;/h4&gt;
-&lt;p&gt;```C
-FILE *fopen(char *name, char *mode);
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;FILE *fopen(char *name, char *mode);
 int getc(FILE *fp);
 int putc(int c, FILE *fp);
-int fclose(FILE *fp);&lt;/p&gt;
+int fclose(FILE *fp);
 
-&lt;p&gt;// printf and scanf variants
-int fscanf(FILE *fp, char *format, …);
-int fprintf(FILE *fp, char *format, …);&lt;/p&gt;
+// printf and scanf variants
+int fscanf(FILE *fp, char *format, ...);
+int fprintf(FILE *fp, char *format, ...);
 
-&lt;p&gt;// line buffered input/output
+// line buffered input/output
 char *fgets(char *line, int maxline, FILE *fp);
 int fputs(char *line, FILE *fp);
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;chapter-6&quot;&gt;Chapter 6&lt;/h2&gt;
-&lt;p&gt;#### Structs
-```C
-struct [tag] {
+&lt;h4 id=&quot;structs&quot;&gt;Structs&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;struct [tag] {
 	member declarations
-};&lt;/p&gt;
+};
 
-&lt;p&gt;struct point {
+struct point {
 	int x;
 	int y;
-};&lt;/p&gt;
+};
 
-&lt;p&gt;struct point p = {320, 200};
+struct point p = {320, 200};
 struct point q;
-struct point *r;&lt;/p&gt;
+struct point *r;
 
-&lt;p&gt;q = p; // struct assignment
-r = &amp;amp;q; // address of struct variable q&lt;/p&gt;
+q = p; // struct assignment
+r = &amp;amp;q; // address of struct variable q
 
-&lt;p&gt;q.y; // access struct member y
+q.y; // access struct member y
 r-&amp;gt;x; // dereference
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Legal Operations
@@ -1424,41 +1378,41 @@ r-&amp;gt;x; // dereference
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;self-referential-structs&quot;&gt;Self-referential structs&lt;/h4&gt;
-&lt;p&gt;```C
-struct tnode {
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;struct tnode {
 	int value; // payload
 	struct tnode *left; // ptr to left child
 	struct tnode *right; // ptr to right child
-};&lt;/p&gt;
+};
 
-&lt;p&gt;struct tnode *;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;
-#### Typedefs
-- create new data type synonyms
-&lt;/code&gt;C
-typedef type synonym;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;
-&lt;/code&gt;C
+struct tnode *;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;typedefs&quot;&gt;Typedefs&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;create new data type synonyms
+    &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;typedef type synonym;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;```C
 typedef int Length; // Length is synonym for int
 typedef char *String; // String is synonym for char *&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Length len, maxlen; // Length variables
 Length *lengths; // ptr to (array of) Length
 String lineptr[MAXLINES]; // array of String
-Length strlen(String s); // prototype
-```&lt;/p&gt;
-
-&lt;h4 id=&quot;unions&quot;&gt;Unions&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Variable that may hold objects of different types and sizes
-&lt;code class=&quot;highlighter-rouge&quot;&gt;C
+Length strlen(String s); // prototype&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+#### Unions
+- Variable that may hold objects of different types and sizes
+```C
 union const_value { // type declaration
-  int ival;
-  double dval;
-  char *sval;
+	int ival;
+	double dval;
+	char *sval;
 };
 union const_value val; // variable definition
-&lt;/code&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
   &lt;li&gt;assignment to any union member turns all other members into garbage&lt;/li&gt;
   &lt;li&gt;compiler doesn’t track this&lt;/li&gt;
 &lt;/ul&gt;
@@ -1571,8 +1525,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
 

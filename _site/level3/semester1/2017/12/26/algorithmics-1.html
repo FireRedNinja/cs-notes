@@ -32,7 +32,7 @@
         <header class="post-header">
             <h1 class="post-title">Algorithmics 1</h1>
             <section class="post-meta">
-                <time class="post-date" datetime="2017-09-23">23 Sep 2017</time>
+                <time class="post-date" datetime="2017-12-26">26 Dec 2017</time>
                 
                     on Level3 and Semester1
                 
@@ -50,7 +50,7 @@
         </header> -->
 
         <!-- <span class="post-meta">
-            <time datetime="2017-09-23">23 Sep 2017</time>
+            <time datetime="2017-12-26">26 Dec 2017</time>
             
                 on Level3 and Semester1
             
@@ -66,10 +66,9 @@
 <ul>
   <li>M.T. Goodrich &amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002</li>
   <li>D. Harel &amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)</li>
-  <li>
-    <p>M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
+  <li>M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
 <!--excerpt-->
-##### Revision - Algorithm Analysis</p>
+    <h5 id="revision---algorithm-analysis">Revision - Algorithm Analysis</h5>
   </li>
   <li>Time and space complexity is written as a function of input size</li>
   <li>Worst case - gives a guarantee of algorithm’s performance</li>
@@ -285,98 +284,92 @@ impose heap property on bad value now in root</code><br />
 
 <h6 id="heap-class-implementation-in-java">Heap class implementation in Java</h6>
 
-<p>```javascript
-public class Heap {</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">class</span> <span class="nx">Heap</span> <span class="p">{</span>
 
-<p>int size;
-  int[] items;</p>
+  <span class="kr">int</span> <span class="nx">size</span><span class="p">;</span>
+  <span class="kr">int</span><span class="p">[]</span> <span class="nx">items</span><span class="p">;</span>
+  
+  <span class="c1">// create empty heap of max capacity n</span>
+  <span class="kr">public</span> <span class="nx">Heap</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  
+    <span class="nx">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">items</span> <span class="o">=</span> <span class="k">new</span> <span class="kr">int</span><span class="p">[</span><span class="nx">n</span><span class="p">];</span>
+    
+  <span class="p">}</span>
+  
+  <span class="c1">// create heap of capacity n containing items from array a</span>
+  <span class="kr">public</span> <span class="nx">Heap</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">,</span> <span class="kr">int</span><span class="p">[]</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">size</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="nx">items</span> <span class="o">=</span> <span class="k">new</span> <span class="kr">int</span><span class="p">[</span><span class="nx">n</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="nx">items</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="nx">build</span><span class="p">();</span> <span class="c1">// impose heap property</span>
+    
+  <span class="p">}</span>
+  
+<span class="p">}</span>
 
-<p>// create empty heap of max capacity n
-  public Heap(int n) {</p>
+<span class="c1">// build a heap on current items</span>
+<span class="kr">private</span> <span class="k">void</span> <span class="nx">build</span><span class="p">()</span> <span class="p">{</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>size = 0;
-items = new int[n];
-</code></pre>
-</div>
+  <span class="c1">// for each non-leaf node in bottom-to-top right-to-left order</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="p">(</span><span class="nx">size</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="c1">// start at parent of final leaf</span>
+    <span class="nx">impose</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    
+<span class="p">}</span>
 
-<p>}</p>
+<span class="c1">// insert item k</span>
+<span class="kr">public</span> <span class="k">void</span> <span class="nx">insert</span><span class="p">(</span><span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="nx">size</span><span class="o">++</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">size</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// current position(starting at new leaf node)</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">items</span><span class="p">[(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">items</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">];</span> <span class="c1">//swap with parent</span>
+    <span class="nx">i</span> <span class="o">=</span> <span class="p">(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// new position is position of parent</span>
+  <span class="p">}</span>
+  
+  <span class="nx">items</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">k</span><span class="p">;</span> <span class="c1">// finalise location of item</span>
 
-<p>// create heap of capacity n containing items from array a
-  public Heap(int n, int[] a) {</p>
+<span class="p">}</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>size = a.length;
-items = new int[n];
-for (int i = 0; i &lt; a.length; i++)
-  items[i] = a[i];
-build(); // impose heap property
-</code></pre>
-</div>
+<span class="c1">// delete and return the max</span>
+<span class="kr">public</span> <span class="kr">int</span> <span class="nx">deleteMax</span><span class="p">()</span> <span class="p">{</span>
+  
+  <span class="kr">int</span> <span class="nx">k</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// root</span>
+  <span class="nx">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="nx">size</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// swap root with last leaf</span>
+  <span class="nx">size</span><span class="o">--</span><span class="p">;</span>
+  <span class="nx">impose</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// on bad value in root</span>
+  <span class="k">return</span> <span class="nx">k</span><span class="p">;</span>
+  
+<span class="p">}</span>
 
-<p>}</p>
+<span class="c1">// impose property on node i</span>
+<span class="kr">private</span> <span class="k">void</span> <span class="nx">impose</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="kr">int</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+  <span class="kr">int</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="kr">boolean</span> <span class="nx">finished</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nx">current</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nx">size</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">finished</span><span class="p">)</span> <span class="p">{</span>
+  
+    <span class="c1">// find larger child</span>
+    <span class="kr">int</span> <span class="nx">next</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nx">current</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// assume left child first</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">next</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nx">size</span> <span class="o">&amp;&amp;</span> <span class="nx">items</span><span class="p">[</span><span class="nx">next</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">items</span><span class="p">[</span><span class="nx">next</span><span class="p">])</span>
+      <span class="nx">next</span><span class="o">++</span><span class="p">;</span> <span class="c1">// change if right exists and is larger</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">temp</span> <span class="o">&lt;</span> <span class="nx">items</span><span class="p">[</span><span class="nx">next</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// bad node</span>
+      <span class="nx">items</span><span class="p">[</span><span class="nx">current</span><span class="p">]</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="nx">next</span><span class="p">];</span> <span class="c1">// swap</span>
+      <span class="nx">current</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span> <span class="c1">// new position</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="nx">finished</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// not bad node</span>
+  <span class="p">}</span>
+  
+  <span class="nx">items</span><span class="p">[</span><span class="nx">current</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span> <span class="c1">// finalise location</span>
 
-<p>}</p>
-
-<p>// build a heap on current items
-private void build() {</p>
-
-<p>// for each non-leaf node in bottom-to-top right-to-left order
-  for (int i = (size-1)/2; i &gt;= 0; i–) // start at parent of final leaf
-    impose(i);</p>
-
-<p>}</p>
-
-<p>// insert item k
-public void insert(int k) {</p>
-
-<p>size++;
-  int i = size-1; // current position(starting at new leaf node)</p>
-
-<p>while (i &gt; 0 &amp;&amp; items[(i-1)/2] &lt; k) {
-    items[i] = items[(i-1)/2]; //swap with parent
-    i = (i-1)/2; // new position is position of parent
-  }</p>
-
-<p>items[i] = k; // finalise location of item</p>
-
-<p>}</p>
-
-<p>// delete and return the max
-public int deleteMax() {</p>
-
-<p>int k = items[0]; // root
-  items[0] = items[size-1] // swap root with last leaf
-  size–;
-  impose(0); // on bad value in root
-  return k;</p>
-
-<p>}</p>
-
-<p>// impose property on node i
-private void impose(int i) {</p>
-
-<p>int temp = items[i];
-  int current = i;
-  boolean finished = false;</p>
-
-<p>while (2*current+1 &lt; size &amp;&amp; !finished) {</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>// find larger child
-int next = 2*current+1; // assume left child first
-if (next+1 &lt; size &amp;&amp; items[next+1] &gt; items[next])
-  next++; // change if right exists and is larger
-if (temp &lt; items[next]) { // bad node
-  items[current] = items[next]; // swap
-  current = next; // new position
-}
-else finished = true; // not bad node   }
-</code></pre>
-</div>
-
-<p>items[current] = temp; // finalise location</p>
-
-<p>}
-```
-<a name="heapsort"></a></p>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><a name="heapsort"></a></p>
 
 <h6 id="heapsort-pseudocode">Heapsort pseudocode</h6>
 
@@ -405,20 +398,6 @@ else finished = true; // not bad node   }
   <li>each iteration takes O(log n) time</li>
 </ul>
 
-<p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory - edit this post and re-build (or run with the <code class="highlighter-rouge">-w</code> switch) to see your changes!
-To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention: YYYY-MM-DD-name-of-post.ext.</p>
-
-<p>Jekyll also offers powerful support for code snippets:</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
-
-<p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/mojombo/jekyll">Jekyll’s GitHub repo</a>.</p>
-
-
         </section>
 
         
@@ -426,13 +405,14 @@ To add new posts, simply add a file in the <code class="highlighter-rouge">_post
         <footer class="post-footer">
             <!-- If we want to display author's name and bio -->
             
+            
                 <figure class="author-image">
                     <a class="img" href="/cs-notes" style="background-image: url(/cs-notes/assets/images/profile.png)">
-                    <span class="hidden">Noel Rajan's Picture</span></a>
+                    <span class="hidden">Dasha Shumitskiy's Picture</span></a>
                 </figure>
                 <section class="author">
                     <!-- Author Name -->
-                    <h4> Noel Rajan </h4>
+                    <h4> Dasha Shumitskiy </h4>
                     <!-- Author Bio -->
                     <p>
                         Here goes the author description. You might want to place some links too in here
@@ -443,15 +423,15 @@ To add new posts, simply add a file in the <code class="highlighter-rouge">_post
             <!-- Share links section -->
             <section class="share">
     <h4>Share this post</h4>
-    <a class="icon-twitter" href="http://twitter.com/share?text=Algorithmics 1&amp;url=https://fireredninja.github.io//level3/semester1/2017/09/23/algorithmics-1.html"
+    <a class="icon-twitter" href="http://twitter.com/share?text=Algorithmics 1&amp;url=https://fireredninja.github.io//level3/semester1/2017/12/26/algorithmics-1.html"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
         <span class="hidden">Twitter</span>
     </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://fireredninja.github.io//level3/semester1/2017/09/23/algorithmics-1.html"
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://fireredninja.github.io//level3/semester1/2017/12/26/algorithmics-1.html"
         onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
         <span class="hidden">Facebook</span>
     </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=https://fireredninja.github.io//level3/semester1/2017/09/23/algorithmics-1.html"
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=https://fireredninja.github.io//level3/semester1/2017/12/26/algorithmics-1.html"
        onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
         <span class="hidden">Google+</span>
     </a>
