@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="http://localhost:4000">
+            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -59,7 +59,353 @@
         <!-- <h1 class="post-title">Algorithmics 1</h1> -->
 
         <section class="post-content">
-            <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory - edit this post and re-build (or run with the <code class="highlighter-rouge">-w</code> switch) to see your changes!
+            <h4 id="introduction">Introduction</h4>
+
+<h5 id="useful-textbooks">Useful Textbooks</h5>
+
+<ul>
+  <li>M.T. Goodrich &amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002</li>
+  <li>D. Harel &amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)</li>
+  <li>
+    <p>M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
+<!--excerpt-->
+##### Revision - Algorithm Analysis</p>
+  </li>
+  <li>Time and space complexity is written as a function of input size</li>
+  <li>Worst case - gives a guarantee of algorithm’s performance</li>
+  <li>Asymptotic behaviour indicates what will happen as input size grows</li>
+  <li>Expressed using Big O notation</li>
+</ul>
+
+<h6 id="big-o-notation">Big O notation</h6>
+
+<ul>
+  <li><code class="highlighter-rouge">f(n) = O(g(n))</code></li>
+  <li><code class="highlighter-rouge">f</code> grows no faster than <code class="highlighter-rouge">g</code></li>
+  <li>there exists a real constant <code class="highlighter-rouge">c</code> and integer constant <code class="highlighter-rouge">N</code> such that <code class="highlighter-rouge">|f(n)| &lt;= |c*g(n)|</code> for all <code class="highlighter-rouge">n =&gt; N</code></li>
+  <li><code class="highlighter-rouge">f</code> is usually a complex function, which is not known precisely</li>
+  <li><code class="highlighter-rouge">g</code> is a known function eg O(1), O(n) etc</li>
+  <li>use the “tightest” <code class="highlighter-rouge">g</code> we can find for an algorithm</li>
+</ul>
+
+<h6 id="log-function">Log function</h6>
+
+<ul>
+  <li>x = log<sub>a</sub>n if n = a<sup>x</sup></li>
+  <li>log<sub>a</sub> m * n = log<sub>a</sub>m + log<sub>a</sub>n</li>
+  <li>log<sub>a</sub> m / n = log<sub>a</sub>m - log<sub>a</sub>n</li>
+  <li>log<sub>a</sub>n<sup>c</sup> = c * log<sub>a</sub>n</li>
+</ul>
+
+<h6 id="time-complexities">Time complexities</h6>
+
+<p><strong>For some constant <code class="highlighter-rouge">c</code>:</strong></p>
+
+<ul>
+  <li>Polynomial-time = O(n<sup>c</sup>)</li>
+  <li>Exponential-time = no better than O(c<sup>n</sup>) where <code class="highlighter-rouge">c &gt; 1</code></li>
+</ul>
+
+<h4 id="fundamental-algorithms-and-data-structures">Fundamental Algorithms and Data Structures</h4>
+
+<ul>
+  <li>Stacks, queues and priority queues</li>
+  <li>Complete binary trees</li>
+  <li>Heaps and heap operations</li>
+  <li>Java class for (integer) heaps</li>
+  <li>Heap sort</li>
+</ul>
+
+<h5 id="stack-abstract-data-type-lifo">Stack abstract data type (LIFO)</h5>
+
+<p><strong>Basic operations:</strong></p>
+
+<ul>
+  <li><em>create</em></li>
+  <li><em>isEmpty</em></li>
+  <li><em>push</em> (to top of stack)</li>
+  <li><em>pop</em> (delete and return from top of stack)</li>
+</ul>
+
+<p><strong>Represent it as:</strong></p>
+
+<ul>
+  <li>an array - all operations are O(1)</li>
+  <li>a linked list - all operations are O(1)</li>
+</ul>
+
+<h5 id="queue-abstract-data-type-fifo">Queue abstract data type (FIFO)</h5>
+
+<p><strong>Basic operations:</strong></p>
+
+<ul>
+  <li><em>create</em></li>
+  <li><em>isEmpty</em></li>
+  <li><em>insert</em> (to the back of queue)</li>
+  <li><em>delete</em> (delete and return item at front of queue)</li>
+</ul>
+
+<p><strong>Represent it as:</strong></p>
+
+<ul>
+  <li>an array - all operations are O(1) and it must be “wrapped around”, treated as circular</li>
+  <li>a linked list - all operations are O(1)</li>
+</ul>
+
+<h5 id="priority-queue-abstract-data-type">Priority queue abstract data type</h5>
+
+<p><strong>Basic operations:</strong></p>
+
+<ul>
+  <li><em>create</em></li>
+  <li><em>isEmpty</em></li>
+  <li><em>insert</em> (new item with given priority)</li>
+  <li><em>delete</em> (delete and return item with highest priority)</li>
+</ul>
+
+<p><strong>Represent it as:</strong></p>
+
+<ul>
+  <li>unordered list - <em>insert</em> O(1), <em>delete</em> O(n)</li>
+  <li>ordered list - <em>insert</em> O(n), <em>delete</em> O(1)</li>
+  <li>heap - <em>insert</em> and <em>delete</em> are O(logn)</li>
+  <li>in all cases <em>create</em> and <em>isEmpty</em> are O(1)</li>
+</ul>
+
+<h5 id="complete-binary-trees">Complete Binary Trees</h5>
+
+<p><strong>Height of a node:</strong></p>
+
+<ul>
+  <li>length of the longest path from the node to a leaf</li>
+  <li>height of a heap is the height of its root node</li>
+  <li>a binary tree of height <code class="highlighter-rouge">h</code> can contain maximum 2<sup>h+1</sup> - 1 nodes</li>
+  <li>therefore the height of a CBT with <code class="highlighter-rouge">n</code> nodes is é log<sub>2</sub>( n + 1 ) - 1 ù</li>
+</ul>
+
+<p><strong>A complete binary tree with <code class="highlighter-rouge">n</code> nodes has:</strong></p>
+
+<ul>
+  <li>the minimum possible height</li>
+  <li>the maximum possible number of nodes at each level <em>except the last</em> (ie for <code class="highlighter-rouge">i = 0, ... , h - 2</code>, level <code class="highlighter-rouge">i</code> has 2<sup>i</sup> nodes</li>
+  <li>the nodes on the <em>last</em> level are as far to the left as possible</li>
+</ul>
+
+<p><strong>Properties of a CBT:</strong></p>
+
+<ul>
+  <li>with a height <code class="highlighter-rouge">h</code>, it has at <em>most</em> 2<sup>h+1</sup> - 1 nodes</li>
+  <li>with <code class="highlighter-rouge">n</code> nodes, its height is é log<sub>2</sub>( n + 1 ) - 1 ù</li>
+  <li>then it has é n / 2 ù leaf nodes</li>
+  <li>and it has ⌊ n / 2 ⌋ branch nodes</li>
+</ul>
+
+<h5 id="heaps">Heaps</h5>
+
+<p><strong>Def:</strong> A CBT where each node stores an item, and has a priority value<br />
+   <strong>Heap property:</strong> Every node’s priority is greater than or equal to the priorities of all its descendent nodes<br />
+   <strong>Min-heap:</strong> Inverted so that the minimum priority is at the root
+<br />
+<br />
+<strong>For a node <code class="highlighter-rouge">i</code>:</strong></p>
+
+<ul>
+  <li>its children are nodes <code class="highlighter-rouge">2i + 1</code> and <code class="highlighter-rouge">2i + 2</code></li>
+  <li>its parent is the node <code class="highlighter-rouge">⌊ (i - 1) / 2 ⌋</code></li>
+</ul>
+
+<p><strong>Basic operations:</strong></p>
+
+<ul>
+  <li><em>insert</em> an item</li>
+  <li><em>build</em> a heap containing a given set of items</li>
+  <li><em>delete</em> the item with highest priority</li>
+  <li><em>impose</em> the heap property on a given node</li>
+</ul>
+
+<p><strong>Complexity:</strong></p>
+
+<ul>
+  <li><em>build</em> is O(n log n) and there is an O(n) alternative</li>
+  <li>all other operations are O(log n) for algorithms which take O(1) steps at each level of the heap</li>
+</ul>
+
+<p><strong>Insertion:</strong><br />
+   <code class="highlighter-rouge">while (new_value NOT in root &amp;&amp; new_value &gt; parent_value)  
+   swap new_value with parent_value</code><br />
+   <strong>Imposing:</strong><br />
+   Pre-condition - a specified node may violate the heap property, but all its descendents satisfy the property<br />
+   Post-condition - the specified node and all of its descendents satisfy the property<br />
+   <code class="highlighter-rouge">while (bad_value NOT in leaf &amp;&amp; bad_value &lt; larger_child)  
+   swap bad_value with larger_child</code><br />
+   <strong>Deletion:</strong><br />
+   <code class="highlighter-rouge">swap root with node in last (bottom-right) leaf  
+delete last leaf  
+impose heap property on bad value now in root</code><br />
+   <strong>Building:</strong><br />
+   Pre-condition - values are in arbitrary order<br />
+   Post-condition - values form a heap<br />
+   <code class="highlighter-rouge">for each non-leaf node in bottom-to-top right-to-left order  
+   impose heap propery</code></p>
+
+<h5 id="an-integer-heap-class">An integer heap class</h5>
+
+<p>Represent using an array, where:</p>
+
+<ul>
+  <li>children of a node <code class="highlighter-rouge">i</code> are in the array at <code class="highlighter-rouge">2i + 1</code> and <code class="highlighter-rouge">2i + 2</code></li>
+  <li>parent of a node <code class="highlighter-rouge">i</code> are in the array at <code class="highlighter-rouge">(i - 1) / 2</code> (floored automatically in Java)</li>
+</ul>
+
+<p>Heap class <a href="#heap_class">implementation in Java</a></p>
+
+<h5 id="heap-sort">Heap Sort</h5>
+
+<ul>
+  <li>more efficient than selection sort</li>
+  <li>O(n log n) in the worst case</li>
+  <li><a href="#heapsort">pseudocode</a></li>
+</ul>
+
+<h4 id="sorting-algorithms">Sorting Algorithms</h4>
+
+<p>O(n<sup>2</sup>) - selection, insertion, bubble<br />
+   O(n log n) - merge, heap<br />
+   Quicksort is O(n log n) on average (but no better than O(n<sup>2</sup>) in the worst case</p>
+
+<h4 id="strings-and-text-algorithms">Strings and text algorithms</h4>
+
+<h4 id="graphs-and-graph-algorithms">Graphs and graph algorithms</h4>
+
+<h4 id="np-completeness">NP Completeness</h4>
+
+<h4 id="computability">Computability</h4>
+
+<p><a name="heap_class"></a></p>
+
+<h6 id="heap-class-implementation-in-java">Heap class implementation in Java</h6>
+
+<p>```javascript
+public class Heap {</p>
+
+<p>int size;
+  int[] items;</p>
+
+<p>// create empty heap of max capacity n
+  public Heap(int n) {</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>size = 0;
+items = new int[n];
+</code></pre>
+</div>
+
+<p>}</p>
+
+<p>// create heap of capacity n containing items from array a
+  public Heap(int n, int[] a) {</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>size = a.length;
+items = new int[n];
+for (int i = 0; i &lt; a.length; i++)
+  items[i] = a[i];
+build(); // impose heap property
+</code></pre>
+</div>
+
+<p>}</p>
+
+<p>}</p>
+
+<p>// build a heap on current items
+private void build() {</p>
+
+<p>// for each non-leaf node in bottom-to-top right-to-left order
+  for (int i = (size-1)/2; i &gt;= 0; i–) // start at parent of final leaf
+    impose(i);</p>
+
+<p>}</p>
+
+<p>// insert item k
+public void insert(int k) {</p>
+
+<p>size++;
+  int i = size-1; // current position(starting at new leaf node)</p>
+
+<p>while (i &gt; 0 &amp;&amp; items[(i-1)/2] &lt; k) {
+    items[i] = items[(i-1)/2]; //swap with parent
+    i = (i-1)/2; // new position is position of parent
+  }</p>
+
+<p>items[i] = k; // finalise location of item</p>
+
+<p>}</p>
+
+<p>// delete and return the max
+public int deleteMax() {</p>
+
+<p>int k = items[0]; // root
+  items[0] = items[size-1] // swap root with last leaf
+  size–;
+  impose(0); // on bad value in root
+  return k;</p>
+
+<p>}</p>
+
+<p>// impose property on node i
+private void impose(int i) {</p>
+
+<p>int temp = items[i];
+  int current = i;
+  boolean finished = false;</p>
+
+<p>while (2*current+1 &lt; size &amp;&amp; !finished) {</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// find larger child
+int next = 2*current+1; // assume left child first
+if (next+1 &lt; size &amp;&amp; items[next+1] &gt; items[next])
+  next++; // change if right exists and is larger
+if (temp &lt; items[next]) { // bad node
+  items[current] = items[next]; // swap
+  current = next; // new position
+}
+else finished = true; // not bad node   }
+</code></pre>
+</div>
+
+<p>items[current] = temp; // finalise location</p>
+
+<p>}
+```
+<a name="heapsort"></a></p>
+
+<h6 id="heapsort-pseudocode">Heapsort pseudocode</h6>
+
+<p><strong>Build</strong> sequence into a heap; // O(n)</p>
+
+<p>for (int k = 0; k &lt; n-1; k++){</p>
+
+<p>// invariant: items 0,…,n-k-1 form a heap</p>
+
+<p>// invariant: items n-k,…,n-1 are sorted</p>
+
+<p><strong>Find</strong> the largest unsorted item; // is in position 0, so O(1)</p>
+
+<p><strong>Swap</strong> it into position n-1-k; // its correct place O(1)</p>
+
+<p><strong>Reduce</strong> the size of the heap by 1; // O(1)</p>
+
+<p><strong>Impose</strong> the heap property on position 0; // this is O(log n)</p>
+
+<p>}</p>
+
+<p><strong>Restore</strong> size to original value;</p>
+
+<ul>
+  <li>loop is iterated <code class="highlighter-rouge">n - 1</code> times</li>
+  <li>each iteration takes O(log n) time</li>
+</ul>
+
+<p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory - edit this post and re-build (or run with the <code class="highlighter-rouge">-w</code> switch) to see your changes!
 To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention: YYYY-MM-DD-name-of-post.ext.</p>
 
 <p>Jekyll also offers powerful support for code snippets:</p>

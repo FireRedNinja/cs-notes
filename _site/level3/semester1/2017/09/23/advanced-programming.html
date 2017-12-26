@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="http://localhost:4000">
+            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -60,7 +60,7 @@
 
         <section class="post-content">
             <h4 id="lecture-1">Lecture 1</h4>
-<h4 id="introduction">Introduction</h4>
+<p>#### Introduction</p>
 
 <h5 id="application-level">Application Level</h5>
 <ul>
@@ -90,9 +90,9 @@
 <h2 id="edit---compile---link---execute-cycle">Edit - Compile - Link - Execute Cycle</h2>
 <ul>
   <li>Source Files &gt; Compiler &gt; Bin &gt; Linker &gt; Executable
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-o</span> <span class="nb">test </span>test.o
-</code></pre></div>    </div>
-  </li>
+<code class="highlighter-rouge">bash
+gcc -o test test.o
+</code></li>
 </ul>
 
 <h2 id="memory-layout">Memory Layout</h2>
@@ -127,52 +127,55 @@
 <h2 id="makefiles">Makefiles</h2>
 <ul>
   <li>makes compiling bigger programs easier
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-c</span> mod_a.c
-gcc <span class="nt">-c</span> mod_b.c
-gcc <span class="nt">-c</span> mod_a.o mod_b.o <span class="nt">-o</span> app_x
-</code></pre></div>    </div>
-  </li>
+<code class="highlighter-rouge">bash
+gcc -c mod_a.c
+gcc -c mod_b.c
+gcc -c mod_a.o mod_b.o -o app_x
+</code></li>
   <li>becomes</li>
 </ul>
 
-<pre><code class="language-Makefile">app_x: mod_a.o mod_b.o
-	gcc mod_a.o mod_b.o -o app_x
+<p>```Makefile
+app_x: mod_a.o mod_b.o
+	gcc mod_a.o mod_b.o -o app_x</p>
 
-mod_a.o: mod_a.c global.h
+<p>mod_a.o: mod_a.c global.h
+	gcc -c mod_a.c</p>
+
+<p>mod_b.o: mod_b.c global.g
 	gcc -c mod_a.c
+```</p>
 
-mod_b.o: mod_b.c global.g
-	gcc -c mod_a.c
-</code></pre>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CFLAGS = -W -Wall
+<p>```
+CFLAGS = -W -Wall
 %.o : %.c
 	gcc -c $(CFLAGS) $&lt; -o $@
-OBJECTS = mod_a.o mod_b.o
+OBJECTS = mod_a.o mod_b.o</p>
 
-app_x: $(OBJECTS)
-	gcc $(OBJECTS) –o app_x
+<p>app_x: $(OBJECTS)
+	gcc $(OBJECTS) –o app_x</p>
 
-mod_a.o: mod_a.c global.h
+<p>mod_a.o: mod_a.c global.h
 mod_b.o: mod_b.c global.h
-</code></pre></div></div>
+```</p>
 
 <h1 id="lecture-2">Lecture 2</h1>
-<h1 id="overview-of-c">Overview of C</h1>
+<p># Overview of C</p>
 
 <ul>
   <li>Must contain main()
-    <pre><code class="language-C">int main(){
+<code class="highlighter-rouge">C
+int main(){
   // something
   return 0;
 }
-</code></pre>
-  </li>
+</code></li>
 </ul>
 
-<pre><code class="language-C">#include &lt;stdio.h&gt;
+<p><code class="highlighter-rouge">C
+#include &lt;stdio.h&gt;
 printf()
-</code></pre>
+</code></p>
 
 <ul>
   <li>char - 8 bits</li>
@@ -197,22 +200,25 @@ printf()
   <li>%x - print as a hexadecimal integer</li>
 </ul>
 
-<pre><code class="language-C">while(condition) {
+<p>```C
+while(condition) {
+	statement;
+}</p>
+
+<p>for (int = i; i &lt; length; ++i) {
 	statement;
 }
+```</p>
 
-for (int = i; i &lt; length; ++i) {
-	statement;
-}
-</code></pre>
-
-<pre><code class="language-C">//Constant
+<p><code class="highlighter-rouge">C
+//Constant
 #define LOWER 0
 #define UPPER 300
 #define STEP 20
-</code></pre>
+</code></p>
 
-<pre><code class="language-C">// Character input
+<p><code class="highlighter-rouge">C
+// Character input
 #include &lt;stdio.h&gt;
 ...
 for (c = getchar(); c!=EOF;c=getchar()){
@@ -222,21 +228,23 @@ for (c = getchar(); c!=EOF;c=getchar()){
 while ((c = getchar()) != EOF) {
 	statement;
 }
-</code></pre>
+</code></p>
 
 <h4 id="arrays">Arrays</h4>
-<pre><code class="language-C">int numbers[10];
+<p><code class="highlighter-rouge">C
+int numbers[10];
 numbers[4];
-</code></pre>
+</code></p>
 
 <h4 id="functions">Functions</h4>
-<pre><code class="language-C">// Must use prototype before
+<p><code class="highlighter-rouge">C
+// Must use prototype before
 return-type function-name (parameter declarations, if any);
 ....
 return-type function-name (parameter declarations, if any) {
 	statements;
 }
-</code></pre>
+</code></p>
 
 <ul>
   <li>call by value
@@ -252,9 +260,10 @@ return-type function-name (parameter declarations, if any) {
   <li>arrays passewd by reference</li>
 </ul>
 
-<pre><code class="language-C">/// External Variables
+<p><code class="highlighter-rouge">C
+/// External Variables
 extern type varName;
-</code></pre>
+</code></p>
 
 <ul>
   <li>signed
@@ -270,7 +279,8 @@ extern type varName;
 </ul>
 
 <h4 id="escape-sequences">escape sequences</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\a - alert (bell) character
+<p><code class="highlighter-rouge">
+\a - alert (bell) character
 \b - backspace
 \f - formfeed
 \n - newline
@@ -284,16 +294,17 @@ extern type varName;
 \ooo - octal number
 \xhh - hexadecimal number
 \0 - null character (EOS)
-</code></pre></div></div>
+</code></p>
 
 <ul>
   <li>‘x’ - integer representing value of letter x</li>
   <li>“x” - array of 2 chars, ‘x’ and ‘\0’</li>
 </ul>
 
-<pre><code class="language-C">// enum
+<p><code class="highlighter-rouge">C
+// enum
 enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
-</code></pre>
+</code></p>
 
 <h3 id="variables-default-initialized">Variables default initialized</h3>
 <ul>
@@ -307,9 +318,11 @@ enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
       <li>undefined</li>
     </ul>
   </li>
-  <li>“const” can be used with array arguments to functions, to tell the function not to change the array
-    <pre><code class="language-C">int strlen(const char[])
-</code></pre>
+  <li>
+    <p>“const” can be used with array arguments to functions, to tell the function not to change the array
+<code class="highlighter-rouge">C
+int strlen(const char[])
+</code></p>
   </li>
   <li>Conversion takes place across assignments; the value of the right hand side is converted to the type of the left hand side, which is the type of the result</li>
   <li>Longer integers are converted to shorter ones by dropping the excess high order bits</li>
@@ -317,12 +330,14 @@ enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
 </ul>
 
 <h4 id="cast">cast</h4>
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="n">expression</span>
-</code></pre></div></div>
+<p><code class="highlighter-rouge">c
+(type) expression
+</code></p>
 
-<pre><code class="language-C">++n // increments before value us used
+<p><code class="highlighter-rouge">C
+++n // increments before value us used
 n++ // increments after value is used
-</code></pre>
+</code></p>
 
 <h4 id="bitwise-operations">Bitwise operations</h4>
 <ul>
@@ -350,7 +365,8 @@ n++ // increments after value is used
   <li>~ - one’s complement</li>
 </ul>
 
-<pre><code class="language-C">n = n &amp; 0xff;
+<p><code class="highlighter-rouge">C
+n = n &amp; 0xff;
 /*sets all bits of n to 0 except the low order 8 bits */
 n = n &amp; ~0xff;
 /* zeroes the low order 8 bits */
@@ -366,16 +382,17 @@ n = n &gt;&gt; 3;
 /* shift n’s value 3 bits right; if n is signed, fill vacated
 bits with the sign bit; if unsigned, fill with 0; equivalent
 to division by 8 */
-</code></pre>
+</code></p>
 
-<pre><code class="language-C">x = expr1 ? expr2 : expr3;
+<p><code class="highlighter-rouge">C
+x = expr1 ? expr2 : expr3;
 // is the same as
 if (expr1) {
 	x = expr2;
 } else {
 	x = expr3;
 }
-</code></pre>
+</code></p>
 
 <table>
   <thead>
@@ -449,72 +466,73 @@ if (expr1) {
 </table>
 
 <h1 id="chapter-3">Chapter 3</h1>
-<h2 id="control-statements">Control statements</h2>
+<p>## Control statements</p>
 
-<pre><code class="language-C">if (/* condition */) {
-	/* code */
-} else if (/* condition */) {
-	/* code */
+<p>```C
+if (/* condition <em>/) {
+	/</em> code <em>/
+} else if (/</em> condition <em>/) {
+	/</em> code <em>/
 } else {
-	/* code */
-}
+	/</em> code */
+}</p>
 
-while (/* condition */) {
-	/* code */
-}
+<p>while (/* condition <em>/) {
+	/</em> code */
+}</p>
 
-for (size_t i = 0; i &lt; count; i++) {
+<p>for (size_t i = 0; i &lt; count; i++) {
 	/* code */
-}
+}</p>
 
-do {
-	/* code */
-} while(/* condition */);
+<p>do {
+	/* code <em>/
+} while(/</em> condition */);</p>
 
-switch (/* expression */) {
-	case /* value */:
-		/* statement */;
+<p>switch (/* expression <em>/) {
+	case /</em> value <em>/:
+		/</em> statement <em>/;
 		break;
-	default /* value */ :
-		/* statement */;
+	default /</em> value <em>/ :
+		/</em> statement */;
 		break;
-}
+}</p>
 
-for (. . .)
+<p>for (. . .)
 	for (. . .) {
 		. . .
 		if (disaster)
 			goto error;
 		. . .
-	}
+	}</p>
 
-error:
+<p>error:
 /* cleanup the mess */
-</code></pre>
+```</p>
 
 <h1 id="chapter-4">Chapter 4</h1>
-<h2 id="functions-1">Functions</h2>
+<p>## Functions</p>
 
-<pre><code class="language-C">// always use prototypes
-return-type name(/* arguments */);
+<p>```C
+// always use prototypes
+return-type name(/* arguments */);</p>
 
-return-type name(/* arguments */) {
-	/* code */
+<p>return-type name(/* arguments <em>/) {
+	/</em> code */
 	return 0;
 }
-</code></pre>
+```</p>
 
 <ul>
   <li>if funciton doesn’t have a type, it is set to int as default</li>
 </ul>
 
 <h4 id="static-variables">Static Variables</h4>
-<pre><code class="language-C">static int sp;
+<p><code class="highlighter-rouge">C
+static int sp;
 // can only use this variable inside the file it's declared in
-</code></pre>
-<ul>
-  <li>internal static variables are local to a particular function, just as automatic variables are, but unlike automatics, they remain in existence rather than coming and going each time that the function is activated</li>
-</ul>
+</code>
+* internal static variables are local to a particular function, just as automatic variables are, but unlike automatics, they remain in existence rather than coming and going each time that the function is activated</p>
 
 <h4 id="register-variables">Register Variables</h4>
 <ul>
@@ -522,19 +540,21 @@ return-type name(/* arguments */) {
   <li>Registers are faster than memory to access, so the variables which are most frequently used in a C program can be put in registers using register keyword</li>
 </ul>
 
-<pre><code class="language-C">register int x;
+<p><code class="highlighter-rouge">C
+register int x;
 int f(register unsigned m, register long n) {…}
-</code></pre>
+</code></p>
 
 <h4 id="preprocessor">Preprocessor</h4>
 
-<pre><code class="language-C">// file inclusion
-#include "filename"
-#include &lt;filename&gt;
+<p>```C
+// file inclusion
+#include “filename”
+#include <filename></filename></p>
 
-// macro substitution
+<p>// macro substitution
 #define name replacement-text
-// use "\" to continue for multiple lines
+// use “" to continue for multiple lines
 #define name replacement-textreplacement-textreplacement-textreplacement-text\
 replacement-textreplacement-textreplacement-text\
 replacement-textreplacement-textreplacement-text
@@ -542,9 +562,9 @@ replacement-textreplacement-textreplacement-text
 #define paste(front, back) front ## back
 paste(name, 1);
 // will give
-name1;
+name1;</p>
 
-// Conditional evaluation
+<p>// Conditional evaluation
 #if
 	#endif
 	#else
@@ -559,17 +579,16 @@ name1;
 #else
 	#define HDR “default.h”
 #endif /* SYSTEM */
-#include HDR
+#include HDR</p>
 
-
-#ifdef
-#ifndef
+<h1 id="ifdef">ifdef</h1>
+<p>#ifndef
 // ifdef/ifndef is the same as checks if contents of a header file is only included once
-#if !defined(_HDR_H_)
-#define _HDR_H_
-/* contents of hdr.h go here */
-#endif /*_HDR_H_ */
-</code></pre>
+#if !defined(<em>HDR_H</em>)
+#define <em>HDR_H</em>
+/* contents of hdr.h go here <em>/
+#endif /</em><em>HDR_H</em> */
+```</p>
 
 <ul>
   <li>Automatic variable
@@ -595,13 +614,14 @@ name1;
 </ul>
 
 <h2 id="chapter-5">Chapter 5</h2>
-<h3 id="pointers">pointers</h3>
+<p>### pointers</p>
 
-<pre><code class="language-C">// points to a value of type int
+<p><code class="highlighter-rouge">C
+// points to a value of type int
 int*;
 // points to a value of type int*
 int**;
-</code></pre>
+</code></p>
 
 <h4 id="purpose">purpose?</h4>
 <ul>
@@ -611,57 +631,60 @@ int**;
   <li>higher order functions - functions that call some of their own arguments</li>
 </ul>
 
-<pre><code class="language-C">// stores address of int X in P
-int *P = &amp;X;
+<p>```C
+// stores address of int X in P
+int *P = &amp;X;</p>
 
-// writes 42 to the address pointed to by P
+<p>// writes 42 to the address pointed to by P
 *P = 42;
-</code></pre>
+```</p>
 
 <ul>
   <li>&amp; cannot be used for register variables or complex expressions</li>
 </ul>
 
-<pre><code class="language-C">int x = 1, y = 2;
+<p>```C
+int x = 1, y = 2;
 int z[10];
-int *p, *q; /* p and q are pointers to int */
+int <em>p, *q; /</em> p and q are pointers to int */</p>
 
-p = &amp;x; /* p now points to x */
-y = *p; /* y is now 1 */
-*p = 0; /* x is now 0 */
-q = &amp;z[3]; /* q now points to z[3] */
-p = q; /* p now points to z[3] */
-while (p == q) /* loop exits on 1st iter */
+<p>p = &amp;x; /* p now points to x <em>/
+y = *p; /</em> y is now 1 <em>/
+*p = 0; /</em> x is now 0 <em>/
+q = &amp;z[3]; /</em> q now points to z[3] <em>/
+p = q; /</em> p now points to z[3] <em>/
+while (p == q) /</em> loop exits on 1st iter <em>/
 	break;
-if (p != NULL) /* address of z[3] != 0 */
-	p = &amp;z[0]; /* p now points to z[0] */
+if (p != NULL) /</em> address of z[3] != 0 <em>/
+	p = &amp;z[0]; /</em> p now points to z[0] <em>/
 if (q)
-	q = &amp;z[0]; /* q now equals p; */
-</code></pre>
+	q = &amp;z[0]; /</em> q now equals p; */
+```</p>
 
 <ul>
   <li>Use pointers to call by reference
-    <pre><code class="language-C">swap(&amp;a[i], &amp;a[j])
+<code class="highlighter-rouge">C
+swap(&amp;a[i], &amp;a[j])
 // instead of
 swap(intx , int y)
-</code></pre>
-  </li>
+</code></li>
 </ul>
 
-<pre><code class="language-C">int a[10];
-int *pa;
+<p>```C
+int a[10];
+int *pa;</p>
 
-pa = a; // points to a[0]
-pa++; // points to a[1]
+<p>pa = a; // points to a[0]
+pa++; // points to a[1]</p>
 
-// given pointers q, p that points to the same array
-q-p; // is the number of array elements between pointers p ad q
+<p>// given pointers q, p that points to the same array
+q-p; // is the number of array elements between pointers p ad q</p>
 
-//-------------
+<p>//————-</p>
 
-char amsg[] = "this is a string"; // array of 17 characters including '\0'
-char *pmsg = "this is a string" // pointer to an array of the same 17 chars
-</code></pre>
+<p>char amsg[] = “this is a string”; // array of 17 characters including ‘\0’
+char *pmsg = “this is a string” // pointer to an array of the same 17 chars
+```</p>
 
 <ul>
   <li>pmsg can be resized but amsg can’t;</li>
@@ -669,50 +692,55 @@ char *pmsg = "this is a string" // pointer to an array of the same 17 chars
 
 <h4 id="memory-management">Memory management</h4>
 
-<pre><code class="language-C">malloc(); // requests given no. of bytes adn returns a void * to the first byte
-sizeof(t); // no. of bytes required to store a value of type t
+<p>```C
+malloc(); // requests given no. of bytes adn returns a void * to the first byte
+sizeof(t); // no. of bytes required to store a value of type t</p>
 
-free(); // deallocates memory that was malloced;
-</code></pre>
+<p>free(); // deallocates memory that was malloced;
+```</p>
 
 <ul>
   <li>given
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./program hello world
-</code></pre></div>    </div>
-  </li>
+<code class="highlighter-rouge">bash
+./program hello world
+</code></li>
 </ul>
 
-<pre><code class="language-C">// in int main(int argc *argv[]);
+<p><code class="highlighter-rouge">C
+// in int main(int argc *argv[]);
 argc == 3
 argv[0] == "./program";
 argv[1] == "hello";
 argv[2] == "world";
-</code></pre>
+</code></p>
 
 <h4 id="function-pointers">Function pointers</h4>
-<pre><code class="language-C">void sort(char *lineptr[], int left, int right, int (*comp)(void *, void *));
-</code></pre>
+<p><code class="highlighter-rouge">C
+void sort(char *lineptr[], int left, int right, int (*comp)(void *, void *));
+</code></p>
 
 <h2 id="chapter-7">Chapter 7</h2>
-<h4 id="standard-input-and-output">Standard Input and output</h4>
-<pre><code class="language-C">#include &lt;stdio.h&gt;
+<p>#### Standard Input and output
+```C
+#include <stdio.h></stdio.h></p>
 
-int getchar(void); // read one character at a time
+<p>int getchar(void); // read one character at a time
 int getchat(); // return next input char, returns EOF on end
 int putchar(int ch); // prints ch to stdout
 printf(); // prints to stdout
-</code></pre>
+```</p>
 
 <h4 id="formated-io">Formated I/O</h4>
-<pre><code class="language-C">// Format string determines type of remaining arguments
-int printf(const char *format, ...);
-printf("%d\n", 8);
+<p>```C
+// Format string determines type of remaining arguments
+int printf(const char *format, …);
+printf(“%d\n”, 8);</p>
 
-int scanf(char *format, ...); // same as printf formatting
+<p>int scanf(char *format, …); // same as printf formatting
 int day, year;
 char monthname[20];
 scanf(“%d %s %d”, &amp;day, monthname, &amp;year);
-</code></pre>
+```</p>
 
 <table>
   <thead>
@@ -762,41 +790,43 @@ scanf(“%d %s %d”, &amp;day, monthname, &amp;year);
 </table>
 
 <h4 id="file-io">File I/O</h4>
-<pre><code class="language-C">FILE *fopen(char *name, char *mode);
+<p>```C
+FILE *fopen(char *name, char *mode);
 int getc(FILE *fp);
 int putc(int c, FILE *fp);
-int fclose(FILE *fp);
+int fclose(FILE *fp);</p>
 
-// printf and scanf variants
-int fscanf(FILE *fp, char *format, ...);
-int fprintf(FILE *fp, char *format, ...);
+<p>// printf and scanf variants
+int fscanf(FILE *fp, char *format, …);
+int fprintf(FILE *fp, char *format, …);</p>
 
-// line buffered input/output
+<p>// line buffered input/output
 char *fgets(char *line, int maxline, FILE *fp);
 int fputs(char *line, FILE *fp);
-</code></pre>
+```</p>
 
 <h2 id="chapter-6">Chapter 6</h2>
-<h4 id="structs">Structs</h4>
-<pre><code class="language-C">struct [tag] {
+<p>#### Structs
+```C
+struct [tag] {
 	member declarations
-};
+};</p>
 
-struct point {
+<p>struct point {
 	int x;
 	int y;
-};
+};</p>
 
-struct point p = {320, 200};
+<p>struct point p = {320, 200};
 struct point q;
-struct point *r;
+struct point *r;</p>
 
-q = p; // struct assignment
-r = &amp;q; // address of struct variable q
+<p>q = p; // struct assignment
+r = &amp;q; // address of struct variable q</p>
 
-q.y; // access struct member y
+<p>q.y; // access struct member y
 r-&gt;x; // dereference
-</code></pre>
+```</p>
 
 <ul>
   <li>Legal Operations
@@ -818,41 +848,41 @@ r-&gt;x; // dereference
 </ul>
 
 <h4 id="self-referential-structs">Self-referential structs</h4>
-<pre><code class="language-C">struct tnode {
+<p>```C
+struct tnode {
 	int value; // payload
 	struct tnode *left; // ptr to left child
 	struct tnode *right; // ptr to right child
-};
+};</p>
 
-struct tnode *;
-</code></pre>
-<h4 id="typedefs">Typedefs</h4>
-<ul>
-  <li>create new data type synonyms
-    <pre><code class="language-C">typedef type synonym;
-</code></pre>
-    <p>```C
+<p>struct tnode *;
+<code class="highlighter-rouge">
+#### Typedefs
+- create new data type synonyms
+</code>C
+typedef type synonym;
+<code class="highlighter-rouge">
+</code>C
 typedef int Length; // Length is synonym for int
 typedef char *String; // String is synonym for char *</p>
-  </li>
-</ul>
 
 <p>Length len, maxlen; // Length variables
 Length *lengths; // ptr to (array of) Length
 String lineptr[MAXLINES]; // array of String
-Length strlen(String s); // prototype</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-#### Unions
-- Variable that may hold objects of different types and sizes
-```C
+Length strlen(String s); // prototype
+```</p>
+
+<h4 id="unions">Unions</h4>
+<ul>
+  <li>Variable that may hold objects of different types and sizes
+<code class="highlighter-rouge">C
 union const_value { // type declaration
-	int ival;
-	double dval;
-	char *sval;
+  int ival;
+  double dval;
+  char *sval;
 };
 union const_value val; // variable definition
-</code></pre></div></div>
-<ul>
+</code></li>
   <li>assignment to any union member turns all other members into garbage</li>
   <li>compiler doesn’t track this</li>
 </ul>
