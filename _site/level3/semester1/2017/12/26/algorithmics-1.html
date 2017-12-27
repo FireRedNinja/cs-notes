@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
+            <a id="blog-logo" href="http://localhost:4000">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -67,9 +67,12 @@
   <li>M.T. Goodrich &amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002</li>
   <li>D. Harel &amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)</li>
   <li>M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
-<!--excerpt-->
-    <h5 id="revision---algorithm-analysis">Revision - Algorithm Analysis</h5>
-  </li>
+<!--excerpt--></li>
+</ul>
+
+<h5 id="revision---algorithm-analysis">Revision - Algorithm Analysis</h5>
+
+<ul>
   <li>Time and space complexity is written as a function of input size</li>
   <li>Worst case - gives a guarantee of algorithm’s performance</li>
   <li>Asymptotic behaviour indicates what will happen as input size grows</li>
@@ -263,7 +266,7 @@ impose heap property on bad value now in root</code><br />
 <ul>
   <li>more efficient than selection sort</li>
   <li>O(n log n) in the worst case</li>
-  <li><a href="#heapsort">pseudocode</a></li>
+  <li><a href="#heap_sort">pseudocode</a></li>
 </ul>
 
 <h4 id="sorting-algorithms">Sorting Algorithms</h4>
@@ -272,7 +275,451 @@ impose heap property on bad value now in root</code><br />
    O(n log n) - merge, heap<br />
    Quicksort is O(n log n) on average (but no better than O(n<sup>2</sup>) in the worst case</p>
 
+<h5 id="comparison-based-sorting">Comparison-based sorting</h5>
+
+<p><strong>Claim:</strong> No sorting algorithm that is based on pairwise comparison can be better than O(n log n) in the worst case<br />
+   <strong>Justification:</strong> Draw out the algorithm using a binary decision tree, where each node represents a comparison between two elements</p>
+
+<ul>
+  <li>leaf nodes represent the possible outcomes of the algorithm</li>
+  <li>so the number of leaf nodes = the possible ordering of <code class="highlighter-rouge">n</code> items</li>
+  <li>so there are at least <code class="highlighter-rouge">n!</code> and maximum 2<sup>h+1</sup> leaf nodes</li>
+  <li>its worst case complexity is O(h) where <code class="highlighter-rouge">h</code> = its height</li>
+  <li>it follows that n! &lt;= 2<sup>h+1</sup></li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/decision_tree.png" nopin="nopin" /></p>
+
+<p>Reversing inequality and taking log<sub>2</sub> of both sides:</p>
+
+<p><img src="/cs-notes/assets/images/comparison_based_complexity.png" nopin="nopin" /></p>
+
+<p>Giving a complexity of O(n log n) as required</p>
+
+<h5 id="radix-sorting">Radix sorting</h5>
+
+<ul>
+  <li>O(n) complexity</li>
+  <li>exploits the structure of items to be sorted to achieve this</li>
+  <li>faster than O(n log n) only for very large <code class="highlighter-rouge">n</code></li>
+</ul>
+
+<p><strong>How it works:</strong></p>
+
+<ul>
+  <li>each iteration the items are distributed into buckets (lists)</li>
+  <li>during an <code class="highlighter-rouge">i</code><sup>th</sup> iteration an item is placed in the bucket corresponding to the integer represented by its bits</li>
+  <li>at the end of an iteration the buckets are concatenated to give a new sequence which will be used as the starting point of the next iteration</li>
+  <li>there are <code class="highlighter-rouge">m / b</code> iterations, where <code class="highlighter-rouge">m</code> is the length of bit-sequences representing an item, and <code class="highlighter-rouge">b</code> is a chosen factor of <code class="highlighter-rouge">m</code></li>
+</ul>
+
+<p>To sort the following sequence: <code class="highlighter-rouge">15 43 5 27 60 18 26 2</code><br />
+   Where binary encodings are given by:<br />
+   <code class="highlighter-rouge">15 = 001111  43 = 101011  5 = 000101  27 = 011011</code><br />
+   <code class="highlighter-rouge">60 = 111100  18 = 010010  26 = 011010  2 = 000010</code></p>
+
+<p>Items have bit positions 0, …, 5 so <code class="highlighter-rouge">m</code> = 6<br />
+   <code class="highlighter-rouge">b</code> must be a factor of <code class="highlighter-rouge">m</code>, so choose <code class="highlighter-rouge">b</code> = 2<br />
+   So we have 2<sup>b</sup> = 2<sup>2</sup> = 4 buckets labelled 0, 1, 2, 3 (or 00, 01, 10, 11)
+   And <code class="highlighter-rouge">m / b = 3</code> iterations are required</p>
+
+<p>See radix sorting pseudocode <a href="#radix_sort">here</a></p>
+
+<p><strong>Correctness:</strong> For two items <code class="highlighter-rouge">x</code> and <code class="highlighter-rouge">y</code> where <code class="highlighter-rouge">x &lt; y</code>, we need to show that <code class="highlighter-rouge">x</code> precedes <code class="highlighter-rouge">y</code> in the final sequence</p>
+
+<p><strong>During the last iteration</strong> where some bits of <code class="highlighter-rouge">x</code> and <code class="highlighter-rouge">y</code> differ:</p>
+
+<ul>
+  <li>the bits of <code class="highlighter-rouge">x</code> must be smaller than <code class="highlighter-rouge">y</code></li>
+  <li>so <code class="highlighter-rouge">x</code> goes into a bucket before <code class="highlighter-rouge">y</code> does</li>
+  <li>so <code class="highlighter-rouge">x</code> precedes <code class="highlighter-rouge">y</code> in the sequence after this iteration</li>
+  <li>in later iterations, <code class="highlighter-rouge">x</code> and <code class="highlighter-rouge">y</code> go in the same bucket as they don’t have any more differing bits</li>
+</ul>
+
+<p><strong>Complexity:</strong></p>
+
+<ul>
+  <li>during each of the <code class="highlighter-rouge">m / b</code> iterations, the sequence is scanned –&gt; O(n) time, and buckets are concatenated –&gt; O(2<sup>b</sup>) time</li>
+  <li>overall, O(m / b (n + 2<sup>b</sup>)) –&gt; O(n)</li>
+</ul>
+
+<p><strong>Time-space trade-off:</strong></p>
+
+<ul>
+  <li>the larger the value of b, the smaller the multiplicative constant (m / b) in the complexity function and so the faster the algorithm will become</li>
+  <li>an array of size 2<sup>b</sup> is required, so increasing <code class="highlighter-rouge">b</code> will increase space requirements</li>
+</ul>
+
+<h5 id="tries">Tries</h5>
+
+<ul>
+  <li>stored items have a key that is interpreted as a sequence of bits/characters</li>
+  <li>there is a multiway branch at each node where each branch has an associated symbol</li>
+  <li>no two siblings have the same symbol</li>
+  <li>the branch to be taken at level <code class="highlighter-rouge">i</code> is determined by the <code class="highlighter-rouge">i</code><sup>th</sup> element of the key</li>
+  <li>tracing a path from root to a node spells out the key of the item</li>
+  <li>eg, used to store strings</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/trie.png" nopin="nopin" /></p>
+
+<p><em>Search</em> and <em>insert</em> algorithms for the trie found <a href="#trie_alg">here</a></p>
+
+<p><strong>Represent it as:</strong></p>
+
+<ul>
+  <li>an array of pointers, which represent children</li>
+  <li>linked lists, containing children of each node</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/trie_list.png" nopin="nopin" /></p>
+
+<p><a href="#trie_class">Example</a> trie class to represent a dictionary</p>
+
 <h4 id="strings-and-text-algorithms">Strings and text algorithms</h4>
+
+<ul>
+  <li>Text compression
+    <ul>
+      <li>Huffman and LZW</li>
+    </ul>
+  </li>
+  <li>String comparison
+    <ul>
+      <li>String difference</li>
+    </ul>
+  </li>
+  <li>String/pattern search
+    <ul>
+      <li>Brute force</li>
+      <li>KMP</li>
+      <li>BM</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="text-compression">Text compression</h5>
+
+<ul>
+  <li>lossless</li>
+  <li>compression ratio is <code class="highlighter-rouge">x / y</code> where <code class="highlighter-rouge">x</code> = compressed and <code class="highlighter-rouge">y</code> = original</li>
+  <li>space saved = <code class="highlighter-rouge">1 - (x / y) * 100%</code></li>
+</ul>
+
+<h5 id="huffman-encoding">Huffman encoding</h5>
+
+<ul>
+  <li>statistical method</li>
+  <li>unique, variable-length codeword for each character</li>
+  <li>no codeword is the prefix of another</li>
+  <li>each character is a leaf node</li>
+  <li>codeword is the path from root to appropriate leaf</li>
+  <li>when going down the path, left route = 0, right route = 1</li>
+</ul>
+
+<p><strong>Huffman tree construction:</strong></p>
+
+<ul>
+  <li>add leaf nodes containing the character represented and its frequency</li>
+  <li>while there are &gt; 1 parentless nodes
+    <ul>
+      <li>add new parent to the two nodes of smallest weight (frequency)</li>
+      <li>weight of the parent node = sum of child weights</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The tree for a file with char frequencies:<br />
+   <code class="highlighter-rouge">Space = 15  E = 11  A = 9  T = 8  I = 7  S = 7</code><br />
+   <code class="highlighter-rouge">R = 7  O = 6  N = 4  U = 3  H = 2  C = 1  D = 1</code></p>
+
+<p><img src="/cs-notes/assets/images/huffman_1.png" nopin="nopin" /></p>
+
+<p>Tree construction <a href="#huff_contruct">pseudocode</a></p>
+
+<p><strong>Generating the codewords:</strong></p>
+
+<ul>
+  <li>following left and right paths down the constructed tree
+    <ul>
+      <li>Space <code class="highlighter-rouge">10</code></li>
+      <li>E <code class="highlighter-rouge">010</code></li>
+      <li>A <code class="highlighter-rouge">111</code></li>
+      <li>T <code class="highlighter-rouge">110</code></li>
+      <li>I <code class="highlighter-rouge">0000</code></li>
+      <li>S <code class="highlighter-rouge">0001</code></li>
+      <li>R <code class="highlighter-rouge">0011</code></li>
+      <li>O <code class="highlighter-rouge">0110</code></li>
+      <li>N <code class="highlighter-rouge">0111</code></li>
+      <li>U <code class="highlighter-rouge">00101</code></li>
+      <li>H <code class="highlighter-rouge">001001</code></li>
+      <li>C <code class="highlighter-rouge">0010000</code></li>
+      <li>D <code class="highlighter-rouge">0010001</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Weighted path length of tree T:</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">SUM( weight * distance from root )</code></li>
+  <li>sum is over all leaf nodes</li>
+  <li>this gives the number of bits in the compressed file</li>
+</ul>
+
+<p><strong>Complexity:</strong></p>
+
+<ul>
+  <li>building tree - O(n)</li>
+  <li>compression - O(n)</li>
+  <li>decompression - O(n)</li>
+  <li>use <strong>adaptive</strong> Huffman coding
+    <ul>
+      <li>same tree built and adapted by compressor and decompressor</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="lzw-compression">LZW compression</h5>
+
+<ul>
+  <li>dictionary method</li>
+  <li>collection of strings, each with a bit pattern that represents it</li>
+  <li>dictionary built dynamically during compression and decompression</li>
+  <li>if string <code class="highlighter-rouge">s</code> is represented, so is every prefix of <code class="highlighter-rouge">s</code></li>
+  <li>a <strong>trie</strong> is an ideal representation</li>
+</ul>
+
+<p>At any given time during comp./decomp. there is a <strong>current codeword length <code class="highlighter-rouge">k</code></strong>:</p>
+
+<ul>
+  <li>2<sup>k</sup> distinct codewords available</li>
+  <li>limits size of dictionary, but can be incremented as necessary (so doubling the codeword availability)</li>
+  <li>initial <code class="highlighter-rouge">k</code> should be large enough to encode all strings of length <code class="highlighter-rouge">l</code></li>
+</ul>
+
+<p>LZW compression <a href="#lzw">pseudocode</a></p>
+
+<p><img src="/cs-notes/assets/images/lzw_1.png" nopin="nopin" /></p>
+
+<p><strong>LZW variants:</strong></p>
+
+<ul>
+  <li>constant - fixed capacity dictionary</li>
+  <li>dynamic - add 1 to current length whenever dictionary becomes full</li>
+  <li>LRU - when full, current string replaces the least recently used string in the dictionary</li>
+</ul>
+
+<p><strong>LZW decompression:</strong></p>
+
+<ul>
+  <li>builds same dictionary as compression but <strong>1 step out of phase</strong></li>
+  <li>may encounter codeword that is not in dictionary
+    <ul>
+      <li>if (lookup fails) newS = oldS + oldS.charAt(0);</li>
+    </ul>
+  </li>
+</ul>
+
+<p>LZW decompression <a href="#lzw_decomp">pseudocode</a></p>
+
+<p><img src="/cs-notes/assets/images/lzw_2.png" nopin="nopin" /></p>
+
+<p><strong>Complexity:</strong> O(n) for comp. and decomp. each</p>
+
+<h5 id="string-comparison">String comparison</h5>
+
+<ul>
+  <li>given strings <code class="highlighter-rouge">s</code> and <code class="highlighter-rouge">t</code> of lengths <code class="highlighter-rouge">m</code> and <code class="highlighter-rouge">n</code>, what is the smallest number of basic operations needed to transform <code class="highlighter-rouge">s</code> into <code class="highlighter-rouge">t</code>?</li>
+  <li>use
+    <ul>
+      <li>insertion</li>
+      <li>deletion</li>
+      <li>subsitution</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>String distance:</strong></p>
+
+<p><img src="/cs-notes/assets/images/distance_1.png" nopin="nopin" /></p>
+
+<p><strong>Prefixes:</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">i</code><sup>th</sup> prefix of string <code class="highlighter-rouge">s</code> is first <code class="highlighter-rouge">i</code> chars of <code class="highlighter-rouge">s</code></li>
+  <li>let <code class="highlighter-rouge">d( i,j )</code> = distance between prefix <code class="highlighter-rouge">i</code> of <code class="highlighter-rouge">s</code> and prefix <code class="highlighter-rouge">j</code> of <code class="highlighter-rouge">t</code></li>
+  <li>then distance between <code class="highlighter-rouge">s</code> and <code class="highlighter-rouge">t</code> = <code class="highlighter-rouge">d( m,n )</code> for <code class="highlighter-rouge">len(s) = m</code> and <code class="highlighter-rouge">len(t) = n</code></li>
+</ul>
+
+<p><strong>Optimal alignment:</strong></p>
+
+<p>The last position of the alignment must either be of the form<br />
+   <img src="/cs-notes/assets/images/optimal_alignment.png" nopin="nopin" /></p>
+
+<p>In other words,<br />
+   <img src="/cs-notes/assets/images/optimal_alignment_alt.png" nopin="nopin" /></p>
+
+<h5 id="distance-with-dynamic-programming">Distance with dynamic programming</h5>
+
+<ul>
+  <li>fill in entries of an <code class="highlighter-rouge">m * n</code> table row by row, and column by column</li>
+  <li>time and space complexity = O(mn)</li>
+  <li>keep most recent entry in each column of the table
+    <ul>
+      <li>space complexity = O(m + n)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Distances table:</strong></p>
+
+<p><img src="/cs-notes/assets/images/distance_table.png" nopin="nopin" /></p>
+
+<ul>
+  <li>entries calculated one by one by applying formula above</li>
+  <li>final entry <code class="highlighter-rouge">d( 7,8 ) = 4</code> so string distance is <strong>4</strong></li>
+  <li>trace back to entry <code class="highlighter-rouge">( 0,0 )</code> to find optimal alignment
+    <ul>
+      <li>vertical = deletion</li>
+      <li>horizontal = insertion</li>
+      <li>diagonal = match/substitution</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="stringpattern-search">String/pattern search</h5>
+
+<p>Given a text <code class="highlighter-rouge">t</code> of length <code class="highlighter-rouge">n</code>, and a string/pattern <code class="highlighter-rouge">s</code> of length <code class="highlighter-rouge">m</code>, find the position of the last occurence of <code class="highlighter-rouge">s</code> in <code class="highlighter-rouge">t</code></p>
+
+<h5 id="brute-force-algorithm">Brute force algorithm</h5>
+
+<ul>
+  <li>current starting position in text = 0</li>
+  <li>compare chars from <code class="highlighter-rouge">s</code> and <code class="highlighter-rouge">t</code> left to right until the entire string is matched</li>
+  <li>if mismatch, advance starting position by 1 and repeat</li>
+</ul>
+
+<p>Brute force <a href="#brute_force">pseudocode</a></p>
+
+<p><strong>Effectiveness:</strong></p>
+
+<ul>
+  <li>expressed using char arrays rather than strings in Java</li>
+  <li><code class="highlighter-rouge">m</code> char comparisons needed at each <code class="highlighter-rouge">n - (m + 1)</code> positions in text before the pattern is found</li>
+  <li>worse case O(mn)</li>
+  <li>average case O(n)</li>
+</ul>
+
+<h5 id="kmp-algorithm">KMP algorithm</h5>
+
+<ul>
+  <li>online - removes need to back-up in text</li>
+  <li>worst case O(n)</li>
+  <li>need to pre-process the string into a border table (an array <code class="highlighter-rouge">b</code> with an entry <code class="highlighter-rouge">b[j]</code> for each position <code class="highlighter-rouge">j</code>)</li>
+  <li>if mismatch at <code class="highlighter-rouge">j</code>, remain at current text char</li>
+  <li>the border table says what to compare next</li>
+</ul>
+
+<p><strong>Border of a string <code class="highlighter-rouge">s</code>:</strong></p>
+
+<ul>
+  <li>a substring that
+    <ul>
+      <li>is a prefix</li>
+      <li>is a suffix</li>
+      <li>cannot be the string itself</li>
+    </ul>
+  </li>
+  <li>eg for string <code class="highlighter-rouge">s = a c a c g a t a c a c</code>
+    <ul>
+      <li>borders are <code class="highlighter-rouge">ac</code> and <code class="highlighter-rouge">acac</code></li>
+      <li><code class="highlighter-rouge">acac</code> is the longest border</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Border table:</strong></p>
+
+<p><img src="/cs-notes/assets/images/border_table.png" nopin="nopin" /></p>
+
+<ul>
+  <li><code class="highlighter-rouge">b[j]</code> is
+    <ul>
+      <li>the length of the longest border of <code class="highlighter-rouge">s[0...j-1]</code></li>
+      <li><code class="highlighter-rouge">max { k | s[0...k-1] = s[j-k...j-1] }</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>KMP seach :</strong></p>
+
+<ul>
+  <li><a href="#kmp">implementation</a></li>
+  <li>this is O(n) worst case</li>
+  <li>naive method requires O(j<sup>2</sup>) steps to find <code class="highlighter-rouge">b[j]</code>, so O(m<sup>2</sup>) overall</li>
+  <li>can be implemented in O(m + n) time (to set up border table and to conduct search)</li>
+</ul>
+
+<h5 id="boyer-moore-algorithm">Boyer-Moore algorithm</h5>
+
+<ul>
+  <li>string scanned left-to-right</li>
+  <li>mismatched char used to decide next comparison</li>
+  <li>need to pre-process string to record position of last occurence of each char in the alphabet</li>
+  <li>alphabet must be fixed in advance of search</li>
+</ul>
+
+<p><strong>Position of last occurence of char <code class="highlighter-rouge">c</code> in string <code class="highlighter-rouge">s</code>:</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">max { k | s[k] = c }</code> if such a <code class="highlighter-rouge">k</code> exists, <code class="highlighter-rouge">-1</code> otherwise</li>
+  <li>store last occurence position of <code class="highlighter-rouge">c</code> in array element <code class="highlighter-rouge">p[c]</code></li>
+</ul>
+
+<p><strong>Jump steps on a mismatch:</strong></p>
+
+<ul>
+  <li>if mismatch between <code class="highlighter-rouge">s[j]</code> and <code class="highlighter-rouge">t[i]</code>, move <code class="highlighter-rouge">s</code> along so <code class="highlighter-rouge">p[t[i]]</code> of <code class="highlighter-rouge">s</code> aligns with <code class="highlighter-rouge">t[i]</code></li>
+  <li>if this moves <code class="highlighter-rouge">s</code> in the “wrong direction”, instead move <code class="highlighter-rouge">s</code> one position to the right</li>
+  <li>if <code class="highlighter-rouge">t[i]</code> doesn’t appear in the string, slide the string past <code class="highlighter-rouge">t[i]</code></li>
+</ul>
+
+<p><strong>Jump step cases:</strong></p>
+
+<ol>
+  <li><code class="highlighter-rouge">p[t[i]] &lt; j and =&gt; 0</code>
+    <ul>
+      <li>new <code class="highlighter-rouge">i = i + m - 1 - p[t[i]]</code></li>
+      <li>new <code class="highlighter-rouge">j = m - 1</code></li>
+      <li>new <code class="highlighter-rouge">sp = sp + j - p[t[i]]</code> (starting position)</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">p[t[i]] &gt; j</code>
+    <ul>
+      <li>new <code class="highlighter-rouge">i = i + m - j</code></li>
+      <li>new <code class="highlighter-rouge">j = m - 1</code></li>
+      <li>new <code class="highlighter-rouge">sp = sp + 1</code></li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">p[t[i]] = -1</code>
+    <ul>
+      <li>new <code class="highlighter-rouge">i = i + m</code></li>
+      <li>new <code class="highlighter-rouge">j = m - 1</code></li>
+      <li>new <code class="highlighter-rouge">sp = sp + j + 1</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p>BM <a href="#bm">implementation</a></p>
+
+<p><strong>BM complexity:</strong></p>
+
+<ul>
+  <li>worst case O(mn)</li>
+  <li>search for <code class="highlighter-rouge">s = ab...aa</code> of length <code class="highlighter-rouge">m</code> in <code class="highlighter-rouge">t = aa...aaaa..aa</code> of length <code class="highlighter-rouge">n</code></li>
+  <li><code class="highlighter-rouge">m - 1</code> char comparisons needed at each <code class="highlighter-rouge">n - (m + 1)</code> positions in text</li>
+</ul>
 
 <h4 id="graphs-and-graph-algorithms">Graphs and graph algorithms</h4>
 
@@ -284,7 +731,7 @@ impose heap property on bad value now in root</code><br />
 
 <h6 id="heap-class-implementation-in-java">Heap class implementation in Java</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">class</span> <span class="nx">Heap</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">class</span> <span class="nx">Heap</span> <span class="p">{</span>
 
   <span class="kr">int</span> <span class="nx">size</span><span class="p">;</span>
   <span class="kr">int</span><span class="p">[]</span> <span class="nx">items</span><span class="p">;</span>
@@ -368,35 +815,329 @@ impose heap property on bad value now in root</code><br />
   <span class="nx">items</span><span class="p">[</span><span class="nx">current</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span> <span class="c1">// finalise location</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
-<p><a name="heapsort"></a></p>
+</code></pre>
+</div>
+<p><a name="heap_sort"></a></p>
 
 <h6 id="heapsort-pseudocode">Heapsort pseudocode</h6>
 
-<p><strong>Build</strong> sequence into a heap; // O(n)</p>
-
-<p>for (int k = 0; k &lt; n-1; k++){</p>
-
-<p>// invariant: items 0,…,n-k-1 form a heap</p>
-
-<p>// invariant: items n-k,…,n-1 are sorted</p>
-
-<p><strong>Find</strong> the largest unsorted item; // is in position 0, so O(1)</p>
-
-<p><strong>Swap</strong> it into position n-1-k; // its correct place O(1)</p>
-
-<p><strong>Reduce</strong> the size of the heap by 1; // O(1)</p>
-
-<p><strong>Impose</strong> the heap property on position 0; // this is O(log n)</p>
-
-<p>}</p>
-
-<p><strong>Restore</strong> size to original value;</p>
-
 <ul>
-  <li>loop is iterated <code class="highlighter-rouge">n - 1</code> times</li>
-  <li>each iteration takes O(log n) time</li>
+  <li><strong>Build</strong> sequence into a heap; // O(n)
+    <ul>
+      <li>for (int k = 0; k &lt; n-1; k++)</li>
+      <li>// invariant: items 0,…,n-k-1 form a heap</li>
+      <li>// invariant: items n-k,…,n-1 are sorted</li>
+      <li><strong>Find</strong> the largest unsorted item; // is in position 0, so O(1)</li>
+      <li><strong>Swap</strong> it into position n-1-k; // its correct place O(1)</li>
+      <li><strong>Reduce</strong> the size of the heap by 1; // O(1)</li>
+      <li><strong>Impose</strong> the heap property on position 0; // this is O(log n)</li>
+    </ul>
+  </li>
+  <li><strong>Restore</strong> size to original value;</li>
 </ul>
+
+<p>Loop is iterated <code class="highlighter-rouge">n - 1</code> times<br />
+   Each iteration takes O(log n) time</p>
+
+<p><a name="radix_sort"></a></p>
+
+<h6 id="radix-sort-pseudocode">Radix sort pseudocode</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">private</span> <span class="kr">int</span> <span class="nx">bits</span><span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">b</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">p</span><span class="p">)</span> <span class="c1">// helper method which would return the value represented by the b bits of x when starting at position p</span>
+
+<span class="c1">// a is the sequence to be sorted</span>
+<span class="c1">// m is the number of bits in each item of a</span>
+<span class="c1">// b is the block length of radix sort</span>
+
+<span class="kr">int</span> <span class="nx">numIterations</span> <span class="o">=</span> <span class="nx">m</span><span class="o">/</span><span class="nx">b</span><span class="p">;</span>
+<span class="kr">int</span> <span class="nx">numBuckets</span> <span class="o">=</span> <span class="p">(</span><span class="kr">int</span><span class="p">)</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
+
+<span class="nx">ArrayList</span><span class="o">&lt;</span><span class="nx">Item</span><span class="o">&gt;</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ArraList</span><span class="o">&lt;&gt;</span><span class="p">();</span> <span class="c1">// sequence a</span>
+
+<span class="c1">// representing the buckets</span>
+<span class="nx">ArrayList</span><span class="o">&lt;</span><span class="nx">Item</span><span class="o">&gt;</span><span class="p">[]</span> <span class="nx">bucket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ArrayList</span><span class="p">[</span><span class="nx">numBuckets</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">numBuckets</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="nx">bucket</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ArrayList</span><span class="o">&lt;</span><span class="nx">Item</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">numIterations</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// clear buckets</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">numBuckets</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="nx">bucket</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">clear</span><span class="p">();</span>
+  
+  <span class="c1">// distribute items in order</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span> <span class="err">:</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">int</span> <span class="nx">k</span> <span class="o">=</span> <span class="nx">bits</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="p">(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nx">b</span><span class="p">);</span> <span class="c1">// find correct bucket</span>
+	<span class="nx">bucket</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+  <span class="nx">a</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span> <span class="c1">// clear sequence</span>
+  
+  <span class="c1">// concatenate buckets in order</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">numBuckets</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="nx">a</span><span class="p">.</span><span class="nx">addAll</span><span class="p">(</span><span class="nx">bucket</span><span class="p">[</span><span class="nx">j</span><span class="p">]);</span>
+  
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="trie_alg"></a></p>
+
+<h6 id="tries-1">Tries</h6>
+
+<p><strong>Search:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// search for a word w in a trie t</span>
+<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="nx">of</span> <span class="nx">t</span><span class="p">;</span>
+<span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// current position in w</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="nx">has</span> <span class="nx">a</span> <span class="nx">child</span> <span class="nx">c</span> <span class="nx">labelled</span> <span class="nx">w</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// if can match the char of word in the current position</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nx">w</span><span class="p">.</span><span class="nx">length</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// end of word</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">is</span> <span class="nx">an</span> <span class="s2">"intermediate"</span> <span class="nx">node</span><span class="p">)</span> <span class="k">return</span> <span class="s2">"absent"</span><span class="p">;</span>
+	  <span class="k">else</span> <span class="k">return</span> <span class="s2">"present"</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="p">{</span> <span class="c1">// not at end of word</span>
+	  <span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span> <span class="c1">// move to child</span>
+	  <span class="nx">i</span><span class="o">++</span><span class="p">;</span> <span class="c1">// move to next char</span>
+	<span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="s2">"absent"</span><span class="p">;</span> <span class="c1">// can't match current char</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>Insert:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// insert word w into trie t</span>
+<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="nx">of</span> <span class="nx">t</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">w</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through chars of word</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="nx">has</span> <span class="nx">no</span> <span class="nx">child</span> <span class="nx">c</span> <span class="nx">labelled</span> <span class="nx">w</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">create</span> <span class="nx">such</span> <span class="nx">a</span> <span class="nx">child</span> <span class="nx">c</span><span class="p">;</span>
+	<span class="nx">mark</span> <span class="nx">c</span> <span class="nx">as</span> <span class="nx">intermediate</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span> <span class="c1">// move to child node</span>
+<span class="p">}</span>
+<span class="nx">mark</span> <span class="nx">n</span> <span class="nx">as</span> <span class="nx">representing</span> <span class="nx">a</span> <span class="nx">word</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p><a name="trie_class"></a></p>
+
+<h6 id="trie-class">Trie class</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">class</span> <span class="nx">Node</span> <span class="p">{</span>
+
+  <span class="kr">private</span> <span class="kr">char</span> <span class="nx">letter</span><span class="p">;</span> <span class="c1">// label of incoming branch</span>
+  <span class="kr">private</span> <span class="kr">boolean</span> <span class="nx">isWord</span><span class="p">;</span> <span class="c1">// true when node represents a word</span>
+  <span class="kr">private</span> <span class="nx">Node</span> <span class="nx">sibling</span><span class="p">;</span> <span class="c1">// next sibling</span>
+  <span class="kr">private</span> <span class="nx">Node</span> <span class="nx">child</span><span class="p">;</span> <span class="c1">// first child</span>
+  
+  <span class="kr">public</span> <span class="nx">Node</span><span class="p">(</span><span class="kr">char</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+  
+    <span class="nx">letter</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span>
+	<span class="nx">isWord</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="nx">sibling</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+	<span class="nx">child</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+	
+  <span class="p">}</span>
+  <span class="c1">// include accessors and mutators for the various components of a class</span>
+<span class="p">}</span>
+
+<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Trie</span> <span class="p">{</span>
+
+  <span class="kr">private</span> <span class="nx">Node</span> <span class="nx">root</span><span class="p">;</span>
+  
+  <span class="kr">public</span> <span class="nx">Trie</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">Character</span><span class="p">.</span><span class="nx">MIN_VALUE</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="huff_contruct"></a></p>
+
+<h6 id="huffman-tree-construction">Huffman tree construction</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// set up leaf nodes</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">distinct</span> <span class="kr">char</span> <span class="nx">c</span> <span class="nx">occuring</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">make</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">parentless</span> <span class="nx">node</span> <span class="nx">n</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">frequency</span> <span class="nx">count</span> <span class="k">for</span> <span class="nx">c</span><span class="p">;</span>
+  <span class="nx">n</span><span class="p">.</span><span class="nx">setWeight</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span>
+  <span class="nx">n</span><span class="p">.</span><span class="nx">setCharacter</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+  <span class="nx">n</span><span class="p">.</span><span class="nx">setLeftChild</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="nx">n</span><span class="p">.</span><span class="nx">setRightChild</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  
+<span class="p">}</span>
+
+<span class="c1">// construct branch nodes and links</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">num</span> <span class="nx">of</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">make</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">parentless</span> <span class="nx">node</span> <span class="nx">z</span><span class="p">;</span>
+  <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">the</span> <span class="mi">2</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="nx">of</span> <span class="nx">minimum</span> <span class="nx">weight</span><span class="p">;</span>
+  <span class="nx">z</span><span class="p">.</span><span class="nx">setLeftChild</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+  <span class="nx">z</span><span class="p">.</span><span class="nx">setRightChild</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+  <span class="kr">int</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">getWeight</span><span class="p">()</span> <span class="o">+</span> <span class="nx">y</span><span class="p">.</span><span class="nx">getWeight</span><span class="p">();</span>
+  <span class="nx">z</span><span class="p">.</span><span class="nx">setWeight</span><span class="p">(</span><span class="nx">w</span><span class="p">);</span>
+  
+<span class="p">}</span>
+<span class="c1">// the final z is root</span>
+</code></pre>
+</div>
+
+<p><a name="lzw"></a></p>
+
+<h6 id="lzw-compression-1">LZW compression</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">set</span> <span class="nx">current</span> <span class="nx">text</span> <span class="nx">position</span> <span class="nx">i</span> <span class="nx">to</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nx">initialise</span> <span class="nx">codeword</span> <span class="nx">length</span> <span class="nx">k</span><span class="p">;</span>
+<span class="nx">initialise</span> <span class="nx">dictionary</span> <span class="nx">d</span><span class="p">;</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nx">text</span> <span class="nx">t</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">exhausted</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="nx">identify</span> <span class="nx">longest</span> <span class="nx">string</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">starting</span> <span class="nx">at</span> <span class="nx">position</span> <span class="nx">i</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">text</span> <span class="nx">that</span> <span class="nx">is</span> <span class="nx">represented</span> <span class="k">in</span> <span class="nx">d</span><span class="p">;</span>
+  <span class="nx">output</span> <span class="nx">codeword</span> <span class="k">for</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// using k bits</span>
+  
+  <span class="c1">// move to next position in t</span>
+  <span class="nx">i</span> <span class="o">+=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span> <span class="c1">// move forward by the length of the string just encoded</span>
+  <span class="nx">c</span> <span class="o">=</span> <span class="kr">char</span> <span class="nx">at</span> <span class="nx">position</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">t</span><span class="p">;</span> <span class="c1">// char in next position</span>
+  
+  <span class="nx">add</span> <span class="nx">string</span> <span class="nx">s</span><span class="o">+</span><span class="nx">c</span> <span class="nx">to</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">paired</span> <span class="kd">with</span> <span class="nx">next</span> <span class="nx">available</span> <span class="nx">codeword</span><span class="p">;</span> <span class="c1">// involves adding a new leaf node if d is represented by a trie</span>
+  
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="lzw_decomp"></a></p>
+
+<h6 id="lzw-decompression">LZW decompression</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">initialise</span> <span class="nx">codeword</span> <span class="nx">length</span> <span class="nx">k</span><span class="p">;</span>
+<span class="nx">initialise</span> <span class="nx">dictionary</span> <span class="nx">d</span><span class="p">;</span>
+
+<span class="nx">read</span> <span class="nx">first</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">compressed</span> <span class="nx">file</span> <span class="nx">f</span><span class="p">;</span> <span class="c1">// read k bits</span>
+<span class="nb">String</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lookUp</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// look up codeword in d</span>
+<span class="nx">output</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// output decompressed string</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">exhausted</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nb">String</span> <span class="nx">oldS</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">clone</span><span class="p">();</span> <span class="c1">// copy last string decompressed</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">is</span> <span class="nx">full</span><span class="p">)</span> <span class="nx">k</span><span class="o">++</span><span class="p">;</span>
+  
+  <span class="nx">get</span> <span class="nx">next</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="nx">from</span> <span class="nx">f</span><span class="p">;</span>
+  <span class="nx">s</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">loopUp</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// look up codeword in d</span>
+  <span class="nx">output</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// output decompressed string</span>
+  
+  <span class="nb">String</span> <span class="nx">newS</span> <span class="o">=</span> <span class="nx">oldS</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// string to add to d</span>
+  <span class="nx">add</span> <span class="nx">newS</span> <span class="nx">to</span> <span class="nx">d</span> <span class="nx">paired</span> <span class="kd">with</span> <span class="nx">next</span> <span class="nx">available</span> <span class="nx">codeword</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="brute_force"></a></p>
+
+<h6 id="brute-force-algorithm-1">Brute force algorithm</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs in t starting at position k, or -1 if no k exists</span>
+<span class="kr">public</span> <span class="kr">int</span> <span class="nx">bruteForce</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// length of string/pattern</span>
+  <span class="kr">int</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// length of text</span>
+  <span class="kr">int</span> <span class="nx">sp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// starting position in t</span>
+  <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// curr position in t</span>
+  <span class="kr">int</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// curr position in s</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="nx">sp</span> <span class="o">&lt;=</span> <span class="nx">n</span><span class="o">-</span><span class="nx">m</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// not reached end</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">s</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// chars match</span>
+	  <span class="nx">i</span><span class="o">++</span><span class="p">;</span> <span class="c1">// move on in t</span>
+	  <span class="nx">j</span><span class="o">++</span> <span class="c1">// move on in s</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	  <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// start again in s</span>
+	  <span class="nx">sp</span><span class="o">++</span><span class="p">;</span> <span class="c1">// advance starting position</span>
+	  <span class="nx">i</span> <span class="o">=</span> <span class="nx">sp</span><span class="p">;</span> <span class="c1">// back up in text to new starting position</span>
+	<span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="nx">j</span> <span class="o">==</span> <span class="nx">m</span><span class="p">)</span> <span class="k">return</span> <span class="nx">sp</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="kmp"></a></p>
+
+<h6 id="kmp-search-implementation">KMP search implementation</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs from position k in t, or -1 if no k exists</span>
+<span class="kr">public</span> <span class="kr">int</span> <span class="nx">kmp</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="p">[]</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="kr">int</span><span class="p">[</span><span class="nx">m</span><span class="p">];</span> <span class="c1">// create border table</span>
+  
+  <span class="nx">setUp</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="c1">// set up border table</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// not reached end of text</span>
+  
+    <span class="k">if</span> <span class="p">([</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">s</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// positions match</span>
+	  <span class="nx">i</span><span class="o">++</span><span class="p">;</span> <span class="c1">// move on in text</span>
+	  <span class="nx">j</span><span class="o">++</span><span class="p">;</span> <span class="c1">// move on in string</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="nx">j</span> <span class="o">=</span> <span class="nx">m</span><span class="p">)</span> <span class="k">return</span> <span class="nx">i</span> <span class="o">-</span> <span class="nx">j</span><span class="p">;</span> <span class="c1">// reached end of string so a match</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// mismatch so adjust curr position in string using border table</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">b</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span> <span class="c1">// if there is a common prefix/suffix then change position in string</span>
+	  <span class="k">else</span> <span class="p">{</span> <span class="c1">// no common prefix/suffix</span>
+	    <span class="k">if</span> <span class="p">(</span><span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">i</span><span class="o">++</span><span class="p">;</span> <span class="c1">// then move forward 1 position in text if not advanced</span>
+		<span class="k">else</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// else start from beginning of string</span>
+	  <span class="p">}</span>
+	<span class="p">}</span>
+  
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// no occurence</span>
+  
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="bm"></a></p>
+
+<h6 id="boyer-moore-implementation">Boyer-Moore implementation</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs at k in t, or -1 if no k exists</span>
+<span class="kr">public</span> <span class="kr">int</span> <span class="nx">bm</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="nx">sp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">m</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// pos in text</span>
+  <span class="kr">int</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">m</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// pos in string</span>
+  <span class="c1">// declare a suitable array p</span>
+  <span class="nx">setUp</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">p</span><span class="p">);</span> <span class="c1">// set up last occurence array</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="nx">sp</span> <span class="o">&lt;=</span> <span class="nx">n</span><span class="o">-</span><span class="nx">m</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  
+    <span class="k">if</span> <span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">s</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// match</span>
+	  <span class="nx">i</span><span class="o">--</span><span class="p">;</span> <span class="c1">// move back in text</span>
+	  <span class="nx">j</span><span class="o">--</span><span class="p">;</span> <span class="c1">// move back in string</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	  <span class="nx">sp</span> <span class="o">+=</span> <span class="nx">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">j</span> <span class="o">-</span> <span class="nx">p</span><span class="p">[</span><span class="nx">t</span><span class="p">[</span><span class="nx">i</span><span class="p">]]);</span>
+	  <span class="nx">i</span> <span class="o">+=</span> <span class="nx">m</span> <span class="o">-</span> <span class="nx">min</span><span class="p">(</span><span class="nx">j</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="nx">p</span><span class="p">[</span><span class="nx">t</span><span class="p">[</span><span class="nx">i</span><span class="p">]]);</span>
+	  <span class="nx">j</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// return to end of string</span>
+	<span class="p">}</span>
+  
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">j</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nx">sp</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
 
         </section>
 

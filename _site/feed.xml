@@ -3,10 +3,10 @@
   <channel>
     <title></title>
     <description>My notes on CS Level 3</description>
-    <link>https://fireredninja.github.io/cs-notes//cs-notes/</link>
-    <atom:link href="https://fireredninja.github.io/cs-notes//cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 26 Dec 2017 21:51:13 +0000</pubDate>
-    <lastBuildDate>Tue, 26 Dec 2017 21:51:13 +0000</lastBuildDate>
+    <link>http://localhost:4000/cs-notes/</link>
+    <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 27 Dec 2017 14:47:16 +0000</pubDate>
+    <lastBuildDate>Wed, 27 Dec 2017 14:47:16 +0000</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -19,9 +19,12 @@
   &lt;li&gt;M.T. Goodrich &amp;amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002&lt;/li&gt;
   &lt;li&gt;D. Harel &amp;amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)&lt;/li&gt;
   &lt;li&gt;M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
-&lt;!--excerpt--&gt;
-    &lt;h5 id=&quot;revision---algorithm-analysis&quot;&gt;Revision - Algorithm Analysis&lt;/h5&gt;
-  &lt;/li&gt;
+&lt;!--excerpt--&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;revision---algorithm-analysis&quot;&gt;Revision - Algorithm Analysis&lt;/h5&gt;
+
+&lt;ul&gt;
   &lt;li&gt;Time and space complexity is written as a function of input size&lt;/li&gt;
   &lt;li&gt;Worst case - gives a guarantee of algorithm’s performance&lt;/li&gt;
   &lt;li&gt;Asymptotic behaviour indicates what will happen as input size grows&lt;/li&gt;
@@ -215,7 +218,7 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 &lt;ul&gt;
   &lt;li&gt;more efficient than selection sort&lt;/li&gt;
   &lt;li&gt;O(n log n) in the worst case&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#heapsort&quot;&gt;pseudocode&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heap_sort&quot;&gt;pseudocode&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;sorting-algorithms&quot;&gt;Sorting Algorithms&lt;/h4&gt;
@@ -224,7 +227,451 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
    O(n log n) - merge, heap&lt;br /&gt;
    Quicksort is O(n log n) on average (but no better than O(n&lt;sup&gt;2&lt;/sup&gt;) in the worst case&lt;/p&gt;
 
+&lt;h5 id=&quot;comparison-based-sorting&quot;&gt;Comparison-based sorting&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;Claim:&lt;/strong&gt; No sorting algorithm that is based on pairwise comparison can be better than O(n log n) in the worst case&lt;br /&gt;
+   &lt;strong&gt;Justification:&lt;/strong&gt; Draw out the algorithm using a binary decision tree, where each node represents a comparison between two elements&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;leaf nodes represent the possible outcomes of the algorithm&lt;/li&gt;
+  &lt;li&gt;so the number of leaf nodes = the possible ordering of &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; items&lt;/li&gt;
+  &lt;li&gt;so there are at least &lt;code class=&quot;highlighter-rouge&quot;&gt;n!&lt;/code&gt; and maximum 2&lt;sup&gt;h+1&lt;/sup&gt; leaf nodes&lt;/li&gt;
+  &lt;li&gt;its worst case complexity is O(h) where &lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt; = its height&lt;/li&gt;
+  &lt;li&gt;it follows that n! &amp;lt;= 2&lt;sup&gt;h+1&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/decision_tree.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Reversing inequality and taking log&lt;sub&gt;2&lt;/sub&gt; of both sides:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/comparison_based_complexity.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Giving a complexity of O(n log n) as required&lt;/p&gt;
+
+&lt;h5 id=&quot;radix-sorting&quot;&gt;Radix sorting&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;O(n) complexity&lt;/li&gt;
+  &lt;li&gt;exploits the structure of items to be sorted to achieve this&lt;/li&gt;
+  &lt;li&gt;faster than O(n log n) only for very large &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;How it works:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;each iteration the items are distributed into buckets (lists)&lt;/li&gt;
+  &lt;li&gt;during an &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;&lt;sup&gt;th&lt;/sup&gt; iteration an item is placed in the bucket corresponding to the integer represented by its bits&lt;/li&gt;
+  &lt;li&gt;at the end of an iteration the buckets are concatenated to give a new sequence which will be used as the starting point of the next iteration&lt;/li&gt;
+  &lt;li&gt;there are &lt;code class=&quot;highlighter-rouge&quot;&gt;m / b&lt;/code&gt; iterations, where &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt; is the length of bit-sequences representing an item, and &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; is a chosen factor of &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To sort the following sequence: &lt;code class=&quot;highlighter-rouge&quot;&gt;15 43 5 27 60 18 26 2&lt;/code&gt;&lt;br /&gt;
+   Where binary encodings are given by:&lt;br /&gt;
+   &lt;code class=&quot;highlighter-rouge&quot;&gt;15 = 001111  43 = 101011  5 = 000101  27 = 011011&lt;/code&gt;&lt;br /&gt;
+   &lt;code class=&quot;highlighter-rouge&quot;&gt;60 = 111100  18 = 010010  26 = 011010  2 = 000010&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Items have bit positions 0, …, 5 so &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt; = 6&lt;br /&gt;
+   &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; must be a factor of &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt;, so choose &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; = 2&lt;br /&gt;
+   So we have 2&lt;sup&gt;b&lt;/sup&gt; = 2&lt;sup&gt;2&lt;/sup&gt; = 4 buckets labelled 0, 1, 2, 3 (or 00, 01, 10, 11)
+   And &lt;code class=&quot;highlighter-rouge&quot;&gt;m / b = 3&lt;/code&gt; iterations are required&lt;/p&gt;
+
+&lt;p&gt;See radix sorting pseudocode &lt;a href=&quot;#radix_sort&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Correctness:&lt;/strong&gt; For two items &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; where &lt;code class=&quot;highlighter-rouge&quot;&gt;x &amp;lt; y&lt;/code&gt;, we need to show that &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; precedes &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; in the final sequence&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;During the last iteration&lt;/strong&gt; where some bits of &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; differ:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the bits of &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; must be smaller than &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;so &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; goes into a bucket before &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; does&lt;/li&gt;
+  &lt;li&gt;so &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; precedes &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; in the sequence after this iteration&lt;/li&gt;
+  &lt;li&gt;in later iterations, &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; go in the same bucket as they don’t have any more differing bits&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Complexity:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;during each of the &lt;code class=&quot;highlighter-rouge&quot;&gt;m / b&lt;/code&gt; iterations, the sequence is scanned –&amp;gt; O(n) time, and buckets are concatenated –&amp;gt; O(2&lt;sup&gt;b&lt;/sup&gt;) time&lt;/li&gt;
+  &lt;li&gt;overall, O(m / b (n + 2&lt;sup&gt;b&lt;/sup&gt;)) –&amp;gt; O(n)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Time-space trade-off:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the larger the value of b, the smaller the multiplicative constant (m / b) in the complexity function and so the faster the algorithm will become&lt;/li&gt;
+  &lt;li&gt;an array of size 2&lt;sup&gt;b&lt;/sup&gt; is required, so increasing &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; will increase space requirements&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;tries&quot;&gt;Tries&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;stored items have a key that is interpreted as a sequence of bits/characters&lt;/li&gt;
+  &lt;li&gt;there is a multiway branch at each node where each branch has an associated symbol&lt;/li&gt;
+  &lt;li&gt;no two siblings have the same symbol&lt;/li&gt;
+  &lt;li&gt;the branch to be taken at level &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; is determined by the &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;&lt;sup&gt;th&lt;/sup&gt; element of the key&lt;/li&gt;
+  &lt;li&gt;tracing a path from root to a node spells out the key of the item&lt;/li&gt;
+  &lt;li&gt;eg, used to store strings&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/trie.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Search&lt;/em&gt; and &lt;em&gt;insert&lt;/em&gt; algorithms for the trie found &lt;a href=&quot;#trie_alg&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Represent it as:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;an array of pointers, which represent children&lt;/li&gt;
+  &lt;li&gt;linked lists, containing children of each node&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/trie_list.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#trie_class&quot;&gt;Example&lt;/a&gt; trie class to represent a dictionary&lt;/p&gt;
+
 &lt;h4 id=&quot;strings-and-text-algorithms&quot;&gt;Strings and text algorithms&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Text compression
+    &lt;ul&gt;
+      &lt;li&gt;Huffman and LZW&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;String comparison
+    &lt;ul&gt;
+      &lt;li&gt;String difference&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;String/pattern search
+    &lt;ul&gt;
+      &lt;li&gt;Brute force&lt;/li&gt;
+      &lt;li&gt;KMP&lt;/li&gt;
+      &lt;li&gt;BM&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;text-compression&quot;&gt;Text compression&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;lossless&lt;/li&gt;
+  &lt;li&gt;compression ratio is &lt;code class=&quot;highlighter-rouge&quot;&gt;x / y&lt;/code&gt; where &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; = compressed and &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; = original&lt;/li&gt;
+  &lt;li&gt;space saved = &lt;code class=&quot;highlighter-rouge&quot;&gt;1 - (x / y) * 100%&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;huffman-encoding&quot;&gt;Huffman encoding&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;statistical method&lt;/li&gt;
+  &lt;li&gt;unique, variable-length codeword for each character&lt;/li&gt;
+  &lt;li&gt;no codeword is the prefix of another&lt;/li&gt;
+  &lt;li&gt;each character is a leaf node&lt;/li&gt;
+  &lt;li&gt;codeword is the path from root to appropriate leaf&lt;/li&gt;
+  &lt;li&gt;when going down the path, left route = 0, right route = 1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Huffman tree construction:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;add leaf nodes containing the character represented and its frequency&lt;/li&gt;
+  &lt;li&gt;while there are &amp;gt; 1 parentless nodes
+    &lt;ul&gt;
+      &lt;li&gt;add new parent to the two nodes of smallest weight (frequency)&lt;/li&gt;
+      &lt;li&gt;weight of the parent node = sum of child weights&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The tree for a file with char frequencies:&lt;br /&gt;
+   &lt;code class=&quot;highlighter-rouge&quot;&gt;Space = 15  E = 11  A = 9  T = 8  I = 7  S = 7&lt;/code&gt;&lt;br /&gt;
+   &lt;code class=&quot;highlighter-rouge&quot;&gt;R = 7  O = 6  N = 4  U = 3  H = 2  C = 1  D = 1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/huffman_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tree construction &lt;a href=&quot;#huff_contruct&quot;&gt;pseudocode&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Generating the codewords:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;following left and right paths down the constructed tree
+    &lt;ul&gt;
+      &lt;li&gt;Space &lt;code class=&quot;highlighter-rouge&quot;&gt;10&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;E &lt;code class=&quot;highlighter-rouge&quot;&gt;010&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;A &lt;code class=&quot;highlighter-rouge&quot;&gt;111&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;T &lt;code class=&quot;highlighter-rouge&quot;&gt;110&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;I &lt;code class=&quot;highlighter-rouge&quot;&gt;0000&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;S &lt;code class=&quot;highlighter-rouge&quot;&gt;0001&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;R &lt;code class=&quot;highlighter-rouge&quot;&gt;0011&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;O &lt;code class=&quot;highlighter-rouge&quot;&gt;0110&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;N &lt;code class=&quot;highlighter-rouge&quot;&gt;0111&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;U &lt;code class=&quot;highlighter-rouge&quot;&gt;00101&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;H &lt;code class=&quot;highlighter-rouge&quot;&gt;001001&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;C &lt;code class=&quot;highlighter-rouge&quot;&gt;0010000&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;D &lt;code class=&quot;highlighter-rouge&quot;&gt;0010001&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Weighted path length of tree T:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;SUM( weight * distance from root )&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;sum is over all leaf nodes&lt;/li&gt;
+  &lt;li&gt;this gives the number of bits in the compressed file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Complexity:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;building tree - O(n)&lt;/li&gt;
+  &lt;li&gt;compression - O(n)&lt;/li&gt;
+  &lt;li&gt;decompression - O(n)&lt;/li&gt;
+  &lt;li&gt;use &lt;strong&gt;adaptive&lt;/strong&gt; Huffman coding
+    &lt;ul&gt;
+      &lt;li&gt;same tree built and adapted by compressor and decompressor&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;lzw-compression&quot;&gt;LZW compression&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;dictionary method&lt;/li&gt;
+  &lt;li&gt;collection of strings, each with a bit pattern that represents it&lt;/li&gt;
+  &lt;li&gt;dictionary built dynamically during compression and decompression&lt;/li&gt;
+  &lt;li&gt;if string &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; is represented, so is every prefix of &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;a &lt;strong&gt;trie&lt;/strong&gt; is an ideal representation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At any given time during comp./decomp. there is a &lt;strong&gt;current codeword length &lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt;&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2&lt;sup&gt;k&lt;/sup&gt; distinct codewords available&lt;/li&gt;
+  &lt;li&gt;limits size of dictionary, but can be incremented as necessary (so doubling the codeword availability)&lt;/li&gt;
+  &lt;li&gt;initial &lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt; should be large enough to encode all strings of length &lt;code class=&quot;highlighter-rouge&quot;&gt;l&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;LZW compression &lt;a href=&quot;#lzw&quot;&gt;pseudocode&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/lzw_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LZW variants:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;constant - fixed capacity dictionary&lt;/li&gt;
+  &lt;li&gt;dynamic - add 1 to current length whenever dictionary becomes full&lt;/li&gt;
+  &lt;li&gt;LRU - when full, current string replaces the least recently used string in the dictionary&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;LZW decompression:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;builds same dictionary as compression but &lt;strong&gt;1 step out of phase&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;may encounter codeword that is not in dictionary
+    &lt;ul&gt;
+      &lt;li&gt;if (lookup fails) newS = oldS + oldS.charAt(0);&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;LZW decompression &lt;a href=&quot;#lzw_decomp&quot;&gt;pseudocode&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/lzw_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Complexity:&lt;/strong&gt; O(n) for comp. and decomp. each&lt;/p&gt;
+
+&lt;h5 id=&quot;string-comparison&quot;&gt;String comparison&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;given strings &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt; of lengths &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;, what is the smallest number of basic operations needed to transform &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; into &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;?&lt;/li&gt;
+  &lt;li&gt;use
+    &lt;ul&gt;
+      &lt;li&gt;insertion&lt;/li&gt;
+      &lt;li&gt;deletion&lt;/li&gt;
+      &lt;li&gt;subsitution&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;String distance:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/distance_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Prefixes:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;&lt;sup&gt;th&lt;/sup&gt; prefix of string &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; is first &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; chars of &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;let &lt;code class=&quot;highlighter-rouge&quot;&gt;d( i,j )&lt;/code&gt; = distance between prefix &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; and prefix &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;then distance between &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt; = &lt;code class=&quot;highlighter-rouge&quot;&gt;d( m,n )&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;len(s) = m&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;len(t) = n&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Optimal alignment:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The last position of the alignment must either be of the form&lt;br /&gt;
+   &lt;img src=&quot;/cs-notes/assets/images/optimal_alignment.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In other words,&lt;br /&gt;
+   &lt;img src=&quot;/cs-notes/assets/images/optimal_alignment_alt.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;distance-with-dynamic-programming&quot;&gt;Distance with dynamic programming&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;fill in entries of an &lt;code class=&quot;highlighter-rouge&quot;&gt;m * n&lt;/code&gt; table row by row, and column by column&lt;/li&gt;
+  &lt;li&gt;time and space complexity = O(mn)&lt;/li&gt;
+  &lt;li&gt;keep most recent entry in each column of the table
+    &lt;ul&gt;
+      &lt;li&gt;space complexity = O(m + n)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Distances table:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/distance_table.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;entries calculated one by one by applying formula above&lt;/li&gt;
+  &lt;li&gt;final entry &lt;code class=&quot;highlighter-rouge&quot;&gt;d( 7,8 ) = 4&lt;/code&gt; so string distance is &lt;strong&gt;4&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;trace back to entry &lt;code class=&quot;highlighter-rouge&quot;&gt;( 0,0 )&lt;/code&gt; to find optimal alignment
+    &lt;ul&gt;
+      &lt;li&gt;vertical = deletion&lt;/li&gt;
+      &lt;li&gt;horizontal = insertion&lt;/li&gt;
+      &lt;li&gt;diagonal = match/substitution&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;stringpattern-search&quot;&gt;String/pattern search&lt;/h5&gt;
+
+&lt;p&gt;Given a text &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt; of length &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;, and a string/pattern &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; of length &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt;, find the position of the last occurence of &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;brute-force-algorithm&quot;&gt;Brute force algorithm&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;current starting position in text = 0&lt;/li&gt;
+  &lt;li&gt;compare chars from &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt; left to right until the entire string is matched&lt;/li&gt;
+  &lt;li&gt;if mismatch, advance starting position by 1 and repeat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Brute force &lt;a href=&quot;#brute_force&quot;&gt;pseudocode&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Effectiveness:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;expressed using char arrays rather than strings in Java&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt; char comparisons needed at each &lt;code class=&quot;highlighter-rouge&quot;&gt;n - (m + 1)&lt;/code&gt; positions in text before the pattern is found&lt;/li&gt;
+  &lt;li&gt;worse case O(mn)&lt;/li&gt;
+  &lt;li&gt;average case O(n)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;kmp-algorithm&quot;&gt;KMP algorithm&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;online - removes need to back-up in text&lt;/li&gt;
+  &lt;li&gt;worst case O(n)&lt;/li&gt;
+  &lt;li&gt;need to pre-process the string into a border table (an array &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; with an entry &lt;code class=&quot;highlighter-rouge&quot;&gt;b[j]&lt;/code&gt; for each position &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;if mismatch at &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;, remain at current text char&lt;/li&gt;
+  &lt;li&gt;the border table says what to compare next&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Border of a string &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt;:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;a substring that
+    &lt;ul&gt;
+      &lt;li&gt;is a prefix&lt;/li&gt;
+      &lt;li&gt;is a suffix&lt;/li&gt;
+      &lt;li&gt;cannot be the string itself&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;eg for string &lt;code class=&quot;highlighter-rouge&quot;&gt;s = a c a c g a t a c a c&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;borders are &lt;code class=&quot;highlighter-rouge&quot;&gt;ac&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;acac&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;acac&lt;/code&gt; is the longest border&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Border table:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/border_table.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b[j]&lt;/code&gt; is
+    &lt;ul&gt;
+      &lt;li&gt;the length of the longest border of &lt;code class=&quot;highlighter-rouge&quot;&gt;s[0...j-1]&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;max { k | s[0...k-1] = s[j-k...j-1] }&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;KMP seach :&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#kmp&quot;&gt;implementation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;this is O(n) worst case&lt;/li&gt;
+  &lt;li&gt;naive method requires O(j&lt;sup&gt;2&lt;/sup&gt;) steps to find &lt;code class=&quot;highlighter-rouge&quot;&gt;b[j]&lt;/code&gt;, so O(m&lt;sup&gt;2&lt;/sup&gt;) overall&lt;/li&gt;
+  &lt;li&gt;can be implemented in O(m + n) time (to set up border table and to conduct search)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;boyer-moore-algorithm&quot;&gt;Boyer-Moore algorithm&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;string scanned left-to-right&lt;/li&gt;
+  &lt;li&gt;mismatched char used to decide next comparison&lt;/li&gt;
+  &lt;li&gt;need to pre-process string to record position of last occurence of each char in the alphabet&lt;/li&gt;
+  &lt;li&gt;alphabet must be fixed in advance of search&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Position of last occurence of char &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; in string &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt;:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;max { k | s[k] = c }&lt;/code&gt; if such a &lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt; exists, &lt;code class=&quot;highlighter-rouge&quot;&gt;-1&lt;/code&gt; otherwise&lt;/li&gt;
+  &lt;li&gt;store last occurence position of &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; in array element &lt;code class=&quot;highlighter-rouge&quot;&gt;p[c]&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Jump steps on a mismatch:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;if mismatch between &lt;code class=&quot;highlighter-rouge&quot;&gt;s[j]&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;t[i]&lt;/code&gt;, move &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; along so &lt;code class=&quot;highlighter-rouge&quot;&gt;p[t[i]]&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; aligns with &lt;code class=&quot;highlighter-rouge&quot;&gt;t[i]&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;if this moves &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; in the “wrong direction”, instead move &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; one position to the right&lt;/li&gt;
+  &lt;li&gt;if &lt;code class=&quot;highlighter-rouge&quot;&gt;t[i]&lt;/code&gt; doesn’t appear in the string, slide the string past &lt;code class=&quot;highlighter-rouge&quot;&gt;t[i]&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Jump step cases:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;p[t[i]] &amp;lt; j and =&amp;gt; 0&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;i = i + m - 1 - p[t[i]]&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;j = m - 1&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;sp = sp + j - p[t[i]]&lt;/code&gt; (starting position)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;p[t[i]] &amp;gt; j&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;i = i + m - j&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;j = m - 1&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;sp = sp + 1&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;p[t[i]] = -1&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;i = i + m&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;j = m - 1&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;new &lt;code class=&quot;highlighter-rouge&quot;&gt;sp = sp + j + 1&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;BM &lt;a href=&quot;#bm&quot;&gt;implementation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;BM complexity:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;worst case O(mn)&lt;/li&gt;
+  &lt;li&gt;search for &lt;code class=&quot;highlighter-rouge&quot;&gt;s = ab...aa&lt;/code&gt; of length &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;t = aa...aaaa..aa&lt;/code&gt; of length &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;m - 1&lt;/code&gt; char comparisons needed at each &lt;code class=&quot;highlighter-rouge&quot;&gt;n - (m + 1)&lt;/code&gt; positions in text&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h4 id=&quot;graphs-and-graph-algorithms&quot;&gt;Graphs and graph algorithms&lt;/h4&gt;
 
@@ -236,7 +683,7 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;h6 id=&quot;heap-class-implementation-in-java&quot;&gt;Heap class implementation in Java&lt;/h6&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Heap&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Heap&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
   &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -320,39 +767,333 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// finalise location&lt;/span&gt;
 
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;heapsort&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;heap_sort&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;heapsort-pseudocode&quot;&gt;Heapsort pseudocode&lt;/h6&gt;
 
-&lt;p&gt;&lt;strong&gt;Build&lt;/strong&gt; sequence into a heap; // O(n)&lt;/p&gt;
-
-&lt;p&gt;for (int k = 0; k &amp;lt; n-1; k++){&lt;/p&gt;
-
-&lt;p&gt;// invariant: items 0,…,n-k-1 form a heap&lt;/p&gt;
-
-&lt;p&gt;// invariant: items n-k,…,n-1 are sorted&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Find&lt;/strong&gt; the largest unsorted item; // is in position 0, so O(1)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Swap&lt;/strong&gt; it into position n-1-k; // its correct place O(1)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Reduce&lt;/strong&gt; the size of the heap by 1; // O(1)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Impose&lt;/strong&gt; the heap property on position 0; // this is O(log n)&lt;/p&gt;
-
-&lt;p&gt;}&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Restore&lt;/strong&gt; size to original value;&lt;/p&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;loop is iterated &lt;code class=&quot;highlighter-rouge&quot;&gt;n - 1&lt;/code&gt; times&lt;/li&gt;
-  &lt;li&gt;each iteration takes O(log n) time&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Build&lt;/strong&gt; sequence into a heap; // O(n)
+    &lt;ul&gt;
+      &lt;li&gt;for (int k = 0; k &amp;lt; n-1; k++)&lt;/li&gt;
+      &lt;li&gt;// invariant: items 0,…,n-k-1 form a heap&lt;/li&gt;
+      &lt;li&gt;// invariant: items n-k,…,n-1 are sorted&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Find&lt;/strong&gt; the largest unsorted item; // is in position 0, so O(1)&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Swap&lt;/strong&gt; it into position n-1-k; // its correct place O(1)&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Reduce&lt;/strong&gt; the size of the heap by 1; // O(1)&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Impose&lt;/strong&gt; the heap property on position 0; // this is O(log n)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Restore&lt;/strong&gt; size to original value;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;Loop is iterated &lt;code class=&quot;highlighter-rouge&quot;&gt;n - 1&lt;/code&gt; times&lt;br /&gt;
+   Each iteration takes O(log n) time&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;radix_sort&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;radix-sort-pseudocode&quot;&gt;Radix sort pseudocode&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// helper method which would return the value represented by the b bits of x when starting at position p&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// a is the sequence to be sorted&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// m is the number of bits in each item of a&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// b is the block length of radix sort&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numIterations&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numBuckets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ArraList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// sequence a&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// representing the buckets&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;numBuckets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numBuckets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numIterations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// clear buckets&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numBuckets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;// distribute items in order&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// find correct bucket&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// clear sequence&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;// concatenate buckets in order&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numBuckets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;trie_alg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;tries-1&quot;&gt;Tries&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;Search:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// search for a word w in a trie t&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// current position in w&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;child&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;labelled&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// if can match the char of word in the current position&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// end of word&lt;/span&gt;
+	  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;an&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;intermediate&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;absent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;present&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not at end of word&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move to child&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move to next char&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;absent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// can't match current char&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Insert:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// insert word w into trie t&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// go through chars of word&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;no&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;child&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;labelled&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;such&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;child&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;mark&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;intermediate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move to child node&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;mark&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;representing&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;trie_class&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;trie-class&quot;&gt;Trie class&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;letter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// label of incoming branch&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;isWord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// true when node represents a word&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sibling&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// next sibling&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// first child&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+    &lt;span class=&quot;nx&quot;&gt;letter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;isWord&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;sibling&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;child&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// include accessors and mutators for the various components of a class&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Trie&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Trie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Character&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MIN_VALUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;huff_contruct&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;huffman-tree-construction&quot;&gt;Huffman tree construction&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// set up leaf nodes&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;distinct&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;occuring&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parentless&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;frequency&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setWeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setCharacter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setLeftChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRightChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// construct branch nodes and links&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parentless&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nodes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parentless&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parentless&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nodes&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;minimum&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setLeftChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRightChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getWeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getWeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setWeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// the final z is root&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;lzw&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;lzw-compression-1&quot;&gt;LZW compression&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;position&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;initialise&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;codeword&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;initialise&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dictionary&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;exhausted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;identify&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;longest&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;starting&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;position&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;represented&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;codeword&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// using k bits&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;// move to next position in t&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move forward by the length of the string just encoded&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;position&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// char in next position&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;paired&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;available&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;codeword&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// involves adding a new leaf node if d is represented by a trie&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;lzw_decomp&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;lzw-decompression&quot;&gt;LZW decompression&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;initialise&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;codeword&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;initialise&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dictionary&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;codeword&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;compressed&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// read k bits&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lookUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// look up codeword in d&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// output decompressed string&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;exhausted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oldS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// copy last string decompressed&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;full&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;codeword&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loopUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// look up codeword in d&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// output decompressed string&lt;/span&gt;
+  
+  &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oldS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// string to add to d&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newS&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;paired&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;available&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;codeword&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;brute_force&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;brute-force-algorithm-1&quot;&gt;Brute force algorithm&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// return smallest k such that s occurs in t starting at position k, or -1 if no k exists&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bruteForce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// length of string/pattern&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// length of text&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// starting position in t&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// curr position in t&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// curr position in s&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not reached end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// chars match&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move on in t&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move on in s&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// start again in s&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// advance starting position&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// back up in text to new starting position&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;kmp&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;kmp-search-implementation&quot;&gt;KMP search implementation&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// return smallest k such that s occurs from position k in t, or -1 if no k exists&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;kmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// create border table&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;setUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// set up border table&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// not reached end of text&lt;/span&gt;
+  
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// positions match&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move on in text&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move on in string&lt;/span&gt;
+	  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// reached end of string so a match&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// mismatch so adjust curr position in string using border table&lt;/span&gt;
+	  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// if there is a common prefix/suffix then change position in string&lt;/span&gt;
+	  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// no common prefix/suffix&lt;/span&gt;
+	    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// then move forward 1 position in text if not advanced&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// else start from beginning of string&lt;/span&gt;
+	  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// no occurence&lt;/span&gt;
+  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;bm&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;boyer-moore-implementation&quot;&gt;Boyer-Moore implementation&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// return smallest k such that s occurs at k in t, or -1 if no k exists&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// pos in text&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// pos in string&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// declare a suitable array p&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;setUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// set up last occurence array&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// match&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move back in text&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// move back in string&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]);&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]);&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// return to end of string&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
         <pubDate>Tue, 26 Dec 2017 18:50:00 +0000</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/12/26/algorithmics-1.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/12/26/algorithmics-1.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/12/26/algorithmics-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/12/26/algorithmics-1.html</guid>
         
         
         <category>Level3</category>
@@ -553,8 +1294,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/professional-software-development.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/professional-software-development.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/professional-software-development.html</guid>
         
         
         <category>Level3</category>
@@ -580,8 +1321,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/interactive-systems.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/interactive-systems.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/interactive-systems.html</guid>
         
         
         <category>Level3</category>
@@ -607,8 +1348,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/data-fundamentals.html</guid>
         
         
         <category>Level3</category>
@@ -650,8 +1391,9 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 &lt;h2 id=&quot;edit---compile---link---execute-cycle&quot;&gt;Edit - Compile - Link - Execute Cycle&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Source Files &amp;gt; Compiler &amp;gt; Bin &amp;gt; Linker &amp;gt; Executable
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;test.o
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc -o &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;test.o
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -687,10 +1429,11 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 &lt;h2 id=&quot;makefiles&quot;&gt;Makefiles&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;makes compiling bigger programs easier
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_a.c
-gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_b.c
-gcc &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; mod_a.o mod_b.o &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; app_x
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc -c mod_a.c
+gcc -c mod_b.c
+gcc -c mod_a.o mod_b.o -o app_x
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;becomes&lt;/li&gt;
 &lt;/ul&gt;
@@ -705,7 +1448,7 @@ mod_b.o: mod_b.c global.g
 	gcc -c mod_a.c
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CFLAGS = -W -Wall
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CFLAGS = -W -Wall
 %.o : %.c
 	gcc -c $(CFLAGS) $&amp;lt; -o $@
 OBJECTS = mod_a.o mod_b.o
@@ -715,7 +1458,8 @@ app_x: $(OBJECTS)
 
 mod_a.o: mod_a.c global.h
 mod_b.o: mod_b.c global.h
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h1 id=&quot;lecture-2&quot;&gt;Lecture 2&lt;/h1&gt;
 &lt;h1 id=&quot;overview-of-c&quot;&gt;Overview of C&lt;/h1&gt;
@@ -830,7 +1574,7 @@ extern type varName;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;escape-sequences&quot;&gt;escape sequences&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\a - alert (bell) character
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\a - alert (bell) character
 \b - backspace
 \f - formfeed
 \n - newline
@@ -844,7 +1588,8 @@ extern type varName;
 \ooo - octal number
 \xhh - hexadecimal number
 \0 - null character (EOS)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;‘x’ - integer representing value of letter x&lt;/li&gt;
@@ -877,8 +1622,9 @@ enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;cast&quot;&gt;cast&lt;/h4&gt;
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;++n // increments before value us used
 n++ // increments after value is used
@@ -1237,8 +1983,9 @@ free(); // deallocates memory that was malloced;
 
 &lt;ul&gt;
   &lt;li&gt;given
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./program hello world
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./program hello world
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1401,7 +2148,7 @@ typedef char *String; // String is synonym for char *&lt;/p&gt;
 Length *lengths; // ptr to (array of) Length
 String lineptr[MAXLINES]; // array of String
 Length strlen(String s); // prototype&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 #### Unions
 - Variable that may hold objects of different types and sizes
 ```C
@@ -1411,7 +2158,8 @@ union const_value { // type declaration
 	char *sval;
 };
 union const_value val; // variable definition
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;ul&gt;
   &lt;li&gt;assignment to any union member turns all other members into garbage&lt;/li&gt;
   &lt;li&gt;compiler doesn’t track this&lt;/li&gt;
@@ -1505,8 +2253,8 @@ union const_value val; // variable definition
 
 </description>
         <pubDate>Sat, 23 Sep 2017 19:50:00 +0100</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/advanced-programming.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/level3/semester1/2017/09/23/advanced-programming.html</guid>
+        <link>http://localhost:4000/cs-notes/level3/semester1/2017/09/23/advanced-programming.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/level3/semester1/2017/09/23/advanced-programming.html</guid>
         
         
         <category>Level3</category>
@@ -1532,8 +2280,8 @@ To add new posts, simply add a file in the &lt;code class=&quot;highlighter-roug
 
 </description>
         <pubDate>Sun, 10 Nov 2013 10:18:00 +0000</pubDate>
-        <link>https://fireredninja.github.io/cs-notes//cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">https://fireredninja.github.io/cs-notes//cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</guid>
+        <link>http://localhost:4000/cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/cs-notes/thriller/comedy/horror/2013/11/10/welcome-to-jekyll.html</guid>
         
         
         <category>Thriller</category>
