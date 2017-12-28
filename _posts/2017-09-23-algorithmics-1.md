@@ -50,11 +50,13 @@ author: dasha
 
 #### Fundamental Algorithms and Data Structures
 
-* Stacks, queues and priority queues
-* Complete binary trees
-* Heaps and heap operations
-* Java class for (integer) heaps
-* Heap sort
+* [Stacks](#stack_topic), [queues](#queue_topic) and [priority queues](#priority_queue_topic)
+* [Complete binary trees](#cbt_topic)
+* [Heaps and heap operations](#heap_topic)
+* [Java class](#java_heap) for (integer) heaps
+* [Heap sort](#heap_sort_topic)
+
+<a name="stack_topic"></a>
 
 ##### Stack abstract data type (LIFO)
 
@@ -70,6 +72,8 @@ author: dasha
 * an array - all operations are O(1)
 * a linked list - all operations are O(1)
 
+<a name="queue_topic"></a>
+
 ##### Queue abstract data type (FIFO)
 
 **Basic operations:**
@@ -83,6 +87,8 @@ author: dasha
 
 * an array - all operations are O(1) and it must be "wrapped around", treated as circular
 * a linked list - all operations are O(1)
+
+<a name="priority_queue_topic"></a>
 
 ##### Priority queue abstract data type
 
@@ -99,6 +105,8 @@ author: dasha
 * ordered list - *insert* O(n), *delete* O(1)
 * heap - *insert* and *delete* are O(logn)
 * in all cases *create* and *isEmpty* are O(1)
+
+<a name="cbt_topic"></a>
 
 ##### Complete Binary Trees
 
@@ -121,6 +129,8 @@ author: dasha
 * with `n` nodes, its height is é log<sub>2</sub>( n + 1 ) - 1 ù
 * then it has é n / 2 ù leaf nodes
 * and it has ⌊ n / 2 ⌋ branch nodes
+
+<a name="heap_topic"></a>
 
 ##### Heaps
 
@@ -165,6 +175,8 @@ impose heap property on bad value now in root`
    `for each non-leaf node in bottom-to-top right-to-left order  
    impose heap propery`
 
+<a name="java_heap"></a>
+
 ##### An integer heap class
 
 Represent using an array, where:
@@ -173,6 +185,8 @@ Represent using an array, where:
 * parent of a node `i` are in the array at `(i - 1) / 2` (floored automatically in Java)
 
 Heap class [implementation in Java](#heap_class)
+
+<a name="heap_sort_topic"></a>
 
 ##### Heap Sort
 
@@ -183,9 +197,16 @@ Heap class [implementation in Java](#heap_class)
 
 #### Sorting Algorithms
 
+* [Comparison-based sorting](#comparison_topic)
+* [Radix](#radix_topic) sort
+* [Tries](#trie_topic) (re**trie**val)
+
+**Common sorts:**  
    O(n<sup>2</sup>) - selection, insertion, bubble  
    O(n log n) - merge, heap  
    Quicksort is O(n log n) on average (but no better than O(n<sup>2</sup>) in the worst case
+
+<a name="comparison_topic"></a>
    
 ##### Comparison-based sorting
 
@@ -198,13 +219,15 @@ Heap class [implementation in Java](#heap_class)
 * its worst case complexity is O(h) where `h` = its height
 * it follows that n! <= 2<sup>h+1</sup>
 
-<img src="/cs-notes/assets/images/decision_tree.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/decision_tree.png" nopin="nopin" />
 
    Reversing inequality and taking log<sub>2</sub> of both sides:
    
-<img src="/cs-notes/assets/images/comparison_based_complexity.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/comparison_based_complexity.png" nopin="nopin" />
 
    Giving a complexity of O(n log n) as required
+
+<a name="radix_topic"></a>
 
 ##### Radix sorting
 
@@ -250,6 +273,8 @@ See radix sorting pseudocode [here](#radix_sort)
 * the larger the value of b, the smaller the multiplicative constant (m / b) in the complexity function and so the faster the algorithm will become
 * an array of size 2<sup>b</sup> is required, so increasing `b` will increase space requirements
 
+<a name="trie_topic"></a>
+
 ##### Tries
 
 * stored items have a key that is interpreted as a sequence of bits/characters
@@ -259,7 +284,7 @@ See radix sorting pseudocode [here](#radix_sort)
 * tracing a path from root to a node spells out the key of the item
 * eg, used to store strings
 
-<img src="/cs-notes/assets/images/trie.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/trie.png" nopin="nopin" />
 
 *Search* and *insert* algorithms for the trie found [here](#trie_alg)
 
@@ -268,26 +293,30 @@ See radix sorting pseudocode [here](#radix_sort)
 * an array of pointers, which represent children
 * linked lists, containing children of each node
 
-<img src="/cs-notes/assets/images/trie_list.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/trie_list.png" nopin="nopin" />
 
 [Example](#trie_class) trie class to represent a dictionary
    
 #### Strings and text algorithms
 
-* Text compression
-  * Huffman and LZW
-* String comparison
-  * String difference
-* String/pattern search
-  * Brute force
-  * KMP
-  * BM
+* [Text compression](#compression_topic)
+  * [Huffman](#huffman_topic) and [LZW](#lzw_topic)
+* [String comparison](#string_comparison_topic)
+  * [String distance](#string_distance_topic)
+* [String/pattern search](#pattern_topic)
+  * [Brute force](#brute_topic)
+  * [KMP](#kmp_topic)
+  * [BM](#bm_topic)
+
+<a name="compression_topic"></a>
   
 ##### Text compression
 
 * lossless
 * compression ratio is `x / y` where `x` = compressed and `y` = original
 * space saved = `1 - (x / y) * 100%`
+
+<a name="huffman_topic"></a>
 
 ##### Huffman encoding
 
@@ -309,7 +338,7 @@ The tree for a file with char frequencies:
    `Space = 15  E = 11  A = 9  T = 8  I = 7  S = 7`  
    `R = 7  O = 6  N = 4  U = 3  H = 2  C = 1  D = 1`
    
-<img src="/cs-notes/assets/images/huffman_1.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/huffman_1.png" nopin="nopin" />
 
 Tree construction [pseudocode](#huff_contruct)
 
@@ -343,6 +372,8 @@ Tree construction [pseudocode](#huff_contruct)
 * decompression - O(n)
 * use **adaptive** Huffman coding
   * same tree built and adapted by compressor and decompressor
+
+<a name="lzw_topic"></a>
   
 ##### LZW compression
 
@@ -360,7 +391,7 @@ At any given time during comp./decomp. there is a **current codeword length `k`*
 
 LZW compression [pseudocode](#lzw)
 
-<img src="/cs-notes/assets/images/lzw_1.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/lzw_1.png" nopin="nopin" />
 
 **LZW variants:**
 
@@ -376,9 +407,11 @@ LZW compression [pseudocode](#lzw)
   
 LZW decompression [pseudocode](#lzw_decomp)
 
-<img src="/cs-notes/assets/images/lzw_2.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/lzw_2.png" nopin="nopin" />
 
 **Complexity:** O(n) for comp. and decomp. each
+
+<a name="string_comparison_topic"></a>
 
 ##### String comparison
 
@@ -390,7 +423,7 @@ LZW decompression [pseudocode](#lzw_decomp)
   
 **String distance:**
 
-<img src="/cs-notes/assets/images/distance_1.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/distance_1.png" nopin="nopin" />
 
 **Prefixes:**
 
@@ -401,10 +434,12 @@ LZW decompression [pseudocode](#lzw_decomp)
 **Optimal alignment:**
 
 The last position of the alignment must either be of the form  
-   <img src="/cs-notes/assets/images/optimal_alignment.png" nopin="nopin" />
+   <img src="/cs-notes/assets/images/algs/optimal_alignment.png" nopin="nopin" />
    
 In other words,  
-   <img src="/cs-notes/assets/images/optimal_alignment_alt.png" nopin="nopin" />
+   <img src="/cs-notes/assets/images/algs/optimal_alignment_alt.png" nopin="nopin" />
+
+<a name="string_distance_topic"></a>
    
 ##### Distance with dynamic programming
 
@@ -415,7 +450,7 @@ In other words,
   
 **Distances table:**
 
-<img src="/cs-notes/assets/images/distance_table.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/distance_table.png" nopin="nopin" />
 
 * entries calculated one by one by applying formula above
 * final entry `d( 7,8 ) = 4` so string distance is **4**
@@ -423,10 +458,14 @@ In other words,
   * vertical = deletion
   * horizontal = insertion
   * diagonal = match/substitution
+
+<a name="pattern_topic"></a>
   
 ##### String/pattern search
 
 Given a text `t` of length `n`, and a string/pattern `s` of length `m`, find the position of the last occurence of `s` in `t`
+
+<a name="brute_topic"></a>
 
 ##### Brute force algorithm
 
@@ -442,6 +481,8 @@ Brute force [pseudocode](#brute_force)
 * `m` char comparisons needed at each `n - (m + 1)` positions in text before the pattern is found
 * worse case O(mn)
 * average case O(n)
+
+<a name="kmp_topic"></a>
 
 ##### KMP algorithm
 
@@ -463,7 +504,7 @@ Brute force [pseudocode](#brute_force)
   
 **Border table:**
   
-<img src="/cs-notes/assets/images/border_table.png" nopin="nopin" />
+<img src="/cs-notes/assets/images/algs/border_table.png" nopin="nopin" />
 
 * `b[j]` is
   * the length of the longest border of `s[0...j-1]`
@@ -475,6 +516,8 @@ Brute force [pseudocode](#brute_force)
 * this is O(n) worst case
 * naive method requires O(j<sup>2</sup>) steps to find `b[j]`, so O(m<sup>2</sup>) overall
 * can be implemented in O(m + n) time (to set up border table and to conduct search)
+
+<a name="bm_topic"></a>
 
 ##### Boyer-Moore algorithm
 
@@ -518,6 +561,90 @@ BM [implementation](#bm)
 * `m - 1` char comparisons needed at each `n - (m + 1)` positions in text
 
 #### Graphs and graph algorithms
+
+* [Graph basics](#graph_basics_topic)
+* [Graph representations](#graph_representations_topic)
+* [Searching and traversal](#graph_search_topic)
+* [Weighted graphs](#graph_weight_topic)
+* [Topological ordering](#topological_topic)
+
+<a name="graph_basics_topic"></a>
+
+##### Graph basics
+
+**Undirected graphs:**
+
+* `G = (V,E)`
+* each vertex is a point
+* each edge is a line joining a pair of vertices
+
+**Connected:** every vertex pair is joined by a path  
+   **Non-connected:** graph has 2+ connected components  
+   **Tree:** connected and acyclic (no cycles)  
+   **Forest:** acyclic and components are trees  
+   **Complete (clique):** every vertex pair is joined by an edge  
+   **Bipartite:** vertices are in two dijoint sets `U` and `W` and **every** edge joins a vertex in `U` to one in `W`
+   
+<img src="/cs-notes/assets/images/algs/undirected_1.png" nopin="nopin" />
+
+For the graphs above:
+
+* adjacent - `{ a,z } Î E`
+* non-adjacent - `{ a,b } ∉ E`
+* `a` is **incident to** edge `{ a,z }`
+* `a, x, b, y, c` is a path of length 4
+* `a, x, b, y, a` is a cycle of length 4
+* all vertices have **degree** 3
+
+**Directed graphs (digraphs):**
+
+* `D = (V,E)` where `V` and `E` are **finite** sets
+* edges are ordered pairs
+* drawn as arrows
+* vertices have **in-degrees** and **out-degrees**
+* paths and cycles must follow edge directions
+
+<img src="/cs-notes/assets/images/algs/directed_1.png" nopin="nopin" />
+
+In the graph above:
+
+* `u` is adjacent **to** `v`
+* `v` is ajdacent **from** `u`
+* `y` has in-degree 2 and out-degree 1
+
+**Representing the undirected graph G:**
+
+<img src="/cs-notes/assets/images/algs/undirected_2.png" nopin="nopin" />
+   
+**Representing the directed graph D:**
+
+<img src="/cs-notes/assets/images/algs/directed_2.png" nopin="nopin" />
+
+**Implementing adjaceny lists:**  
+   Define classes representing  
+
+* an entry of adjacency lists
+* a vertex (with a linked list representing its adjacency list)
+* a graph (with a size and an array of vertices)
+
+Java [implementation](#adjacency_list) of an adjacency list
+
+
+<a name="graph_representations_topic"></a>
+
+##### Graph representations
+
+<a name="graph_search_topic"></a>
+
+##### Graph searching and traversal algorithms
+
+<a name="graph_weight_topic"></a>
+
+##### Weighted graphs
+
+<a name="topological_topic"></a>
+
+##### Topological ordering
 
 #### NP Completeness
 
@@ -928,6 +1055,81 @@ public int bm(char[] t, char[] s) {
 
   if (j < 0) return sp;
   else return -1;
+
+}
+```
+
+<a name="adjacency_list"></a>
+
+###### Adjacency list implementation
+
+```javascript
+// an entry in the adjacency list
+public class AdjListNode {
+
+  private int vertexIndex;
+  // possibly other fields eg weight, capacity...
+  
+  public AjdListNode(int i) {
+    vertexIndex = i;
+  }
+  
+  public int getVertexIndex() {
+    return vertexIndex;
+  }
+  public void setVertexIndex(int i) {
+    vertexIndex = i;
+  }
+
+}
+
+// a vertex
+import java.util.LinkedList;
+public class Vertex {
+
+  private int index; // the index of this vertex
+  private LinkedList<AjdListNode> adjList; // and its adjacency list
+  // possibly other fields eg storing data
+  
+  public Vertex(int i) {
+    adjList = new LinkedList<AjdListNode>();
+	index = i;
+  }
+  
+  public int getIndex() {
+    return index;
+  }
+  public void setIndex(int n) {
+    index = n;
+  }
+  // add vertex with index m to the adj list
+  public void addToAdjList(int m) {
+    adjList.addLast(new AjdListNode(m));
+  }
+  public int vertexDegree() {
+    return adjList.size();
+  }
+
+}
+
+// a graph
+import java.util.LinkedList;
+public class Graph {
+
+  private Vertex[] vertices;
+  private int numVertices = 0;
+  // possibly other fields for graph properties
+  
+  // create graph with vertices indexed 0,..., n-1
+  public Graph(int n) {
+    numVertices = n;
+	vertices = new Vertex[n];
+	for (int i = 0; i < n; i++) vertices[i] = new Vertex(i);
+  }
+  
+  public int size() {
+    return numVertices;
+  }
 
 }
 ```

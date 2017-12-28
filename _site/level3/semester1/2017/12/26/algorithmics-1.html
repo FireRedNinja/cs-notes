@@ -111,12 +111,14 @@
 <h4 id="fundamental-algorithms-and-data-structures">Fundamental Algorithms and Data Structures</h4>
 
 <ul>
-  <li>Stacks, queues and priority queues</li>
-  <li>Complete binary trees</li>
-  <li>Heaps and heap operations</li>
-  <li>Java class for (integer) heaps</li>
-  <li>Heap sort</li>
+  <li><a href="#stack_topic">Stacks</a>, <a href="#queue_topic">queues</a> and <a href="#priority_queue_topic">priority queues</a></li>
+  <li><a href="#cbt_topic">Complete binary trees</a></li>
+  <li><a href="#heap_topic">Heaps and heap operations</a></li>
+  <li><a href="#java_heap">Java class</a> for (integer) heaps</li>
+  <li><a href="#heap_sort_topic">Heap sort</a></li>
 </ul>
+
+<p><a name="stack_topic"></a></p>
 
 <h5 id="stack-abstract-data-type-lifo">Stack abstract data type (LIFO)</h5>
 
@@ -136,6 +138,8 @@
   <li>a linked list - all operations are O(1)</li>
 </ul>
 
+<p><a name="queue_topic"></a></p>
+
 <h5 id="queue-abstract-data-type-fifo">Queue abstract data type (FIFO)</h5>
 
 <p><strong>Basic operations:</strong></p>
@@ -153,6 +157,8 @@
   <li>an array - all operations are O(1) and it must be “wrapped around”, treated as circular</li>
   <li>a linked list - all operations are O(1)</li>
 </ul>
+
+<p><a name="priority_queue_topic"></a></p>
 
 <h5 id="priority-queue-abstract-data-type">Priority queue abstract data type</h5>
 
@@ -173,6 +179,8 @@
   <li>heap - <em>insert</em> and <em>delete</em> are O(logn)</li>
   <li>in all cases <em>create</em> and <em>isEmpty</em> are O(1)</li>
 </ul>
+
+<p><a name="cbt_topic"></a></p>
 
 <h5 id="complete-binary-trees">Complete Binary Trees</h5>
 
@@ -201,6 +209,8 @@
   <li>then it has é n / 2 ù leaf nodes</li>
   <li>and it has ⌊ n / 2 ⌋ branch nodes</li>
 </ul>
+
+<p><a name="heap_topic"></a></p>
 
 <h5 id="heaps">Heaps</h5>
 
@@ -250,6 +260,8 @@ impose heap property on bad value now in root</code><br />
    <code class="highlighter-rouge">for each non-leaf node in bottom-to-top right-to-left order  
    impose heap propery</code></p>
 
+<p><a name="java_heap"></a></p>
+
 <h5 id="an-integer-heap-class">An integer heap class</h5>
 
 <p>Represent using an array, where:</p>
@@ -261,6 +273,8 @@ impose heap property on bad value now in root</code><br />
 
 <p>Heap class <a href="#heap_class">implementation in Java</a></p>
 
+<p><a name="heap_sort_topic"></a></p>
+
 <h5 id="heap-sort">Heap Sort</h5>
 
 <ul>
@@ -271,9 +285,18 @@ impose heap property on bad value now in root</code><br />
 
 <h4 id="sorting-algorithms">Sorting Algorithms</h4>
 
-<p>O(n<sup>2</sup>) - selection, insertion, bubble<br />
+<ul>
+  <li><a href="#comparison_topic">Comparison-based sorting</a></li>
+  <li><a href="#radix_topic">Radix</a> sort</li>
+  <li><a href="#trie_topic">Tries</a> (re<strong>trie</strong>val)</li>
+</ul>
+
+<p><strong>Common sorts:</strong><br />
+   O(n<sup>2</sup>) - selection, insertion, bubble<br />
    O(n log n) - merge, heap<br />
    Quicksort is O(n log n) on average (but no better than O(n<sup>2</sup>) in the worst case</p>
+
+<p><a name="comparison_topic"></a></p>
 
 <h5 id="comparison-based-sorting">Comparison-based sorting</h5>
 
@@ -288,13 +311,15 @@ impose heap property on bad value now in root</code><br />
   <li>it follows that n! &lt;= 2<sup>h+1</sup></li>
 </ul>
 
-<p><img src="/cs-notes/assets/images/decision_tree.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/decision_tree.png" nopin="nopin" /></p>
 
 <p>Reversing inequality and taking log<sub>2</sub> of both sides:</p>
 
-<p><img src="/cs-notes/assets/images/comparison_based_complexity.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/comparison_based_complexity.png" nopin="nopin" /></p>
 
 <p>Giving a complexity of O(n log n) as required</p>
+
+<p><a name="radix_topic"></a></p>
 
 <h5 id="radix-sorting">Radix sorting</h5>
 
@@ -350,6 +375,8 @@ impose heap property on bad value now in root</code><br />
   <li>an array of size 2<sup>b</sup> is required, so increasing <code class="highlighter-rouge">b</code> will increase space requirements</li>
 </ul>
 
+<p><a name="trie_topic"></a></p>
+
 <h5 id="tries">Tries</h5>
 
 <ul>
@@ -361,7 +388,7 @@ impose heap property on bad value now in root</code><br />
   <li>eg, used to store strings</li>
 </ul>
 
-<p><img src="/cs-notes/assets/images/trie.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/trie.png" nopin="nopin" /></p>
 
 <p><em>Search</em> and <em>insert</em> algorithms for the trie found <a href="#trie_alg">here</a></p>
 
@@ -372,31 +399,33 @@ impose heap property on bad value now in root</code><br />
   <li>linked lists, containing children of each node</li>
 </ul>
 
-<p><img src="/cs-notes/assets/images/trie_list.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/trie_list.png" nopin="nopin" /></p>
 
 <p><a href="#trie_class">Example</a> trie class to represent a dictionary</p>
 
 <h4 id="strings-and-text-algorithms">Strings and text algorithms</h4>
 
 <ul>
-  <li>Text compression
+  <li><a href="#compression_topic">Text compression</a>
     <ul>
-      <li>Huffman and LZW</li>
+      <li><a href="#huffman_topic">Huffman</a> and <a href="#lzw_topic">LZW</a></li>
     </ul>
   </li>
-  <li>String comparison
+  <li><a href="#string_comparison_topic">String comparison</a>
     <ul>
-      <li>String difference</li>
+      <li><a href="#string_distance_topic">String distance</a></li>
     </ul>
   </li>
-  <li>String/pattern search
+  <li><a href="#pattern_topic">String/pattern search</a>
     <ul>
-      <li>Brute force</li>
-      <li>KMP</li>
-      <li>BM</li>
+      <li><a href="#brute_topic">Brute force</a></li>
+      <li><a href="#kmp_topic">KMP</a></li>
+      <li><a href="#bm_topic">BM</a></li>
     </ul>
   </li>
 </ul>
+
+<p><a name="compression_topic"></a></p>
 
 <h5 id="text-compression">Text compression</h5>
 
@@ -405,6 +434,8 @@ impose heap property on bad value now in root</code><br />
   <li>compression ratio is <code class="highlighter-rouge">x / y</code> where <code class="highlighter-rouge">x</code> = compressed and <code class="highlighter-rouge">y</code> = original</li>
   <li>space saved = <code class="highlighter-rouge">1 - (x / y) * 100%</code></li>
 </ul>
+
+<p><a name="huffman_topic"></a></p>
 
 <h5 id="huffman-encoding">Huffman encoding</h5>
 
@@ -433,7 +464,7 @@ impose heap property on bad value now in root</code><br />
    <code class="highlighter-rouge">Space = 15  E = 11  A = 9  T = 8  I = 7  S = 7</code><br />
    <code class="highlighter-rouge">R = 7  O = 6  N = 4  U = 3  H = 2  C = 1  D = 1</code></p>
 
-<p><img src="/cs-notes/assets/images/huffman_1.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/huffman_1.png" nopin="nopin" /></p>
 
 <p>Tree construction <a href="#huff_contruct">pseudocode</a></p>
 
@@ -480,6 +511,8 @@ impose heap property on bad value now in root</code><br />
   </li>
 </ul>
 
+<p><a name="lzw_topic"></a></p>
+
 <h5 id="lzw-compression">LZW compression</h5>
 
 <ul>
@@ -500,7 +533,7 @@ impose heap property on bad value now in root</code><br />
 
 <p>LZW compression <a href="#lzw">pseudocode</a></p>
 
-<p><img src="/cs-notes/assets/images/lzw_1.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/lzw_1.png" nopin="nopin" /></p>
 
 <p><strong>LZW variants:</strong></p>
 
@@ -523,9 +556,11 @@ impose heap property on bad value now in root</code><br />
 
 <p>LZW decompression <a href="#lzw_decomp">pseudocode</a></p>
 
-<p><img src="/cs-notes/assets/images/lzw_2.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/lzw_2.png" nopin="nopin" /></p>
 
 <p><strong>Complexity:</strong> O(n) for comp. and decomp. each</p>
+
+<p><a name="string_comparison_topic"></a></p>
 
 <h5 id="string-comparison">String comparison</h5>
 
@@ -542,7 +577,7 @@ impose heap property on bad value now in root</code><br />
 
 <p><strong>String distance:</strong></p>
 
-<p><img src="/cs-notes/assets/images/distance_1.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/distance_1.png" nopin="nopin" /></p>
 
 <p><strong>Prefixes:</strong></p>
 
@@ -555,10 +590,12 @@ impose heap property on bad value now in root</code><br />
 <p><strong>Optimal alignment:</strong></p>
 
 <p>The last position of the alignment must either be of the form<br />
-   <img src="/cs-notes/assets/images/optimal_alignment.png" nopin="nopin" /></p>
+   <img src="/cs-notes/assets/images/algs/optimal_alignment.png" nopin="nopin" /></p>
 
 <p>In other words,<br />
-   <img src="/cs-notes/assets/images/optimal_alignment_alt.png" nopin="nopin" /></p>
+   <img src="/cs-notes/assets/images/algs/optimal_alignment_alt.png" nopin="nopin" /></p>
+
+<p><a name="string_distance_topic"></a></p>
 
 <h5 id="distance-with-dynamic-programming">Distance with dynamic programming</h5>
 
@@ -574,7 +611,7 @@ impose heap property on bad value now in root</code><br />
 
 <p><strong>Distances table:</strong></p>
 
-<p><img src="/cs-notes/assets/images/distance_table.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/distance_table.png" nopin="nopin" /></p>
 
 <ul>
   <li>entries calculated one by one by applying formula above</li>
@@ -588,9 +625,13 @@ impose heap property on bad value now in root</code><br />
   </li>
 </ul>
 
+<p><a name="pattern_topic"></a></p>
+
 <h5 id="stringpattern-search">String/pattern search</h5>
 
 <p>Given a text <code class="highlighter-rouge">t</code> of length <code class="highlighter-rouge">n</code>, and a string/pattern <code class="highlighter-rouge">s</code> of length <code class="highlighter-rouge">m</code>, find the position of the last occurence of <code class="highlighter-rouge">s</code> in <code class="highlighter-rouge">t</code></p>
+
+<p><a name="brute_topic"></a></p>
 
 <h5 id="brute-force-algorithm">Brute force algorithm</h5>
 
@@ -610,6 +651,8 @@ impose heap property on bad value now in root</code><br />
   <li>worse case O(mn)</li>
   <li>average case O(n)</li>
 </ul>
+
+<p><a name="kmp_topic"></a></p>
 
 <h5 id="kmp-algorithm">KMP algorithm</h5>
 
@@ -641,7 +684,7 @@ impose heap property on bad value now in root</code><br />
 
 <p><strong>Border table:</strong></p>
 
-<p><img src="/cs-notes/assets/images/border_table.png" nopin="nopin" /></p>
+<p><img src="/cs-notes/assets/images/algs/border_table.png" nopin="nopin" /></p>
 
 <ul>
   <li><code class="highlighter-rouge">b[j]</code> is
@@ -660,6 +703,8 @@ impose heap property on bad value now in root</code><br />
   <li>naive method requires O(j<sup>2</sup>) steps to find <code class="highlighter-rouge">b[j]</code>, so O(m<sup>2</sup>) overall</li>
   <li>can be implemented in O(m + n) time (to set up border table and to conduct search)</li>
 </ul>
+
+<p><a name="bm_topic"></a></p>
 
 <h5 id="boyer-moore-algorithm">Boyer-Moore algorithm</h5>
 
@@ -722,6 +767,101 @@ impose heap property on bad value now in root</code><br />
 </ul>
 
 <h4 id="graphs-and-graph-algorithms">Graphs and graph algorithms</h4>
+
+<ul>
+  <li><a href="#graph_basics_topic">Graph basics</a></li>
+  <li><a href="#graph_representations_topic">Graph representations</a></li>
+  <li><a href="#graph_search_topic">Searching and traversal</a></li>
+  <li><a href="#graph_weight_topic">Weighted graphs</a></li>
+  <li><a href="#topological_topic">Topological ordering</a></li>
+</ul>
+
+<p><a name="graph_basics_topic"></a></p>
+
+<h5 id="graph-basics">Graph basics</h5>
+
+<p><strong>Undirected graphs:</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">G = (V,E)</code></li>
+  <li>each vertex is a point</li>
+  <li>each edge is a line joining a pair of vertices</li>
+</ul>
+
+<p><strong>Connected:</strong> every vertex pair is joined by a path<br />
+   <strong>Non-connected:</strong> graph has 2+ connected components<br />
+   <strong>Tree:</strong> connected and acyclic (no cycles)<br />
+   <strong>Forest:</strong> acyclic and components are trees<br />
+   <strong>Complete (clique):</strong> every vertex pair is joined by an edge<br />
+   <strong>Bipartite:</strong> vertices are in two dijoint sets <code class="highlighter-rouge">U</code> and <code class="highlighter-rouge">W</code> and <strong>every</strong> edge joins a vertex in <code class="highlighter-rouge">U</code> to one in <code class="highlighter-rouge">W</code></p>
+
+<p><img src="/cs-notes/assets/images/algs/undirected_1.png" nopin="nopin" /></p>
+
+<p>For the graphs above:</p>
+
+<ul>
+  <li>adjacent - <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,z</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">Î</span><span class="w"> </span><span class="err">E</span></code></li>
+  <li>non-adjacent - <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,b</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">∉</span><span class="w"> </span><span class="err">E</span></code></li>
+  <li><code class="highlighter-rouge">a</code> is <strong>incident to</strong> edge <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,z</span><span class="w"> </span><span class="p">}</span></code></li>
+  <li><code class="highlighter-rouge">a, x, b, y, c</code> is a path of length 4</li>
+  <li><code class="highlighter-rouge">a, x, b, y, a</code> is a cycle of length 4</li>
+  <li>all vertices have <strong>degree</strong> 3</li>
+</ul>
+
+<p><strong>Directed graphs (digraphs):</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">D = (V,E)</code> where <code class="highlighter-rouge">V</code> and <code class="highlighter-rouge">E</code> are <strong>finite</strong> sets</li>
+  <li>edges are ordered pairs</li>
+  <li>drawn as arrows</li>
+  <li>vertices have <strong>in-degrees</strong> and <strong>out-degrees</strong></li>
+  <li>paths and cycles must follow edge directions</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/algs/directed_1.png" nopin="nopin" /></p>
+
+<p>In the graph above:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">u</code> is adjacent <strong>to</strong> <code class="highlighter-rouge">v</code></li>
+  <li><code class="highlighter-rouge">v</code> is ajdacent <strong>from</strong> <code class="highlighter-rouge">u</code></li>
+  <li><code class="highlighter-rouge">y</code> has in-degree 2 and out-degree 1</li>
+</ul>
+
+<p><strong>Representing the undirected graph G:</strong></p>
+
+<p><img src="/cs-notes/assets/images/algs/undirected_2.png" nopin="nopin" /></p>
+
+<p><strong>Representing the directed graph D:</strong></p>
+
+<p><img src="/cs-notes/assets/images/algs/directed_2.png" nopin="nopin" /></p>
+
+<p><strong>Implementing adjaceny lists:</strong><br />
+   Define classes representing</p>
+
+<ul>
+  <li>an entry of adjacency lists</li>
+  <li>a vertex (with a linked list representing its adjacency list)</li>
+  <li>a graph (with a size and an array of vertices)</li>
+</ul>
+
+<p>Java <a href="#adjacency_list">implementation</a> of an adjacency list</p>
+
+<p><a name="graph_representations_topic"></a></p>
+
+<h5 id="graph-representations">Graph representations</h5>
+
+<p><a name="graph_search_topic"></a></p>
+
+<h5 id="graph-searching-and-traversal-algorithms">Graph searching and traversal algorithms</h5>
+
+<p><a name="graph_weight_topic"></a></p>
+
+<h5 id="weighted-graphs">Weighted graphs</h5>
+
+<p><a name="topological_topic"></a></p>
+
+<h5 id="topological-ordering">Topological ordering</h5>
 
 <h4 id="np-completeness">NP Completeness</h4>
 
@@ -1134,6 +1274,81 @@ impose heap property on bad value now in root</code><br />
 
   <span class="k">if</span> <span class="p">(</span><span class="nx">j</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nx">sp</span><span class="p">;</span>
   <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="adjacency_list"></a></p>
+
+<h6 id="adjacency-list-implementation">Adjacency list implementation</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// an entry in the adjacency list</span>
+<span class="kr">public</span> <span class="kr">class</span> <span class="nx">AdjListNode</span> <span class="p">{</span>
+
+  <span class="kr">private</span> <span class="kr">int</span> <span class="nx">vertexIndex</span><span class="p">;</span>
+  <span class="c1">// possibly other fields eg weight, capacity...</span>
+  
+  <span class="kr">public</span> <span class="nx">AjdListNode</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">vertexIndex</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="kr">public</span> <span class="kr">int</span> <span class="nx">getVertexIndex</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">vertexIndex</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kr">public</span> <span class="k">void</span> <span class="nx">setVertexIndex</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">vertexIndex</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// a vertex</span>
+<span class="kr">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
+<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Vertex</span> <span class="p">{</span>
+
+  <span class="kr">private</span> <span class="kr">int</span> <span class="nx">index</span><span class="p">;</span> <span class="c1">// the index of this vertex</span>
+  <span class="kr">private</span> <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AjdListNode</span><span class="o">&gt;</span> <span class="nx">adjList</span><span class="p">;</span> <span class="c1">// and its adjacency list</span>
+  <span class="c1">// possibly other fields eg storing data</span>
+  
+  <span class="kr">public</span> <span class="nx">Vertex</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">adjList</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AjdListNode</span><span class="o">&gt;</span><span class="p">();</span>
+	<span class="nx">index</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="kr">public</span> <span class="kr">int</span> <span class="nx">getIndex</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">index</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kr">public</span> <span class="k">void</span> <span class="nx">setIndex</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">index</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// add vertex with index m to the adj list</span>
+  <span class="kr">public</span> <span class="k">void</span> <span class="nx">addToAdjList</span><span class="p">(</span><span class="kr">int</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">adjList</span><span class="p">.</span><span class="nx">addLast</span><span class="p">(</span><span class="k">new</span> <span class="nx">AjdListNode</span><span class="p">(</span><span class="nx">m</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="kr">public</span> <span class="kr">int</span> <span class="nx">vertexDegree</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">adjList</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// a graph</span>
+<span class="kr">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
+<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Graph</span> <span class="p">{</span>
+
+  <span class="kr">private</span> <span class="nx">Vertex</span><span class="p">[]</span> <span class="nx">vertices</span><span class="p">;</span>
+  <span class="kr">private</span> <span class="kr">int</span> <span class="nx">numVertices</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="c1">// possibly other fields for graph properties</span>
+  
+  <span class="c1">// create graph with vertices indexed 0,..., n-1</span>
+  <span class="kr">public</span> <span class="nx">Graph</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">numVertices</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
+	<span class="nx">vertices</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vertex</span><span class="p">[</span><span class="nx">n</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="nx">vertices</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vertex</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+  <span class="kr">public</span> <span class="kr">int</span> <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">numVertices</span><span class="p">;</span>
+  <span class="p">}</span>
 
 <span class="p">}</span>
 </code></pre>

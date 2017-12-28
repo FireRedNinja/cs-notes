@@ -5,8 +5,8 @@
     <description>My notes on CS Level 3</description>
     <link>http://localhost:4000/cs-notes/</link>
     <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 27 Dec 2017 14:47:16 +0000</pubDate>
-    <lastBuildDate>Wed, 27 Dec 2017 14:47:16 +0000</lastBuildDate>
+    <pubDate>Thu, 28 Dec 2017 00:14:29 +0000</pubDate>
+    <lastBuildDate>Thu, 28 Dec 2017 00:14:29 +0000</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -63,12 +63,14 @@
 &lt;h4 id=&quot;fundamental-algorithms-and-data-structures&quot;&gt;Fundamental Algorithms and Data Structures&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Stacks, queues and priority queues&lt;/li&gt;
-  &lt;li&gt;Complete binary trees&lt;/li&gt;
-  &lt;li&gt;Heaps and heap operations&lt;/li&gt;
-  &lt;li&gt;Java class for (integer) heaps&lt;/li&gt;
-  &lt;li&gt;Heap sort&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#stack_topic&quot;&gt;Stacks&lt;/a&gt;, &lt;a href=&quot;#queue_topic&quot;&gt;queues&lt;/a&gt; and &lt;a href=&quot;#priority_queue_topic&quot;&gt;priority queues&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cbt_topic&quot;&gt;Complete binary trees&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heap_topic&quot;&gt;Heaps and heap operations&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#java_heap&quot;&gt;Java class&lt;/a&gt; for (integer) heaps&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heap_sort_topic&quot;&gt;Heap sort&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;stack_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;stack-abstract-data-type-lifo&quot;&gt;Stack abstract data type (LIFO)&lt;/h5&gt;
 
@@ -88,6 +90,8 @@
   &lt;li&gt;a linked list - all operations are O(1)&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a name=&quot;queue_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h5 id=&quot;queue-abstract-data-type-fifo&quot;&gt;Queue abstract data type (FIFO)&lt;/h5&gt;
 
 &lt;p&gt;&lt;strong&gt;Basic operations:&lt;/strong&gt;&lt;/p&gt;
@@ -105,6 +109,8 @@
   &lt;li&gt;an array - all operations are O(1) and it must be “wrapped around”, treated as circular&lt;/li&gt;
   &lt;li&gt;a linked list - all operations are O(1)&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;priority_queue_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;priority-queue-abstract-data-type&quot;&gt;Priority queue abstract data type&lt;/h5&gt;
 
@@ -125,6 +131,8 @@
   &lt;li&gt;heap - &lt;em&gt;insert&lt;/em&gt; and &lt;em&gt;delete&lt;/em&gt; are O(logn)&lt;/li&gt;
   &lt;li&gt;in all cases &lt;em&gt;create&lt;/em&gt; and &lt;em&gt;isEmpty&lt;/em&gt; are O(1)&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;cbt_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;complete-binary-trees&quot;&gt;Complete Binary Trees&lt;/h5&gt;
 
@@ -153,6 +161,8 @@
   &lt;li&gt;then it has é n / 2 ù leaf nodes&lt;/li&gt;
   &lt;li&gt;and it has ⌊ n / 2 ⌋ branch nodes&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;heap_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;heaps&quot;&gt;Heaps&lt;/h5&gt;
 
@@ -202,6 +212,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
    &lt;code class=&quot;highlighter-rouge&quot;&gt;for each non-leaf node in bottom-to-top right-to-left order  
    impose heap propery&lt;/code&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;a name=&quot;java_heap&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h5 id=&quot;an-integer-heap-class&quot;&gt;An integer heap class&lt;/h5&gt;
 
 &lt;p&gt;Represent using an array, where:&lt;/p&gt;
@@ -213,6 +225,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;p&gt;Heap class &lt;a href=&quot;#heap_class&quot;&gt;implementation in Java&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;a name=&quot;heap_sort_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h5 id=&quot;heap-sort&quot;&gt;Heap Sort&lt;/h5&gt;
 
 &lt;ul&gt;
@@ -223,9 +237,18 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;h4 id=&quot;sorting-algorithms&quot;&gt;Sorting Algorithms&lt;/h4&gt;
 
-&lt;p&gt;O(n&lt;sup&gt;2&lt;/sup&gt;) - selection, insertion, bubble&lt;br /&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#comparison_topic&quot;&gt;Comparison-based sorting&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#radix_topic&quot;&gt;Radix&lt;/a&gt; sort&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#trie_topic&quot;&gt;Tries&lt;/a&gt; (re&lt;strong&gt;trie&lt;/strong&gt;val)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Common sorts:&lt;/strong&gt;&lt;br /&gt;
+   O(n&lt;sup&gt;2&lt;/sup&gt;) - selection, insertion, bubble&lt;br /&gt;
    O(n log n) - merge, heap&lt;br /&gt;
    Quicksort is O(n log n) on average (but no better than O(n&lt;sup&gt;2&lt;/sup&gt;) in the worst case&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;comparison_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;comparison-based-sorting&quot;&gt;Comparison-based sorting&lt;/h5&gt;
 
@@ -240,13 +263,15 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;it follows that n! &amp;lt;= 2&lt;sup&gt;h+1&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/decision_tree.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/decision_tree.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Reversing inequality and taking log&lt;sub&gt;2&lt;/sub&gt; of both sides:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/comparison_based_complexity.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/comparison_based_complexity.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Giving a complexity of O(n log n) as required&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;radix_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;radix-sorting&quot;&gt;Radix sorting&lt;/h5&gt;
 
@@ -302,6 +327,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;an array of size 2&lt;sup&gt;b&lt;/sup&gt; is required, so increasing &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; will increase space requirements&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a name=&quot;trie_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h5 id=&quot;tries&quot;&gt;Tries&lt;/h5&gt;
 
 &lt;ul&gt;
@@ -313,7 +340,7 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;eg, used to store strings&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/trie.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/trie.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Search&lt;/em&gt; and &lt;em&gt;insert&lt;/em&gt; algorithms for the trie found &lt;a href=&quot;#trie_alg&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
@@ -324,31 +351,33 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;linked lists, containing children of each node&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/trie_list.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/trie_list.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;#trie_class&quot;&gt;Example&lt;/a&gt; trie class to represent a dictionary&lt;/p&gt;
 
 &lt;h4 id=&quot;strings-and-text-algorithms&quot;&gt;Strings and text algorithms&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Text compression
+  &lt;li&gt;&lt;a href=&quot;#compression_topic&quot;&gt;Text compression&lt;/a&gt;
     &lt;ul&gt;
-      &lt;li&gt;Huffman and LZW&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#huffman_topic&quot;&gt;Huffman&lt;/a&gt; and &lt;a href=&quot;#lzw_topic&quot;&gt;LZW&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;String comparison
+  &lt;li&gt;&lt;a href=&quot;#string_comparison_topic&quot;&gt;String comparison&lt;/a&gt;
     &lt;ul&gt;
-      &lt;li&gt;String difference&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#string_distance_topic&quot;&gt;String distance&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;String/pattern search
+  &lt;li&gt;&lt;a href=&quot;#pattern_topic&quot;&gt;String/pattern search&lt;/a&gt;
     &lt;ul&gt;
-      &lt;li&gt;Brute force&lt;/li&gt;
-      &lt;li&gt;KMP&lt;/li&gt;
-      &lt;li&gt;BM&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#brute_topic&quot;&gt;Brute force&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#kmp_topic&quot;&gt;KMP&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#bm_topic&quot;&gt;BM&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;compression_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;text-compression&quot;&gt;Text compression&lt;/h5&gt;
 
@@ -357,6 +386,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;compression ratio is &lt;code class=&quot;highlighter-rouge&quot;&gt;x / y&lt;/code&gt; where &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; = compressed and &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; = original&lt;/li&gt;
   &lt;li&gt;space saved = &lt;code class=&quot;highlighter-rouge&quot;&gt;1 - (x / y) * 100%&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;huffman_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;huffman-encoding&quot;&gt;Huffman encoding&lt;/h5&gt;
 
@@ -385,7 +416,7 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
    &lt;code class=&quot;highlighter-rouge&quot;&gt;Space = 15  E = 11  A = 9  T = 8  I = 7  S = 7&lt;/code&gt;&lt;br /&gt;
    &lt;code class=&quot;highlighter-rouge&quot;&gt;R = 7  O = 6  N = 4  U = 3  H = 2  C = 1  D = 1&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/huffman_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/huffman_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Tree construction &lt;a href=&quot;#huff_contruct&quot;&gt;pseudocode&lt;/a&gt;&lt;/p&gt;
 
@@ -432,6 +463,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a name=&quot;lzw_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h5 id=&quot;lzw-compression&quot;&gt;LZW compression&lt;/h5&gt;
 
 &lt;ul&gt;
@@ -452,7 +485,7 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;p&gt;LZW compression &lt;a href=&quot;#lzw&quot;&gt;pseudocode&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/lzw_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/lzw_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;LZW variants:&lt;/strong&gt;&lt;/p&gt;
 
@@ -475,9 +508,11 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;p&gt;LZW decompression &lt;a href=&quot;#lzw_decomp&quot;&gt;pseudocode&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/lzw_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/lzw_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Complexity:&lt;/strong&gt; O(n) for comp. and decomp. each&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;string_comparison_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;string-comparison&quot;&gt;String comparison&lt;/h5&gt;
 
@@ -494,7 +529,7 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;p&gt;&lt;strong&gt;String distance:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/distance_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/distance_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Prefixes:&lt;/strong&gt;&lt;/p&gt;
 
@@ -507,10 +542,12 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 &lt;p&gt;&lt;strong&gt;Optimal alignment:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;The last position of the alignment must either be of the form&lt;br /&gt;
-   &lt;img src=&quot;/cs-notes/assets/images/optimal_alignment.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+   &lt;img src=&quot;/cs-notes/assets/images/algs/optimal_alignment.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In other words,&lt;br /&gt;
-   &lt;img src=&quot;/cs-notes/assets/images/optimal_alignment_alt.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+   &lt;img src=&quot;/cs-notes/assets/images/algs/optimal_alignment_alt.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;string_distance_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;distance-with-dynamic-programming&quot;&gt;Distance with dynamic programming&lt;/h5&gt;
 
@@ -526,7 +563,7 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;p&gt;&lt;strong&gt;Distances table:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/distance_table.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/distance_table.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;entries calculated one by one by applying formula above&lt;/li&gt;
@@ -540,9 +577,13 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a name=&quot;pattern_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h5 id=&quot;stringpattern-search&quot;&gt;String/pattern search&lt;/h5&gt;
 
 &lt;p&gt;Given a text &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt; of length &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;, and a string/pattern &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; of length &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt;, find the position of the last occurence of &lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;brute_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;brute-force-algorithm&quot;&gt;Brute force algorithm&lt;/h5&gt;
 
@@ -562,6 +603,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;worse case O(mn)&lt;/li&gt;
   &lt;li&gt;average case O(n)&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;kmp_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;kmp-algorithm&quot;&gt;KMP algorithm&lt;/h5&gt;
 
@@ -593,7 +636,7 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;p&gt;&lt;strong&gt;Border table:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/border_table.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/border_table.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b[j]&lt;/code&gt; is
@@ -612,6 +655,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;naive method requires O(j&lt;sup&gt;2&lt;/sup&gt;) steps to find &lt;code class=&quot;highlighter-rouge&quot;&gt;b[j]&lt;/code&gt;, so O(m&lt;sup&gt;2&lt;/sup&gt;) overall&lt;/li&gt;
   &lt;li&gt;can be implemented in O(m + n) time (to set up border table and to conduct search)&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;bm_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;boyer-moore-algorithm&quot;&gt;Boyer-Moore algorithm&lt;/h5&gt;
 
@@ -674,6 +719,101 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;graphs-and-graph-algorithms&quot;&gt;Graphs and graph algorithms&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#graph_basics_topic&quot;&gt;Graph basics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#graph_representations_topic&quot;&gt;Graph representations&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#graph_search_topic&quot;&gt;Searching and traversal&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#graph_weight_topic&quot;&gt;Weighted graphs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#topological_topic&quot;&gt;Topological ordering&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;graph_basics_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;graph-basics&quot;&gt;Graph basics&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;Undirected graphs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;G = (V,E)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;each vertex is a point&lt;/li&gt;
+  &lt;li&gt;each edge is a line joining a pair of vertices&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Connected:&lt;/strong&gt; every vertex pair is joined by a path&lt;br /&gt;
+   &lt;strong&gt;Non-connected:&lt;/strong&gt; graph has 2+ connected components&lt;br /&gt;
+   &lt;strong&gt;Tree:&lt;/strong&gt; connected and acyclic (no cycles)&lt;br /&gt;
+   &lt;strong&gt;Forest:&lt;/strong&gt; acyclic and components are trees&lt;br /&gt;
+   &lt;strong&gt;Complete (clique):&lt;/strong&gt; every vertex pair is joined by an edge&lt;br /&gt;
+   &lt;strong&gt;Bipartite:&lt;/strong&gt; vertices are in two dijoint sets &lt;code class=&quot;highlighter-rouge&quot;&gt;U&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;W&lt;/code&gt; and &lt;strong&gt;every&lt;/strong&gt; edge joins a vertex in &lt;code class=&quot;highlighter-rouge&quot;&gt;U&lt;/code&gt; to one in &lt;code class=&quot;highlighter-rouge&quot;&gt;W&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/undirected_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For the graphs above:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;adjacent - &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;a,z&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Î&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;E&lt;/span&gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;non-adjacent - &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;a,b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;∉&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;E&lt;/span&gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; is &lt;strong&gt;incident to&lt;/strong&gt; edge &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;a,z&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a, x, b, y, c&lt;/code&gt; is a path of length 4&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a, x, b, y, a&lt;/code&gt; is a cycle of length 4&lt;/li&gt;
+  &lt;li&gt;all vertices have &lt;strong&gt;degree&lt;/strong&gt; 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Directed graphs (digraphs):&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;D = (V,E)&lt;/code&gt; where &lt;code class=&quot;highlighter-rouge&quot;&gt;V&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;E&lt;/code&gt; are &lt;strong&gt;finite&lt;/strong&gt; sets&lt;/li&gt;
+  &lt;li&gt;edges are ordered pairs&lt;/li&gt;
+  &lt;li&gt;drawn as arrows&lt;/li&gt;
+  &lt;li&gt;vertices have &lt;strong&gt;in-degrees&lt;/strong&gt; and &lt;strong&gt;out-degrees&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;paths and cycles must follow edge directions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/directed_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the graph above:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;u&lt;/code&gt; is adjacent &lt;strong&gt;to&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; is ajdacent &lt;strong&gt;from&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;u&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; has in-degree 2 and out-degree 1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Representing the undirected graph G:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/undirected_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Representing the directed graph D:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/directed_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implementing adjaceny lists:&lt;/strong&gt;&lt;br /&gt;
+   Define classes representing&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;an entry of adjacency lists&lt;/li&gt;
+  &lt;li&gt;a vertex (with a linked list representing its adjacency list)&lt;/li&gt;
+  &lt;li&gt;a graph (with a size and an array of vertices)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Java &lt;a href=&quot;#adjacency_list&quot;&gt;implementation&lt;/a&gt; of an adjacency list&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;graph_representations_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;graph-representations&quot;&gt;Graph representations&lt;/h5&gt;
+
+&lt;p&gt;&lt;a name=&quot;graph_search_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;graph-searching-and-traversal-algorithms&quot;&gt;Graph searching and traversal algorithms&lt;/h5&gt;
+
+&lt;p&gt;&lt;a name=&quot;graph_weight_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;weighted-graphs&quot;&gt;Weighted graphs&lt;/h5&gt;
+
+&lt;p&gt;&lt;a name=&quot;topological_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;topological-ordering&quot;&gt;Topological ordering&lt;/h5&gt;
 
 &lt;h4 id=&quot;np-completeness&quot;&gt;NP Completeness&lt;/h4&gt;
 
@@ -1086,6 +1226,81 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;adjacency_list&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;adjacency-list-implementation&quot;&gt;Adjacency list implementation&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// an entry in the adjacency list&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AdjListNode&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertexIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// possibly other fields eg weight, capacity...&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AjdListNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;vertexIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getVertexIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertexIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setVertexIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;vertexIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// a vertex&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// the index of this vertex&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;AjdListNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adjList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// and its adjacency list&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// possibly other fields eg storing data&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;adjList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;AjdListNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// add vertex with index m to the adj list&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;addToAdjList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;adjList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addLast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AjdListNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertexDegree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adjList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// a graph&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Graph&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numVertices&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// possibly other fields for graph properties&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;// create graph with vertices indexed 0,..., n-1&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;numVertices&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numVertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
