@@ -59,7 +59,19 @@
         <!-- <h1 class="post-title">Algorithmics 1</h1> -->
 
         <section class="post-content">
-            <h4 id="introduction">Introduction</h4>
+            <h3 id="contents">Contents</h3>
+
+<p><a href="#section_0">Introduction</a><br />
+   <a href="#section_1">Fundamental Algorithms and Data Structures</a><br />
+   <a href="#section_2">Sorting Algorithms</a><br />
+   <a href="#section_3">Strings and text algorithms</a><br />
+   <a href="#section_4">Graphs and graph algorithms</a><br />
+   <a href="#section_5">NP Completeness</a><br />
+   <a href="#section_6">Computability</a></p>
+
+<p><a name="section_0"></a></p>
+
+<h4 id="introduction">Introduction</h4>
 
 <h5 id="useful-textbooks">Useful Textbooks</h5>
 
@@ -107,6 +119,8 @@
   <li>Polynomial-time = O(n<sup>c</sup>)</li>
   <li>Exponential-time = no better than O(c<sup>n</sup>) where <code class="highlighter-rouge">c &gt; 1</code></li>
 </ul>
+
+<p><a name="section_1"></a></p>
 
 <h4 id="fundamental-algorithms-and-data-structures">Fundamental Algorithms and Data Structures</h4>
 
@@ -283,6 +297,8 @@ impose heap property on bad value now in root</code><br />
   <li><a href="#heap_sort">pseudocode</a></li>
 </ul>
 
+<p><a name="section_2"></a></p>
+
 <h4 id="sorting-algorithms">Sorting Algorithms</h4>
 
 <ul>
@@ -402,6 +418,8 @@ impose heap property on bad value now in root</code><br />
 <p><img src="/cs-notes/assets/images/algs/trie_list.png" nopin="nopin" /></p>
 
 <p><a href="#trie_class">Example</a> trie class to represent a dictionary</p>
+
+<p><a name="section_3"></a></p>
 
 <h4 id="strings-and-text-algorithms">Strings and text algorithms</h4>
 
@@ -766,6 +784,8 @@ impose heap property on bad value now in root</code><br />
   <li><code class="highlighter-rouge">m - 1</code> char comparisons needed at each <code class="highlighter-rouge">n - (m + 1)</code> positions in text</li>
 </ul>
 
+<p><a name="section_4"></a></p>
+
 <h4 id="graphs-and-graph-algorithms">Graphs and graph algorithms</h4>
 
 <ul>
@@ -828,6 +848,10 @@ impose heap property on bad value now in root</code><br />
   <li><code class="highlighter-rouge">y</code> has in-degree 2 and out-degree 1</li>
 </ul>
 
+<p><a name="graph_representations_topic"></a></p>
+
+<h5 id="graph-representations">Graph representations</h5>
+
 <p><strong>Representing the undirected graph G:</strong></p>
 
 <p><img src="/cs-notes/assets/images/algs/undirected_2.png" nopin="nopin" /></p>
@@ -847,23 +871,194 @@ impose heap property on bad value now in root</code><br />
 
 <p>Java <a href="#adjacency_list">implementation</a> of an adjacency list</p>
 
-<p><a name="graph_representations_topic"></a></p>
-
-<h5 id="graph-representations">Graph representations</h5>
-
 <p><a name="graph_search_topic"></a></p>
 
 <h5 id="graph-searching-and-traversal-algorithms">Graph searching and traversal algorithms</h5>
+
+<p>Graph traversal is efficient if it visits all vertices of the graph in <code class="highlighter-rouge">O( |V| + |E| )</code> time (by travelling along edges)</p>
+
+<p><strong>Depth-first search:</strong></p>
+
+<ul>
+  <li>follow a path of unvisited vertices until path can be extended no further</li>
+  <li>backtrack until an unvisited vertex is reached</li>
+  <li>repeat until there are no unvisited vertices (in all components of graph)</li>
+  <li>edges used form a <strong>depth-first spanning tree</strong></li>
+</ul>
+
+<p><strong>Represent it as:</strong></p>
+
+<ul>
+  <li>explicit stack</li>
+  <li>containing vertices on the path to the current vertex</li>
+  <li>popping corresponds to backtracking</li>
+</ul>
+
+<p><strong>DFS example:</strong></p>
+
+<p><img src="/cs-notes/assets/images/algs/dfs_1.png" nopin="nopin" /></p>
+
+<p>DFS <a href="#dfs">implementation</a></p>
+
+<p><strong>DFS complexity:</strong></p>
+
+<ul>
+  <li>each vertex is visited ( <code class="highlighter-rouge">n</code> )</li>
+  <li>each element in adj. list is processed ( <code class="highlighter-rouge">m</code> )</li>
+  <li>O(n + m)</li>
+  <li>can adapt to adj. matrix representation, but this increases complexity to O(n<sup>2</sup>)</li>
+</ul>
+
+<p><strong>Applications of DFS:</strong></p>
+
+<ul>
+  <li>determine if graph is connected and/or identify its connected components</li>
+  <li>determine if a graph is bipartite</li>
+  <li>determine if a graph contains a cycle</li>
+</ul>
+
+<p><strong>Breadth-first search:</strong></p>
+
+<ul>
+  <li>visit all adjacent vertices of current vertex (processing)</li>
+  <li>vertices processed in the order in which they are visited (queue)</li>
+  <li>continue until all vertices in current component have been processed</li>
+  <li>edges used form a <strong>breadth-first spanning tree</strong></li>
+</ul>
+
+<p><strong>Represent it as:</strong></p>
+
+<ul>
+  <li>queue</li>
+  <li>visited vertices are added</li>
+</ul>
+
+<p><strong>BFS example:</strong></p>
+
+<p><img src="/cs-notes/assets/images/algs/bfs_1.png" nopin="nopin" /></p>
+
+<p>BFS <a href="#bfs">implementation</a></p>
+
+<p><strong>BFS complexity:</strong></p>
+
+<ul>
+  <li>each vertex visited and queued exactly once</li>
+  <li>each adj. list traversed once</li>
+  <li>O(n + m)</li>
+  <li>can adapt to adj. matrix as with DFS, but also O(n<sup>2</sup>)</li>
+</ul>
+
+<p><strong>Applications of BFS:</strong></p>
+
+<ul>
+  <li>finding distance between two vertices</li>
+</ul>
+
+<p><strong>Distance between two vertices:</strong></p>
+
+<ul>
+  <li>assign distance <code class="highlighter-rouge">v = 0</code></li>
+  <li>carry out BFS from <code class="highlighter-rouge">v</code></li>
+  <li>when visiting a new vertex
+    <ul>
+      <li>assign its distance to be <code class="highlighter-rouge">1 + distance to its predecessor</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/algs/bfs_2.png" nopin="nopin" /></p>
 
 <p><a name="graph_weight_topic"></a></p>
 
 <h5 id="weighted-graphs">Weighted graphs</h5>
 
+<p>Each edge <code class="highlighter-rouge">e</code> has an integer weight given by <code class="highlighter-rouge">wt( e ) &gt; 0</code> (undirected or directed)<br />
+   Can represent weighted graphs using adj. lists and matrices as before</p>
+
+<p><img src="/cs-notes/assets/images/algs/weighted_1.png" nopin="nopin" /></p>
+
+<p><img src="/cs-notes/assets/images/algs/weighted_2.png" nopin="nopin" /></p>
+
+<p><strong>Dijkstra’s algorithm:</strong></p>
+
+<ul>
+  <li>finds shortest path from one vertex <code class="highlighter-rouge">u</code> to all other vertices</li>
+  <li>maintains a set containing all vertices for which shortest path from <code class="highlighter-rouge">u</code> is currently known</li>
+  <li>each vertex <code class="highlighter-rouge">v</code> not in the set has a label <code class="highlighter-rouge">d(v)</code> = length of a shortest path from <code class="highlighter-rouge">u -&gt; v</code> passing <strong>only</strong> through vertices in the set</li>
+  <li>after adding <code class="highlighter-rouge">v</code> to the set, carry out <strong>edge relaxation</strong> (updating distance <code class="highlighter-rouge">d(w)</code> for all vertices <code class="highlighter-rouge">w</code> still not in the set)</li>
+</ul>
+
+<p><strong>Edge relaxation:</strong></p>
+
+<ul>
+  <li>suppose <code class="highlighter-rouge">v</code> and <code class="highlighter-rouge">w</code> are not in <code class="highlighter-rouge">S</code>, then we know
+    <ul>
+      <li>the shortest path from <code class="highlighter-rouge">u -&gt; v</code> passing only through <code class="highlighter-rouge">S</code> is <code class="highlighter-rouge">d(v)</code></li>
+      <li>the shortest path from <code class="highlighter-rouge">u -&gt; w</code> passing only through <code class="highlighter-rouge">S</code> is <code class="highlighter-rouge">d(w)</code></li>
+    </ul>
+  </li>
+  <li>suppose <code class="highlighter-rouge">v</code> is added to <code class="highlighter-rouge">S</code> and the edge <code class="highlighter-rouge">e = { v,w }</code> has weight <code class="highlighter-rouge">wt( e )</code></li>
+  <li>calculate the shortest path <code class="highlighter-rouge">u -&gt; w</code> passing only through <code class="highlighter-rouge">S ∪ { v }</code></li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/algs/dijkstra_1.png" nopin="nopin" /></p>
+
+<p>It is either:</p>
+
+<ul>
+  <li>the original path through <code class="highlighter-rouge">S</code> of length <code class="highlighter-rouge">d(w)</code></li>
+  <li>the path combining edge <code class="highlighter-rouge">e</code> and shortest path <code class="highlighter-rouge">v -&gt; u</code> with length <code class="highlighter-rouge">wt( e ) + d(v)</code></li>
+</ul>
+
+<p>Therefore, the distance is: <br />
+   <code class="highlighter-rouge">d(w) = min{ d(w), d(v) + wt( e ) }</code></p>
+
+<p>Dijkstra’s algorithm <a href="#dijkstra">implementation</a></p>
+
+<p><strong>Dijkstra complexity:</strong></p>
+
+<ul>
+  <li>with <code class="highlighter-rouge">n</code> vertices and <code class="highlighter-rouge">m</code> edges, using an <strong>unordered array</strong>
+    <ul>
+      <li>O(n) to initialise distances</li>
+      <li>O(n<sup>2</sup>) to find minimum</li>
+      <li>O(m) for relaxation</li>
+    </ul>
+  </li>
+  <li>
+    <p>hence, O(n<sup>2</sup>) overall</p>
+  </li>
+  <li>with <code class="highlighter-rouge">n</code> vertices and <code class="highlighter-rouge">m</code> edges, using a <strong>heap</strong>
+    <ul>
+      <li>O(n) to initialise distances and create heap</li>
+      <li>O(n log n) to find minimum</li>
+      <li>O(m log n) for relaxation</li>
+    </ul>
+  </li>
+  <li>hence, O(m log n) overall (more edges than vertices)</li>
+</ul>
+
+<p><strong>Dijkstra example:</strong></p>
+
+<p><img src="/cs-notes/assets/images/algs/dijkstra_2.png" nopin="nopin" /></p>
+
+<p><strong>Spanning tree:</strong></p>
+
+<ul>
+  <li>subgraph which is both a tree and spans every vertex</li>
+  <li>obtained from a connected graph by <strong>deleting edges</strong></li>
+  <li>its weight = sum of weights of its edges</li>
+</ul>
+
 <p><a name="topological_topic"></a></p>
 
 <h5 id="topological-ordering">Topological ordering</h5>
 
+<p><a name="section_5"></a></p>
+
 <h4 id="np-completeness">NP Completeness</h4>
+
+<p><a name="section_6"></a></p>
 
 <h4 id="computability">Computability</h4>
 
@@ -1349,6 +1544,113 @@ impose heap property on bad value now in root</code><br />
   <span class="kr">public</span> <span class="kr">int</span> <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">numVertices</span><span class="p">;</span>
   <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="dfs"></a></p>
+
+<h6 id="depth-first-search-implementation">Depth-first search implementation</h6>
+
+<p>Add this to the previously defined <strong>vertex</strong> class:</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="kr">private</span> <span class="kr">boolean</span> <span class="nx">visited</span><span class="p">;</span>
+   <span class="kr">private</span> <span class="kr">int</span> <span class="nx">pred</span><span class="p">;</span> <span class="c1">// index of predecessor vertex</span>
+   
+   <span class="kr">public</span> <span class="kr">boolean</span> <span class="nx">getVisited</span><span class="p">()</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">visited</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="kr">public</span> <span class="k">void</span> <span class="nx">setVisited</span><span class="p">(</span><span class="kr">boolean</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">visited</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="kr">public</span> <span class="kr">int</span> <span class="nx">getPred</span><span class="p">()</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">pred</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="kr">public</span> <span class="k">void</span> <span class="nx">setPred</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">pred</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+   <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>And add this to the previously defined <strong>graph</strong> class:</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="c1">// visit vertex v with predecessor p</span>
+   <span class="kr">private</span> <span class="k">void</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+   
+     <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// update</span>
+	 <span class="nx">v</span><span class="p">.</span><span class="nx">setPred</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// set predecessor (-1 if none)</span>
+	 <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AdjListNode</span><span class="o">&gt;</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getAjdList</span><span class="p">();</span> <span class="c1">// get adj. list</span>
+	 
+	 <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="err">:</span> <span class="nx">L</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through all adjacent vertices</span>
+	   <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getIndex</span><span class="p">();</span>
+	   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">vertices</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getVisited</span><span class="p">())</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">vertices</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getIndex</span><span class="p">());</span> <span class="c1">// if current vertex hasn't been visited, continue the search from there</span>
+	 <span class="p">}</span>
+	 
+   <span class="p">}</span>
+   
+   <span class="c1">// carry out a df traversal</span>
+   <span class="kr">public</span> <span class="k">void</span> <span class="nx">dfs</span><span class="p">()</span> <span class="p">{</span>
+   
+     <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
+	 <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// if vertex not visited, start search there</span>
+   
+   <span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="bfs"></a></p>
+
+<h6 id="breadth-first-search-implementation">Breadth-first search implementation</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
+<span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">Vertex</span><span class="o">&gt;</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// start search</span>
+  
+    <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// now visited</span>
+	<span class="nx">v</span><span class="p">.</span><span class="nx">setPredecessor</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// v initial vertex</span>
+	<span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span> <span class="c1">// ready to be processed</span>
+	
+	<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nx">queue</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+	
+	  <span class="nx">Vertex</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span> <span class="c1">// get next vertex to process</span>
+	  <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AdjListNode</span><span class="o">&gt;</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">u</span><span class="p">.</span><span class="nx">getAdjList</span><span class="p">();</span> <span class="c1">// get its adj. list</span>
+	  
+	  <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="err">:</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through its adj. list</span>
+	  
+	    <span class="nx">Vertex</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">vertices</span><span class="p">[</span><span class="nx">node</span><span class="p">.</span><span class="nx">getVertexIndex</span><span class="p">()];</span> <span class="c1">// next vertex in list</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">w</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="p">{</span>
+		  
+		  <span class="nx">w</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// now visited</span>
+		  <span class="nx">w</span><span class="p">.</span><span class="nx">setPredecessor</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">getIndex</span><span class="p">());</span> <span class="c1">// set predecessor of w to be u</span>
+		  <span class="nx">queue</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">w</span><span class="p">);</span> <span class="c1">// add to queue</span>
+		  
+		<span class="p">}</span>
+	  
+	  <span class="p">}</span>
+	
+	<span class="p">}</span>
+  
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><a name="dijkstra"></a></p>
+
+<h6 id="dijkstras-algorithm-implementation">Dijkstra’s algorithm implementation</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// S is set of vertices for which shortest path from u is known</span>
+<span class="c1">// d(w) is length of a shortest path from u to w passing only through vertices of S</span>
+<span class="nx">S</span> <span class="o">=</span> <span class="p">{</span><span class="nx">u</span><span class="p">};</span> <span class="c1">// initialise S</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">w</span><span class="p">)</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="o">=</span> <span class="nx">wt</span><span class="p">(</span><span class="nx">u</span><span class="p">,</span> <span class="nx">w</span><span class="p">);</span> <span class="c1">// initialise distances</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nx">S</span> <span class="o">!=</span> <span class="nx">V</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// still vertices to add in S</span>
+
+  <span class="nx">find</span> <span class="nx">v</span> <span class="nx">not</span> <span class="k">in</span> <span class="nx">S</span> <span class="kd">with</span> <span class="nx">d</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="nx">minimum</span><span class="p">;</span>
+  <span class="nx">add</span> <span class="nx">v</span> <span class="nx">to</span> <span class="nx">S</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">w</span> <span class="nx">not</span> <span class="k">in</span> <span class="nx">S</span> <span class="nx">and</span> <span class="nx">adjacent</span> <span class="nx">to</span> <span class="nx">v</span><span class="p">)</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="o">=</span> <span class="nx">min</span><span class="p">{</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">),</span> <span class="nx">d</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">+</span> <span class="nx">wt</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">w</span><span class="p">)</span> <span class="p">};</span> <span class="c1">// perfom relaxation</span>
 
 <span class="p">}</span>
 </code></pre>

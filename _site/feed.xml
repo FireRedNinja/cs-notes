@@ -5,13 +5,25 @@
     <description>My notes on CS Level 3</description>
     <link>http://localhost:4000/cs-notes/</link>
     <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 28 Dec 2017 00:14:29 +0000</pubDate>
-    <lastBuildDate>Thu, 28 Dec 2017 00:14:29 +0000</lastBuildDate>
+    <pubDate>Sat, 30 Dec 2017 02:03:11 +0000</pubDate>
+    <lastBuildDate>Sat, 30 Dec 2017 02:03:11 +0000</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>Algorithmics 1</title>
-        <description>&lt;h4 id=&quot;introduction&quot;&gt;Introduction&lt;/h4&gt;
+        <description>&lt;h3 id=&quot;contents&quot;&gt;Contents&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;#section_0&quot;&gt;Introduction&lt;/a&gt;&lt;br /&gt;
+   &lt;a href=&quot;#section_1&quot;&gt;Fundamental Algorithms and Data Structures&lt;/a&gt;&lt;br /&gt;
+   &lt;a href=&quot;#section_2&quot;&gt;Sorting Algorithms&lt;/a&gt;&lt;br /&gt;
+   &lt;a href=&quot;#section_3&quot;&gt;Strings and text algorithms&lt;/a&gt;&lt;br /&gt;
+   &lt;a href=&quot;#section_4&quot;&gt;Graphs and graph algorithms&lt;/a&gt;&lt;br /&gt;
+   &lt;a href=&quot;#section_5&quot;&gt;NP Completeness&lt;/a&gt;&lt;br /&gt;
+   &lt;a href=&quot;#section_6&quot;&gt;Computability&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;section_0&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;introduction&quot;&gt;Introduction&lt;/h4&gt;
 
 &lt;h5 id=&quot;useful-textbooks&quot;&gt;Useful Textbooks&lt;/h5&gt;
 
@@ -59,6 +71,8 @@
   &lt;li&gt;Polynomial-time = O(n&lt;sup&gt;c&lt;/sup&gt;)&lt;/li&gt;
   &lt;li&gt;Exponential-time = no better than O(c&lt;sup&gt;n&lt;/sup&gt;) where &lt;code class=&quot;highlighter-rouge&quot;&gt;c &amp;gt; 1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;section_1&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;fundamental-algorithms-and-data-structures&quot;&gt;Fundamental Algorithms and Data Structures&lt;/h4&gt;
 
@@ -235,6 +249,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;&lt;a href=&quot;#heap_sort&quot;&gt;pseudocode&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a name=&quot;section_2&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;sorting-algorithms&quot;&gt;Sorting Algorithms&lt;/h4&gt;
 
 &lt;ul&gt;
@@ -354,6 +370,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 &lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/trie_list.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;#trie_class&quot;&gt;Example&lt;/a&gt; trie class to represent a dictionary&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;section_3&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;strings-and-text-algorithms&quot;&gt;Strings and text algorithms&lt;/h4&gt;
 
@@ -718,6 +736,8 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;m - 1&lt;/code&gt; char comparisons needed at each &lt;code class=&quot;highlighter-rouge&quot;&gt;n - (m + 1)&lt;/code&gt; positions in text&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a name=&quot;section_4&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;graphs-and-graph-algorithms&quot;&gt;Graphs and graph algorithms&lt;/h4&gt;
 
 &lt;ul&gt;
@@ -780,6 +800,10 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt; has in-degree 2 and out-degree 1&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;a name=&quot;graph_representations_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;graph-representations&quot;&gt;Graph representations&lt;/h5&gt;
+
 &lt;p&gt;&lt;strong&gt;Representing the undirected graph G:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/undirected_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
@@ -799,23 +823,194 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;p&gt;Java &lt;a href=&quot;#adjacency_list&quot;&gt;implementation&lt;/a&gt; of an adjacency list&lt;/p&gt;
 
-&lt;p&gt;&lt;a name=&quot;graph_representations_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;graph-representations&quot;&gt;Graph representations&lt;/h5&gt;
-
 &lt;p&gt;&lt;a name=&quot;graph_search_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;graph-searching-and-traversal-algorithms&quot;&gt;Graph searching and traversal algorithms&lt;/h5&gt;
+
+&lt;p&gt;Graph traversal is efficient if it visits all vertices of the graph in &lt;code class=&quot;highlighter-rouge&quot;&gt;O( |V| + |E| )&lt;/code&gt; time (by travelling along edges)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Depth-first search:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;follow a path of unvisited vertices until path can be extended no further&lt;/li&gt;
+  &lt;li&gt;backtrack until an unvisited vertex is reached&lt;/li&gt;
+  &lt;li&gt;repeat until there are no unvisited vertices (in all components of graph)&lt;/li&gt;
+  &lt;li&gt;edges used form a &lt;strong&gt;depth-first spanning tree&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Represent it as:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;explicit stack&lt;/li&gt;
+  &lt;li&gt;containing vertices on the path to the current vertex&lt;/li&gt;
+  &lt;li&gt;popping corresponds to backtracking&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;DFS example:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/dfs_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;DFS &lt;a href=&quot;#dfs&quot;&gt;implementation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DFS complexity:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;each vertex is visited ( &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; )&lt;/li&gt;
+  &lt;li&gt;each element in adj. list is processed ( &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt; )&lt;/li&gt;
+  &lt;li&gt;O(n + m)&lt;/li&gt;
+  &lt;li&gt;can adapt to adj. matrix representation, but this increases complexity to O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Applications of DFS:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;determine if graph is connected and/or identify its connected components&lt;/li&gt;
+  &lt;li&gt;determine if a graph is bipartite&lt;/li&gt;
+  &lt;li&gt;determine if a graph contains a cycle&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Breadth-first search:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;visit all adjacent vertices of current vertex (processing)&lt;/li&gt;
+  &lt;li&gt;vertices processed in the order in which they are visited (queue)&lt;/li&gt;
+  &lt;li&gt;continue until all vertices in current component have been processed&lt;/li&gt;
+  &lt;li&gt;edges used form a &lt;strong&gt;breadth-first spanning tree&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Represent it as:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;queue&lt;/li&gt;
+  &lt;li&gt;visited vertices are added&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;BFS example:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/bfs_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;BFS &lt;a href=&quot;#bfs&quot;&gt;implementation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;BFS complexity:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;each vertex visited and queued exactly once&lt;/li&gt;
+  &lt;li&gt;each adj. list traversed once&lt;/li&gt;
+  &lt;li&gt;O(n + m)&lt;/li&gt;
+  &lt;li&gt;can adapt to adj. matrix as with DFS, but also O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Applications of BFS:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;finding distance between two vertices&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Distance between two vertices:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;assign distance &lt;code class=&quot;highlighter-rouge&quot;&gt;v = 0&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;carry out BFS from &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;when visiting a new vertex
+    &lt;ul&gt;
+      &lt;li&gt;assign its distance to be &lt;code class=&quot;highlighter-rouge&quot;&gt;1 + distance to its predecessor&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/bfs_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;graph_weight_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;weighted-graphs&quot;&gt;Weighted graphs&lt;/h5&gt;
 
+&lt;p&gt;Each edge &lt;code class=&quot;highlighter-rouge&quot;&gt;e&lt;/code&gt; has an integer weight given by &lt;code class=&quot;highlighter-rouge&quot;&gt;wt( e ) &amp;gt; 0&lt;/code&gt; (undirected or directed)&lt;br /&gt;
+   Can represent weighted graphs using adj. lists and matrices as before&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/weighted_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/weighted_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Dijkstra’s algorithm:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;finds shortest path from one vertex &lt;code class=&quot;highlighter-rouge&quot;&gt;u&lt;/code&gt; to all other vertices&lt;/li&gt;
+  &lt;li&gt;maintains a set containing all vertices for which shortest path from &lt;code class=&quot;highlighter-rouge&quot;&gt;u&lt;/code&gt; is currently known&lt;/li&gt;
+  &lt;li&gt;each vertex &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; not in the set has a label &lt;code class=&quot;highlighter-rouge&quot;&gt;d(v)&lt;/code&gt; = length of a shortest path from &lt;code class=&quot;highlighter-rouge&quot;&gt;u -&amp;gt; v&lt;/code&gt; passing &lt;strong&gt;only&lt;/strong&gt; through vertices in the set&lt;/li&gt;
+  &lt;li&gt;after adding &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; to the set, carry out &lt;strong&gt;edge relaxation&lt;/strong&gt; (updating distance &lt;code class=&quot;highlighter-rouge&quot;&gt;d(w)&lt;/code&gt; for all vertices &lt;code class=&quot;highlighter-rouge&quot;&gt;w&lt;/code&gt; still not in the set)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Edge relaxation:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;suppose &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;w&lt;/code&gt; are not in &lt;code class=&quot;highlighter-rouge&quot;&gt;S&lt;/code&gt;, then we know
+    &lt;ul&gt;
+      &lt;li&gt;the shortest path from &lt;code class=&quot;highlighter-rouge&quot;&gt;u -&amp;gt; v&lt;/code&gt; passing only through &lt;code class=&quot;highlighter-rouge&quot;&gt;S&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;d(v)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;the shortest path from &lt;code class=&quot;highlighter-rouge&quot;&gt;u -&amp;gt; w&lt;/code&gt; passing only through &lt;code class=&quot;highlighter-rouge&quot;&gt;S&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;d(w)&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;suppose &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt; is added to &lt;code class=&quot;highlighter-rouge&quot;&gt;S&lt;/code&gt; and the edge &lt;code class=&quot;highlighter-rouge&quot;&gt;e = { v,w }&lt;/code&gt; has weight &lt;code class=&quot;highlighter-rouge&quot;&gt;wt( e )&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;calculate the shortest path &lt;code class=&quot;highlighter-rouge&quot;&gt;u -&amp;gt; w&lt;/code&gt; passing only through &lt;code class=&quot;highlighter-rouge&quot;&gt;S ∪ { v }&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/dijkstra_1.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It is either:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the original path through &lt;code class=&quot;highlighter-rouge&quot;&gt;S&lt;/code&gt; of length &lt;code class=&quot;highlighter-rouge&quot;&gt;d(w)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;the path combining edge &lt;code class=&quot;highlighter-rouge&quot;&gt;e&lt;/code&gt; and shortest path &lt;code class=&quot;highlighter-rouge&quot;&gt;v -&amp;gt; u&lt;/code&gt; with length &lt;code class=&quot;highlighter-rouge&quot;&gt;wt( e ) + d(v)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Therefore, the distance is: &lt;br /&gt;
+   &lt;code class=&quot;highlighter-rouge&quot;&gt;d(w) = min{ d(w), d(v) + wt( e ) }&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Dijkstra’s algorithm &lt;a href=&quot;#dijkstra&quot;&gt;implementation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Dijkstra complexity:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;with &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; vertices and &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt; edges, using an &lt;strong&gt;unordered array&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;O(n) to initialise distances&lt;/li&gt;
+      &lt;li&gt;O(n&lt;sup&gt;2&lt;/sup&gt;) to find minimum&lt;/li&gt;
+      &lt;li&gt;O(m) for relaxation&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;hence, O(n&lt;sup&gt;2&lt;/sup&gt;) overall&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;with &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; vertices and &lt;code class=&quot;highlighter-rouge&quot;&gt;m&lt;/code&gt; edges, using a &lt;strong&gt;heap&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;O(n) to initialise distances and create heap&lt;/li&gt;
+      &lt;li&gt;O(n log n) to find minimum&lt;/li&gt;
+      &lt;li&gt;O(m log n) for relaxation&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;hence, O(m log n) overall (more edges than vertices)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Dijkstra example:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/dijkstra_2.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Spanning tree:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;subgraph which is both a tree and spans every vertex&lt;/li&gt;
+  &lt;li&gt;obtained from a connected graph by &lt;strong&gt;deleting edges&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;its weight = sum of weights of its edges&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;&lt;a name=&quot;topological_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;topological-ordering&quot;&gt;Topological ordering&lt;/h5&gt;
 
+&lt;p&gt;&lt;a name=&quot;section_5&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;np-completeness&quot;&gt;NP Completeness&lt;/h4&gt;
+
+&lt;p&gt;&lt;a name=&quot;section_6&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;computability&quot;&gt;Computability&lt;/h4&gt;
 
@@ -1301,6 +1496,113 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numVertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;dfs&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;depth-first-search-implementation&quot;&gt;Depth-first search implementation&lt;/h6&gt;
+
+&lt;p&gt;Add this to the previously defined &lt;strong&gt;vertex&lt;/strong&gt; class:&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pred&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// index of predecessor vertex&lt;/span&gt;
+   
+   &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+   &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;visited&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+   &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getPred&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pred&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+   &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setPred&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;pred&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And add this to the previously defined &lt;strong&gt;graph&lt;/strong&gt; class:&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;c1&quot;&gt;// visit vertex v with predecessor p&lt;/span&gt;
+   &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;visit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   
+     &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// update&lt;/span&gt;
+	 &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setPred&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// set predecessor (-1 if none)&lt;/span&gt;
+	 &lt;span class=&quot;nx&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;AdjListNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;L&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAjdList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// get adj. list&lt;/span&gt;
+	 
+	 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;AdjListNode&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// go through all adjacent vertices&lt;/span&gt;
+	   &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;visit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// if current vertex hasn't been visited, continue the search from there&lt;/span&gt;
+	 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	 
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+   
+   &lt;span class=&quot;c1&quot;&gt;// carry out a df traversal&lt;/span&gt;
+   &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   
+     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// initialise&lt;/span&gt;
+	 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;visit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// if vertex not visited, start search there&lt;/span&gt;
+   
+   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;bfs&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;breadth-first-search-implementation&quot;&gt;Breadth-first search implementation&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// initialise&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// start search&lt;/span&gt;
+  
+    &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// now visited&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setPredecessor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// v initial vertex&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ready to be processed&lt;/span&gt;
+	
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	
+	  &lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// get next vertex to process&lt;/span&gt;
+	  &lt;span class=&quot;nx&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;AdjListNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAdjList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// get its adj. list&lt;/span&gt;
+	  
+	  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;AdjListNode&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// go through its adj. list&lt;/span&gt;
+	  
+	    &lt;span class=&quot;nx&quot;&gt;Vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getVertexIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// next vertex in list&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		  
+		  &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setVisited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// now visited&lt;/span&gt;
+		  &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setPredecessor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// set predecessor of w to be u&lt;/span&gt;
+		  &lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// add to queue&lt;/span&gt;
+		  
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	  
+	  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;dijkstra&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;dijkstras-algorithm-implementation&quot;&gt;Dijkstra’s algorithm implementation&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// S is set of vertices for which shortest path from u is known&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// d(w) is length of a shortest path from u to w passing only through vertices of S&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// initialise S&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;wt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// initialise distances&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// still vertices to add in S&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;find&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;minimum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adjacent&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;wt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// perfom relaxation&lt;/span&gt;
 
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;

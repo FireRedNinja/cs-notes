@@ -6,6 +6,18 @@ categories: Level3 Semester1
 author: dasha
 ---
 
+### Contents
+
+[Introduction](#section_0)  
+   [Fundamental Algorithms and Data Structures](#section_1)  
+   [Sorting Algorithms](#section_2)  
+   [Strings and text algorithms](#section_3)  
+   [Graphs and graph algorithms](#section_4)  
+   [NP Completeness](#section_5)  
+   [Computability](#section_6)  
+
+
+<a name="section_0"></a>
 
 #### Introduction
 
@@ -47,6 +59,8 @@ author: dasha
 * Polynomial-time = O(n<sup>c</sup>)
 * Exponential-time = no better than O(c<sup>n</sup>) where `c > 1`
 
+
+<a name="section_1"></a>
 
 #### Fundamental Algorithms and Data Structures
 
@@ -195,6 +209,8 @@ Heap class [implementation in Java](#heap_class)
 * [pseudocode](#heap_sort)
 
 
+<a name="section_2"></a>
+
 #### Sorting Algorithms
 
 * [Comparison-based sorting](#comparison_topic)
@@ -296,6 +312,9 @@ See radix sorting pseudocode [here](#radix_sort)
 <img src="/cs-notes/assets/images/algs/trie_list.png" nopin="nopin" />
 
 [Example](#trie_class) trie class to represent a dictionary
+
+
+<a name="section_3"></a>
    
 #### Strings and text algorithms
 
@@ -560,6 +579,9 @@ BM [implementation](#bm)
 * search for `s = ab...aa` of length `m` in `t = aa...aaaa..aa` of length `n`
 * `m - 1` char comparisons needed at each `n - (m + 1)` positions in text
 
+
+<a name="section_4"></a>
+
 #### Graphs and graph algorithms
 
 * [Graph basics](#graph_basics_topic)
@@ -612,6 +634,11 @@ In the graph above:
 * `v` is ajdacent **from** `u`
 * `y` has in-degree 2 and out-degree 1
 
+
+<a name="graph_representations_topic"></a>
+
+##### Graph representations
+
 **Representing the undirected graph G:**
 
 <img src="/cs-notes/assets/images/algs/undirected_2.png" nopin="nopin" />
@@ -630,23 +657,158 @@ In the graph above:
 Java [implementation](#adjacency_list) of an adjacency list
 
 
-<a name="graph_representations_topic"></a>
-
-##### Graph representations
-
 <a name="graph_search_topic"></a>
 
 ##### Graph searching and traversal algorithms
+
+Graph traversal is efficient if it visits all vertices of the graph in `O( |V| + |E| )` time (by travelling along edges)
+
+
+**Depth-first search:**
+
+* follow a path of unvisited vertices until path can be extended no further
+* backtrack until an unvisited vertex is reached
+* repeat until there are no unvisited vertices (in all components of graph)
+* edges used form a **depth-first spanning tree**
+
+**Represent it as:**
+
+* explicit stack 
+* containing vertices on the path to the current vertex
+* popping corresponds to backtracking
+
+**DFS example:**
+
+<img src="/cs-notes/assets/images/algs/dfs_1.png" nopin="nopin" />
+
+DFS [implementation](#dfs)
+
+**DFS complexity:**
+
+* each vertex is visited ( `n` )
+* each element in adj. list is processed ( `m` )
+* O(n + m)
+* can adapt to adj. matrix representation, but this increases complexity to O(n<sup>2</sup>)
+
+**Applications of DFS:**
+
+* determine if graph is connected and/or identify its connected components
+* determine if a graph is bipartite
+* determine if a graph contains a cycle
+
+**Breadth-first search:**
+
+* visit all adjacent vertices of current vertex (processing)
+* vertices processed in the order in which they are visited (queue)
+* continue until all vertices in current component have been processed
+* edges used form a **breadth-first spanning tree**
+
+**Represent it as:**
+
+* queue
+* visited vertices are added
+
+**BFS example:**
+
+<img src="/cs-notes/assets/images/algs/bfs_1.png" nopin="nopin" />
+
+BFS [implementation](#bfs)
+
+**BFS complexity:**
+
+* each vertex visited and queued exactly once
+* each adj. list traversed once
+* O(n + m)
+* can adapt to adj. matrix as with DFS, but also O(n<sup>2</sup>)
+
+**Applications of BFS:**
+
+* finding distance between two vertices
+
+**Distance between two vertices:**
+
+* assign distance `v = 0`
+* carry out BFS from `v`
+* when visiting a new vertex
+  * assign its distance to be `1 + distance to its predecessor`
+  
+<img src="/cs-notes/assets/images/algs/bfs_2.png" nopin="nopin" />
+
 
 <a name="graph_weight_topic"></a>
 
 ##### Weighted graphs
 
+Each edge `e` has an integer weight given by `wt( e ) > 0` (undirected or directed)  
+   Can represent weighted graphs using adj. lists and matrices as before
+   
+<img src="/cs-notes/assets/images/algs/weighted_1.png" nopin="nopin" />
+
+<img src="/cs-notes/assets/images/algs/weighted_2.png" nopin="nopin" />
+
+**Dijkstra's algorithm:**
+
+* finds shortest path from one vertex `u` to all other vertices
+* maintains a set containing all vertices for which shortest path from `u` is currently known
+* each vertex `v` not in the set has a label `d(v)` = length of a shortest path from `u -> v` passing **only** through vertices in the set
+* after adding `v` to the set, carry out **edge relaxation** (updating distance `d(w)` for all vertices `w` still not in the set)
+
+**Edge relaxation:**
+
+* suppose `v` and `w` are not in `S`, then we know
+  * the shortest path from `u -> v` passing only through `S` is `d(v)`
+  * the shortest path from `u -> w` passing only through `S` is `d(w)`
+* suppose `v` is added to `S` and the edge `e = { v,w }` has weight `wt( e )`
+* calculate the shortest path `u -> w` passing only through `S ∪ { v }`
+
+<img src="/cs-notes/assets/images/algs/dijkstra_1.png" nopin="nopin" />
+
+It is either:
+
+* the original path through `S` of length `d(w)`
+* the path combining edge `e` and shortest path `v -> u` with length `wt( e ) + d(v)`
+
+Therefore, the distance is:   
+   `d(w) = min{ d(w), d(v) + wt( e ) }`
+   
+Dijkstra's algorithm [implementation](#dijkstra)
+
+**Dijkstra complexity:**
+
+* with `n` vertices and `m` edges, using an **unordered array**
+  * O(n) to initialise distances
+  * O(n<sup>2</sup>) to find minimum
+  * O(m) for relaxation
+* hence, O(n<sup>2</sup>) overall
+
+* with `n` vertices and `m` edges, using a **heap**
+  * O(n) to initialise distances and create heap
+  * O(n log n) to find minimum
+  * O(m log n) for relaxation
+* hence, O(m log n) overall (more edges than vertices)
+
+**Dijkstra example:**
+
+<img src="/cs-notes/assets/images/algs/dijkstra_2.png" nopin="nopin" />
+
+**Spanning tree:**
+
+* subgraph which is both a tree and spans every vertex
+* obtained from a connected graph by **deleting edges**
+* its weight = sum of weights of its edges
+
+
 <a name="topological_topic"></a>
 
 ##### Topological ordering
 
+
+<a name="section_5"></a>
+
 #### NP Completeness
+
+
+<a name="section_6"></a>
 
 #### Computability
 
@@ -1130,6 +1292,113 @@ public class Graph {
   public int size() {
     return numVertices;
   }
+
+}
+```
+
+<a name="dfs"></a>
+
+###### Depth-first search implementation
+
+Add this to the previously defined **vertex** class:  
+   ```javascript
+   private boolean visited;
+   private int pred; // index of predecessor vertex
+   
+   public boolean getVisited() {
+     return visited;
+   }
+   public void setVisited(boolean b) {
+     visited = b;
+   }
+   public int getPred() {
+     return pred;
+   }
+   public void setPred(int i) {
+     pred = i;
+   }
+   ```
+
+And add this to the previously defined **graph** class:  
+   ```javascript
+   // visit vertex v with predecessor p
+   private void visit(Vertex v, int p) {
+   
+     v.setVisited(true); // update
+	 v.setPred(p); // set predecessor (-1 if none)
+	 LinkedList<AdjListNode> L = v.getAjdList(); // get adj. list
+	 
+	 for (AdjListNode node : L) { // go through all adjacent vertices
+	   int i = node.getIndex();
+	   if (!vertices[i].getVisited()) visit(vertices[i], v.getIndex()); // if current vertex hasn't been visited, continue the search from there
+	 }
+	 
+   }
+   
+   // carry out a df traversal
+   public void dfs() {
+   
+     for (Vertex v : vertices) v.setVisited(false); // initialise
+	 for (Vertex v : vertices) if (!v.getVisited()) visit(v, -1); // if vertex not visited, start search there
+   
+   }
+   ```
+   
+<a name="bfs"></a>
+
+###### Breadth-first search implementation
+
+```javascript
+for (Vertex v : vertices) v.setVisited(false); // initialise
+LinkedList<Vertex> queue = new LinkedList<>();
+for (Vertex v : vertices) {
+
+  if (!v.getVisited()) { // start search
+  
+    v.setVisited(true); // now visited
+	v.setPredecessor(-1); // v initial vertex
+	queue.add(v); // ready to be processed
+	
+	while (!queue.isEmpty()) {
+	
+	  Vertex u = queue.remove(); // get next vertex to process
+	  LinkedList<AdjListNode> list = u.getAdjList(); // get its adj. list
+	  
+	  for (AdjListNode node : list) { // go through its adj. list
+	  
+	    Vertex w = vertices[node.getVertexIndex()]; // next vertex in list
+		if (!w.getVisited()) {
+		  
+		  w.setVisited(true); // now visited
+		  w.setPredecessor(u.getIndex()); // set predecessor of w to be u
+		  queue.add(w); // add to queue
+		  
+		}
+	  
+	  }
+	
+	}
+  
+  }
+
+}
+```
+
+<a name="dijkstra"></a>
+
+###### Dijkstra's algorithm implementation
+
+```javascript
+// S is set of vertices for which shortest path from u is known
+// d(w) is length of a shortest path from u to w passing only through vertices of S
+S = {u}; // initialise S
+for (each vertex w) d(w) = wt(u, w); // initialise distances
+
+while (S != V) { // still vertices to add in S
+
+  find v not in S with d(v) minimum;
+  add v to S;
+  for (each w not in S and adjacent to v) d(w) = min{ d(w), d(v) + wt(v, w) }; // perfom relaxation
 
 }
 ```
