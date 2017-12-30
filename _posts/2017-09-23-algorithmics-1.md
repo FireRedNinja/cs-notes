@@ -6,6 +6,13 @@ categories: Level3 Semester1
 author: dasha
 ---
 
+##### Useful Textbooks
+
+* M.T. Goodrich & R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002
+* D. Harel & Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)
+* M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
+<!--excerpt-->
+
 ### Contents
 
 [Introduction](#section_0)  
@@ -21,13 +28,6 @@ author: dasha
 
 #### Introduction
 
-
-##### Useful Textbooks
-
-* M.T. Goodrich & R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002
-* D. Harel & Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)
-* M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
-<!--excerpt-->
 
 ##### Revision - Algorithm Analysis
 
