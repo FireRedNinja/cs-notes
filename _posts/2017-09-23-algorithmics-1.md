@@ -807,6 +807,264 @@ Dijkstra's algorithm [implementation](#dijkstra)
 
 #### NP Completeness
 
+* [Introduction](#np_intro_topic)
+* [NP-complete problems](#np_complete_topic)
+* [The classes P and NP](#classes_topic)
+* [Polynomial-time reductions](#poly_time_topic)
+* [Formal def. of NP-completeness](#np_def_topic)
+* [How to prove a problem is NP-complete](#prove_np_topic)
+
+<a name="np_intro_topic"></a>
+
+##### Introduction
+
+We have seen algorithms for a wide range of problems, all of which are polynomial-time: their worst cast complexity is O(n<sup>c</sup>) for some constant `c`
+
+
+Recall the Eulerian cycle problem: whether a graph has a cycle that traverses each **edge** exactly once  
+   Theorem: A connected undirected graph has an Eulerian cycle if and only if each vertex has even degree  
+   Therefore we can test and find such a cycle in a graph `G` in
+   
+* O(n<sup>2</sup>) time if `G` is represented with an adj. matrix
+* O(m + n) if it is represented with an adj. list (`m = |E|` and `n = |V|`)
+
+Recall the Hamiltonian cycle problem: whether a graph has a cycle that traverses each **vertex** exactly once  
+   It is similar to the Eulerian cycle problem, but a polynomial-time algorithm has **not** been found to solve it  
+   Its complexity is O(n<sup>2</sup> * n!) in the worst case  
+   No polynomial-time algorithm has been found to solve this  
+   Therefore this problem is **NP-complete**
+   
+* this is exponential (no better than O(b<sup>n</sup>) for some `b`)
+* and cannot be expressed as O(n<sup>c</sup>)
+
+**Polynomial vs exponential:**
+
+<img src="/cs-notes/assets/images/algs/poly_vs_exp.png" nopin="nopin" />
+
+Similar behaviour emerges in terms of computing power  
+   Basically, a thousand-fold increase in computing power would only add `6` to the size of the largest problem instance solvable in `1` hour, for an algorithm of 3<sup>n</sup> complexity
+
+
+A problem is **polynomial-time solvable** if it admits a polynomial-time algorithm
+
+<a name="np_complete_topic"></a>
+
+##### NP-completeness
+
+No polynomial-time algorithm is known for an NP-complete problem  
+   **However**, if one of them is solvable, then they all are
+
+No proof of intractability is known for an NP-complete problem  
+   **However**, if one of them is intractable, then they all are
+   
+**Causes of intractability:**
+
+1. polynomial time is not sufficient in order to discover a solution
+   * there are intractability proofs for this
+   * some problems are **undecidable** (no alg. could solve them)
+   * some decidable problems have been shown to be intractable
+2. solution itself is so large that exp. time is needed to output it
+   * eg problems of generating all cycles for a given graph
+   
+**Roadblock:**
+
+* two players A and B
+* network of roads, with intersections
+* each road is coloured black, blue or green
+* some intersections are marked "A wins" or "B wins"
+* a player has a fleet of cars located at intersections (one car per intersection)
+
+Player A begins, and then they take turns to
+
+* move a car of theirs on one or more roads of the same colour
+* a car may not overlap an intersection which already has a car
+
+The problem is deciding, for a given starting configuration, whether A can win, regardless of what moves B takes
+
+<img src="/cs-notes/assets/images/algs/roadblock.png" nopin="nopin" />
+
+So, `NP-complete problems` must be **equal** to one of: `Polynomial-time solvable problems` or `Intractable problems`, and **not equal** to the other
+   
+**Problems:**
+
+A problem is characterised by unspecified parameters  
+   A problem instance is created by giving these parameters values  
+   An example of a decision problem is the Hamiltonian cycle:  
+   
+* the answer is a "yes" or "no"
+* its instance if a graph `G`
+* every instance is either a "yes"-instance or a "no"-instance
+
+**Other NP-complete problems:**
+
+Travelling Salesman Decision Problem  
+   Instance: a set of `n` cities and integer distance `d(i, j)` between each pair of cities `i, j` and a target integer `K`  
+   Question: is there a permutation `P1P2...Pn-1Pn` of `1, 2,..., n` such that `d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) <= K`?
+   
+Clique Problem  
+   Instance: a graph `G` and target integer `K`  
+   Question: does `G` contain a clique of size `K`? (a set of `K` verices for which there is an edge between all pairs
+   
+Graph Colouring Problem  
+   Instance: a graph `G` and target integer `K`  
+   Question: can one of `K` colours be attached to each vertex of `G` so that adjacent vertices always have different colours?
+   
+<img src="/cs-notes/assets/images/algs/graph_colouring.png" nopin="nopin" />
+
+Satisfiability  
+   Instance: boolean expression `B` in **conjunctive normal form**  
+   CNF: `C1 ∧ C2 ∧ ... ∧ Cn` where each `Ci` is a **clause**  
+   Clause `C`: `L1 ∨ L2 ∨ ... ∨ Lm` where each `Lj` is a **literal**  
+   Literal `L`: a variable `x` or its negation `¬x`  
+   Question: is `B` satisfiable? (can values be assigned to the variables that make `B` true?)
+
+<img src="/cs-notes/assets/images/algs/satisfiability.png" nopin="nopin" />
+
+NP-completeness deals primarily with decision problems
+
+* corresponding to each instance of an optimisation or search problem
+* there is a family of instances of a decision problem obtainable by setting "target" values
+* an optimisation or search problem can be solved in poly. time if and only if the corresponding decision problem can
+
+<a name="classes_topic"></a>
+
+##### The classes P and NP
+
+**P:**
+
+* the class of all decision problems that can be solved in poly. time
+* often extended to include search and optimisation problems
+
+**NP:**
+
+* the class of decision problems solvable in **non-deterministic** polynomial time (a non-deterministic alg. can make non-deterministic choices, and hence is more powerful than a deterministic alg.)
+* P is contained within NP
+* there is no problem known to be in NP and known not to be in P
+
+**P vs NP:**
+
+A decision problem is NP if every "yes"-instance has a **short certificate**  
+   i.e. a structure that can be used to verify, in polynomial time, that it is a "yes"-instance  
+   No corresponding claim is made for "no"-instances
+   
+
+It is immediate that `P ⊆ NP`, but whether `P = NP` or `P ⊂ NP` is unknown  
+   Most believe that `P ≠ NP`  
+   But if so, there are problems that must lie in NP and not in P, and these are the NP-complete problems (the hardest, eg HC, TSDP, Graph Colouring etc)  
+   A poly. time alg. for any of these would imply that they are **all** in P
+   
+   
+**Non-deterministic algorithms:**
+
+* has an extra operation: non-deterministic choice
+* has many possible executions depending on values returned from the choice
+* it solves a decision problem `Π` if
+  * for a "yes"-instance `I` of `Π` there is **some** execution that returns "yes"
+  * for a "no"-instance `I` of `Π` there is **no** execution that returns "yes"
+* and solves a decision problem `Π` in poly. time if
+  * for every "yes"-instance `I` of `Π` there is **some** execution `E` that returns "yes", which uses a number of steps bounded by a polynomial in the input
+  
+A non-deterministic alg. can be viewed as
+
+* a guessing stage (non-deterministic)
+* a checking stage (deterministic and poly. time)
+
+Start ---> guess a "certificate" ---> verify the certificate ---> Stop  
+
+[Example](#non_deterministic) of a non-deterministic alg.
+
+
+<a name="poly_time_topic"></a>
+
+##### Polynomial-time reductions
+
+A mapping `f` from a decision problem `Π1` to a decision problem `Π2` such that
+
+* for every instance `I1` of `Π1` we have
+  * the instance `f(I1)` of `Π2` can be contructed in poly. time
+  * `f(I1)` is a "yes"-instance of `Π2` if and only if `I1` is a "yes"-instance of `Π1`
+* we write `Π1 ∝ Π2` as an abbreviation for: there is a polynomial-time reduction from `Π1` to `Π2`
+
+**Properties of polynomial-time reductions:**
+
+Transitivity: `Π1 ∝ Π2` and `Π2 ∝ Π3` implies that `Π1 ∝ Π3`
+
+Since `Π1 ∝ Π2` and `Π2 ∝ Π3` we have
+
+* a PTR `f` from `Π1` to `Π2`
+* a PTR `g` from `Π2` to `Π3`
+
+For any instance `I1` of `Π1`, since `f` is a PTR, we have
+
+* `I2 = f( I1 )` is an instance of `Π2` that can be constructed in poly. time
+* `I2` has the same answer as `I1`
+
+Since `g` is a PTR, we have
+
+* `I3 = g( I2 )` is an instance of `Π3` that can be constructed in poly. time
+* `I3` has the same answer as `I2`
+
+Putting the results together, for any instance `I1` of `Π1`
+
+* `I3 = g( f( I1 ) )` is an instance of `Π3` constructed in poly. time
+* `I3` has the same answer as `I1`
+* ie the composition of `f` and `g` is a PTR from `Π1` to `Π3`
+
+`Π1 ∝ Π2` and `Π2 Î P` implies that `Π1 Î P`
+
+* to solve an instance of `Π1`, reduce it to an instance of `Π2`
+* `Π1 ∝ Π2` means that `Π1` is no harder than `Π2`
+* i.e. if we can solve `Π2`, then we can solve `Π1` without much more effort
+
+For example, reducing the Hamiltonian cycle problem to the travelling salesman problem:  
+   HC instance: a graph G  
+   HC question: does G contain a cycle that visits each vertex exactly once?  
+     
+   TSDP instance: a set of `n` cities and integer distance `d(i, j)` between each pair of cities `i, j` and a target integer `K`  
+   TSDP question: is there a permutation `p` of `{1, 2,..., n}` such that `d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) <= K`?
+   
+* `G = (V, E)` is an instance of HC
+* construct TSP `f(G)` where
+  * cities = `V`
+  * `d(u, v) = 1` if `{u, v} Î E` and `0` otherwise
+  * `K = |V|`
+* `f(G)` can be constructed in poly. time
+* `f(G)` has a tour of length `<= |V|` if and only if `G` has a Hamiltonian cycle (cannot take any of the edges with weight 2)
+* therefore `TSDP Î P` implies that `HC Î P`
+* equivalently `HC Ï P`implies that `TSDP Ï P`
+
+<img src="/cs-notes/assets/images/algs/hc_to_tsdp.png" nopin="nopin" />
+
+
+<a name="np_def_topic"></a>
+
+##### Definition
+
+A decision problem `Π` is NP-complete if
+
+* `Π Î NP`
+* `Π’` is polynomial-time reducable to `Π` (`Π’∝Π` for every problem `Π’` in NP)
+
+So if `Π` is NP-complete and `Π Î P` then P = NP  
+   Every problem in NP can be solved in polynomial time by reduction to `Π`  
+   Supposing P ≠ NP, if `Π` is NP-complete, then `Π Ï P`
+
+<img src="/cs-notes/assets/images/algs/np_structure.png" nopin="nopin" />
+
+<a name="prove_np_topic"></a>
+
+##### Proving NP-completeness
+
+It is not feasible to describe a reduction from **every** problem in NP  
+   However, suppose we knew just one NP-complete problem `Π1`
+   
+To prove `Π2` is NP-complete, it is enough to show
+
+* `Π2` is in NP
+* there exists a polynomial-time reduction from `Π1` to `Π2` (`Π1 ∝ Π2`)
+
+Correctness of the approach:
+
 
 <a name="section_6"></a>
 
@@ -1399,6 +1657,23 @@ while (S != V) { // still vertices to add in S
   find v not in S with d(v) minimum;
   add v to S;
   for (each w not in S and adjacent to v) d(w) = min{ d(w), d(v) + wt(v, w) }; // perfom relaxation
+
+}
+```
+
+<a name="non_deterministic"></a>
+
+###### Graph colouring - example of a non-deterministic alg.
+
+```javascript
+// return true if graph g is k-colourable
+boolean nDGC(Graph g, int k) {
+
+  for (each vertex v : g) v.setColour(nonDeterministicChoice(k)); // guess a colour for each vertex
+  
+  for (each edge {u,v} : g)
+    if (u.getColour() == v.getColour()) return false; // verify the colouring
+  return true;
 
 }
 ```

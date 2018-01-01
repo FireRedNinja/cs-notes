@@ -59,7 +59,16 @@
         <!-- <h1 class="post-title">Algorithmics 1</h1> -->
 
         <section class="post-content">
-            <h3 id="contents">Contents</h3>
+            <h5 id="useful-textbooks">Useful Textbooks</h5>
+
+<ul>
+  <li>M.T. Goodrich &amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002</li>
+  <li>D. Harel &amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)</li>
+  <li>M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
+<!--excerpt--></li>
+</ul>
+
+<h3 id="contents">Contents</h3>
 
 <p><a href="#section_0">Introduction</a><br />
    <a href="#section_1">Fundamental Algorithms and Data Structures</a><br />
@@ -72,15 +81,6 @@
 <p><a name="section_0"></a></p>
 
 <h4 id="introduction">Introduction</h4>
-
-<h5 id="useful-textbooks">Useful Textbooks</h5>
-
-<ul>
-  <li>M.T. Goodrich &amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002</li>
-  <li>D. Harel &amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)</li>
-  <li>M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
-<!--excerpt--></li>
-</ul>
 
 <h5 id="revision---algorithm-analysis">Revision - Algorithm Analysis</h5>
 
@@ -1058,6 +1058,318 @@ impose heap property on bad value now in root</code><br />
 
 <h4 id="np-completeness">NP Completeness</h4>
 
+<ul>
+  <li><a href="#np_intro_topic">Introduction</a></li>
+  <li><a href="#np_complete_topic">NP-complete problems</a></li>
+  <li><a href="#classes_topic">The classes P and NP</a></li>
+  <li><a href="#poly_time_topic">Polynomial-time reductions</a></li>
+  <li><a href="#np_def_topic">Formal def. of NP-completeness</a></li>
+  <li><a href="#prove_np_topic">How to prove a problem is NP-complete</a></li>
+</ul>
+
+<p><a name="np_intro_topic"></a></p>
+
+<h5 id="introduction-1">Introduction</h5>
+
+<p>We have seen algorithms for a wide range of problems, all of which are polynomial-time: their worst cast complexity is O(n<sup>c</sup>) for some constant <code class="highlighter-rouge">c</code></p>
+
+<p>Recall the Eulerian cycle problem: whether a graph has a cycle that traverses each <strong>edge</strong> exactly once<br />
+   Theorem: A connected undirected graph has an Eulerian cycle if and only if each vertex has even degree<br />
+   Therefore we can test and find such a cycle in a graph <code class="highlighter-rouge">G</code> in</p>
+
+<ul>
+  <li>O(n<sup>2</sup>) time if <code class="highlighter-rouge">G</code> is represented with an adj. matrix</li>
+  <li>O(m + n) if it is represented with an adj. list (<code class="highlighter-rouge">m = |E|</code> and <code class="highlighter-rouge">n = |V|</code>)</li>
+</ul>
+
+<p>Recall the Hamiltonian cycle problem: whether a graph has a cycle that traverses each <strong>vertex</strong> exactly once<br />
+   It is similar to the Eulerian cycle problem, but a polynomial-time algorithm has <strong>not</strong> been found to solve it<br />
+   Its complexity is O(n<sup>2</sup> * n!) in the worst case<br />
+   No polynomial-time algorithm has been found to solve this<br />
+   Therefore this problem is <strong>NP-complete</strong></p>
+
+<ul>
+  <li>this is exponential (no better than O(b<sup>n</sup>) for some <code class="highlighter-rouge">b</code>)</li>
+  <li>and cannot be expressed as O(n<sup>c</sup>)</li>
+</ul>
+
+<p><strong>Polynomial vs exponential:</strong></p>
+
+<p><img src="/cs-notes/assets/images/algs/poly_vs_exp.png" nopin="nopin" /></p>
+
+<p>Similar behaviour emerges in terms of computing power<br />
+   Basically, a thousand-fold increase in computing power would only add <code class="highlighter-rouge">6</code> to the size of the largest problem instance solvable in <code class="highlighter-rouge">1</code> hour, for an algorithm of 3<sup>n</sup> complexity</p>
+
+<p>A problem is <strong>polynomial-time solvable</strong> if it admits a polynomial-time algorithm</p>
+
+<p><a name="np_complete_topic"></a></p>
+
+<h5 id="np-completeness-1">NP-completeness</h5>
+
+<p>No polynomial-time algorithm is known for an NP-complete problem<br />
+   <strong>However</strong>, if one of them is solvable, then they all are</p>
+
+<p>No proof of intractability is known for an NP-complete problem<br />
+   <strong>However</strong>, if one of them is intractable, then they all are</p>
+
+<p><strong>Causes of intractability:</strong></p>
+
+<ol>
+  <li>polynomial time is not sufficient in order to discover a solution
+    <ul>
+      <li>there are intractability proofs for this</li>
+      <li>some problems are <strong>undecidable</strong> (no alg. could solve them)</li>
+      <li>some decidable problems have been shown to be intractable</li>
+    </ul>
+  </li>
+  <li>solution itself is so large that exp. time is needed to output it
+    <ul>
+      <li>eg problems of generating all cycles for a given graph</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Roadblock:</strong></p>
+
+<ul>
+  <li>two players A and B</li>
+  <li>network of roads, with intersections</li>
+  <li>each road is coloured black, blue or green</li>
+  <li>some intersections are marked “A wins” or “B wins”</li>
+  <li>a player has a fleet of cars located at intersections (one car per intersection)</li>
+</ul>
+
+<p>Player A begins, and then they take turns to</p>
+
+<ul>
+  <li>move a car of theirs on one or more roads of the same colour</li>
+  <li>a car may not overlap an intersection which already has a car</li>
+</ul>
+
+<p>The problem is deciding, for a given starting configuration, whether A can win, regardless of what moves B takes</p>
+
+<p><img src="/cs-notes/assets/images/algs/roadblock.png" nopin="nopin" /></p>
+
+<p>So, <code class="highlighter-rouge">NP-complete problems</code> must be <strong>equal</strong> to one of: <code class="highlighter-rouge">Polynomial-time solvable problems</code> or <code class="highlighter-rouge">Intractable problems</code>, and <strong>not equal</strong> to the other</p>
+
+<p><strong>Problems:</strong></p>
+
+<p>A problem is characterised by unspecified parameters<br />
+   A problem instance is created by giving these parameters values<br />
+   An example of a decision problem is the Hamiltonian cycle:</p>
+
+<ul>
+  <li>the answer is a “yes” or “no”</li>
+  <li>its instance if a graph <code class="highlighter-rouge">G</code></li>
+  <li>every instance is either a “yes”-instance or a “no”-instance</li>
+</ul>
+
+<p><strong>Other NP-complete problems:</strong></p>
+
+<p>Travelling Salesman Decision Problem<br />
+   Instance: a set of <code class="highlighter-rouge">n</code> cities and integer distance <code class="highlighter-rouge">d(i, j)</code> between each pair of cities <code class="highlighter-rouge">i, j</code> and a target integer <code class="highlighter-rouge">K</code><br />
+   Question: is there a permutation <code class="highlighter-rouge">P1P2...Pn-1Pn</code> of <code class="highlighter-rouge">1, 2,..., n</code> such that <code class="highlighter-rouge">d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) &lt;= K</code>?</p>
+
+<p>Clique Problem<br />
+   Instance: a graph <code class="highlighter-rouge">G</code> and target integer <code class="highlighter-rouge">K</code><br />
+   Question: does <code class="highlighter-rouge">G</code> contain a clique of size <code class="highlighter-rouge">K</code>? (a set of <code class="highlighter-rouge">K</code> verices for which there is an edge between all pairs</p>
+
+<p>Graph Colouring Problem<br />
+   Instance: a graph <code class="highlighter-rouge">G</code> and target integer <code class="highlighter-rouge">K</code><br />
+   Question: can one of <code class="highlighter-rouge">K</code> colours be attached to each vertex of <code class="highlighter-rouge">G</code> so that adjacent vertices always have different colours?</p>
+
+<p><img src="/cs-notes/assets/images/algs/graph_colouring.png" nopin="nopin" /></p>
+
+<p>Satisfiability<br />
+   Instance: boolean expression <code class="highlighter-rouge">B</code> in <strong>conjunctive normal form</strong><br />
+   CNF: <code class="highlighter-rouge">C1 ∧ C2 ∧ ... ∧ Cn</code> where each <code class="highlighter-rouge">Ci</code> is a <strong>clause</strong><br />
+   Clause <code class="highlighter-rouge">C</code>: <code class="highlighter-rouge">L1 ∨ L2 ∨ ... ∨ Lm</code> where each <code class="highlighter-rouge">Lj</code> is a <strong>literal</strong><br />
+   Literal <code class="highlighter-rouge">L</code>: a variable <code class="highlighter-rouge">x</code> or its negation <code class="highlighter-rouge">¬x</code><br />
+   Question: is <code class="highlighter-rouge">B</code> satisfiable? (can values be assigned to the variables that make <code class="highlighter-rouge">B</code> true?)</p>
+
+<p><img src="/cs-notes/assets/images/algs/satisfiability.png" nopin="nopin" /></p>
+
+<p>NP-completeness deals primarily with decision problems</p>
+
+<ul>
+  <li>corresponding to each instance of an optimisation or search problem</li>
+  <li>there is a family of instances of a decision problem obtainable by setting “target” values</li>
+  <li>an optimisation or search problem can be solved in poly. time if and only if the corresponding decision problem can</li>
+</ul>
+
+<p><a name="classes_topic"></a></p>
+
+<h5 id="the-classes-p-and-np">The classes P and NP</h5>
+
+<p><strong>P:</strong></p>
+
+<ul>
+  <li>the class of all decision problems that can be solved in poly. time</li>
+  <li>often extended to include search and optimisation problems</li>
+</ul>
+
+<p><strong>NP:</strong></p>
+
+<ul>
+  <li>the class of decision problems solvable in <strong>non-deterministic</strong> polynomial time (a non-deterministic alg. can make non-deterministic choices, and hence is more powerful than a deterministic alg.)</li>
+  <li>P is contained within NP</li>
+  <li>there is no problem known to be in NP and known not to be in P</li>
+</ul>
+
+<p><strong>P vs NP:</strong></p>
+
+<p>A decision problem is NP if every “yes”-instance has a <strong>short certificate</strong><br />
+   i.e. a structure that can be used to verify, in polynomial time, that it is a “yes”-instance<br />
+   No corresponding claim is made for “no”-instances</p>
+
+<p>It is immediate that <code class="highlighter-rouge">P ⊆ NP</code>, but whether <code class="highlighter-rouge">P = NP</code> or <code class="highlighter-rouge">P ⊂ NP</code> is unknown<br />
+   Most believe that <code class="highlighter-rouge">P ≠ NP</code><br />
+   But if so, there are problems that must lie in NP and not in P, and these are the NP-complete problems (the hardest, eg HC, TSDP, Graph Colouring etc)<br />
+   A poly. time alg. for any of these would imply that they are <strong>all</strong> in P</p>
+
+<p><strong>Non-deterministic algorithms:</strong></p>
+
+<ul>
+  <li>has an extra operation: non-deterministic choice</li>
+  <li>has many possible executions depending on values returned from the choice</li>
+  <li>it solves a decision problem <code class="highlighter-rouge">Π</code> if
+    <ul>
+      <li>for a “yes”-instance <code class="highlighter-rouge">I</code> of <code class="highlighter-rouge">Π</code> there is <strong>some</strong> execution that returns “yes”</li>
+      <li>for a “no”-instance <code class="highlighter-rouge">I</code> of <code class="highlighter-rouge">Π</code> there is <strong>no</strong> execution that returns “yes”</li>
+    </ul>
+  </li>
+  <li>and solves a decision problem <code class="highlighter-rouge">Π</code> in poly. time if
+    <ul>
+      <li>for every “yes”-instance <code class="highlighter-rouge">I</code> of <code class="highlighter-rouge">Π</code> there is <strong>some</strong> execution <code class="highlighter-rouge">E</code> that returns “yes”, which uses a number of steps bounded by a polynomial in the input</li>
+    </ul>
+  </li>
+</ul>
+
+<p>A non-deterministic alg. can be viewed as</p>
+
+<ul>
+  <li>a guessing stage (non-deterministic)</li>
+  <li>a checking stage (deterministic and poly. time)</li>
+</ul>
+
+<p>Start —&gt; guess a “certificate” —&gt; verify the certificate —&gt; Stop</p>
+
+<p><a href="#non_deterministic">Example</a> of a non-deterministic alg.</p>
+
+<p><a name="poly_time_topic"></a></p>
+
+<h5 id="polynomial-time-reductions">Polynomial-time reductions</h5>
+
+<p>A mapping <code class="highlighter-rouge">f</code> from a decision problem <code class="highlighter-rouge">Π1</code> to a decision problem <code class="highlighter-rouge">Π2</code> such that</p>
+
+<ul>
+  <li>for every instance <code class="highlighter-rouge">I1</code> of <code class="highlighter-rouge">Π1</code> we have
+    <ul>
+      <li>the instance <code class="highlighter-rouge">f(I1)</code> of <code class="highlighter-rouge">Π2</code> can be contructed in poly. time</li>
+      <li><code class="highlighter-rouge">f(I1)</code> is a “yes”-instance of <code class="highlighter-rouge">Π2</code> if and only if <code class="highlighter-rouge">I1</code> is a “yes”-instance of <code class="highlighter-rouge">Π1</code></li>
+    </ul>
+  </li>
+  <li>we write <code class="highlighter-rouge">Π1 ∝ Π2</code> as an abbreviation for: there is a polynomial-time reduction from <code class="highlighter-rouge">Π1</code> to <code class="highlighter-rouge">Π2</code></li>
+</ul>
+
+<p><strong>Properties of polynomial-time reductions:</strong></p>
+
+<p>Transitivity: <code class="highlighter-rouge">Π1 ∝ Π2</code> and <code class="highlighter-rouge">Π2 ∝ Π3</code> implies that <code class="highlighter-rouge">Π1 ∝ Π3</code></p>
+
+<p>Since <code class="highlighter-rouge">Π1 ∝ Π2</code> and <code class="highlighter-rouge">Π2 ∝ Π3</code> we have</p>
+
+<ul>
+  <li>a PTR <code class="highlighter-rouge">f</code> from <code class="highlighter-rouge">Π1</code> to <code class="highlighter-rouge">Π2</code></li>
+  <li>a PTR <code class="highlighter-rouge">g</code> from <code class="highlighter-rouge">Π2</code> to <code class="highlighter-rouge">Π3</code></li>
+</ul>
+
+<p>For any instance <code class="highlighter-rouge">I1</code> of <code class="highlighter-rouge">Π1</code>, since <code class="highlighter-rouge">f</code> is a PTR, we have</p>
+
+<ul>
+  <li><code class="highlighter-rouge">I2 = f( I1 )</code> is an instance of <code class="highlighter-rouge">Π2</code> that can be constructed in poly. time</li>
+  <li><code class="highlighter-rouge">I2</code> has the same answer as <code class="highlighter-rouge">I1</code></li>
+</ul>
+
+<p>Since <code class="highlighter-rouge">g</code> is a PTR, we have</p>
+
+<ul>
+  <li><code class="highlighter-rouge">I3 = g( I2 )</code> is an instance of <code class="highlighter-rouge">Π3</code> that can be constructed in poly. time</li>
+  <li><code class="highlighter-rouge">I3</code> has the same answer as <code class="highlighter-rouge">I2</code></li>
+</ul>
+
+<p>Putting the results together, for any instance <code class="highlighter-rouge">I1</code> of <code class="highlighter-rouge">Π1</code></p>
+
+<ul>
+  <li><code class="highlighter-rouge">I3 = g( f( I1 ) )</code> is an instance of <code class="highlighter-rouge">Π3</code> constructed in poly. time</li>
+  <li><code class="highlighter-rouge">I3</code> has the same answer as <code class="highlighter-rouge">I1</code></li>
+  <li>ie the composition of <code class="highlighter-rouge">f</code> and <code class="highlighter-rouge">g</code> is a PTR from <code class="highlighter-rouge">Π1</code> to <code class="highlighter-rouge">Π3</code></li>
+</ul>
+
+<p><code class="highlighter-rouge">Π1 ∝ Π2</code> and <code class="highlighter-rouge">Π2 Î P</code> implies that <code class="highlighter-rouge">Π1 Î P</code></p>
+
+<ul>
+  <li>to solve an instance of <code class="highlighter-rouge">Π1</code>, reduce it to an instance of <code class="highlighter-rouge">Π2</code></li>
+  <li><code class="highlighter-rouge">Π1 ∝ Π2</code> means that <code class="highlighter-rouge">Π1</code> is no harder than <code class="highlighter-rouge">Π2</code></li>
+  <li>i.e. if we can solve <code class="highlighter-rouge">Π2</code>, then we can solve <code class="highlighter-rouge">Π1</code> without much more effort</li>
+</ul>
+
+<p>For example, reducing the Hamiltonian cycle problem to the travelling salesman problem:<br />
+   HC instance: a graph G<br />
+   HC question: does G contain a cycle that visits each vertex exactly once?</p>
+
+<p>TSDP instance: a set of <code class="highlighter-rouge">n</code> cities and integer distance <code class="highlighter-rouge">d(i, j)</code> between each pair of cities <code class="highlighter-rouge">i, j</code> and a target integer <code class="highlighter-rouge">K</code><br />
+   TSDP question: is there a permutation <code class="highlighter-rouge">p</code> of <code class="highlighter-rouge"><span class="p">{</span><span class="err">1,</span><span class="w"> </span><span class="err">2,...,</span><span class="w"> </span><span class="err">n</span><span class="p">}</span></code> such that <code class="highlighter-rouge">d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) &lt;= K</code>?</p>
+
+<ul>
+  <li><code class="highlighter-rouge">G = (V, E)</code> is an instance of HC</li>
+  <li>construct TSP <code class="highlighter-rouge">f(G)</code> where
+    <ul>
+      <li>cities = <code class="highlighter-rouge">V</code></li>
+      <li><code class="highlighter-rouge">d(u, v) = 1</code> if <code class="highlighter-rouge"><span class="p">{</span><span class="err">u,</span><span class="w"> </span><span class="err">v</span><span class="p">}</span><span class="w"> </span><span class="err">Î</span><span class="w"> </span><span class="err">E</span></code> and <code class="highlighter-rouge">0</code> otherwise</li>
+      <li><code class="highlighter-rouge">K = |V|</code></li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">f(G)</code> can be constructed in poly. time</li>
+  <li><code class="highlighter-rouge">f(G)</code> has a tour of length <code class="highlighter-rouge">&lt;= |V|</code> if and only if <code class="highlighter-rouge">G</code> has a Hamiltonian cycle (cannot take any of the edges with weight 2)</li>
+  <li>therefore <code class="highlighter-rouge">TSDP Î P</code> implies that <code class="highlighter-rouge">HC Î P</code></li>
+  <li>equivalently <code class="highlighter-rouge">HC Ï P</code>implies that <code class="highlighter-rouge">TSDP Ï P</code></li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/algs/hc_to_tsdp.png" nopin="nopin" /></p>
+
+<p><a name="np_def_topic"></a></p>
+
+<h5 id="definition">Definition</h5>
+
+<p>A decision problem <code class="highlighter-rouge">Π</code> is NP-complete if</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Π Î NP</code></li>
+  <li><code class="highlighter-rouge">Π’</code> is polynomial-time reducable to <code class="highlighter-rouge">Π</code> (<code class="highlighter-rouge">Π’∝Π</code> for every problem <code class="highlighter-rouge">Π’</code> in NP)</li>
+</ul>
+
+<p>So if <code class="highlighter-rouge">Π</code> is NP-complete and <code class="highlighter-rouge">Π Î P</code> then P = NP<br />
+   Every problem in NP can be solved in polynomial time by reduction to <code class="highlighter-rouge">Π</code><br />
+   Supposing P ≠ NP, if <code class="highlighter-rouge">Π</code> is NP-complete, then <code class="highlighter-rouge">Π Ï P</code></p>
+
+<p><img src="/cs-notes/assets/images/algs/np_structure.png" nopin="nopin" /></p>
+
+<p><a name="prove_np_topic"></a></p>
+
+<h5 id="proving-np-completeness">Proving NP-completeness</h5>
+
+<p>It is not feasible to describe a reduction from <strong>every</strong> problem in NP<br />
+   However, suppose we knew just one NP-complete problem <code class="highlighter-rouge">Π1</code></p>
+
+<p>To prove <code class="highlighter-rouge">Π2</code> is NP-complete, it is enough to show</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Π2</code> is in NP</li>
+  <li>there exists a polynomial-time reduction from <code class="highlighter-rouge">Π1</code> to <code class="highlighter-rouge">Π2</code> (<code class="highlighter-rouge">Π1 ∝ Π2</code>)</li>
+</ul>
+
+<p>Correctness of the approach:</p>
+
 <p><a name="section_6"></a></p>
 
 <h4 id="computability">Computability</h4>
@@ -1656,6 +1968,23 @@ impose heap property on bad value now in root</code><br />
 </code></pre>
 </div>
 
+<p><a name="non_deterministic"></a></p>
+
+<h6 id="graph-colouring---example-of-a-non-deterministic-alg">Graph colouring - example of a non-deterministic alg.</h6>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return true if graph g is k-colourable</span>
+<span class="kr">boolean</span> <span class="nx">nDGC</span><span class="p">(</span><span class="nx">Graph</span> <span class="nx">g</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">g</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setColour</span><span class="p">(</span><span class="nx">nonDeterministicChoice</span><span class="p">(</span><span class="nx">k</span><span class="p">));</span> <span class="c1">// guess a colour for each vertex</span>
+  
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">edge</span> <span class="p">{</span><span class="nx">u</span><span class="p">,</span><span class="nx">v</span><span class="p">}</span> <span class="err">:</span> <span class="nx">g</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">getColour</span><span class="p">()</span> <span class="o">==</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getColour</span><span class="p">())</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// verify the colouring</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
         </section>
 
         
@@ -1707,7 +2036,7 @@ impose heap property on bad value now in root</code><br />
     <footer class="site-footer clearfix">
       <section class="copyright">
         <a href="/cs-notes">Computer Science Notes</a> &copy; 
-              2017 &bull; All rights reserved.
+              2018 &bull; All rights reserved.
       </section>
       <section class="poweredby">Made with Jekyll using 
         <a href="http://github.com/rosario/kasper">Kasper theme</a>

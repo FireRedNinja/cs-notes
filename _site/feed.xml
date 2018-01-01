@@ -5,13 +5,22 @@
     <description>My notes on CS Level 3</description>
     <link>http://localhost:4000/cs-notes/</link>
     <atom:link href="http://localhost:4000/cs-notes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 30 Dec 2017 02:03:11 +0000</pubDate>
-    <lastBuildDate>Sat, 30 Dec 2017 02:03:11 +0000</lastBuildDate>
+    <pubDate>Mon, 01 Jan 2018 19:28:52 +0000</pubDate>
+    <lastBuildDate>Mon, 01 Jan 2018 19:28:52 +0000</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>Algorithmics 1</title>
-        <description>&lt;h3 id=&quot;contents&quot;&gt;Contents&lt;/h3&gt;
+        <description>&lt;h5 id=&quot;useful-textbooks&quot;&gt;Useful Textbooks&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;M.T. Goodrich &amp;amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002&lt;/li&gt;
+  &lt;li&gt;D. Harel &amp;amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)&lt;/li&gt;
+  &lt;li&gt;M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
+&lt;!--excerpt--&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;contents&quot;&gt;Contents&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;#section_0&quot;&gt;Introduction&lt;/a&gt;&lt;br /&gt;
    &lt;a href=&quot;#section_1&quot;&gt;Fundamental Algorithms and Data Structures&lt;/a&gt;&lt;br /&gt;
@@ -24,15 +33,6 @@
 &lt;p&gt;&lt;a name=&quot;section_0&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;introduction&quot;&gt;Introduction&lt;/h4&gt;
-
-&lt;h5 id=&quot;useful-textbooks&quot;&gt;Useful Textbooks&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;M.T. Goodrich &amp;amp; R. Tamassia, Algorithm Design: Foundations, Analysis, and Internet Examples, Wiley, 2002&lt;/li&gt;
-  &lt;li&gt;D. Harel &amp;amp; Y. Feldman, Algorithmics: the Spirit of Computing, Addison Wesley, 2004 (also earlier 1992 edition by D. Harel)&lt;/li&gt;
-  &lt;li&gt;M. Sipser, Introduction to the Theory of Computation, Course Technology, 2006
-&lt;!--excerpt--&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;h5 id=&quot;revision---algorithm-analysis&quot;&gt;Revision - Algorithm Analysis&lt;/h5&gt;
 
@@ -1010,6 +1010,318 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
 
 &lt;h4 id=&quot;np-completeness&quot;&gt;NP Completeness&lt;/h4&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#np_intro_topic&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#np_complete_topic&quot;&gt;NP-complete problems&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#classes_topic&quot;&gt;The classes P and NP&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#poly_time_topic&quot;&gt;Polynomial-time reductions&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#np_def_topic&quot;&gt;Formal def. of NP-completeness&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prove_np_topic&quot;&gt;How to prove a problem is NP-complete&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;np_intro_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;introduction-1&quot;&gt;Introduction&lt;/h5&gt;
+
+&lt;p&gt;We have seen algorithms for a wide range of problems, all of which are polynomial-time: their worst cast complexity is O(n&lt;sup&gt;c&lt;/sup&gt;) for some constant &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Recall the Eulerian cycle problem: whether a graph has a cycle that traverses each &lt;strong&gt;edge&lt;/strong&gt; exactly once&lt;br /&gt;
+   Theorem: A connected undirected graph has an Eulerian cycle if and only if each vertex has even degree&lt;br /&gt;
+   Therefore we can test and find such a cycle in a graph &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt; in&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;O(n&lt;sup&gt;2&lt;/sup&gt;) time if &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt; is represented with an adj. matrix&lt;/li&gt;
+  &lt;li&gt;O(m + n) if it is represented with an adj. list (&lt;code class=&quot;highlighter-rouge&quot;&gt;m = |E|&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;n = |V|&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Recall the Hamiltonian cycle problem: whether a graph has a cycle that traverses each &lt;strong&gt;vertex&lt;/strong&gt; exactly once&lt;br /&gt;
+   It is similar to the Eulerian cycle problem, but a polynomial-time algorithm has &lt;strong&gt;not&lt;/strong&gt; been found to solve it&lt;br /&gt;
+   Its complexity is O(n&lt;sup&gt;2&lt;/sup&gt; * n!) in the worst case&lt;br /&gt;
+   No polynomial-time algorithm has been found to solve this&lt;br /&gt;
+   Therefore this problem is &lt;strong&gt;NP-complete&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;this is exponential (no better than O(b&lt;sup&gt;n&lt;/sup&gt;) for some &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;and cannot be expressed as O(n&lt;sup&gt;c&lt;/sup&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Polynomial vs exponential:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/poly_vs_exp.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Similar behaviour emerges in terms of computing power&lt;br /&gt;
+   Basically, a thousand-fold increase in computing power would only add &lt;code class=&quot;highlighter-rouge&quot;&gt;6&lt;/code&gt; to the size of the largest problem instance solvable in &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; hour, for an algorithm of 3&lt;sup&gt;n&lt;/sup&gt; complexity&lt;/p&gt;
+
+&lt;p&gt;A problem is &lt;strong&gt;polynomial-time solvable&lt;/strong&gt; if it admits a polynomial-time algorithm&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;np_complete_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;np-completeness-1&quot;&gt;NP-completeness&lt;/h5&gt;
+
+&lt;p&gt;No polynomial-time algorithm is known for an NP-complete problem&lt;br /&gt;
+   &lt;strong&gt;However&lt;/strong&gt;, if one of them is solvable, then they all are&lt;/p&gt;
+
+&lt;p&gt;No proof of intractability is known for an NP-complete problem&lt;br /&gt;
+   &lt;strong&gt;However&lt;/strong&gt;, if one of them is intractable, then they all are&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Causes of intractability:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;polynomial time is not sufficient in order to discover a solution
+    &lt;ul&gt;
+      &lt;li&gt;there are intractability proofs for this&lt;/li&gt;
+      &lt;li&gt;some problems are &lt;strong&gt;undecidable&lt;/strong&gt; (no alg. could solve them)&lt;/li&gt;
+      &lt;li&gt;some decidable problems have been shown to be intractable&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;solution itself is so large that exp. time is needed to output it
+    &lt;ul&gt;
+      &lt;li&gt;eg problems of generating all cycles for a given graph&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Roadblock:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;two players A and B&lt;/li&gt;
+  &lt;li&gt;network of roads, with intersections&lt;/li&gt;
+  &lt;li&gt;each road is coloured black, blue or green&lt;/li&gt;
+  &lt;li&gt;some intersections are marked “A wins” or “B wins”&lt;/li&gt;
+  &lt;li&gt;a player has a fleet of cars located at intersections (one car per intersection)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Player A begins, and then they take turns to&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;move a car of theirs on one or more roads of the same colour&lt;/li&gt;
+  &lt;li&gt;a car may not overlap an intersection which already has a car&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The problem is deciding, for a given starting configuration, whether A can win, regardless of what moves B takes&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/roadblock.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, &lt;code class=&quot;highlighter-rouge&quot;&gt;NP-complete problems&lt;/code&gt; must be &lt;strong&gt;equal&lt;/strong&gt; to one of: &lt;code class=&quot;highlighter-rouge&quot;&gt;Polynomial-time solvable problems&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;Intractable problems&lt;/code&gt;, and &lt;strong&gt;not equal&lt;/strong&gt; to the other&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Problems:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A problem is characterised by unspecified parameters&lt;br /&gt;
+   A problem instance is created by giving these parameters values&lt;br /&gt;
+   An example of a decision problem is the Hamiltonian cycle:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the answer is a “yes” or “no”&lt;/li&gt;
+  &lt;li&gt;its instance if a graph &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;every instance is either a “yes”-instance or a “no”-instance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Other NP-complete problems:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Travelling Salesman Decision Problem&lt;br /&gt;
+   Instance: a set of &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; cities and integer distance &lt;code class=&quot;highlighter-rouge&quot;&gt;d(i, j)&lt;/code&gt; between each pair of cities &lt;code class=&quot;highlighter-rouge&quot;&gt;i, j&lt;/code&gt; and a target integer &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt;&lt;br /&gt;
+   Question: is there a permutation &lt;code class=&quot;highlighter-rouge&quot;&gt;P1P2...Pn-1Pn&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;1, 2,..., n&lt;/code&gt; such that &lt;code class=&quot;highlighter-rouge&quot;&gt;d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) &amp;lt;= K&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;Clique Problem&lt;br /&gt;
+   Instance: a graph &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt; and target integer &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt;&lt;br /&gt;
+   Question: does &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt; contain a clique of size &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt;? (a set of &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt; verices for which there is an edge between all pairs&lt;/p&gt;
+
+&lt;p&gt;Graph Colouring Problem&lt;br /&gt;
+   Instance: a graph &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt; and target integer &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt;&lt;br /&gt;
+   Question: can one of &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt; colours be attached to each vertex of &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt; so that adjacent vertices always have different colours?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/graph_colouring.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Satisfiability&lt;br /&gt;
+   Instance: boolean expression &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt; in &lt;strong&gt;conjunctive normal form&lt;/strong&gt;&lt;br /&gt;
+   CNF: &lt;code class=&quot;highlighter-rouge&quot;&gt;C1 ∧ C2 ∧ ... ∧ Cn&lt;/code&gt; where each &lt;code class=&quot;highlighter-rouge&quot;&gt;Ci&lt;/code&gt; is a &lt;strong&gt;clause&lt;/strong&gt;&lt;br /&gt;
+   Clause &lt;code class=&quot;highlighter-rouge&quot;&gt;C&lt;/code&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;L1 ∨ L2 ∨ ... ∨ Lm&lt;/code&gt; where each &lt;code class=&quot;highlighter-rouge&quot;&gt;Lj&lt;/code&gt; is a &lt;strong&gt;literal&lt;/strong&gt;&lt;br /&gt;
+   Literal &lt;code class=&quot;highlighter-rouge&quot;&gt;L&lt;/code&gt;: a variable &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; or its negation &lt;code class=&quot;highlighter-rouge&quot;&gt;¬x&lt;/code&gt;&lt;br /&gt;
+   Question: is &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt; satisfiable? (can values be assigned to the variables that make &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt; true?)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/satisfiability.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;NP-completeness deals primarily with decision problems&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;corresponding to each instance of an optimisation or search problem&lt;/li&gt;
+  &lt;li&gt;there is a family of instances of a decision problem obtainable by setting “target” values&lt;/li&gt;
+  &lt;li&gt;an optimisation or search problem can be solved in poly. time if and only if the corresponding decision problem can&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;classes_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;the-classes-p-and-np&quot;&gt;The classes P and NP&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;P:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the class of all decision problems that can be solved in poly. time&lt;/li&gt;
+  &lt;li&gt;often extended to include search and optimisation problems&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;NP:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the class of decision problems solvable in &lt;strong&gt;non-deterministic&lt;/strong&gt; polynomial time (a non-deterministic alg. can make non-deterministic choices, and hence is more powerful than a deterministic alg.)&lt;/li&gt;
+  &lt;li&gt;P is contained within NP&lt;/li&gt;
+  &lt;li&gt;there is no problem known to be in NP and known not to be in P&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;P vs NP:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A decision problem is NP if every “yes”-instance has a &lt;strong&gt;short certificate&lt;/strong&gt;&lt;br /&gt;
+   i.e. a structure that can be used to verify, in polynomial time, that it is a “yes”-instance&lt;br /&gt;
+   No corresponding claim is made for “no”-instances&lt;/p&gt;
+
+&lt;p&gt;It is immediate that &lt;code class=&quot;highlighter-rouge&quot;&gt;P ⊆ NP&lt;/code&gt;, but whether &lt;code class=&quot;highlighter-rouge&quot;&gt;P = NP&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;P ⊂ NP&lt;/code&gt; is unknown&lt;br /&gt;
+   Most believe that &lt;code class=&quot;highlighter-rouge&quot;&gt;P ≠ NP&lt;/code&gt;&lt;br /&gt;
+   But if so, there are problems that must lie in NP and not in P, and these are the NP-complete problems (the hardest, eg HC, TSDP, Graph Colouring etc)&lt;br /&gt;
+   A poly. time alg. for any of these would imply that they are &lt;strong&gt;all&lt;/strong&gt; in P&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Non-deterministic algorithms:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;has an extra operation: non-deterministic choice&lt;/li&gt;
+  &lt;li&gt;has many possible executions depending on values returned from the choice&lt;/li&gt;
+  &lt;li&gt;it solves a decision problem &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; if
+    &lt;ul&gt;
+      &lt;li&gt;for a “yes”-instance &lt;code class=&quot;highlighter-rouge&quot;&gt;I&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; there is &lt;strong&gt;some&lt;/strong&gt; execution that returns “yes”&lt;/li&gt;
+      &lt;li&gt;for a “no”-instance &lt;code class=&quot;highlighter-rouge&quot;&gt;I&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; there is &lt;strong&gt;no&lt;/strong&gt; execution that returns “yes”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;and solves a decision problem &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; in poly. time if
+    &lt;ul&gt;
+      &lt;li&gt;for every “yes”-instance &lt;code class=&quot;highlighter-rouge&quot;&gt;I&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; there is &lt;strong&gt;some&lt;/strong&gt; execution &lt;code class=&quot;highlighter-rouge&quot;&gt;E&lt;/code&gt; that returns “yes”, which uses a number of steps bounded by a polynomial in the input&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A non-deterministic alg. can be viewed as&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;a guessing stage (non-deterministic)&lt;/li&gt;
+  &lt;li&gt;a checking stage (deterministic and poly. time)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Start —&amp;gt; guess a “certificate” —&amp;gt; verify the certificate —&amp;gt; Stop&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#non_deterministic&quot;&gt;Example&lt;/a&gt; of a non-deterministic alg.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;poly_time_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;polynomial-time-reductions&quot;&gt;Polynomial-time reductions&lt;/h5&gt;
+
+&lt;p&gt;A mapping &lt;code class=&quot;highlighter-rouge&quot;&gt;f&lt;/code&gt; from a decision problem &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt; to a decision problem &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt; such that&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;for every instance &lt;code class=&quot;highlighter-rouge&quot;&gt;I1&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt; we have
+    &lt;ul&gt;
+      &lt;li&gt;the instance &lt;code class=&quot;highlighter-rouge&quot;&gt;f(I1)&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt; can be contructed in poly. time&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;f(I1)&lt;/code&gt; is a “yes”-instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt; if and only if &lt;code class=&quot;highlighter-rouge&quot;&gt;I1&lt;/code&gt; is a “yes”-instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;we write &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1 ∝ Π2&lt;/code&gt; as an abbreviation for: there is a polynomial-time reduction from &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Properties of polynomial-time reductions:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Transitivity: &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1 ∝ Π2&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2 ∝ Π3&lt;/code&gt; implies that &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1 ∝ Π3&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Since &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1 ∝ Π2&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2 ∝ Π3&lt;/code&gt; we have&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;a PTR &lt;code class=&quot;highlighter-rouge&quot;&gt;f&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;a PTR &lt;code class=&quot;highlighter-rouge&quot;&gt;g&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;Π3&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For any instance &lt;code class=&quot;highlighter-rouge&quot;&gt;I1&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt;, since &lt;code class=&quot;highlighter-rouge&quot;&gt;f&lt;/code&gt; is a PTR, we have&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;I2 = f( I1 )&lt;/code&gt; is an instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt; that can be constructed in poly. time&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;I2&lt;/code&gt; has the same answer as &lt;code class=&quot;highlighter-rouge&quot;&gt;I1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Since &lt;code class=&quot;highlighter-rouge&quot;&gt;g&lt;/code&gt; is a PTR, we have&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;I3 = g( I2 )&lt;/code&gt; is an instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π3&lt;/code&gt; that can be constructed in poly. time&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;I3&lt;/code&gt; has the same answer as &lt;code class=&quot;highlighter-rouge&quot;&gt;I2&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Putting the results together, for any instance &lt;code class=&quot;highlighter-rouge&quot;&gt;I1&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;I3 = g( f( I1 ) )&lt;/code&gt; is an instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π3&lt;/code&gt; constructed in poly. time&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;I3&lt;/code&gt; has the same answer as &lt;code class=&quot;highlighter-rouge&quot;&gt;I1&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;ie the composition of &lt;code class=&quot;highlighter-rouge&quot;&gt;f&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;g&lt;/code&gt; is a PTR from &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;Π3&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Π1 ∝ Π2&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2 Î P&lt;/code&gt; implies that &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1 Î P&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;to solve an instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt;, reduce it to an instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Π1 ∝ Π2&lt;/code&gt; means that &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt; is no harder than &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;i.e. if we can solve &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt;, then we can solve &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt; without much more effort&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, reducing the Hamiltonian cycle problem to the travelling salesman problem:&lt;br /&gt;
+   HC instance: a graph G&lt;br /&gt;
+   HC question: does G contain a cycle that visits each vertex exactly once?&lt;/p&gt;
+
+&lt;p&gt;TSDP instance: a set of &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; cities and integer distance &lt;code class=&quot;highlighter-rouge&quot;&gt;d(i, j)&lt;/code&gt; between each pair of cities &lt;code class=&quot;highlighter-rouge&quot;&gt;i, j&lt;/code&gt; and a target integer &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt;&lt;br /&gt;
+   TSDP question: is there a permutation &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;1,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;2,...,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; such that &lt;code class=&quot;highlighter-rouge&quot;&gt;d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) &amp;lt;= K&lt;/code&gt;?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;G = (V, E)&lt;/code&gt; is an instance of HC&lt;/li&gt;
+  &lt;li&gt;construct TSP &lt;code class=&quot;highlighter-rouge&quot;&gt;f(G)&lt;/code&gt; where
+    &lt;ul&gt;
+      &lt;li&gt;cities = &lt;code class=&quot;highlighter-rouge&quot;&gt;V&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;d(u, v) = 1&lt;/code&gt; if &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;u,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Î&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;E&lt;/span&gt;&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; otherwise&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;K = |V|&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;f(G)&lt;/code&gt; can be constructed in poly. time&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;f(G)&lt;/code&gt; has a tour of length &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;= |V|&lt;/code&gt; if and only if &lt;code class=&quot;highlighter-rouge&quot;&gt;G&lt;/code&gt; has a Hamiltonian cycle (cannot take any of the edges with weight 2)&lt;/li&gt;
+  &lt;li&gt;therefore &lt;code class=&quot;highlighter-rouge&quot;&gt;TSDP Î P&lt;/code&gt; implies that &lt;code class=&quot;highlighter-rouge&quot;&gt;HC Î P&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;equivalently &lt;code class=&quot;highlighter-rouge&quot;&gt;HC Ï P&lt;/code&gt;implies that &lt;code class=&quot;highlighter-rouge&quot;&gt;TSDP Ï P&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/hc_to_tsdp.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;np_def_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;definition&quot;&gt;Definition&lt;/h5&gt;
+
+&lt;p&gt;A decision problem &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; is NP-complete if&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Π Î NP&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Π’&lt;/code&gt; is polynomial-time reducable to &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;Π’∝Π&lt;/code&gt; for every problem &lt;code class=&quot;highlighter-rouge&quot;&gt;Π’&lt;/code&gt; in NP)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So if &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; is NP-complete and &lt;code class=&quot;highlighter-rouge&quot;&gt;Π Î P&lt;/code&gt; then P = NP&lt;br /&gt;
+   Every problem in NP can be solved in polynomial time by reduction to &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt;&lt;br /&gt;
+   Supposing P ≠ NP, if &lt;code class=&quot;highlighter-rouge&quot;&gt;Π&lt;/code&gt; is NP-complete, then &lt;code class=&quot;highlighter-rouge&quot;&gt;Π Ï P&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cs-notes/assets/images/algs/np_structure.png&quot; nopin=&quot;nopin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;prove_np_topic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;proving-np-completeness&quot;&gt;Proving NP-completeness&lt;/h5&gt;
+
+&lt;p&gt;It is not feasible to describe a reduction from &lt;strong&gt;every&lt;/strong&gt; problem in NP&lt;br /&gt;
+   However, suppose we knew just one NP-complete problem &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To prove &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt; is NP-complete, it is enough to show&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt; is in NP&lt;/li&gt;
+  &lt;li&gt;there exists a polynomial-time reduction from &lt;code class=&quot;highlighter-rouge&quot;&gt;Π1&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;Π2&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;Π1 ∝ Π2&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Correctness of the approach:&lt;/p&gt;
+
 &lt;p&gt;&lt;a name=&quot;section_6&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;computability&quot;&gt;Computability&lt;/h4&gt;
@@ -1603,6 +1915,23 @@ impose heap property on bad value now in root&lt;/code&gt;&lt;br /&gt;
   &lt;span class=&quot;nx&quot;&gt;find&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;minimum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adjacent&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;wt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// perfom relaxation&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;non_deterministic&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h6 id=&quot;graph-colouring---example-of-a-non-deterministic-alg&quot;&gt;Graph colouring - example of a non-deterministic alg.&lt;/h6&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// return true if graph g is k-colourable&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nDGC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Graph&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;vertex&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setColour&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nonDeterministicChoice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// guess a colour for each vertex&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edge&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getColour&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getColour&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// verify the colouring&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
