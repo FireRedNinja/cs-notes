@@ -690,9 +690,98 @@ A *thread* is a locus of control inside a running program. Think of it as a plac
 
 
 ## Generic Threading Concepts
+#### Thread Lifecycle
+- Must be able to:
+	- Create new thread
+		- Create thread context
+		- Associate thread with function
+		- Pass arguments to function
+		- Recieve identifier to be used in other lifecycle calls
+	- Start new thread executing
+	- Interupt thread
+	- Wait for another thread to terminate
+
+#### Critical Regions
+- Inconsistent data when accessing concurrently
+- To keep data consistent we need mechanisms to make sure threads are executed in order
+
+#### Locks
+- Prevents other threads from accessing data
+
+
+- If another thread owns a lock, and your thread is requesting the lock, it will be blocked until the owning thread releases the lock
+- When your thread gets the lock and its not owned, it will own the lock
+- When done with execution, the thread releases the lock
+- Any threads blocked will now own the lock
+
+- Avoid Problems
+	- **Deadlock**: when neither thread can make progress (eg. if a thread wants access but another thread is stuck in infinity loop)
+	- **Livelock**: when threads are constantly changing and none of them can make progress
+	- **Starvation**: when threads are denied the necessary resources for it to work
+
+
+#### Conditional Variables
+- Can be called only if the thread owns the lock
+```
+wait()
+```
+- Releases the lock and blocked until another thread calls ```signal()```
+- When unblocked, the thread owns the lock again
+
+
+```
+signal()
+```
+- If any threads are blocked waiting for a condition, then *one* of the blocked threads will be unblocked
+
+
+```
+broadcast()
+```
+- If any threads are blocked waiting for a condition, the  *all* of the blocked threads will be unblocked
+
 
 ## Java support for multi-threading
+- Provide a Runnable object
+- Allows your class to subclass another class
+- More general
+```Java
+public class TestRunnable implements Runnable {
+	public void run() {
+		// stuff
+	}
 
+	publoc static void main(String[] args) {
+		Thread t = new Thread(new testRunnable());
+		t.start();
+	}
+}
+```
+
+- Subclass Thread
+- Simpler easier
+- Less general
+```Java
+public class TestSubclass extends Thread {
+	public void run() {
+		// stuff
+	}
+
+	public static void main(String[] args) {
+		Thread t = new TestSubclass();
+		t.start();
+	}
+}
+```
+
+```Java
+t.start(); // Start thread
+t.interupt(); // Interupt Thread
+t.join(); // Wait to terminate
+```
+
+- class Object defines wait(), notify(), notifyAll()
+- Which is same as wait(), signal(), broadcast()
 ## PThreads
 
 ## Thread Safe ADTs
