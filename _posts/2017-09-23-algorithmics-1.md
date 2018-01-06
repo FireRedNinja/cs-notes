@@ -810,13 +810,77 @@ This is an example of a **greedy** algorithm
 
 **Prim-Jarnik algorithm:**
 
+* minimum spanning tree contructed by choosing a sequence of edges
+* initialisation is O(n) (where `n` is number of vertices)
+* outer loop executed `n - 1` times
+* inner loop checks all edges from a tree-vertex to a non-tree vertex, of which there can be O(n<sup>2</sup>)
+* overall, alg. is O(n<sup>3</sup>)
 
+Prim-Jarnik algorithm [pseudocode](#prim_jarnik)
 
+Prim-Jarnik example
+
+<img src="/cs-notes/assets/images/algs/prim_jarnik.png" nopin="nopin" />
+
+The Prim-Jarnik proof of correctness will **not** be part of the exam, so it is omitted here.
+
+**Dijkstra's refinement:**
+
+Introduce attribute `bestTV` for each non-tree vertex `q`  
+   This is the best tree vertex `p` for which `wt( {p, q} )` is minimised  
+   [Pseudocode](#dijkstra_refinement) for this concept
+   
+* initialisation is O(n)
+* while loop executed `n - 1` time
+* O(n) to find minimal ntv
+* O(1) to adjoin and update
+* overall alg. is O(n<sup>2</sup>)
 
 
 <a name="topological_topic"></a>
 
 ##### Topological ordering
+
+**Directed Acyclic Graphs:**
+
+A **topological order** on a DAG is a labelling of the vertices `1, ..., n` such that `(u, v) Î E` implies `label(u) < label(v)`  
+   A directed graph D has a topological order if and only if D is a DAG  
+   A **source** is a vertex of in-degree 0 and a **sink** has out-degree 0  
+   **A DAG has at least one souce and at least one sink**, which forms the basis of a topological ordering alg.
+   
+Topological ordering of DAG `D`:
+
+<img src="/cs-notes/assets/images/algs/dag.png" nopin="nopin" />
+
+Topological ordering alg. [implementation](#topological_ordering)
+
+**TOA correctness:**
+
+A vertex is given a label only when the number of incoming edges from unlabelled vertices is 0  
+   For `n` vertices, `m` edges:
+   
+Adj. matrix representation involves
+
+* finding in-degree of each vertex, by scanning each column - O(n<sup>2</sup>)
+* main loop executed `n` times for each row - O(n)
+* overall alg. is O(n<sup>2</sup>)
+
+Adj. list representation involves
+
+* finding in-degree of each vertex, by scanning the list - O(n + m)
+* main loop executed `n` times for each list
+* overall alg. is O(n + m)
+
+**Deadlock detection:**
+
+Methods to detect whether a digraph contains a cycle
+
+1. adaptation of topological ordering alg.
+   * if source list becomes empty before all vertices are labelled, there must be a cycle
+   * if all vertices can be labelled, the digraph is acyclic
+2. adaptation of DFS
+   * when a vertex is visited, check where there is an edge from it to another vertex which is on the current path from the current starting vertex
+   * the existence of such a vertex indicates a cycle
 
 
 <a name="section_5"></a>
@@ -1175,6 +1239,24 @@ For a decision problem:
 
 #### Computability
 
+* [Introduction](#computability_intro)
+* [The halting problem](#halting_topic)
+* [Models of computation](#computation_models_topic)
+
+
+<a name="computability_intro"></a>
+
+##### Introduction
+
+
+<a name="halting_topic"></a>
+
+##### The halting problem
+
+
+<a name="computation_models_topic"></a>
+
+##### Models of computation
 
 
 <a name="heap_class"></a>
@@ -1779,6 +1861,74 @@ boolean nDGC(Graph g, int k) {
   for (each edge {u,v} : g)
     if (u.getColour() == v.getColour()) return false; // verify the colouring
   return true;
+
+}
+```
+
+<a name="prim_jarnik"></a>
+
+###### Prim-Jarnik algorithm pseudocode
+
+```javascript
+set an arbitrary vertex r to be a tree-vertex (tv)
+set all other vertices to be non-tree-vertices (ntv)
+
+while (size of ntv > 0) {
+
+  find edge e = {p, q} of graph such that
+    p is a tv;
+	q is an ntv;
+	wt(e) is minimised;
+  adjoin edge e to the spanning tree;
+  make q a tv;
+
+}
+```
+
+<a name="dijkstra_refinement"></a>
+
+###### Dijkstra's refinement to the Prim-Jarnik algorithm
+
+```javascript
+set an arbitrary vertex r to be a tree-vertex (tv)
+set all other vertices to be non-tree-vertices (ntv)
+
+for (each ntv s) set s.bestTV = r; // r is the only tv
+
+while (size of ntv > 0) {
+
+  find ntv q for which wt( {q, q.bestTV} ) is minimal;
+  adjoin {q, q.bestTV} to the tree;
+  make q a tv;
+  for (each ntv s) update s.bestTV; // update as tv set changed
+
+}
+```
+
+<a name="topological_ordering"></a>
+
+###### Topological ordering algorithm
+
+```javascript
+// assume each vertex has 2 integer attributes, label and count
+// count is the number of incoming edges from unlabelled vertices
+
+for (each vertex v) v.setCount(v.getInDegree());
+set up empty sourceQueue
+
+for (each vertex v) if (v.getCount() == 0) add v to sourceQueue; // add vertices with no incoming edges
+
+int nextLabel = 1; // to give the topological order
+while (sourceQueue !empty) {
+
+  take v from sourceQueue;
+  v.setLabel(nextLabel++); // label the vertex
+  for (each w with (v, w) in E) {
+  
+    w.setCount(w.getCount() - 1); // update attribute count
+	if (w.getCount() == 0) add w to sourceQueue; // add vertex if no incoming vertices
+  
+  }
 
 }
 ```
