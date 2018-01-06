@@ -1470,12 +1470,12 @@ Consider lang. `(aa*bb*)*` with DFA
 
 A DFA can't recognise `{ r* | r ∈ L(aa*bb*) }`
 
-* ie { (a<sup>m</sup>b<sup>n</sup>)`*` | m > 0 and n > 0 }
+* ie { (a<sup>m</sup>b<sup>n</sup>)`* |` m > 0 and n > 0 }
 * would need to remember the `m` and `n` to check that a string is in the lang.
 * infinitely many values for `m` and `n`
 * so it would need infintely many states
 * so, this is not a regular language
-* similarly, it can't recognise { (a<sup>n</sup>b<sup>n</sup>)`*` | n > 0 }
+* similarly, it can't recognise { (a<sup>n</sup>b<sup>n</sup>)`* |` n > 0 }
   * might need to use a stack, where a's are pushed as they are read, and popped as b's are read (like a counter)
   
 **Pushdown automata:**
