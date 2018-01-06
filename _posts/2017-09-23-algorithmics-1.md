@@ -797,6 +797,22 @@ Dijkstra's algorithm [implementation](#dijkstra)
 * obtained from a connected graph by **deleting edges**
 * its weight = sum of weights of its edges
 
+For a weighted connected undirected graph, find a **minimum weight spanning tree** (represents the cheapest way of interconnecting the vertices)
+
+<img src="/cs-notes/assets/images/algs/spanning_tree.png" nopin="nopin" />
+
+**Minimum weight spanning tree problem:**
+
+This is an example of a **greedy** algorithm
+
+* makes a sequence of decisions based on **local optimality**
+* ends up with the **globally optimal** solution
+
+**Prim-Jarnik algorithm:**
+
+
+
+
 
 <a name="topological_topic"></a>
 
@@ -1064,6 +1080,95 @@ To prove `Π2` is NP-complete, it is enough to show
 * there exists a polynomial-time reduction from `Π1` to `Π2` (`Π1 ∝ Π2`)
 
 Correctness of the approach:
+
+* for any `Π' Î NP`, since `Π1` is NP-complete we have `Π' ∝ Π1`
+* since `Π' ∝ Π`, `Π1 ∝ Π2` and in is transitive, it follows that `Π' ∝ Π2`
+* since `Π' Î NP` was arbitrary, `Π' ∝ Π2` for all `Π' Î NP`
+* hence `Π2` is NP-complete
+
+Cook's Theorem, where the Satisfiability (SAT) problem is NP-complete
+
+* proof consists of generic poly-time reduction to SAT from an abstract definition of a general problem in NP
+* generic reduction could be instantiated to give an actual reduction for each individual NP problem
+* given this theorem, to prove that problem P is NP-complete it is sufficient to show that
+  * `Π` is in NP
+  * there exists a poly-time reduction from SAT to `Π`
+  
+**Clique Problem:**
+
+Instance: graph G and target integer K  
+   Question: does G contain a clique of size K?  
+   Proving: show clique is in NP, and that there exists a poly-time reduction from SAT to `Π`
+   
+We need to show SAT ∝ Clique:  
+   Given an instance B of SAT we construct a `(G, K)` instance of Clique  
+   
+* K number of clauses of B
+* vertices of G are pairs `(l, C)` where `l` is a literal clause of `C`
+* `{(l, C), (m, D)}` is an edge of G if and only if `l ≠ ¬m` and `C ≠ D`
+  * edge if distinct literals from different clauses can be satisfied simultaneously
+* poly-time construction O(n<sup>2</sup>) (with `n` literals)
+* this is a poly-time reduction since B has a satisfying argument if and only if G has a clique of size K
+
+Proving it is a poly-time reduction:
+
+* if B has a satisfying assignment then
+  * if we choose a **true** literal in each clause the corresponding vertices form a clique of size K in G
+* if G has a clique of size K then
+  * assigning each literal associated with a vertex in the clique to be true yields a satisfying assignment for B
+  
+The following graph G has a clique of size 4 if and only if B has a satisfying assignment (which is a clique of size 4 here)
+
+<img src="/cs-notes/assets/images/algs/clique.png" nopin="nopin" />
+
+`B = (x1 ∨ x2 ∨ ¬x3) ∧ (¬x1 ∨ x3 ∨ ¬x4) ∧ (¬x2 ∨ x4) ∧ (x2 ∨ ¬x3 ∨ x4)`  
+   There are K = 4 clauses (bracket pairs)
+   
+**Problem restrictions:**
+
+A restriction consists of a subset of the instances of the original problem  
+  If a restriction of a given decision problem `Π` is NP-complete, then so is `Π`  
+  Given NP-complete `Π`, a restriction of `Π` **might** be NP-complete
+  
+eg a clique restricted to cubic graphs is in P, so a largest clique has size at most 4, so exhaustive search is O(n<sup>4</sup>)
+
+K-colouring:  
+   Restriction of Graph Colouring for a fixed K number of colours  
+   2-colouring is in P, while 3-colouring is NP-complete
+   
+K-SAT:  
+   Restriction of SAT in which every clause contains exactly K literals  
+   2-SAT is in P, while 3-SAT in NP-complete  
+   Showing 3-SAT Î NP is easy
+   
+**SAT ∝ 3-SAT:**
+
+Given instance B of SAT we will construct an instance B' of 3-SAT  
+   For each clause Ci of B we construct a number of clauses of B'
+   
+* if `C = l1`
+  * introduce 2 additional variables x1 and x2, and add the clauses `(l1 ∨ x1 ∨ x2), (l1 ∨ x1 ∨ ¬x2), (l1 ∨ ¬x1 ∨ x2), (l1 ∨ ¬x1 ∨ ¬x2)` to B'
+* if `C = (l1 ∨ l2)`
+  * introduce 1 additional variable y and the clauses `(l1 ∨ l2 ∨ y) and (l1 ∨ l2 ∨ ¬y)` to B'
+* if `C = (l1 ∨ l2 ∨ l3)`
+  * add the clause C to B'
+* if `C = (l1 ∨ ... ∨ lk)` and `k > 3`
+  * introduce k - 3 additional variables z<sub>1</sub>, ..., z<sub>k-3</sub>
+  * add the clauses `(l1 ∨ l2 ∨ z1), (¬z1 ∨ l3 ∨ z2), (¬z2 ∨ l4 ∨ z3), ..., (¬zk-4 ∨ lk-2 ∨ zk-3), (¬zk-3 ∨ lk-1 ∨ lk)` to B'
+  
+**Coping with NP-completeness:**
+
+Maybe only a restricted version is of interest (which may be in P)  
+   Seek an exponential-time alg. which improves on exhaustive search  
+   For an optimisation problem:
+   
+* settle for an approximation alg. that runs in poly-time
+* esp. if it gives a probably good result
+* use a heuristic
+
+For a decision problem:
+
+* settle for a probabilistic alg. (correct answer with high probability)
 
 
 <a name="section_6"></a>
