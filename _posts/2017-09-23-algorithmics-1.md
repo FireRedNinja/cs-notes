@@ -1248,15 +1248,267 @@ For a decision problem:
 
 ##### Introduction
 
+A computer is:
+
+`input x --> BLACK BOX --> output f(x)`
+
+The black box computes a function that maps an input to an output  
+   What functions can be computed? Alternatively, what problems can be solved?  
+   We need a definition of an algorithm if we view a computer as a device that can execute one
+   
+Some problems cannot be solved by a computer, eg the Tiling problem  
+   A 1x1 square tile divided into 4 triangles by its diagonals with each triangle a given colour  
+   Each tile has a fixed orientation and no rotations are allowed  
+   Instance: a finite set `S` of tile descriptions  
+   Question: can any finite area, of any size, be completely covered using only tiles of types in `S`, so that adjacent tile colours match?
+   
+For example, tiling a 5x5 square:
+
+<img src="/cs-notes/assets/images/algs/tiling_1.png" nopin="nopin" />
+
+Or extending to a larger region:
+
+* overlap the top two rows with the bottom two rows (for an 8x5 tiled area)
+* place two of these 8x5's side by side (with the right hand rectangle one row above the left hand rectangle)
+* and repeat this pattern to tile any finite area
+
+<img src="/cs-notes/assets/images/algs/tiling_2.png" nopin="nopin" />
+
+Tiling a 10x10 square:
+
+<img src="/cs-notes/assets/images/algs/tiling_3.png" nopin="nopin" />
+
+There is **no** alg. for this problem  
+   For any alg. A that we might formulate, there is a set of tiles `S` for which either A doesn't terminate or gives the wrong answer  
+   The problem is that:
+   
+* "any size" means that we have to check all finite areas and there are infinitely many of these
+* for certain sets of tile descriptions that can tile any area, there is no "repeated pattern" we can use
+* would really have to be exhaustive
+
+**Undecidable problems:**
+
+A problem `Π` that admits no alg. is called **non-computable** or **unsolvable**  
+   If `Π` is a decision problem and admits no alg., then it is called **undecidable** (tiling problem is one)
+   
+**Post's correspondence problem:**
+
+A word is a finite string over some given finite alphabet  
+   Instance: two finite sequences of words `X1, ..., Xn` and `Y1, ..., Yn` (in the same alphabet)  
+   Question: does there exist a sequence `i1, i2, ..., ir` of integers chosen from `{1, ..., n}` such that `Xi1Xi2...Xir = Yi1Yi2...Yir`?
+   
+For `n = 5`
+
+* X1 = abb, X2 = a, X3 = bab, X4 = baba, X5 = aba
+* Y1 = bbab, Y2 = aa, Y3 = ab, Y4 = aa, Y5 = a
+* correspondence given by sequence `2, 1, 1, 4, 1, 5`
+  * word constructed from Xi's = aabbabbbabaabbaba
+  * word constructed from Yi's = aabbabbbabaabbaba
+* however, if we removed the first letter from X1 and Y1, then we could never get a correspondence
+* thus this problem is undecidable
+
 
 <a name="halting_topic"></a>
 
 ##### The halting problem
 
+Instance: a legal Java program `X` and an input string `S` for `X`  
+   Question: does `X` halt when run on `S`?  
+   We will prove that no such program can exist, and that thus, the halting problem is undecidable
+
+The below program `T` will terminate if and only if input `n ≠ 1`
+
+```javascript
+public void t(int n) {
+  if (n == 1)
+    while (true)
+	  null;
+}
+```
+
+With a word "erratic", `T` is called with `n = 7` sequence of values:  
+   `22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1`  
+   Then nobody knows whether "erratic" terminates for all values of `n`
+   
+**Proof by contradiction that HP is undecidable:**
+
+Suppose we have alg. `A` that solves HP  
+   Let `Q` be an implementation of this alg. as a Java method with `X` and `S` parameters  
+
+<img src="/cs-notes/assets/images/algs/halting_1.png" nopin="nopin" />
+
+Define a new program `P` with a legal program `W` as input
+
+<img src="/cs-notes/assets/images/algs/halting_2.png" nopin="nopin" />
+
+* `P` makes a copy of `W` and calls `Q(W, W)`
+* `Q` terminates by assumption
+* if it returns "yes", `P` enters an infinite loop
+* if it returns "no", `P` is terminated
+
+Now let the input `W` to `P` be the program `P` itself  
+   Then `P` would call `Q(P, P)` (recall we assumed that `Q` solves HP)
+   
+* if `Q` returns "yes", then by definition of `Q` this means `P` terminates
+* but this also means `P` does not terminate (it enters into the loop)
+* this is a contradiction, therefore `Q` must return "no"
+* and this means by definition of `Q` that `P` does no terminate
+* but it also means that `P` does terminate
+* again, it is a contradiction
+* so if it can return neither reply, no such `Q` can exist
+* therefore no alg. can solve HP
+
+**Proving undecidabiltiy by reduction:**
+
+Suppose we can reduce any instance `I` of `Π1` into an instance `J` of `Π2` such that `I` has a "yes" answer for `Π1` if and only if `J` has a "yes" answer for `Π2` (no need for `J` to be constructed in poly-time)  
+   If `Π1` is undecidable and we can perform such a reduction, then `Π2` is undecidable
+   
+**Hierarchy of decision problems:**
+
+<img src="/cs-notes/assets/images/algs/decision_hierarchy.png" nopin="nopin" />
+
 
 <a name="computation_models_topic"></a>
 
 ##### Models of computation
+
+**Deterministic finite-state automata (DFAs):**
+
+* simple machines with limited memory
+* recognise input on a read-only tape
+
+Consists of:
+
+* a finite input alphabet `A`
+* a finite set of states `Q`
+* an initial state `q0 ∈ Q` and set of **accepting** states `F ⊆ Q`
+* control/program or **transition relation** `T ⊆ (Q * A) * Q`
+  * `((q, a), q') ∈ T` means if in state `q` and read `a`, then move to state `q'`
+* deterministic means that if `((q, a1), q1), ((q, a2), q2) ∈ T` either `a1 ≠ a2` or `q1 = q2`
+  * for any state and action there is at most one move
+  
+<img src="/cs-notes/assets/images/algs/dfa_1.png" nopin="nopin" />
+
+* initial state denoted by incoming arrow
+* accepting states denoted by double circles
+
+Control/program for the above example:
+
+<img src="/cs-notes/assets/images/algs/dfa_control.png" nopin="nopin" />
+
+A DFA defines a language
+
+* determines whether the string on the input tape belongs to that lang.
+* ie solves a decision problem
+* it **accepts** a lang., through the input strings which, when "run", end in an accepting state
+* in the above example, the DFA accepts the lang. consisting of the set of all strings comprising one or more a's followed by one or more b's (and its complement ie the language of strings with no consecutive a's)
+
+**Non-deteministic finite-state automation (NFA):**
+
+<img src="/cs-notes/assets/images/algs/dfa_2.png" nopin="nopin" />
+
+This one recognises strings that start and end with a `b` (in state `q1` the `b` underneath can move to `q1` or `q2`)
+
+Recognition for NFA is similar to non-deterministics algs. solving a decision problem
+
+* only require there exists a "run" that ends in an accepting state
+* any NFA can be converted to a DFA
+* therefore non-determinism doesn't expand the class of languages that can be recognised by finite state automata
+
+**NFA to DFA reduction:**
+
+* use the subset construction
+  * states of DFA are sets of states of the NFA
+  * construction can cause a blow-up in number of states
+  
+Example without blow-up (recognises strings that start and end with `b`):
+
+<img src="/cs-notes/assets/images/algs/nfa_to_dfa.png" nopin="nopin" />
+
+**Regular languages:**
+
+Languages that can be recognised by finite state automata  
+   A reg. lang. over an alphabet `A` can be specified by a **regular expression** over `A`  
+   `ε` and `σ` are regex's
+   
+**Regular expressions:**
+
+If `R` and `S` are regex's then so are (in order of lowest precedence first):
+
+* `R | S` which denotes choice
+* `RS` which denotes concatenation
+* `R*` which denotes 0 or more copies or `R` (closure)
+* `(R)` which is needed to override operator precedence
+
+Additional operations:
+
+* complement `¬x` (equivalent to the "or" of all chars. in `A` except `x`)
+* any single char. `?` (equivalent to the "or" of all chars.)
+
+Examples: 
+
+1. the lang. comprising 1+ a's followed by 1+ b's
+   * `aa*bb*`
+2. the lang. of string containing 2 consecutive a's
+   * `(a* | b*)* a a (a* | b*)*`
+3. the lang of strings that don't contain 2 consecutive a's
+   * `b* (abb*)* (ε | a)`
+4. the lang. of strings that start and end with `b`
+   * `b (a* | b*)* b`
+   
+**Note:** `L(R*)` does not mean `{ r* | r ∈ L(R) }`
+
+* for certain regex's, this cannot be recognised by any DFA
+* for such a lang., would need a memory to remember which string in `r ∈ L(R)` is repeated
+  * might be an unbounded number
+  
+Regex example:
+
+Consider lang. `(aa*bb*)*` with DFA
+
+<img src="/cs-notes/assets/images/algs/regex_dfa.png" nopin="nopin" />
+
+A DFA can't recognise `{ r* | r ∈ L(aa*bb*) }`
+
+* ie { (a<sup>m</sup>b<sup>n</sup>)`*` | m > 0 and n > 0 }
+* would need to remember the `m` and `n` to check that a string is in the lang.
+* infinitely many values for `m` and `n`
+* so it would need infintely many states
+* so, this is not a regular language
+* similarly, it can't recognise { (a<sup>n</sup>b<sup>n</sup>)`*` | n > 0 }
+  * might need to use a stack, where a's are pushed as they are read, and popped as b's are read (like a counter)
+  
+**Pushdown automata:**
+
+* unlimited memory
+* behave like a stack
+
+Consists of:
+
+* finite input alphabet `A`
+* finite set of stack symbols `G`
+* finite set of states `Q` including start state and set of accepting states
+* control/transition relation `T ⊆ (Q * AÈ{ε} * GÈ{ε}) * (Q * GÈ{ε})`
+
+
+<img src="/cs-notes/assets/images/algs/pushdown_1.png" nopin="nopin" />
+
+Informally, the transition `(q, a, w) --> (r, v)` means that
+
+* if we are in state `q`
+* if `a ≠ ε` then `a` is at head of tape
+* if `w ≠ ε` then `w` is at top of stack
+* move to state `r` and
+  * if `a ≠ ε` then head++
+  * if `w ≠ ε` then pop `w` from stack
+  * if `v ≠ ε` then push `v` onto stack
+  
+A PDA accepts an input if and only if after the input has been read, the stack is empty and control is in an accepting state
+
+
+
+
+
 
 
 <a name="heap_class"></a>
