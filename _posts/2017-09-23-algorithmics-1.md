@@ -1503,12 +1503,221 @@ Informally, the transition `(q, a, w) --> (r, v)` means that
   * if `w ≠ ε` then pop `w` from stack
   * if `v ≠ ε` then push `v` onto stack
   
-A PDA accepts an input if and only if after the input has been read, the stack is empty and control is in an accepting state
+A PDA accepts an input if and only if after the input has been read, the stack is empty and control is in an accepting state  
+   There is no explicit test for empty stack, but you can just add a `$` symbol to the stack at start of computation  
+   Then check for emptiness when this symbol is at top of stack
+   
+The PDA defined here are non-deterministic (NDPDA)  
+   More powerful than deterministic PDAs  
+   ie it can recognise languages that the DPDA might not, such as palindromes
+   
+**Palindromes:**
 
+Sequences of chars. that read the same backwards as forwards  
+   Recognising with a PDA:
+   
+* push first half of sequence onto stack
+* as you read each char., check that it's the same as the top of the stack and pop that element
+* enter an accepting state if all checks succeed
 
+Why we need non-determinism:
 
+* need to "guess" where middle of the stack is
+* cannot work this out and then check string
+  * would need an unbounded number of states as the string could be of any finite length
+  
+Palindrome example:
 
+<img src="/cs-notes/assets/images/algs/pushdown_2.png" nopin="nopin" />
 
+* alphabet is `{a, b}`
+* `s0` is start state and `s0` and `s3` are the only accepting states
+* `(s0, ε, ε) --> (s1, $)` move to `s1` and push `$` onto stack
+* `(s1, a, ε) --> (s1, 1)` read `a` and push `1` 
+* `(s1, b, 1) --> (s2, ε)` read `b` and `1` is on top, pop, move to `s2`
+* `(s2, b, 1) --> (s2, ε)` read `b` and `1` is on top, pop
+* `(s2, ε, $) --> (s3, ε)` if `$` is top, pop, move to `s3`
+
+So the automaton recognises the language { (a<sup>n</sup>b<sup>n</sup>)` |` n => 0 }
+
+PDA are more powerful than finite-state - can recognise languages that a DFA cannot  
+   These languages are the **context-free languages**  
+   Not all languages are context-free, for example, { (a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>)` |` n => 0 } cannot be recognised by a PDA
+
+**Turing Machines:**
+
+Recognises a particular languages consisting of:
+
+* finite alphabet `Σ`, including blank symbol `#`
+* unbounded **tape** of squares
+  * each holding a single symbol of `Σ`
+  * unbounded in both directions
+* **tape head** that scans a single square
+  * read and write to square
+  * moves 1 square left/right along the tape
+* set `S` of **states**
+  * start state `s0` and two **halt** (or terminal) states `sY` and `sN`
+* **transition function**
+  * the inbuilt program
+  * of the form `f: ((S/{sY, sN}) * Σ) --> (S * Σ * {left, right})`
+
+For each non-terminal state and symbol, `f` specifies
+
+* a new state
+* a new symbol
+* a direction in which to move
+
+`f(s, σ) = (s', σ', d)` means reading `σ` from the tape in state `s`
+
+* move to state `s' ∈ S`
+* overwrite `σ` with `σ ∈ Σ`
+* move head in the direction `d ∈ {left, right}`
+
+Computation:
+
+* finite input string placed on tape
+* head placed on first symbol of the input
+* starts in state `s0`
+  * if halts in state `sY`, answer is "yes"
+  * if halts in state `sN`, answer is "no"
+  
+Palindrome problem:  
+   Instance: finite string `Y`
+   Question: is `Y` a palindrome?  
+   Java [method](#turing_palindrome) for this
+   
+We can use a Turing machine for this problem, as we don't need nondeterminism (don't need to guess the middle)
+
+[TM algorithm](#turing_palindrome_2) for the palindrome problem
+
+For this, we need the following states:
+
+* `s0` reading, erasing and remember leftmost symbol
+* `s1, s2` moving right, remembering symbol erased
+* `s3, s4` testing for appropritate rightmost symbol
+* `s5` moving back to leftmost symbol
+
+A TM can be described with a **state transition diagram**  
+   A directed graph where
+   
+* each state represented by vertex
+* `f(s, σ) = (s', σ', d)` represented by an edge from `s` to `s'` labelled `(σ --> σ', d)`
+  * edge represents moving to `s'`
+  * `σ --> σ'` represents overwriting symbol on tape
+  * `d` represents moving tape in a direction `d`
+
+<img src="/cs-notes/assets/images/algs/turing.png" nopin="nopin" />
+
+Functions:
+
+TM that accepts language `L` actually computes the function `f` where `f(s) = 1` if `s ∈ L` and `0` otherwise
+
+The definition of a TM can be amended as follows:
+
+* to have set `H` of halt states
+* function it computers is defined by `f(s) = s'` where
+  * `s` is inital string
+  * `s'` is string on tape when the machine halts
+  
+eg, the palindrome TM can be redefined such that it deletes the tape contents and 
+
+* instead of entering `sY`, it writes `1` on tape and enters halt state
+* instead of entering `sN`, it writes `0` on tape and enters halt state
+
+Designing a TM to compute `f(k) = k + 1`:
+
+1. input 1 0 0 0 1 0, output 1 0 0 0 1 1
+   * pattern: replace rightmost `0` with `0`
+   * then moving right: if `1`, replace with `0` and continue right / if blank, halt
+2. input 1 0 0 1 1 1, output 1 0 1 0 0 0
+   * same pattern as 1
+3. input 1 1 1 1 1, output 1 0 0 0 0 0
+   * this is a special case
+   * no rightmost `0`
+   * replace first blank before input with `1`
+   * then moving right: if `1` replace with `0` and continue right / if blank, halt
+   
+[TM algorithm](#turing_example) for the above function
+
+For this, we need the following states:
+
+* `s0` initial state moving right seeking start of input
+* `s1` moving left to rightmost `0` or blank
+* `s2` finding first `0` or blank, changing it to `1` and moving right, changing `1`s to `0`s
+* `s3` halt state
+
+**Recognisable and decidable:**
+
+Language `L` is **Turing-recognisable** if, given input string `s`:
+
+* if `s ∈ L`, then TM halts in state `sY`
+* if `s Ï L`, then TM halts in state `sN` or fails to halt
+
+Language `L` is **Turing-decidable** if, given input string `s`:
+
+* if `s ∈ L`, then TM halts in state `sY`
+* if `s Ï L`, then TM halts in state `sN`
+
+Every decidable language is recognisable, but not every recognisable language is decidable
+
+A function `f: S* --> S*` is **Turing-computable** if there is a TM `M` such that, for any input `s`, `M` halts with output `f(s)`
+
+**Enhanced Turing Machines:**
+
+TM can be enhanced in a few ways
+
+* 2+ tapes, rather than just one
+* a 2-dimensional "tape"
+* TM may operate non-deterministically (transition function may be a relation instead)
+
+None of these enhancements change the computing power
+
+* every lang./func. that is recognisable/decidable/computable with an enhanced TM is also R/D/C with a basic TM
+  * non-determinism adds power to PDA, but not to DFAs nor TMs
+* proved by showing that basic TM can simulate any of these enhanced TMs
+
+**P and NP:**
+
+P often introduced as the class as decision problems solvable by a TM in poly-time  
+   NP introduced as the class of decision problems solvable by a non-deterministic TM in poly-time
+   
+* in a non-deterministic TM, transition function replaced by a relation `f ⊆ ( (S * Σ) * (S * Σ * {left, right}) )`
+  * can make a number of different transition based on current state and symbol at head
+* non-det. doesn't change what can be computed, but speeds it up
+
+To show P ≠ NP, sufficient to show that a standard TM cannot solve an NP-complete problem in poly-time
+
+**Counter-programs:**
+
+These have
+
+* vartiables of type `int`
+* labelled statements of the form `L: unlabelled_statement`
+* unlabelled statements of the form
+  * `x = 0`
+  * `x = y + 1`
+  * `x = y - 1`
+  * `if x == 0 goto L`
+  * `halt;`
+  
+Counter program [example](#counter_program)
+
+**Church-Turing thesis:**
+
+Based on the fact that a whole range of different computational models turn out to be equivalent in terms of what they can compute  
+   Reasonable to infer that any one of these models encapsulates what is effectively computable  
+   This thesis states that everything "effectively computable" is computable by a TM (not a theorem as uses informal terms)  
+   So there is an effective procedure for computing the value of the function, including all computers/programming langs. that we know about at present and even those we do not
+   
+So the TM is an appropriate model for the "black box"
+
+Equivalent computational models (each can "simulate" the others):
+
+* lambda calculus (Church)
+* TMs (Turing)
+* recursive functions (Kleene)
+* production systems (Post)
+* counter programs and all general purpose programming languages
 
 
 <a name="heap_class"></a>
@@ -2183,4 +2392,77 @@ while (sourceQueue !empty) {
   }
 
 }
+```
+
+<a name="turing_palindrome"></a>
+
+###### Java method for the palindrome problem
+
+```javascript
+public boolean isPalindrome(String s) {
+
+  int n = s.length();
+  if (n < 2) return true;
+  else if (s.charAt(0) != s.charAt(n-1)) return false;
+  else return isPalindrome(s.substring(1, n-1));
+
+}
+```
+
+<a name="turing_palindrome_2"></a>
+
+###### Turing machine alg. for the palindrome problem
+
+```javascript
+read symbol in current square;
+erase this symbol;
+enter a state that "remembers" it;
+move head to end of input;
+if (only blank chars. remain)
+  enter accepting state and halt;
+else if (last char. matches the one erased)
+  erase it too;
+else 
+  enter rejecting state and halt;
+if (no input left)
+  enter accepting state and halt;
+else
+  move to start of remaining input;
+  repeat from first step;
+```
+
+<a name="turing_example"></a>
+
+###### Turing Machine alg. for the function `f(k) = k + 1`
+
+```javascript
+move right seeking first blank square;
+move left looking for first 0 or blank;
+when 0 of blank found
+  change it to 1;
+  move right changing each 1 to 0;
+  halt when blank square reached;
+```
+
+<a name="counter_program"></a>
+
+###### Counter program to evaluate the product `x` x `y` (with `A, B, C` labels
+
+```javascript
+// initialise some vars.
+u = 0;
+z = 0; // finished product
+
+A: if x == 0 goto C; // end of outer for loop
+  x = x - 1; // perform this loop x times
+  v = y + 1; // each time around the loop we set v = y
+  v = v - 1; // in a slightly contrived way
+  
+B: if v == 0 goto A; // end of inner for loop
+  v = v - 1; // perform this loop v times
+  z = z + 1; // each time incrementing z, so really add y to z by end of inner loop
+  
+  if u == 0 goto B; // return to start of inner loop
+  
+C: halt;
 ```
