@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Algorithmics 1"
-date:   2017-12-26 18:50:00
+date:   2018-01-10 18:50:00
 categories: Level3 Semester1
 author: dasha
 ---
