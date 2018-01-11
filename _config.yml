@@ -19,6 +19,8 @@ noel:
   name: Noel Rajan
 dasha:
   name: Dasha Shumitskiy
+andrew:
+  name: Andrew McNab
 
 # Site settings
 excerpt_separator: <!--excerpt-->
