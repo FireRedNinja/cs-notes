@@ -15,6 +15,7 @@ Networked System: Autonomous computing devices that exchange data to perform som
 * mobile voice telephony
 * sensor networks
 * controller area networks
+<!--excerpt-->
 
 Communication: Messages transferred from source to destination(s) via some communications channel  
    How would you convert a message so that both source and destination understand it?  
