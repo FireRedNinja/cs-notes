@@ -161,6 +161,8 @@ author: noel
 - Takes some data in
 - Gets signiture out
 > Funcion to compute a unique random signature for some data
+
+
 ![Hash Function](/cs-notes/assets/images/csf/cryptographicHashFn.PNG)
 - Guarantee towards: Data Integrity
 - Preimage resistance
