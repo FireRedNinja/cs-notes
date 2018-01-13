@@ -168,7 +168,6 @@ author: noel
 - Preimage resistance
 - Second Preimage resistance
 - Collision resistance
-
 - Eg: MD, SHA
 
 ### Block Cyphers/Symmetric crytography

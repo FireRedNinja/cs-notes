@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="http://localhost:4000">
+            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -90,9 +90,8 @@
 <h2 id="edit---compile---link---execute-cycle">Edit - Compile - Link - Execute Cycle</h2>
 <ul>
   <li>Source Files &gt; Compiler &gt; Bin &gt; Linker &gt; Executable
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gcc -o <span class="nb">test </span>test.o
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-o</span> <span class="nb">test </span>test.o
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -128,11 +127,10 @@
 <h2 id="makefiles">Makefiles</h2>
 <ul>
   <li>makes compiling bigger programs easier
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gcc -c mod_a.c
-gcc -c mod_b.c
-gcc -c mod_a.o mod_b.o -o app_x
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-c</span> mod_a.c
+gcc <span class="nt">-c</span> mod_b.c
+gcc <span class="nt">-c</span> mod_a.o mod_b.o <span class="nt">-o</span> app_x
+</code></pre></div>    </div>
   </li>
   <li>becomes</li>
 </ul>
@@ -147,7 +145,7 @@ mod_b.o: mod_b.c global.g
 	gcc -c mod_a.c
 </code></pre>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CFLAGS = -W -Wall
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CFLAGS = -W -Wall
 %.o : %.c
 	gcc -c $(CFLAGS) $&lt; -o $@
 OBJECTS = mod_a.o mod_b.o
@@ -157,8 +155,7 @@ app_x: $(OBJECTS)
 
 mod_a.o: mod_a.c global.h
 mod_b.o: mod_b.c global.h
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="lecture-2">Lecture 2</h1>
 <h1 id="overview-of-c">Overview of C</h1>
@@ -273,7 +270,7 @@ extern type varName;
 </ul>
 
 <h4 id="escape-sequences">escape sequences</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>\a - alert (bell) character
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\a - alert (bell) character
 \b - backspace
 \f - formfeed
 \n - newline
@@ -287,8 +284,7 @@ extern type varName;
 \ooo - octal number
 \xhh - hexadecimal number
 \0 - null character (EOS)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>‘x’ - integer representing value of letter x</li>
@@ -321,9 +317,8 @@ enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
 </ul>
 
 <h4 id="cast">cast</h4>
-<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="n">expression</span>
-</code></pre>
-</div>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="n">expression</span>
+</code></pre></div></div>
 
 <pre><code class="language-C">++n // increments before value us used
 n++ // increments after value is used
@@ -682,9 +677,8 @@ free(); // deallocates memory that was malloced;
 
 <ul>
   <li>given
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>./program hello world
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./program hello world
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -847,7 +841,7 @@ typedef char *String; // String is synonym for char *</p>
 Length *lengths; // ptr to (array of) Length
 String lineptr[MAXLINES]; // array of String
 Length strlen(String s); // prototype</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 #### Unions
 - Variable that may hold objects of different types and sizes
 ```C
@@ -857,8 +851,7 @@ union const_value { // type declaration
 	char *sval;
 };
 union const_value val; // variable definition
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>assignment to any union member turns all other members into garbage</li>
   <li>compiler doesn’t track this</li>
@@ -939,10 +932,118 @@ union const_value val; // variable definition
 </ul>
 
 <h2 id="generic-threading-concepts">Generic Threading Concepts</h2>
+<h4 id="thread-lifecycle">Thread Lifecycle</h4>
+<ul>
+  <li>Must be able to:
+    <ul>
+      <li>Create new thread
+        <ul>
+          <li>Create thread context</li>
+          <li>Associate thread with function</li>
+          <li>Pass arguments to function</li>
+          <li>Recieve identifier to be used in other lifecycle calls</li>
+        </ul>
+      </li>
+      <li>Start new thread executing</li>
+      <li>Interupt thread</li>
+      <li>Wait for another thread to terminate</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="critical-regions">Critical Regions</h4>
+<ul>
+  <li>Inconsistent data when accessing concurrently</li>
+  <li>To keep data consistent we need mechanisms to make sure threads are executed in order</li>
+</ul>
+
+<h4 id="locks">Locks</h4>
+<ul>
+  <li>
+    <p>Prevents other threads from accessing data</p>
+  </li>
+  <li>If another thread owns a lock, and your thread is requesting the lock, it will be blocked until the owning thread releases the lock</li>
+  <li>When your thread gets the lock and its not owned, it will own the lock</li>
+  <li>When done with execution, the thread releases the lock</li>
+  <li>
+    <p>Any threads blocked will now own the lock</p>
+  </li>
+  <li>Avoid Problems
+    <ul>
+      <li><strong>Deadlock</strong>: when neither thread can make progress (eg. if a thread wants access but another thread is stuck in infinity loop)</li>
+      <li><strong>Livelock</strong>: when threads are constantly changing and none of them can make progress</li>
+      <li><strong>Starvation</strong>: when threads are denied the necessary resources for it to work</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="conditional-variables">Conditional Variables</h4>
+<ul>
+  <li>Can be called only if the thread owns the lock
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wait()
+</code></pre></div>    </div>
+  </li>
+  <li>Releases the lock and blocked until another thread calls <code class="highlighter-rouge">signal()</code></li>
+  <li>When unblocked, the thread owns the lock again</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>signal()
+</code></pre></div></div>
+<ul>
+  <li>If any threads are blocked waiting for a condition, then <em>one</em> of the blocked threads will be unblocked</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>broadcast()
+</code></pre></div></div>
+<ul>
+  <li>If any threads are blocked waiting for a condition, the  <em>all</em> of the blocked threads will be unblocked</li>
+</ul>
 
 <h2 id="java-support-for-multi-threading">Java support for multi-threading</h2>
+<ul>
+  <li>Provide a Runnable object</li>
+  <li>Allows your class to subclass another class</li>
+  <li>More general
+    <pre><code class="language-Java">public class TestRunnable implements Runnable {
+  public void run() {
+      // stuff
+  }
 
-<h2 id="pthreads">PThreads</h2>
+  publoc static void main(String[] args) {
+      Thread t = new Thread(new testRunnable());
+      t.start();
+  }
+}
+</code></pre>
+  </li>
+  <li>Subclass Thread</li>
+  <li>Simpler easier</li>
+  <li>Less general
+    <pre><code class="language-Java">public class TestSubclass extends Thread {
+  public void run() {
+      // stuff
+  }
+
+  public static void main(String[] args) {
+      Thread t = new TestSubclass();
+      t.start();
+  }
+}
+</code></pre>
+  </li>
+</ul>
+
+<pre><code class="language-Java">t.start(); // Start thread
+t.interupt(); // Interupt Thread
+t.join(); // Wait to terminate
+</code></pre>
+
+<ul>
+  <li>class Object defines wait(), notify(), notifyAll()</li>
+  <li>Which is same as wait(), signal(), broadcast()
+    <h2 id="pthreads">PThreads</h2>
+  </li>
+</ul>
 
 <h2 id="thread-safe-adts">Thread Safe ADTs</h2>
 
@@ -972,23 +1073,6 @@ union const_value val; // variable definition
                     </p>
                 </section>
             
-
-            <!-- Share links section -->
-            <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-twitter" href="http://twitter.com/share?text=Advanced Programming&amp;url=https://fireredninja.github.io//level3/semester1/2017/09/23/advanced-programming.html"
-        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://fireredninja.github.io//level3/semester1/2017/09/23/advanced-programming.html"
-        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=https://fireredninja.github.io//level3/semester1/2017/09/23/advanced-programming.html"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
 
             <!-- Disqus comments -->
             

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Computer Science Notes - My notes on CS Level 3</title>
+    <meta name="description" content="My CS notes" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/cs-notes/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/cs-notes/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/cs-notes">Home</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Cyber Security Fundamentals	</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2018-01-08">08 Jan 2018</time>
+                
+                    on Level3 and Semester2
+                
+            </section>
+            <br>
+            <br>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
+                
+                    <span class="blog-title">Computer Science Notes</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2018-01-08">08 Jan 2018</time>
+            
+                on Level3 and Semester2
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">Cyber Security Fundamentals	</h1> -->
+
+        <section class="post-content">
+            <h1 id="lecture-1---introduction">Lecture 1 - Introduction</h1>
+
+<ul>
+  <li><strong>Security</strong> State/Condition of being pretected from or not exposed to danger from some internal or external threat
+<!--excerpt--></li>
+  <li>Hacking against the law
+    <ul>
+      <li>Unauthorised access to computer material</li>
+      <li>Unauthorised access with intent to commit or facilitate a crime</li>
+      <li>Unauthorised modification of computer material.</li>
+      <li>Making, supplying or obtaining anything which can be used in computer misuse offences.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>”..prevention and detection of unauthorised actions by users of a computer system” - Deiter Gollman</p>
+</blockquote>
+
+<blockquote>
+  <p>“the prevention and detection of unauthorised actions by users of a computer” - Microsoft</p>
+</blockquote>
+
+<h2 id="socio-technical-systems">Socio-technical Systems</h2>
+<ul>
+  <li>
+    <p><strong>System</strong> is a purposefull collection of interrelated ocmponents of differen kinds, which work together to achive some ovjective</p>
+  </li>
+  <li><strong>Socio-Technical systems</strong> include technical ystems,but also organisational processses and people who use and interact with the technical sustem</li>
+  <li>governed b organisational and regulatory policies and rules</li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li><strong>Computer Security</strong> - protection of hardware, software &amp; data assets</li>
+  <li><strong>Information Security</strong> - protection of information and information systems from unauthorized access, use, disclosure, disruption, modification, or destruction in order to provide confidentiality, integrity, and availability</li>
+</ul>
+
+<h2 id="security-model">Security model</h2>
+<p><img src="/cs-notes/assets/images/csf/securityModel.PNG" alt="security model" /></p>
+
+<h3 id="cia">CIA</h3>
+<ul>
+  <li>
+    <p><strong>Confidentiality</strong> - Prevention of unauthorised disclosure</p>
+  </li>
+  <li>
+    <p><strong>Integrity</strong> - Prevention of unauthorised modification of information</p>
+  </li>
+  <li>
+    <p><strong>Availability</strong> - Prevention of unauthorised withholding of information and rescources</p>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/csf/CIA.png" alt="CIA" /></p>
+
+<ul>
+  <li><strong>Vulnerability</strong> - Weakness in your system
+    <ul>
+      <li>Hardware</li>
+      <li>Software</li>
+      <li>Network</li>
+      <li>Personnel</li>
+      <li>Location</li>
+      <li>Organisational</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Threat</strong> - Potential exploitation of vulnerability</p>
+  </li>
+  <li>
+    <p><strong>Attack</strong> - Attempted violation of vulnerability</p>
+  </li>
+  <li>
+    <p><strong>Passive</strong> - Just watches and maybe collect data</p>
+  </li>
+  <li><strong>Active</strong> - Attempts to change resources or operations</li>
+</ul>
+
+<h3 id="threat-types">Threat Types</h3>
+<p><img src="/cs-notes/assets/images/csf/threatTypes.PNG" alt="Threat Types" /></p>
+
+<ul>
+  <li>Physical Damage</li>
+  <li>Natural Events</li>
+  <li>Loss of essential services</li>
+  <li>Disturbances due to radiation</li>
+  <li>Compromise of Information</li>
+  <li>Technical Failures</li>
+  <li>Unauthorised Access</li>
+  <li>Compromise of Functions</li>
+</ul>
+
+<h3 id="deal-with-threats">Deal with threats</h3>
+<ul>
+  <li>Reduce/Remove threats by
+    <ul>
+      <li>Prevent</li>
+      <li>Detect</li>
+      <li>React</li>
+      <li>Correct</li>
+    </ul>
+  </li>
+  <li>Accepted (“it’s not a bug its a feature”)</li>
+  <li>Avoided</li>
+  <li>Transfered (give the problem to someone else)</li>
+</ul>
+
+<blockquote>
+  <p>Doing Security == Risk Management</p>
+</blockquote>
+
+<ul>
+  <li>Asset identification</li>
+  <li>Risk identification
+    <ul>
+      <li>Find assest’s vulnerabilities</li>
+      <li>Find the relavent threats</li>
+    </ul>
+  </li>
+  <li>Risk treatment analysis</li>
+  <li>
+    <p>Treat the risk</p>
+  </li>
+  <li>Asset protection</li>
+  <li>What are my assets</li>
+  <li>What danger are they in</li>
+  <li>How can I protect it</li>
+</ul>
+
+<h2 id="section-4---security-engineering">Section 4 - Security Engineering</h2>
+
+<ul>
+  <li>
+    <p><strong>Security Engineering</strong> is about building systems to remain dependable in the face of malice , error or mischance</p>
+  </li>
+  <li>What are ny security requirements</li>
+  <li>What are my policies</li>
+  <li>Policy and Guidence</li>
+  <li><strong>Policy</strong>- What you want to achieve?</li>
+</ul>
+
+<h2 id="poits-of-interest">Poits of Interest</h2>
+<ul>
+  <li>Simple &gt; Rich mechanisms</li>
+  <li>Trade-offs
+    <ul>
+      <li>cost/speed</li>
+      <li>effort</li>
+    </ul>
+  </li>
+  <li>Should the effort I put in to securing the data be relatied to the worth of the data?</li>
+</ul>
+
+<h3 id="key-principles">Key principles</h3>
+<ul>
+  <li>Easist penetration</li>
+  <li>Adequate protection</li>
+  <li>Weakest link</li>
+  <li>
+    <p>Effectiveness</p>
+  </li>
+  <li>
+    <p>Security should not be an afterthought</p>
+  </li>
+  <li>Crytography is not a silver bullet</li>
+</ul>
+
+<h3 id="actors">Actors</h3>
+<ul>
+  <li>Amatues/Script kiddies</li>
+  <li>Hackers
+    <ul>
+      <li>Black Hat</li>
+      <li>White Hat</li>
+      <li>Gray Hat</li>
+    </ul>
+  </li>
+  <li>Hactivist</li>
+  <li>Carrer criminals</li>
+  <li>Terrorists</li>
+  <li>Government</li>
+</ul>
+
+<hr />
+
+<h1 id="intro-to-cryptography">Intro to Cryptography</h1>
+<ul>
+  <li>Confidentiality
+    <ul>
+      <li>Public key encryption</li>
+      <li>Block ciphers</li>
+      <li>Stream ciphers</li>
+    </ul>
+  </li>
+  <li>Integrity
+    <ul>
+      <li>Cryptograhic hash function</li>
+      <li>Message authentication codes</li>
+    </ul>
+  </li>
+  <li>Authenticity
+    <ul>
+      <li>Digital signatures</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="primitives">Primitives</h2>
+<h3 id="hashfunctionsmessage-digiest">Hashfunctions/Message digiest</h3>
+<ul>
+  <li>Takes some data in</li>
+  <li>Gets signiture out
+    <blockquote>
+      <p>Funcion to compute a unique random signature for some data</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/csf/cryptographicHashFn.PNG" alt="Hash Function" /></p>
+<ul>
+  <li>Guarantee towards: Data Integrity</li>
+  <li>Preimage resistance</li>
+  <li>Second Preimage resistance</li>
+  <li>Collision resistance</li>
+  <li>Eg: MD, SHA</li>
+</ul>
+
+<h3 id="block-cypherssymmetric-crytography">Block Cyphers/Symmetric crytography</h3>
+<p><img src="/cs-notes/assets/images/csf/symmetricCrypto.PNG" alt="Symmetric Cryptography" /></p>
+<ul>
+  <li>Guarantee towards: Confidentiality</li>
+  <li>Uses sameto encrypt and decrypt</li>
+  <li>Efficient for large messages</li>
+  <li>Eg: Blowfish, TripleDES, Skipjack, AES</li>
+</ul>
+
+<h3 id="asymmetric-ciphers">Asymmetric ciphers</h3>
+<ul>
+  <li>3 functions</li>
+  <li>1 to Encrypt</li>
+  <li>1 to Decrypt</li>
+  <li>1 to create key
+<img src="/cs-notes/assets/images/csf/asymmetricCipher.PNG" alt="Asymmetric Ciphers" /></li>
+  <li>Guarantee towards: Confidentiality</li>
+  <li>Key Pairs</li>
+  <li>Encrypting and signing</li>
+  <li>Inefficient on large data</li>
+  <li>Eg: DSA, (EC)DSA, ECC, RSA, ElGamal</li>
+</ul>
+
+<h2 id="workflows">Workflows</h2>
+<ul>
+  <li>Primitives can be used to have guarantees for more than one of
+    <ul>
+      <li>Information Security</li>
+      <li>Efficient Information Security</li>
+      <li>Sender Authentication</li>
+      <li>Secrecy with Authentication</li>
+      <li>Secrecy with Signature</li>
+      <li>Secrecy with Integrity</li>
+      <li>Signature with Appendix</li>
+      <li>Secrecy with Signature with Appendix</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="digital-signitures">Digital Signitures</h3>
+<ul>
+  <li>Authenticity of message origin</li>
+  <li>Non-Repudiation of message origin</li>
+  <li>Message Integrity</li>
+</ul>
+
+<h3 id="public-key-encryption--digital-signitures-combination">Public Key Encryption &amp; Digital Signitures (Combination)</h3>
+<ul>
+  <li>Message confidentiality &amp; integrty</li>
+  <li>Authenticity of message origin</li>
+  <li>Non-Repudiation of message origin</li>
+</ul>
+
+<h3 id="kemdem-hybrid">KEM/DEM (Hybrid)</h3>
+<ul>
+  <li>Symmetric Encryption to encrypt data</li>
+  <li>Assymetric to encrypt symmetric key</li>
+</ul>
+
+<h2 id="implementing">Implementing</h2>
+<ul>
+  <li>RSA System
+    <ul>
+      <li>Encryption</li>
+      <li>Digital signitures</li>
+    </ul>
+  </li>
+  <li>Descrete logarithm system
+    <ul>
+      <li>Key exchange</li>
+      <li>Digital signiture algorithm</li>
+      <li>Discrete logarithm integrated encryption scheme</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+            
+                <figure class="author-image">
+                    <a class="img" href="/cs-notes" style="background-image: url(/cs-notes/assets/images/profile.png)">
+                    <span class="hidden">Noel Rajan's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> Noel Rajan </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        Here goes the author description. You might want to place some links too in here
+                    </p>
+                </section>
+            
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="/cs-notes">Computer Science Notes</a> &copy; 
+              2018 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/cs-notes/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/cs-notes/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/cs-notes/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>

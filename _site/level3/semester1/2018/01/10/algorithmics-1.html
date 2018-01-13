@@ -32,7 +32,7 @@
         <header class="post-header">
             <h1 class="post-title">Algorithmics 1</h1>
             <section class="post-meta">
-                <time class="post-date" datetime="2017-12-26">26 Dec 2017</time>
+                <time class="post-date" datetime="2018-01-10">10 Jan 2018</time>
                 
                     on Level3 and Semester1
                 
@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="http://localhost:4000">
+            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -50,7 +50,7 @@
         </header> -->
 
         <!-- <span class="post-meta">
-            <time datetime="2017-12-26">26 Dec 2017</time>
+            <time datetime="2018-01-10">10 Jan 2018</time>
             
                 on Level3 and Semester1
             
@@ -820,9 +820,9 @@ impose heap property on bad value now in root</code><br />
 <p>For the graphs above:</p>
 
 <ul>
-  <li>adjacent - <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,z</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">Î</span><span class="w"> </span><span class="err">E</span></code></li>
-  <li>non-adjacent - <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,b</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">∉</span><span class="w"> </span><span class="err">E</span></code></li>
-  <li><code class="highlighter-rouge">a</code> is <strong>incident to</strong> edge <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,z</span><span class="w"> </span><span class="p">}</span></code></li>
+  <li>adjacent - <code class="highlighter-rouge">{ a,z } Î E</code></li>
+  <li>non-adjacent - <code class="highlighter-rouge">{ a,b } ∉ E</code></li>
+  <li><code class="highlighter-rouge">a</code> is <strong>incident to</strong> edge <code class="highlighter-rouge">{ a,z }</code></li>
   <li><code class="highlighter-rouge">a, x, b, y, c</code> is a path of length 4</li>
   <li><code class="highlighter-rouge">a, x, b, y, a</code> is a cycle of length 4</li>
   <li>all vertices have <strong>degree</strong> 3</li>
@@ -1050,9 +1050,107 @@ impose heap property on bad value now in root</code><br />
   <li>its weight = sum of weights of its edges</li>
 </ul>
 
+<p>For a weighted connected undirected graph, find a <strong>minimum weight spanning tree</strong> (represents the cheapest way of interconnecting the vertices)</p>
+
+<p><img src="/cs-notes/assets/images/algs/spanning_tree.png" nopin="nopin" /></p>
+
+<p><strong>Minimum weight spanning tree problem:</strong></p>
+
+<p>This is an example of a <strong>greedy</strong> algorithm</p>
+
+<ul>
+  <li>makes a sequence of decisions based on <strong>local optimality</strong></li>
+  <li>ends up with the <strong>globally optimal</strong> solution</li>
+</ul>
+
+<p><strong>Prim-Jarnik algorithm:</strong></p>
+
+<ul>
+  <li>minimum spanning tree contructed by choosing a sequence of edges</li>
+  <li>initialisation is O(n) (where <code class="highlighter-rouge">n</code> is number of vertices)</li>
+  <li>outer loop executed <code class="highlighter-rouge">n - 1</code> times</li>
+  <li>inner loop checks all edges from a tree-vertex to a non-tree vertex, of which there can be O(n<sup>2</sup>)</li>
+  <li>overall, alg. is O(n<sup>3</sup>)</li>
+</ul>
+
+<p>Prim-Jarnik algorithm <a href="#prim_jarnik">pseudocode</a></p>
+
+<p>Prim-Jarnik example</p>
+
+<p><img src="/cs-notes/assets/images/algs/prim_jarnik.png" nopin="nopin" /></p>
+
+<p>The Prim-Jarnik proof of correctness will <strong>not</strong> be part of the exam, so it is omitted here.</p>
+
+<p><strong>Dijkstra’s refinement:</strong></p>
+
+<p>Introduce attribute <code class="highlighter-rouge">bestTV</code> for each non-tree vertex <code class="highlighter-rouge">q</code><br />
+   This is the best tree vertex <code class="highlighter-rouge">p</code> for which <code class="highlighter-rouge">wt( {p, q} )</code> is minimised<br />
+   <a href="#dijkstra_refinement">Pseudocode</a> for this concept</p>
+
+<ul>
+  <li>initialisation is O(n)</li>
+  <li>while loop executed <code class="highlighter-rouge">n - 1</code> time</li>
+  <li>O(n) to find minimal ntv</li>
+  <li>O(1) to adjoin and update</li>
+  <li>overall alg. is O(n<sup>2</sup>)</li>
+</ul>
+
 <p><a name="topological_topic"></a></p>
 
 <h5 id="topological-ordering">Topological ordering</h5>
+
+<p><strong>Directed Acyclic Graphs:</strong></p>
+
+<p>A <strong>topological order</strong> on a DAG is a labelling of the vertices <code class="highlighter-rouge">1, ..., n</code> such that <code class="highlighter-rouge">(u, v) Î E</code> implies <code class="highlighter-rouge">label(u) &lt; label(v)</code><br />
+   A directed graph D has a topological order if and only if D is a DAG<br />
+   A <strong>source</strong> is a vertex of in-degree 0 and a <strong>sink</strong> has out-degree 0<br />
+   <strong>A DAG has at least one souce and at least one sink</strong>, which forms the basis of a topological ordering alg.</p>
+
+<p>Topological ordering of DAG <code class="highlighter-rouge">D</code>:</p>
+
+<p><img src="/cs-notes/assets/images/algs/dag.png" nopin="nopin" /></p>
+
+<p>Topological ordering alg. <a href="#topological_ordering">implementation</a></p>
+
+<p><strong>TOA correctness:</strong></p>
+
+<p>A vertex is given a label only when the number of incoming edges from unlabelled vertices is 0<br />
+   For <code class="highlighter-rouge">n</code> vertices, <code class="highlighter-rouge">m</code> edges:</p>
+
+<p>Adj. matrix representation involves</p>
+
+<ul>
+  <li>finding in-degree of each vertex, by scanning each column - O(n<sup>2</sup>)</li>
+  <li>main loop executed <code class="highlighter-rouge">n</code> times for each row - O(n)</li>
+  <li>overall alg. is O(n<sup>2</sup>)</li>
+</ul>
+
+<p>Adj. list representation involves</p>
+
+<ul>
+  <li>finding in-degree of each vertex, by scanning the list - O(n + m)</li>
+  <li>main loop executed <code class="highlighter-rouge">n</code> times for each list</li>
+  <li>overall alg. is O(n + m)</li>
+</ul>
+
+<p><strong>Deadlock detection:</strong></p>
+
+<p>Methods to detect whether a digraph contains a cycle</p>
+
+<ol>
+  <li>adaptation of topological ordering alg.
+    <ul>
+      <li>if source list becomes empty before all vertices are labelled, there must be a cycle</li>
+      <li>if all vertices can be labelled, the digraph is acyclic</li>
+    </ul>
+  </li>
+  <li>adaptation of DFS
+    <ul>
+      <li>when a vertex is visited, check where there is an edge from it to another vertex which is on the current path from the current starting vertex</li>
+      <li>the existence of such a vertex indicates a cycle</li>
+    </ul>
+  </li>
+</ol>
 
 <p><a name="section_5"></a></p>
 
@@ -1318,14 +1416,14 @@ impose heap property on bad value now in root</code><br />
    HC question: does G contain a cycle that visits each vertex exactly once?</p>
 
 <p>TSDP instance: a set of <code class="highlighter-rouge">n</code> cities and integer distance <code class="highlighter-rouge">d(i, j)</code> between each pair of cities <code class="highlighter-rouge">i, j</code> and a target integer <code class="highlighter-rouge">K</code><br />
-   TSDP question: is there a permutation <code class="highlighter-rouge">p</code> of <code class="highlighter-rouge"><span class="p">{</span><span class="err">1,</span><span class="w"> </span><span class="err">2,...,</span><span class="w"> </span><span class="err">n</span><span class="p">}</span></code> such that <code class="highlighter-rouge">d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) &lt;= K</code>?</p>
+   TSDP question: is there a permutation <code class="highlighter-rouge">p</code> of <code class="highlighter-rouge">{1, 2,..., n}</code> such that <code class="highlighter-rouge">d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) &lt;= K</code>?</p>
 
 <ul>
   <li><code class="highlighter-rouge">G = (V, E)</code> is an instance of HC</li>
   <li>construct TSP <code class="highlighter-rouge">f(G)</code> where
     <ul>
       <li>cities = <code class="highlighter-rouge">V</code></li>
-      <li><code class="highlighter-rouge">d(u, v) = 1</code> if <code class="highlighter-rouge"><span class="p">{</span><span class="err">u,</span><span class="w"> </span><span class="err">v</span><span class="p">}</span><span class="w"> </span><span class="err">Î</span><span class="w"> </span><span class="err">E</span></code> and <code class="highlighter-rouge">0</code> otherwise</li>
+      <li><code class="highlighter-rouge">d(u, v) = 1</code> if <code class="highlighter-rouge">{u, v} Î E</code> and <code class="highlighter-rouge">0</code> otherwise</li>
       <li><code class="highlighter-rouge">K = |V|</code></li>
     </ul>
   </li>
@@ -1370,15 +1468,772 @@ impose heap property on bad value now in root</code><br />
 
 <p>Correctness of the approach:</p>
 
+<ul>
+  <li>for any <code class="highlighter-rouge">Π' Î NP</code>, since <code class="highlighter-rouge">Π1</code> is NP-complete we have <code class="highlighter-rouge">Π' ∝ Π1</code></li>
+  <li>since <code class="highlighter-rouge">Π' ∝ Π</code>, <code class="highlighter-rouge">Π1 ∝ Π2</code> and in is transitive, it follows that <code class="highlighter-rouge">Π' ∝ Π2</code></li>
+  <li>since <code class="highlighter-rouge">Π' Î NP</code> was arbitrary, <code class="highlighter-rouge">Π' ∝ Π2</code> for all <code class="highlighter-rouge">Π' Î NP</code></li>
+  <li>hence <code class="highlighter-rouge">Π2</code> is NP-complete</li>
+</ul>
+
+<p>Cook’s Theorem, where the Satisfiability (SAT) problem is NP-complete</p>
+
+<ul>
+  <li>proof consists of generic poly-time reduction to SAT from an abstract definition of a general problem in NP</li>
+  <li>generic reduction could be instantiated to give an actual reduction for each individual NP problem</li>
+  <li>given this theorem, to prove that problem P is NP-complete it is sufficient to show that
+    <ul>
+      <li><code class="highlighter-rouge">Π</code> is in NP</li>
+      <li>there exists a poly-time reduction from SAT to <code class="highlighter-rouge">Π</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Clique Problem:</strong></p>
+
+<p>Instance: graph G and target integer K<br />
+   Question: does G contain a clique of size K?<br />
+   Proving: show clique is in NP, and that there exists a poly-time reduction from SAT to <code class="highlighter-rouge">Π</code></p>
+
+<p>We need to show SAT ∝ Clique:<br />
+   Given an instance B of SAT we construct a <code class="highlighter-rouge">(G, K)</code> instance of Clique</p>
+
+<ul>
+  <li>K number of clauses of B</li>
+  <li>vertices of G are pairs <code class="highlighter-rouge">(l, C)</code> where <code class="highlighter-rouge">l</code> is a literal clause of <code class="highlighter-rouge">C</code></li>
+  <li><code class="highlighter-rouge">{(l, C), (m, D)}</code> is an edge of G if and only if <code class="highlighter-rouge">l ≠ ¬m</code> and <code class="highlighter-rouge">C ≠ D</code>
+    <ul>
+      <li>edge if distinct literals from different clauses can be satisfied simultaneously</li>
+    </ul>
+  </li>
+  <li>poly-time construction O(n<sup>2</sup>) (with <code class="highlighter-rouge">n</code> literals)</li>
+  <li>this is a poly-time reduction since B has a satisfying argument if and only if G has a clique of size K</li>
+</ul>
+
+<p>Proving it is a poly-time reduction:</p>
+
+<ul>
+  <li>if B has a satisfying assignment then
+    <ul>
+      <li>if we choose a <strong>true</strong> literal in each clause the corresponding vertices form a clique of size K in G</li>
+    </ul>
+  </li>
+  <li>if G has a clique of size K then
+    <ul>
+      <li>assigning each literal associated with a vertex in the clique to be true yields a satisfying assignment for B</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The following graph G has a clique of size 4 if and only if B has a satisfying assignment (which is a clique of size 4 here)</p>
+
+<p><img src="/cs-notes/assets/images/algs/clique.png" nopin="nopin" /></p>
+
+<p><code class="highlighter-rouge">B = (x1 ∨ x2 ∨ ¬x3) ∧ (¬x1 ∨ x3 ∨ ¬x4) ∧ (¬x2 ∨ x4) ∧ (x2 ∨ ¬x3 ∨ x4)</code><br />
+   There are K = 4 clauses (bracket pairs)</p>
+
+<p><strong>Problem restrictions:</strong></p>
+
+<p>A restriction consists of a subset of the instances of the original problem<br />
+  If a restriction of a given decision problem <code class="highlighter-rouge">Π</code> is NP-complete, then so is <code class="highlighter-rouge">Π</code><br />
+  Given NP-complete <code class="highlighter-rouge">Π</code>, a restriction of <code class="highlighter-rouge">Π</code> <strong>might</strong> be NP-complete</p>
+
+<p>eg a clique restricted to cubic graphs is in P, so a largest clique has size at most 4, so exhaustive search is O(n<sup>4</sup>)</p>
+
+<p>K-colouring:<br />
+   Restriction of Graph Colouring for a fixed K number of colours<br />
+   2-colouring is in P, while 3-colouring is NP-complete</p>
+
+<p>K-SAT:<br />
+   Restriction of SAT in which every clause contains exactly K literals<br />
+   2-SAT is in P, while 3-SAT in NP-complete<br />
+   Showing 3-SAT Î NP is easy</p>
+
+<p><strong>SAT ∝ 3-SAT:</strong></p>
+
+<p>Given instance B of SAT we will construct an instance B’ of 3-SAT<br />
+   For each clause Ci of B we construct a number of clauses of B’</p>
+
+<ul>
+  <li>if <code class="highlighter-rouge">C = l1</code>
+    <ul>
+      <li>introduce 2 additional variables x1 and x2, and add the clauses <code class="highlighter-rouge">(l1 ∨ x1 ∨ x2), (l1 ∨ x1 ∨ ¬x2), (l1 ∨ ¬x1 ∨ x2), (l1 ∨ ¬x1 ∨ ¬x2)</code> to B’</li>
+    </ul>
+  </li>
+  <li>if <code class="highlighter-rouge">C = (l1 ∨ l2)</code>
+    <ul>
+      <li>introduce 1 additional variable y and the clauses <code class="highlighter-rouge">(l1 ∨ l2 ∨ y) and (l1 ∨ l2 ∨ ¬y)</code> to B’</li>
+    </ul>
+  </li>
+  <li>if <code class="highlighter-rouge">C = (l1 ∨ l2 ∨ l3)</code>
+    <ul>
+      <li>add the clause C to B’</li>
+    </ul>
+  </li>
+  <li>if <code class="highlighter-rouge">C = (l1 ∨ ... ∨ lk)</code> and <code class="highlighter-rouge">k &gt; 3</code>
+    <ul>
+      <li>introduce k - 3 additional variables z<sub>1</sub>, …, z<sub>k-3</sub></li>
+      <li>add the clauses <code class="highlighter-rouge">(l1 ∨ l2 ∨ z1), (¬z1 ∨ l3 ∨ z2), (¬z2 ∨ l4 ∨ z3), ..., (¬zk-4 ∨ lk-2 ∨ zk-3), (¬zk-3 ∨ lk-1 ∨ lk)</code> to B’</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Coping with NP-completeness:</strong></p>
+
+<p>Maybe only a restricted version is of interest (which may be in P)<br />
+   Seek an exponential-time alg. which improves on exhaustive search<br />
+   For an optimisation problem:</p>
+
+<ul>
+  <li>settle for an approximation alg. that runs in poly-time</li>
+  <li>esp. if it gives a probably good result</li>
+  <li>use a heuristic</li>
+</ul>
+
+<p>For a decision problem:</p>
+
+<ul>
+  <li>settle for a probabilistic alg. (correct answer with high probability)</li>
+</ul>
+
 <p><a name="section_6"></a></p>
 
 <h4 id="computability">Computability</h4>
+
+<ul>
+  <li><a href="#computability_intro">Introduction</a></li>
+  <li><a href="#halting_topic">The halting problem</a></li>
+  <li><a href="#computation_models_topic">Models of computation</a></li>
+</ul>
+
+<p><a name="computability_intro"></a></p>
+
+<h5 id="introduction-2">Introduction</h5>
+
+<p>A computer is:</p>
+
+<p><code class="highlighter-rouge">input x --&gt; BLACK BOX --&gt; output f(x)</code></p>
+
+<p>The black box computes a function that maps an input to an output<br />
+   What functions can be computed? Alternatively, what problems can be solved?<br />
+   We need a definition of an algorithm if we view a computer as a device that can execute one</p>
+
+<p>Some problems cannot be solved by a computer, eg the Tiling problem<br />
+   A 1x1 square tile divided into 4 triangles by its diagonals with each triangle a given colour<br />
+   Each tile has a fixed orientation and no rotations are allowed<br />
+   Instance: a finite set <code class="highlighter-rouge">S</code> of tile descriptions<br />
+   Question: can any finite area, of any size, be completely covered using only tiles of types in <code class="highlighter-rouge">S</code>, so that adjacent tile colours match?</p>
+
+<p>For example, tiling a 5x5 square:</p>
+
+<p><img src="/cs-notes/assets/images/algs/tiling_1.png" nopin="nopin" /></p>
+
+<p>Or extending to a larger region:</p>
+
+<ul>
+  <li>overlap the top two rows with the bottom two rows (for an 8x5 tiled area)</li>
+  <li>place two of these 8x5’s side by side (with the right hand rectangle one row above the left hand rectangle)</li>
+  <li>and repeat this pattern to tile any finite area</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/algs/tiling_2.png" nopin="nopin" /></p>
+
+<p>Tiling a 10x10 square:</p>
+
+<p><img src="/cs-notes/assets/images/algs/tiling_3.png" nopin="nopin" /></p>
+
+<p>There is <strong>no</strong> alg. for this problem<br />
+   For any alg. A that we might formulate, there is a set of tiles <code class="highlighter-rouge">S</code> for which either A doesn’t terminate or gives the wrong answer<br />
+   The problem is that:</p>
+
+<ul>
+  <li>“any size” means that we have to check all finite areas and there are infinitely many of these</li>
+  <li>for certain sets of tile descriptions that can tile any area, there is no “repeated pattern” we can use</li>
+  <li>would really have to be exhaustive</li>
+</ul>
+
+<p><strong>Undecidable problems:</strong></p>
+
+<p>A problem <code class="highlighter-rouge">Π</code> that admits no alg. is called <strong>non-computable</strong> or <strong>unsolvable</strong><br />
+   If <code class="highlighter-rouge">Π</code> is a decision problem and admits no alg., then it is called <strong>undecidable</strong> (tiling problem is one)</p>
+
+<p><strong>Post’s correspondence problem:</strong></p>
+
+<p>A word is a finite string over some given finite alphabet<br />
+   Instance: two finite sequences of words <code class="highlighter-rouge">X1, ..., Xn</code> and <code class="highlighter-rouge">Y1, ..., Yn</code> (in the same alphabet)<br />
+   Question: does there exist a sequence <code class="highlighter-rouge">i1, i2, ..., ir</code> of integers chosen from <code class="highlighter-rouge">{1, ..., n}</code> such that <code class="highlighter-rouge">Xi1Xi2...Xir = Yi1Yi2...Yir</code>?</p>
+
+<p>For <code class="highlighter-rouge">n = 5</code></p>
+
+<ul>
+  <li>X1 = abb, X2 = a, X3 = bab, X4 = baba, X5 = aba</li>
+  <li>Y1 = bbab, Y2 = aa, Y3 = ab, Y4 = aa, Y5 = a</li>
+  <li>correspondence given by sequence <code class="highlighter-rouge">2, 1, 1, 4, 1, 5</code>
+    <ul>
+      <li>word constructed from Xi’s = aabbabbbabaabbaba</li>
+      <li>word constructed from Yi’s = aabbabbbabaabbaba</li>
+    </ul>
+  </li>
+  <li>however, if we removed the first letter from X1 and Y1, then we could never get a correspondence</li>
+  <li>thus this problem is undecidable</li>
+</ul>
+
+<p><a name="halting_topic"></a></p>
+
+<h5 id="the-halting-problem">The halting problem</h5>
+
+<p>Instance: a legal Java program <code class="highlighter-rouge">X</code> and an input string <code class="highlighter-rouge">S</code> for <code class="highlighter-rouge">X</code><br />
+   Question: does <code class="highlighter-rouge">X</code> halt when run on <code class="highlighter-rouge">S</code>?<br />
+   We will prove that no such program can exist, and that thus, the halting problem is undecidable</p>
+
+<p>The below program <code class="highlighter-rouge">T</code> will terminate if and only if input <code class="highlighter-rouge">n ≠ 1</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="k">void</span> <span class="nx">t</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+	  <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With a word “erratic”, <code class="highlighter-rouge">T</code> is called with <code class="highlighter-rouge">n = 7</code> sequence of values:<br />
+   <code class="highlighter-rouge">22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1</code><br />
+   Then nobody knows whether “erratic” terminates for all values of <code class="highlighter-rouge">n</code></p>
+
+<p><strong>Proof by contradiction that HP is undecidable:</strong></p>
+
+<p>Suppose we have alg. <code class="highlighter-rouge">A</code> that solves HP<br />
+   Let <code class="highlighter-rouge">Q</code> be an implementation of this alg. as a Java method with <code class="highlighter-rouge">X</code> and <code class="highlighter-rouge">S</code> parameters</p>
+
+<p><img src="/cs-notes/assets/images/algs/halting_1.png" nopin="nopin" /></p>
+
+<p>Define a new program <code class="highlighter-rouge">P</code> with a legal program <code class="highlighter-rouge">W</code> as input</p>
+
+<p><img src="/cs-notes/assets/images/algs/halting_2.png" nopin="nopin" /></p>
+
+<ul>
+  <li><code class="highlighter-rouge">P</code> makes a copy of <code class="highlighter-rouge">W</code> and calls <code class="highlighter-rouge">Q(W, W)</code></li>
+  <li><code class="highlighter-rouge">Q</code> terminates by assumption</li>
+  <li>if it returns “yes”, <code class="highlighter-rouge">P</code> enters an infinite loop</li>
+  <li>if it returns “no”, <code class="highlighter-rouge">P</code> is terminated</li>
+</ul>
+
+<p>Now let the input <code class="highlighter-rouge">W</code> to <code class="highlighter-rouge">P</code> be the program <code class="highlighter-rouge">P</code> itself<br />
+   Then <code class="highlighter-rouge">P</code> would call <code class="highlighter-rouge">Q(P, P)</code> (recall we assumed that <code class="highlighter-rouge">Q</code> solves HP)</p>
+
+<ul>
+  <li>if <code class="highlighter-rouge">Q</code> returns “yes”, then by definition of <code class="highlighter-rouge">Q</code> this means <code class="highlighter-rouge">P</code> terminates</li>
+  <li>but this also means <code class="highlighter-rouge">P</code> does not terminate (it enters into the loop)</li>
+  <li>this is a contradiction, therefore <code class="highlighter-rouge">Q</code> must return “no”</li>
+  <li>and this means by definition of <code class="highlighter-rouge">Q</code> that <code class="highlighter-rouge">P</code> does no terminate</li>
+  <li>but it also means that <code class="highlighter-rouge">P</code> does terminate</li>
+  <li>again, it is a contradiction</li>
+  <li>so if it can return neither reply, no such <code class="highlighter-rouge">Q</code> can exist</li>
+  <li>therefore no alg. can solve HP</li>
+</ul>
+
+<p><strong>Proving undecidabiltiy by reduction:</strong></p>
+
+<p>Suppose we can reduce any instance <code class="highlighter-rouge">I</code> of <code class="highlighter-rouge">Π1</code> into an instance <code class="highlighter-rouge">J</code> of <code class="highlighter-rouge">Π2</code> such that <code class="highlighter-rouge">I</code> has a “yes” answer for <code class="highlighter-rouge">Π1</code> if and only if <code class="highlighter-rouge">J</code> has a “yes” answer for <code class="highlighter-rouge">Π2</code> (no need for <code class="highlighter-rouge">J</code> to be constructed in poly-time)<br />
+   If <code class="highlighter-rouge">Π1</code> is undecidable and we can perform such a reduction, then <code class="highlighter-rouge">Π2</code> is undecidable</p>
+
+<p><strong>Hierarchy of decision problems:</strong></p>
+
+<p><img src="/cs-notes/assets/images/algs/decision_hierarchy.png" nopin="nopin" /></p>
+
+<p><a name="computation_models_topic"></a></p>
+
+<h5 id="models-of-computation">Models of computation</h5>
+
+<p><strong>Deterministic finite-state automata (DFAs):</strong></p>
+
+<ul>
+  <li>simple machines with limited memory</li>
+  <li>recognise input on a read-only tape</li>
+</ul>
+
+<p>Consists of:</p>
+
+<ul>
+  <li>a finite input alphabet <code class="highlighter-rouge">A</code></li>
+  <li>a finite set of states <code class="highlighter-rouge">Q</code></li>
+  <li>an initial state <code class="highlighter-rouge">q0 ∈ Q</code> and set of <strong>accepting</strong> states <code class="highlighter-rouge">F ⊆ Q</code></li>
+  <li>control/program or <strong>transition relation</strong> <code class="highlighter-rouge">T ⊆ (Q * A) * Q</code>
+    <ul>
+      <li><code class="highlighter-rouge">((q, a), q') ∈ T</code> means if in state <code class="highlighter-rouge">q</code> and read <code class="highlighter-rouge">a</code>, then move to state <code class="highlighter-rouge">q'</code></li>
+    </ul>
+  </li>
+  <li>deterministic means that if <code class="highlighter-rouge">((q, a1), q1), ((q, a2), q2) ∈ T</code> either <code class="highlighter-rouge">a1 ≠ a2</code> or <code class="highlighter-rouge">q1 = q2</code>
+    <ul>
+      <li>for any state and action there is at most one move</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/algs/dfa_1.png" nopin="nopin" /></p>
+
+<ul>
+  <li>initial state denoted by incoming arrow</li>
+  <li>accepting states denoted by double circles</li>
+</ul>
+
+<p>Control/program for the above example:</p>
+
+<p><img src="/cs-notes/assets/images/algs/dfa_control.png" nopin="nopin" /></p>
+
+<p>A DFA defines a language</p>
+
+<ul>
+  <li>determines whether the string on the input tape belongs to that lang.</li>
+  <li>ie solves a decision problem</li>
+  <li>it <strong>accepts</strong> a lang., through the input strings which, when “run”, end in an accepting state</li>
+  <li>in the above example, the DFA accepts the lang. consisting of the set of all strings comprising one or more a’s followed by one or more b’s (and its complement ie the language of strings with no consecutive a’s)</li>
+</ul>
+
+<p><strong>Non-deteministic finite-state automation (NFA):</strong></p>
+
+<p><img src="/cs-notes/assets/images/algs/dfa_2.png" nopin="nopin" /></p>
+
+<p>This one recognises strings that start and end with a <code class="highlighter-rouge">b</code> (in state <code class="highlighter-rouge">q1</code> the <code class="highlighter-rouge">b</code> underneath can move to <code class="highlighter-rouge">q1</code> or <code class="highlighter-rouge">q2</code>)</p>
+
+<p>Recognition for NFA is similar to non-deterministics algs. solving a decision problem</p>
+
+<ul>
+  <li>only require there exists a “run” that ends in an accepting state</li>
+  <li>any NFA can be converted to a DFA</li>
+  <li>therefore non-determinism doesn’t expand the class of languages that can be recognised by finite state automata</li>
+</ul>
+
+<p><strong>NFA to DFA reduction:</strong></p>
+
+<ul>
+  <li>use the subset construction
+    <ul>
+      <li>states of DFA are sets of states of the NFA</li>
+      <li>construction can cause a blow-up in number of states</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Example without blow-up (recognises strings that start and end with <code class="highlighter-rouge">b</code>):</p>
+
+<p><img src="/cs-notes/assets/images/algs/nfa_to_dfa.png" nopin="nopin" /></p>
+
+<p><strong>Regular languages:</strong></p>
+
+<p>Languages that can be recognised by finite state automata<br />
+   A reg. lang. over an alphabet <code class="highlighter-rouge">A</code> can be specified by a <strong>regular expression</strong> over <code class="highlighter-rouge">A</code><br />
+   <code class="highlighter-rouge">ε</code> and <code class="highlighter-rouge">σ</code> are regex’s</p>
+
+<p><strong>Regular expressions:</strong></p>
+
+<p>If <code class="highlighter-rouge">R</code> and <code class="highlighter-rouge">S</code> are regex’s then so are (in order of lowest precedence first):</p>
+
+<ul>
+  <li><code class="highlighter-rouge">R | S</code> which denotes choice</li>
+  <li><code class="highlighter-rouge">RS</code> which denotes concatenation</li>
+  <li><code class="highlighter-rouge">R*</code> which denotes 0 or more copies or <code class="highlighter-rouge">R</code> (closure)</li>
+  <li><code class="highlighter-rouge">(R)</code> which is needed to override operator precedence</li>
+</ul>
+
+<p>Additional operations:</p>
+
+<ul>
+  <li>complement <code class="highlighter-rouge">¬x</code> (equivalent to the “or” of all chars. in <code class="highlighter-rouge">A</code> except <code class="highlighter-rouge">x</code>)</li>
+  <li>any single char. <code class="highlighter-rouge">?</code> (equivalent to the “or” of all chars.)</li>
+</ul>
+
+<p>Examples:</p>
+
+<ol>
+  <li>the lang. comprising 1+ a’s followed by 1+ b’s
+    <ul>
+      <li><code class="highlighter-rouge">aa*bb*</code></li>
+    </ul>
+  </li>
+  <li>the lang. of string containing 2 consecutive a’s
+    <ul>
+      <li><code class="highlighter-rouge">(a* | b*)* a a (a* | b*)*</code></li>
+    </ul>
+  </li>
+  <li>the lang of strings that don’t contain 2 consecutive a’s
+    <ul>
+      <li><code class="highlighter-rouge">b* (abb*)* (ε | a)</code></li>
+    </ul>
+  </li>
+  <li>the lang. of strings that start and end with <code class="highlighter-rouge">b</code>
+    <ul>
+      <li><code class="highlighter-rouge">b (a* | b*)* b</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Note:</strong> <code class="highlighter-rouge">L(R*)</code> does not mean <code class="highlighter-rouge">{ r* | r ∈ L(R) }</code></p>
+
+<ul>
+  <li>for certain regex’s, this cannot be recognised by any DFA</li>
+  <li>for such a lang., would need a memory to remember which string in <code class="highlighter-rouge">r ∈ L(R)</code> is repeated
+    <ul>
+      <li>might be an unbounded number</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Regex example:</p>
+
+<p>Consider lang. <code class="highlighter-rouge">(aa*bb*)*</code> with DFA</p>
+
+<p><img src="/cs-notes/assets/images/algs/regex_dfa.png" nopin="nopin" /></p>
+
+<p>A DFA can’t recognise <code class="highlighter-rouge">{ r* | r ∈ L(aa*bb*) }</code></p>
+
+<ul>
+  <li>ie { (a<sup>m</sup>b<sup>n</sup>)<code class="highlighter-rouge">* |</code> m &gt; 0 and n &gt; 0 }</li>
+  <li>would need to remember the <code class="highlighter-rouge">m</code> and <code class="highlighter-rouge">n</code> to check that a string is in the lang.</li>
+  <li>infinitely many values for <code class="highlighter-rouge">m</code> and <code class="highlighter-rouge">n</code></li>
+  <li>so it would need infintely many states</li>
+  <li>so, this is not a regular language</li>
+  <li>similarly, it can’t recognise { (a<sup>n</sup>b<sup>n</sup>)<code class="highlighter-rouge">* |</code> n &gt; 0 }
+    <ul>
+      <li>might need to use a stack, where a’s are pushed as they are read, and popped as b’s are read (like a counter)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Pushdown automata:</strong></p>
+
+<ul>
+  <li>unlimited memory</li>
+  <li>behave like a stack</li>
+</ul>
+
+<p>Consists of:</p>
+
+<ul>
+  <li>finite input alphabet <code class="highlighter-rouge">A</code></li>
+  <li>finite set of stack symbols <code class="highlighter-rouge">G</code></li>
+  <li>finite set of states <code class="highlighter-rouge">Q</code> including start state and set of accepting states</li>
+  <li>control/transition relation <code class="highlighter-rouge">T ⊆ (Q * AÈ{ε} * GÈ{ε}) * (Q * GÈ{ε})</code></li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/algs/pushdown_1.png" nopin="nopin" /></p>
+
+<p>Informally, the transition <code class="highlighter-rouge">(q, a, w) --&gt; (r, v)</code> means that</p>
+
+<ul>
+  <li>if we are in state <code class="highlighter-rouge">q</code></li>
+  <li>if <code class="highlighter-rouge">a ≠ ε</code> then <code class="highlighter-rouge">a</code> is at head of tape</li>
+  <li>if <code class="highlighter-rouge">w ≠ ε</code> then <code class="highlighter-rouge">w</code> is at top of stack</li>
+  <li>move to state <code class="highlighter-rouge">r</code> and
+    <ul>
+      <li>if <code class="highlighter-rouge">a ≠ ε</code> then head++</li>
+      <li>if <code class="highlighter-rouge">w ≠ ε</code> then pop <code class="highlighter-rouge">w</code> from stack</li>
+      <li>if <code class="highlighter-rouge">v ≠ ε</code> then push <code class="highlighter-rouge">v</code> onto stack</li>
+    </ul>
+  </li>
+</ul>
+
+<p>A PDA accepts an input if and only if after the input has been read, the stack is empty and control is in an accepting state<br />
+   There is no explicit test for empty stack, but you can just add a <code class="highlighter-rouge">$</code> symbol to the stack at start of computation<br />
+   Then check for emptiness when this symbol is at top of stack</p>
+
+<p>The PDA defined here are non-deterministic (NDPDA)<br />
+   More powerful than deterministic PDAs<br />
+   ie it can recognise languages that the DPDA might not, such as palindromes</p>
+
+<p><strong>Palindromes:</strong></p>
+
+<p>Sequences of chars. that read the same backwards as forwards<br />
+   Recognising with a PDA:</p>
+
+<ul>
+  <li>push first half of sequence onto stack</li>
+  <li>as you read each char., check that it’s the same as the top of the stack and pop that element</li>
+  <li>enter an accepting state if all checks succeed</li>
+</ul>
+
+<p>Why we need non-determinism:</p>
+
+<ul>
+  <li>need to “guess” where middle of the stack is</li>
+  <li>cannot work this out and then check string
+    <ul>
+      <li>would need an unbounded number of states as the string could be of any finite length</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Palindrome example:</p>
+
+<p><img src="/cs-notes/assets/images/algs/pushdown_2.png" nopin="nopin" /></p>
+
+<ul>
+  <li>alphabet is <code class="highlighter-rouge">{a, b}</code></li>
+  <li><code class="highlighter-rouge">s0</code> is start state and <code class="highlighter-rouge">s0</code> and <code class="highlighter-rouge">s3</code> are the only accepting states</li>
+  <li><code class="highlighter-rouge">(s0, ε, ε) --&gt; (s1, $)</code> move to <code class="highlighter-rouge">s1</code> and push <code class="highlighter-rouge">$</code> onto stack</li>
+  <li><code class="highlighter-rouge">(s1, a, ε) --&gt; (s1, 1)</code> read <code class="highlighter-rouge">a</code> and push <code class="highlighter-rouge">1</code></li>
+  <li><code class="highlighter-rouge">(s1, b, 1) --&gt; (s2, ε)</code> read <code class="highlighter-rouge">b</code> and <code class="highlighter-rouge">1</code> is on top, pop, move to <code class="highlighter-rouge">s2</code></li>
+  <li><code class="highlighter-rouge">(s2, b, 1) --&gt; (s2, ε)</code> read <code class="highlighter-rouge">b</code> and <code class="highlighter-rouge">1</code> is on top, pop</li>
+  <li><code class="highlighter-rouge">(s2, ε, $) --&gt; (s3, ε)</code> if <code class="highlighter-rouge">$</code> is top, pop, move to <code class="highlighter-rouge">s3</code></li>
+</ul>
+
+<p>So the automaton recognises the language { (a<sup>n</sup>b<sup>n</sup>)<code class="highlighter-rouge"> |</code> n =&gt; 0 }</p>
+
+<p>PDA are more powerful than finite-state - can recognise languages that a DFA cannot<br />
+   These languages are the <strong>context-free languages</strong><br />
+   Not all languages are context-free, for example, { (a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>)<code class="highlighter-rouge"> |</code> n =&gt; 0 } cannot be recognised by a PDA</p>
+
+<p><strong>Turing Machines:</strong></p>
+
+<p>Recognises a particular languages consisting of:</p>
+
+<ul>
+  <li>finite alphabet <code class="highlighter-rouge">Σ</code>, including blank symbol <code class="highlighter-rouge">#</code></li>
+  <li>unbounded <strong>tape</strong> of squares
+    <ul>
+      <li>each holding a single symbol of <code class="highlighter-rouge">Σ</code></li>
+      <li>unbounded in both directions</li>
+    </ul>
+  </li>
+  <li><strong>tape head</strong> that scans a single square
+    <ul>
+      <li>read and write to square</li>
+      <li>moves 1 square left/right along the tape</li>
+    </ul>
+  </li>
+  <li>set <code class="highlighter-rouge">S</code> of <strong>states</strong>
+    <ul>
+      <li>start state <code class="highlighter-rouge">s0</code> and two <strong>halt</strong> (or terminal) states <code class="highlighter-rouge">sY</code> and <code class="highlighter-rouge">sN</code></li>
+    </ul>
+  </li>
+  <li><strong>transition function</strong>
+    <ul>
+      <li>the inbuilt program</li>
+      <li>of the form <code class="highlighter-rouge">f: ((S/{sY, sN}) * Σ) --&gt; (S * Σ * {left, right})</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>For each non-terminal state and symbol, <code class="highlighter-rouge">f</code> specifies</p>
+
+<ul>
+  <li>a new state</li>
+  <li>a new symbol</li>
+  <li>a direction in which to move</li>
+</ul>
+
+<p><code class="highlighter-rouge">f(s, σ) = (s', σ', d)</code> means reading <code class="highlighter-rouge">σ</code> from the tape in state <code class="highlighter-rouge">s</code></p>
+
+<ul>
+  <li>move to state <code class="highlighter-rouge">s' ∈ S</code></li>
+  <li>overwrite <code class="highlighter-rouge">σ</code> with <code class="highlighter-rouge">σ ∈ Σ</code></li>
+  <li>move head in the direction <code class="highlighter-rouge">d ∈ {left, right}</code></li>
+</ul>
+
+<p>Computation:</p>
+
+<ul>
+  <li>finite input string placed on tape</li>
+  <li>head placed on first symbol of the input</li>
+  <li>starts in state <code class="highlighter-rouge">s0</code>
+    <ul>
+      <li>if halts in state <code class="highlighter-rouge">sY</code>, answer is “yes”</li>
+      <li>if halts in state <code class="highlighter-rouge">sN</code>, answer is “no”</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Palindrome problem:<br />
+   Instance: finite string <code class="highlighter-rouge">Y</code>
+   Question: is <code class="highlighter-rouge">Y</code> a palindrome?<br />
+   Java <a href="#turing_palindrome">method</a> for this</p>
+
+<p>We can use a Turing machine for this problem, as we don’t need nondeterminism (don’t need to guess the middle)</p>
+
+<p><a href="#turing_palindrome_2">TM algorithm</a> for the palindrome problem</p>
+
+<p>For this, we need the following states:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">s0</code> reading, erasing and remember leftmost symbol</li>
+  <li><code class="highlighter-rouge">s1, s2</code> moving right, remembering symbol erased</li>
+  <li><code class="highlighter-rouge">s3, s4</code> testing for appropritate rightmost symbol</li>
+  <li><code class="highlighter-rouge">s5</code> moving back to leftmost symbol</li>
+</ul>
+
+<p>A TM can be described with a <strong>state transition diagram</strong><br />
+   A directed graph where</p>
+
+<ul>
+  <li>each state represented by vertex</li>
+  <li><code class="highlighter-rouge">f(s, σ) = (s', σ', d)</code> represented by an edge from <code class="highlighter-rouge">s</code> to <code class="highlighter-rouge">s'</code> labelled <code class="highlighter-rouge">(σ --&gt; σ', d)</code>
+    <ul>
+      <li>edge represents moving to <code class="highlighter-rouge">s'</code></li>
+      <li><code class="highlighter-rouge">σ --&gt; σ'</code> represents overwriting symbol on tape</li>
+      <li><code class="highlighter-rouge">d</code> represents moving tape in a direction <code class="highlighter-rouge">d</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/algs/turing.png" nopin="nopin" /></p>
+
+<p>Functions:</p>
+
+<p>TM that accepts language <code class="highlighter-rouge">L</code> actually computes the function <code class="highlighter-rouge">f</code> where <code class="highlighter-rouge">f(s) = 1</code> if <code class="highlighter-rouge">s ∈ L</code> and <code class="highlighter-rouge">0</code> otherwise</p>
+
+<p>The definition of a TM can be amended as follows:</p>
+
+<ul>
+  <li>to have set <code class="highlighter-rouge">H</code> of halt states</li>
+  <li>function it computers is defined by <code class="highlighter-rouge">f(s) = s'</code> where
+    <ul>
+      <li><code class="highlighter-rouge">s</code> is inital string</li>
+      <li><code class="highlighter-rouge">s'</code> is string on tape when the machine halts</li>
+    </ul>
+  </li>
+</ul>
+
+<p>eg, the palindrome TM can be redefined such that it deletes the tape contents and</p>
+
+<ul>
+  <li>instead of entering <code class="highlighter-rouge">sY</code>, it writes <code class="highlighter-rouge">1</code> on tape and enters halt state</li>
+  <li>instead of entering <code class="highlighter-rouge">sN</code>, it writes <code class="highlighter-rouge">0</code> on tape and enters halt state</li>
+</ul>
+
+<p>Designing a TM to compute <code class="highlighter-rouge">f(k) = k + 1</code>:</p>
+
+<ol>
+  <li>input 1 0 0 0 1 0, output 1 0 0 0 1 1
+    <ul>
+      <li>pattern: replace rightmost <code class="highlighter-rouge">0</code> with <code class="highlighter-rouge">0</code></li>
+      <li>then moving right: if <code class="highlighter-rouge">1</code>, replace with <code class="highlighter-rouge">0</code> and continue right / if blank, halt</li>
+    </ul>
+  </li>
+  <li>input 1 0 0 1 1 1, output 1 0 1 0 0 0
+    <ul>
+      <li>same pattern as 1</li>
+    </ul>
+  </li>
+  <li>input 1 1 1 1 1, output 1 0 0 0 0 0
+    <ul>
+      <li>this is a special case</li>
+      <li>no rightmost <code class="highlighter-rouge">0</code></li>
+      <li>replace first blank before input with <code class="highlighter-rouge">1</code></li>
+      <li>then moving right: if <code class="highlighter-rouge">1</code> replace with <code class="highlighter-rouge">0</code> and continue right / if blank, halt</li>
+    </ul>
+  </li>
+</ol>
+
+<p><a href="#turing_example">TM algorithm</a> for the above function</p>
+
+<p>For this, we need the following states:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">s0</code> initial state moving right seeking start of input</li>
+  <li><code class="highlighter-rouge">s1</code> moving left to rightmost <code class="highlighter-rouge">0</code> or blank</li>
+  <li><code class="highlighter-rouge">s2</code> finding first <code class="highlighter-rouge">0</code> or blank, changing it to <code class="highlighter-rouge">1</code> and moving right, changing <code class="highlighter-rouge">1</code>s to <code class="highlighter-rouge">0</code>s</li>
+  <li><code class="highlighter-rouge">s3</code> halt state</li>
+</ul>
+
+<p><strong>Recognisable and decidable:</strong></p>
+
+<p>Language <code class="highlighter-rouge">L</code> is <strong>Turing-recognisable</strong> if, given input string <code class="highlighter-rouge">s</code>:</p>
+
+<ul>
+  <li>if <code class="highlighter-rouge">s ∈ L</code>, then TM halts in state <code class="highlighter-rouge">sY</code></li>
+  <li>if <code class="highlighter-rouge">s Ï L</code>, then TM halts in state <code class="highlighter-rouge">sN</code> or fails to halt</li>
+</ul>
+
+<p>Language <code class="highlighter-rouge">L</code> is <strong>Turing-decidable</strong> if, given input string <code class="highlighter-rouge">s</code>:</p>
+
+<ul>
+  <li>if <code class="highlighter-rouge">s ∈ L</code>, then TM halts in state <code class="highlighter-rouge">sY</code></li>
+  <li>if <code class="highlighter-rouge">s Ï L</code>, then TM halts in state <code class="highlighter-rouge">sN</code></li>
+</ul>
+
+<p>Every decidable language is recognisable, but not every recognisable language is decidable</p>
+
+<p>A function <code class="highlighter-rouge">f: S* --&gt; S*</code> is <strong>Turing-computable</strong> if there is a TM <code class="highlighter-rouge">M</code> such that, for any input <code class="highlighter-rouge">s</code>, <code class="highlighter-rouge">M</code> halts with output <code class="highlighter-rouge">f(s)</code></p>
+
+<p><strong>Enhanced Turing Machines:</strong></p>
+
+<p>TM can be enhanced in a few ways</p>
+
+<ul>
+  <li>2+ tapes, rather than just one</li>
+  <li>a 2-dimensional “tape”</li>
+  <li>TM may operate non-deterministically (transition function may be a relation instead)</li>
+</ul>
+
+<p>None of these enhancements change the computing power</p>
+
+<ul>
+  <li>every lang./func. that is recognisable/decidable/computable with an enhanced TM is also R/D/C with a basic TM
+    <ul>
+      <li>non-determinism adds power to PDA, but not to DFAs nor TMs</li>
+    </ul>
+  </li>
+  <li>proved by showing that basic TM can simulate any of these enhanced TMs</li>
+</ul>
+
+<p><strong>P and NP:</strong></p>
+
+<p>P often introduced as the class as decision problems solvable by a TM in poly-time<br />
+   NP introduced as the class of decision problems solvable by a non-deterministic TM in poly-time</p>
+
+<ul>
+  <li>in a non-deterministic TM, transition function replaced by a relation <code class="highlighter-rouge">f ⊆ ( (S * Σ) * (S * Σ * {left, right}) )</code>
+    <ul>
+      <li>can make a number of different transition based on current state and symbol at head</li>
+    </ul>
+  </li>
+  <li>non-det. doesn’t change what can be computed, but speeds it up</li>
+</ul>
+
+<p>To show P ≠ NP, sufficient to show that a standard TM cannot solve an NP-complete problem in poly-time</p>
+
+<p><strong>Counter-programs:</strong></p>
+
+<p>These have</p>
+
+<ul>
+  <li>vartiables of type <code class="highlighter-rouge">int</code></li>
+  <li>labelled statements of the form <code class="highlighter-rouge">L: unlabelled_statement</code></li>
+  <li>unlabelled statements of the form
+    <ul>
+      <li><code class="highlighter-rouge">x = 0</code></li>
+      <li><code class="highlighter-rouge">x = y + 1</code></li>
+      <li><code class="highlighter-rouge">x = y - 1</code></li>
+      <li><code class="highlighter-rouge">if x == 0 goto L</code></li>
+      <li><code class="highlighter-rouge">halt;</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Counter program <a href="#counter_program">example</a></p>
+
+<p><strong>Church-Turing thesis:</strong></p>
+
+<p>Based on the fact that a whole range of different computational models turn out to be equivalent in terms of what they can compute<br />
+   Reasonable to infer that any one of these models encapsulates what is effectively computable<br />
+   This thesis states that everything “effectively computable” is computable by a TM (not a theorem as uses informal terms)<br />
+   So there is an effective procedure for computing the value of the function, including all computers/programming langs. that we know about at present and even those we do not</p>
+
+<p>So the TM is an appropriate model for the “black box”</p>
+
+<p>Equivalent computational models (each can “simulate” the others):</p>
+
+<ul>
+  <li>lambda calculus (Church)</li>
+  <li>TMs (Turing)</li>
+  <li>recursive functions (Kleene)</li>
+  <li>production systems (Post)</li>
+  <li>counter programs and all general purpose programming languages</li>
+</ul>
 
 <p><a name="heap_class"></a></p>
 
 <h6 id="heap-class-implementation-in-java">Heap class implementation in Java</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">class</span> <span class="nx">Heap</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">class</span> <span class="nx">Heap</span> <span class="p">{</span>
 
   <span class="kr">int</span> <span class="nx">size</span><span class="p">;</span>
   <span class="kr">int</span><span class="p">[]</span> <span class="nx">items</span><span class="p">;</span>
@@ -1462,8 +2317,7 @@ impose heap property on bad value now in root</code><br />
   <span class="nx">items</span><span class="p">[</span><span class="nx">current</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span> <span class="c1">// finalise location</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p><a name="heap_sort"></a></p>
 
 <h6 id="heapsort-pseudocode">Heapsort pseudocode</h6>
@@ -1490,7 +2344,7 @@ impose heap property on bad value now in root</code><br />
 
 <h6 id="radix-sort-pseudocode">Radix sort pseudocode</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">private</span> <span class="kr">int</span> <span class="nx">bits</span><span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">b</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">p</span><span class="p">)</span> <span class="c1">// helper method which would return the value represented by the b bits of x when starting at position p</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kr">int</span> <span class="nx">bits</span><span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">b</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">p</span><span class="p">)</span> <span class="c1">// helper method which would return the value represented by the b bits of x when starting at position p</span>
 
 <span class="c1">// a is the sequence to be sorted</span>
 <span class="c1">// m is the number of bits in each item of a</span>
@@ -1511,7 +2365,7 @@ impose heap property on bad value now in root</code><br />
   <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">numBuckets</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="nx">bucket</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">clear</span><span class="p">();</span>
   
   <span class="c1">// distribute items in order</span>
-  <span class="k">for</span> <span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span> <span class="err">:</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span> <span class="p">:</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">int</span> <span class="nx">k</span> <span class="o">=</span> <span class="nx">bits</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="p">(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nx">b</span><span class="p">);</span> <span class="c1">// find correct bucket</span>
 	<span class="nx">bucket</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
   <span class="p">}</span>
@@ -1522,8 +2376,7 @@ impose heap property on bad value now in root</code><br />
   <span class="k">for</span> <span class="p">(</span><span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">numBuckets</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="nx">a</span><span class="p">.</span><span class="nx">addAll</span><span class="p">(</span><span class="nx">bucket</span><span class="p">[</span><span class="nx">j</span><span class="p">]);</span>
   
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="trie_alg"></a></p>
 
@@ -1531,8 +2384,8 @@ impose heap property on bad value now in root</code><br />
 
 <p><strong>Search:</strong></p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// search for a word w in a trie t</span>
-<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="nx">of</span> <span class="nx">t</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// search for a word w in a trie t</span>
+<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="k">of</span> <span class="nx">t</span><span class="p">;</span>
 <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// current position in w</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
@@ -1549,30 +2402,28 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
   <span class="k">else</span> <span class="k">return</span> <span class="s2">"absent"</span><span class="p">;</span> <span class="c1">// can't match current char</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>Insert:</strong></p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// insert word w into trie t</span>
-<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="nx">of</span> <span class="nx">t</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// insert word w into trie t</span>
+<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="k">of</span> <span class="nx">t</span><span class="p">;</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">w</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through chars of word</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="nx">has</span> <span class="nx">no</span> <span class="nx">child</span> <span class="nx">c</span> <span class="nx">labelled</span> <span class="nx">w</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="p">{</span>
     <span class="nx">create</span> <span class="nx">such</span> <span class="nx">a</span> <span class="nx">child</span> <span class="nx">c</span><span class="p">;</span>
-	<span class="nx">mark</span> <span class="nx">c</span> <span class="nx">as</span> <span class="nx">intermediate</span><span class="p">;</span>
+	<span class="nx">mark</span> <span class="nx">c</span> <span class="k">as</span> <span class="nx">intermediate</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span> <span class="c1">// move to child node</span>
 <span class="p">}</span>
-<span class="nx">mark</span> <span class="nx">n</span> <span class="nx">as</span> <span class="nx">representing</span> <span class="nx">a</span> <span class="nx">word</span><span class="p">;</span>
-</code></pre>
-</div>
+<span class="nx">mark</span> <span class="nx">n</span> <span class="k">as</span> <span class="nx">representing</span> <span class="nx">a</span> <span class="nx">word</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p><a name="trie_class"></a></p>
 
 <h6 id="trie-class">Trie class</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">class</span> <span class="nx">Node</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">class</span> <span class="nx">Node</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="kr">char</span> <span class="nx">letter</span><span class="p">;</span> <span class="c1">// label of incoming branch</span>
   <span class="kr">private</span> <span class="kr">boolean</span> <span class="nx">isWord</span><span class="p">;</span> <span class="c1">// true when node represents a word</span>
@@ -1590,7 +2441,7 @@ impose heap property on bad value now in root</code><br />
   <span class="c1">// include accessors and mutators for the various components of a class</span>
 <span class="p">}</span>
 
-<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Trie</span> <span class="p">{</span>
+<span class="kr">public</span> <span class="kd">class</span> <span class="nx">Trie</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="nx">Node</span> <span class="nx">root</span><span class="p">;</span>
   
@@ -1599,14 +2450,13 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
   
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="huff_contruct"></a></p>
 
 <h6 id="huffman-tree-construction">Huffman tree construction</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// set up leaf nodes</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// set up leaf nodes</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">distinct</span> <span class="kr">char</span> <span class="nx">c</span> <span class="nx">occuring</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="nx">make</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">parentless</span> <span class="nx">node</span> <span class="nx">n</span><span class="p">;</span>
@@ -1619,10 +2469,10 @@ impose heap property on bad value now in root</code><br />
 <span class="p">}</span>
 
 <span class="c1">// construct branch nodes and links</span>
-<span class="k">while</span> <span class="p">(</span><span class="nx">num</span> <span class="nx">of</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">num</span> <span class="k">of</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="nx">make</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">parentless</span> <span class="nx">node</span> <span class="nx">z</span><span class="p">;</span>
-  <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">the</span> <span class="mi">2</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="nx">of</span> <span class="nx">minimum</span> <span class="nx">weight</span><span class="p">;</span>
+  <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">the</span> <span class="mi">2</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="k">of</span> <span class="nx">minimum</span> <span class="nx">weight</span><span class="p">;</span>
   <span class="nx">z</span><span class="p">.</span><span class="nx">setLeftChild</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
   <span class="nx">z</span><span class="p">.</span><span class="nx">setRightChild</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
   <span class="kr">int</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">getWeight</span><span class="p">()</span> <span class="o">+</span> <span class="nx">y</span><span class="p">.</span><span class="nx">getWeight</span><span class="p">();</span>
@@ -1630,20 +2480,19 @@ impose heap property on bad value now in root</code><br />
   
 <span class="p">}</span>
 <span class="c1">// the final z is root</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="lzw"></a></p>
 
 <h6 id="lzw-compression-1">LZW compression</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">set</span> <span class="nx">current</span> <span class="nx">text</span> <span class="nx">position</span> <span class="nx">i</span> <span class="nx">to</span> <span class="mi">0</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">set</span> <span class="nx">current</span> <span class="nx">text</span> <span class="nx">position</span> <span class="nx">i</span> <span class="nx">to</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nx">initialise</span> <span class="nx">codeword</span> <span class="nx">length</span> <span class="nx">k</span><span class="p">;</span>
 <span class="nx">initialise</span> <span class="nx">dictionary</span> <span class="nx">d</span><span class="p">;</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="nx">text</span> <span class="nx">t</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">exhausted</span><span class="p">)</span> <span class="p">{</span>
   
-  <span class="nx">identify</span> <span class="nx">longest</span> <span class="nx">string</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">starting</span> <span class="nx">at</span> <span class="nx">position</span> <span class="nx">i</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">text</span> <span class="nx">that</span> <span class="nx">is</span> <span class="nx">represented</span> <span class="k">in</span> <span class="nx">d</span><span class="p">;</span>
+  <span class="nx">identify</span> <span class="nx">longest</span> <span class="nx">string</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">starting</span> <span class="nx">at</span> <span class="nx">position</span> <span class="nx">i</span> <span class="k">of</span> <span class="nx">the</span> <span class="nx">text</span> <span class="nx">that</span> <span class="nx">is</span> <span class="nx">represented</span> <span class="k">in</span> <span class="nx">d</span><span class="p">;</span>
   <span class="nx">output</span> <span class="nx">codeword</span> <span class="k">for</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// using k bits</span>
   
   <span class="c1">// move to next position in t</span>
@@ -1653,17 +2502,16 @@ impose heap property on bad value now in root</code><br />
   <span class="nx">add</span> <span class="nx">string</span> <span class="nx">s</span><span class="o">+</span><span class="nx">c</span> <span class="nx">to</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">paired</span> <span class="kd">with</span> <span class="nx">next</span> <span class="nx">available</span> <span class="nx">codeword</span><span class="p">;</span> <span class="c1">// involves adding a new leaf node if d is represented by a trie</span>
   
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="lzw_decomp"></a></p>
 
 <h6 id="lzw-decompression">LZW decompression</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">initialise</span> <span class="nx">codeword</span> <span class="nx">length</span> <span class="nx">k</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">initialise</span> <span class="nx">codeword</span> <span class="nx">length</span> <span class="nx">k</span><span class="p">;</span>
 <span class="nx">initialise</span> <span class="nx">dictionary</span> <span class="nx">d</span><span class="p">;</span>
 
-<span class="nx">read</span> <span class="nx">first</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">compressed</span> <span class="nx">file</span> <span class="nx">f</span><span class="p">;</span> <span class="c1">// read k bits</span>
+<span class="nx">read</span> <span class="nx">first</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="k">from</span> <span class="nx">the</span> <span class="nx">compressed</span> <span class="nx">file</span> <span class="nx">f</span><span class="p">;</span> <span class="c1">// read k bits</span>
 <span class="nb">String</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lookUp</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// look up codeword in d</span>
 <span class="nx">output</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// output decompressed string</span>
 
@@ -1673,7 +2521,7 @@ impose heap property on bad value now in root</code><br />
   
   <span class="k">if</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">is</span> <span class="nx">full</span><span class="p">)</span> <span class="nx">k</span><span class="o">++</span><span class="p">;</span>
   
-  <span class="nx">get</span> <span class="nx">next</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="nx">from</span> <span class="nx">f</span><span class="p">;</span>
+  <span class="kd">get</span> <span class="nx">next</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="k">from</span> <span class="nx">f</span><span class="p">;</span>
   <span class="nx">s</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">loopUp</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// look up codeword in d</span>
   <span class="nx">output</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// output decompressed string</span>
   
@@ -1681,14 +2529,13 @@ impose heap property on bad value now in root</code><br />
   <span class="nx">add</span> <span class="nx">newS</span> <span class="nx">to</span> <span class="nx">d</span> <span class="nx">paired</span> <span class="kd">with</span> <span class="nx">next</span> <span class="nx">available</span> <span class="nx">codeword</span><span class="p">;</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="brute_force"></a></p>
 
 <h6 id="brute-force-algorithm-1">Brute force algorithm</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs in t starting at position k, or -1 if no k exists</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs in t starting at position k, or -1 if no k exists</span>
 <span class="kr">public</span> <span class="kr">int</span> <span class="nx">bruteForce</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// length of string/pattern</span>
   <span class="kr">int</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// length of text</span>
@@ -1711,14 +2558,13 @@ impose heap property on bad value now in root</code><br />
   <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
   
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="kmp"></a></p>
 
 <h6 id="kmp-search-implementation">KMP search implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs from position k in t, or -1 if no k exists</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs from position k in t, or -1 if no k exists</span>
 <span class="kr">public</span> <span class="kr">int</span> <span class="nx">kmp</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
   
   <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
@@ -1748,14 +2594,13 @@ impose heap property on bad value now in root</code><br />
   <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// no occurence</span>
   
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="bm"></a></p>
 
 <h6 id="boyer-moore-implementation">Boyer-Moore implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs at k in t, or -1 if no k exists</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs at k in t, or -1 if no k exists</span>
 <span class="kr">public</span> <span class="kr">int</span> <span class="nx">bm</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
@@ -1783,15 +2628,14 @@ impose heap property on bad value now in root</code><br />
   <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="adjacency_list"></a></p>
 
 <h6 id="adjacency-list-implementation">Adjacency list implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// an entry in the adjacency list</span>
-<span class="kr">public</span> <span class="kr">class</span> <span class="nx">AdjListNode</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// an entry in the adjacency list</span>
+<span class="kr">public</span> <span class="kd">class</span> <span class="nx">AdjListNode</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="kr">int</span> <span class="nx">vertexIndex</span><span class="p">;</span>
   <span class="c1">// possibly other fields eg weight, capacity...</span>
@@ -1810,8 +2654,8 @@ impose heap property on bad value now in root</code><br />
 <span class="p">}</span>
 
 <span class="c1">// a vertex</span>
-<span class="kr">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
-<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Vertex</span> <span class="p">{</span>
+<span class="k">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
+<span class="kr">public</span> <span class="kd">class</span> <span class="nx">Vertex</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="kr">int</span> <span class="nx">index</span><span class="p">;</span> <span class="c1">// the index of this vertex</span>
   <span class="kr">private</span> <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AjdListNode</span><span class="o">&gt;</span> <span class="nx">adjList</span><span class="p">;</span> <span class="c1">// and its adjacency list</span>
@@ -1839,8 +2683,8 @@ impose heap property on bad value now in root</code><br />
 <span class="p">}</span>
 
 <span class="c1">// a graph</span>
-<span class="kr">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
-<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Graph</span> <span class="p">{</span>
+<span class="k">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
+<span class="kr">public</span> <span class="kd">class</span> <span class="nx">Graph</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="nx">Vertex</span><span class="p">[]</span> <span class="nx">vertices</span><span class="p">;</span>
   <span class="kr">private</span> <span class="kr">int</span> <span class="nx">numVertices</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1858,15 +2702,14 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="dfs"></a></p>
 
 <h6 id="depth-first-search-implementation">Depth-first search implementation</h6>
 
 <p>Add this to the previously defined <strong>vertex</strong> class:</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="kr">private</span> <span class="kr">boolean</span> <span class="nx">visited</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kr">private</span> <span class="kr">boolean</span> <span class="nx">visited</span><span class="p">;</span>
    <span class="kr">private</span> <span class="kr">int</span> <span class="nx">pred</span><span class="p">;</span> <span class="c1">// index of predecessor vertex</span>
    
    <span class="kr">public</span> <span class="kr">boolean</span> <span class="nx">getVisited</span><span class="p">()</span> <span class="p">{</span>
@@ -1881,18 +2724,17 @@ impose heap property on bad value now in root</code><br />
    <span class="kr">public</span> <span class="k">void</span> <span class="nx">setPred</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
      <span class="nx">pred</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
    <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>And add this to the previously defined <strong>graph</strong> class:</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="c1">// visit vertex v with predecessor p</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c1">// visit vertex v with predecessor p</span>
    <span class="kr">private</span> <span class="k">void</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
    
      <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// update</span>
 	 <span class="nx">v</span><span class="p">.</span><span class="nx">setPred</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// set predecessor (-1 if none)</span>
 	 <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AdjListNode</span><span class="o">&gt;</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getAjdList</span><span class="p">();</span> <span class="c1">// get adj. list</span>
 	 
-	 <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="err">:</span> <span class="nx">L</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through all adjacent vertices</span>
+	 <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="p">:</span> <span class="nx">L</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through all adjacent vertices</span>
 	   <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getIndex</span><span class="p">();</span>
 	   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">vertices</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getVisited</span><span class="p">())</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">vertices</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getIndex</span><span class="p">());</span> <span class="c1">// if current vertex hasn't been visited, continue the search from there</span>
 	 <span class="p">}</span>
@@ -1902,20 +2744,19 @@ impose heap property on bad value now in root</code><br />
    <span class="c1">// carry out a df traversal</span>
    <span class="kr">public</span> <span class="k">void</span> <span class="nx">dfs</span><span class="p">()</span> <span class="p">{</span>
    
-     <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
-	 <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// if vertex not visited, start search there</span>
+     <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
+	 <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// if vertex not visited, start search there</span>
    
    <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="bfs"></a></p>
 
 <h6 id="breadth-first-search-implementation">Breadth-first search implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
 <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">Vertex</span><span class="o">&gt;</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-<span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// start search</span>
   
@@ -1928,7 +2769,7 @@ impose heap property on bad value now in root</code><br />
 	  <span class="nx">Vertex</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span> <span class="c1">// get next vertex to process</span>
 	  <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AdjListNode</span><span class="o">&gt;</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">u</span><span class="p">.</span><span class="nx">getAdjList</span><span class="p">();</span> <span class="c1">// get its adj. list</span>
 	  
-	  <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="err">:</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through its adj. list</span>
+	  <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="p">:</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through its adj. list</span>
 	  
 	    <span class="nx">Vertex</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">vertices</span><span class="p">[</span><span class="nx">node</span><span class="p">.</span><span class="nx">getVertexIndex</span><span class="p">()];</span> <span class="c1">// next vertex in list</span>
 		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">w</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="p">{</span>
@@ -1946,14 +2787,13 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="dijkstra"></a></p>
 
 <h6 id="dijkstras-algorithm-implementation">Dijkstra’s algorithm implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// S is set of vertices for which shortest path from u is known</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// S is set of vertices for which shortest path from u is known</span>
 <span class="c1">// d(w) is length of a shortest path from u to w passing only through vertices of S</span>
 <span class="nx">S</span> <span class="o">=</span> <span class="p">{</span><span class="nx">u</span><span class="p">};</span> <span class="c1">// initialise S</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">w</span><span class="p">)</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="o">=</span> <span class="nx">wt</span><span class="p">(</span><span class="nx">u</span><span class="p">,</span> <span class="nx">w</span><span class="p">);</span> <span class="c1">// initialise distances</span>
@@ -1965,25 +2805,157 @@ impose heap property on bad value now in root</code><br />
   <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">w</span> <span class="nx">not</span> <span class="k">in</span> <span class="nx">S</span> <span class="nx">and</span> <span class="nx">adjacent</span> <span class="nx">to</span> <span class="nx">v</span><span class="p">)</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="o">=</span> <span class="nx">min</span><span class="p">{</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">),</span> <span class="nx">d</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">+</span> <span class="nx">wt</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">w</span><span class="p">)</span> <span class="p">};</span> <span class="c1">// perfom relaxation</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a name="non_deterministic"></a></p>
 
 <h6 id="graph-colouring---example-of-a-non-deterministic-alg">Graph colouring - example of a non-deterministic alg.</h6>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return true if graph g is k-colourable</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// return true if graph g is k-colourable</span>
 <span class="kr">boolean</span> <span class="nx">nDGC</span><span class="p">(</span><span class="nx">Graph</span> <span class="nx">g</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">g</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setColour</span><span class="p">(</span><span class="nx">nonDeterministicChoice</span><span class="p">(</span><span class="nx">k</span><span class="p">));</span> <span class="c1">// guess a colour for each vertex</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">g</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setColour</span><span class="p">(</span><span class="nx">nonDeterministicChoice</span><span class="p">(</span><span class="nx">k</span><span class="p">));</span> <span class="c1">// guess a colour for each vertex</span>
   
-  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">edge</span> <span class="p">{</span><span class="nx">u</span><span class="p">,</span><span class="nx">v</span><span class="p">}</span> <span class="err">:</span> <span class="nx">g</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">edge</span> <span class="p">{</span><span class="nx">u</span><span class="p">,</span><span class="nx">v</span><span class="p">}</span> <span class="p">:</span> <span class="nx">g</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">getColour</span><span class="p">()</span> <span class="o">==</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getColour</span><span class="p">())</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// verify the colouring</span>
   <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
+
+<p><a name="prim_jarnik"></a></p>
+
+<h6 id="prim-jarnik-algorithm-pseudocode">Prim-Jarnik algorithm pseudocode</h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">set</span> <span class="nx">an</span> <span class="nx">arbitrary</span> <span class="nx">vertex</span> <span class="nx">r</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">a</span> <span class="nx">tree</span><span class="o">-</span><span class="nx">vertex</span> <span class="p">(</span><span class="nx">tv</span><span class="p">)</span>
+<span class="kd">set</span> <span class="nx">all</span> <span class="nx">other</span> <span class="nx">vertices</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">non</span><span class="o">-</span><span class="nx">tree</span><span class="o">-</span><span class="nx">vertices</span> <span class="p">(</span><span class="nx">ntv</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nx">size</span> <span class="k">of</span> <span class="nx">ntv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">find</span> <span class="nx">edge</span> <span class="nx">e</span> <span class="o">=</span> <span class="p">{</span><span class="nx">p</span><span class="p">,</span> <span class="nx">q</span><span class="p">}</span> <span class="k">of</span> <span class="nx">graph</span> <span class="nx">such</span> <span class="nx">that</span>
+    <span class="nx">p</span> <span class="nx">is</span> <span class="nx">a</span> <span class="nx">tv</span><span class="p">;</span>
+	<span class="nx">q</span> <span class="nx">is</span> <span class="nx">an</span> <span class="nx">ntv</span><span class="p">;</span>
+	<span class="nx">wt</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="nx">is</span> <span class="nx">minimised</span><span class="p">;</span>
+  <span class="nx">adjoin</span> <span class="nx">edge</span> <span class="nx">e</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">spanning</span> <span class="nx">tree</span><span class="p">;</span>
+  <span class="nx">make</span> <span class="nx">q</span> <span class="nx">a</span> <span class="nx">tv</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><a name="dijkstra_refinement"></a></p>
+
+<h6 id="dijkstras-refinement-to-the-prim-jarnik-algorithm">Dijkstra’s refinement to the Prim-Jarnik algorithm</h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">set</span> <span class="nx">an</span> <span class="nx">arbitrary</span> <span class="nx">vertex</span> <span class="nx">r</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">a</span> <span class="nx">tree</span><span class="o">-</span><span class="nx">vertex</span> <span class="p">(</span><span class="nx">tv</span><span class="p">)</span>
+<span class="kd">set</span> <span class="nx">all</span> <span class="nx">other</span> <span class="nx">vertices</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">non</span><span class="o">-</span><span class="nx">tree</span><span class="o">-</span><span class="nx">vertices</span> <span class="p">(</span><span class="nx">ntv</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">ntv</span> <span class="nx">s</span><span class="p">)</span> <span class="kd">set</span> <span class="nx">s</span><span class="p">.</span><span class="nx">bestTV</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span> <span class="c1">// r is the only tv</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nx">size</span> <span class="k">of</span> <span class="nx">ntv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">find</span> <span class="nx">ntv</span> <span class="nx">q</span> <span class="k">for</span> <span class="nx">which</span> <span class="nx">wt</span><span class="p">(</span> <span class="p">{</span><span class="nx">q</span><span class="p">,</span> <span class="nx">q</span><span class="p">.</span><span class="nx">bestTV</span><span class="p">}</span> <span class="p">)</span> <span class="nx">is</span> <span class="nx">minimal</span><span class="p">;</span>
+  <span class="nx">adjoin</span> <span class="p">{</span><span class="nx">q</span><span class="p">,</span> <span class="nx">q</span><span class="p">.</span><span class="nx">bestTV</span><span class="p">}</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">tree</span><span class="p">;</span>
+  <span class="nx">make</span> <span class="nx">q</span> <span class="nx">a</span> <span class="nx">tv</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">ntv</span> <span class="nx">s</span><span class="p">)</span> <span class="nx">update</span> <span class="nx">s</span><span class="p">.</span><span class="nx">bestTV</span><span class="p">;</span> <span class="c1">// update as tv set changed</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><a name="topological_ordering"></a></p>
+
+<h6 id="topological-ordering-algorithm">Topological ordering algorithm</h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// assume each vertex has 2 integer attributes, label and count</span>
+<span class="c1">// count is the number of incoming edges from unlabelled vertices</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setCount</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">getInDegree</span><span class="p">());</span>
+<span class="kd">set</span> <span class="nx">up</span> <span class="nx">empty</span> <span class="nx">sourceQueue</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">getCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">add</span> <span class="nx">v</span> <span class="nx">to</span> <span class="nx">sourceQueue</span><span class="p">;</span> <span class="c1">// add vertices with no incoming edges</span>
+
+<span class="kr">int</span> <span class="nx">nextLabel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// to give the topological order</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">sourceQueue</span> <span class="o">!</span><span class="nx">empty</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">take</span> <span class="nx">v</span> <span class="k">from</span> <span class="nx">sourceQueue</span><span class="p">;</span>
+  <span class="nx">v</span><span class="p">.</span><span class="nx">setLabel</span><span class="p">(</span><span class="nx">nextLabel</span><span class="o">++</span><span class="p">);</span> <span class="c1">// label the vertex</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">w</span> <span class="kd">with</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">w</span><span class="p">)</span> <span class="k">in</span> <span class="nx">E</span><span class="p">)</span> <span class="p">{</span>
+  
+    <span class="nx">w</span><span class="p">.</span><span class="nx">setCount</span><span class="p">(</span><span class="nx">w</span><span class="p">.</span><span class="nx">getCount</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// update attribute count</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">w</span><span class="p">.</span><span class="nx">getCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">add</span> <span class="nx">w</span> <span class="nx">to</span> <span class="nx">sourceQueue</span><span class="p">;</span> <span class="c1">// add vertex if no incoming vertices</span>
+  
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><a name="turing_palindrome"></a></p>
+
+<h6 id="java-method-for-the-palindrome-problem">Java method for the palindrome problem</h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">boolean</span> <span class="nx">isPalindrome</span><span class="p">(</span><span class="nb">String</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kr">int</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">!=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="nx">isPalindrome</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><a name="turing_palindrome_2"></a></p>
+
+<h6 id="turing-machine-alg-for-the-palindrome-problem">Turing machine alg. for the palindrome problem</h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">read</span> <span class="nx">symbol</span> <span class="k">in</span> <span class="nx">current</span> <span class="nx">square</span><span class="p">;</span>
+<span class="nx">erase</span> <span class="k">this</span> <span class="nx">symbol</span><span class="p">;</span>
+<span class="nx">enter</span> <span class="nx">a</span> <span class="nx">state</span> <span class="nx">that</span> <span class="s2">"remembers"</span> <span class="nx">it</span><span class="p">;</span>
+<span class="nx">move</span> <span class="nx">head</span> <span class="nx">to</span> <span class="nx">end</span> <span class="k">of</span> <span class="nx">input</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">only</span> <span class="nx">blank</span> <span class="nx">chars</span><span class="p">.</span> <span class="nx">remain</span><span class="p">)</span>
+  <span class="nx">enter</span> <span class="nx">accepting</span> <span class="nx">state</span> <span class="nx">and</span> <span class="nx">halt</span><span class="p">;</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">last</span> <span class="kr">char</span><span class="p">.</span> <span class="nx">matches</span> <span class="nx">the</span> <span class="nx">one</span> <span class="nx">erased</span><span class="p">)</span>
+  <span class="nx">erase</span> <span class="nx">it</span> <span class="nx">too</span><span class="p">;</span>
+<span class="k">else</span> 
+  <span class="nx">enter</span> <span class="nx">rejecting</span> <span class="nx">state</span> <span class="nx">and</span> <span class="nx">halt</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">no</span> <span class="nx">input</span> <span class="nx">left</span><span class="p">)</span>
+  <span class="nx">enter</span> <span class="nx">accepting</span> <span class="nx">state</span> <span class="nx">and</span> <span class="nx">halt</span><span class="p">;</span>
+<span class="k">else</span>
+  <span class="nx">move</span> <span class="nx">to</span> <span class="nx">start</span> <span class="k">of</span> <span class="nx">remaining</span> <span class="nx">input</span><span class="p">;</span>
+  <span class="nx">repeat</span> <span class="k">from</span> <span class="nx">first</span> <span class="nx">step</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><a name="turing_example"></a></p>
+
+<h6 id="turing-machine-alg-for-the-function-fk--k--1">Turing Machine alg. for the function <code class="highlighter-rouge">f(k) = k + 1</code></h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">move</span> <span class="nx">right</span> <span class="nx">seeking</span> <span class="nx">first</span> <span class="nx">blank</span> <span class="nx">square</span><span class="p">;</span>
+<span class="nx">move</span> <span class="nx">left</span> <span class="nx">looking</span> <span class="k">for</span> <span class="nx">first</span> <span class="mi">0</span> <span class="nx">or</span> <span class="nx">blank</span><span class="p">;</span>
+<span class="nx">when</span> <span class="mi">0</span> <span class="k">of</span> <span class="nx">blank</span> <span class="nx">found</span>
+  <span class="nx">change</span> <span class="nx">it</span> <span class="nx">to</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">move</span> <span class="nx">right</span> <span class="nx">changing</span> <span class="nx">each</span> <span class="mi">1</span> <span class="nx">to</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">halt</span> <span class="nx">when</span> <span class="nx">blank</span> <span class="nx">square</span> <span class="nx">reached</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><a name="counter_program"></a></p>
+
+<h6 id="counter-program-to-evaluate-the-product-x-x-y-with-a-b-c-labels">Counter program to evaluate the product <code class="highlighter-rouge">x</code> x <code class="highlighter-rouge">y</code> (with <code class="highlighter-rouge">A, B, C</code> labels</h6>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// initialise some vars.</span>
+<span class="nx">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nx">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// finished product</span>
+
+<span class="nl">A</span><span class="p">:</span> <span class="k">if</span> <span class="nx">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">goto</span> <span class="nx">C</span><span class="p">;</span> <span class="c1">// end of outer for loop</span>
+  <span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// perform this loop x times</span>
+  <span class="nx">v</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// each time around the loop we set v = y</span>
+  <span class="nx">v</span> <span class="o">=</span> <span class="nx">v</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// in a slightly contrived way</span>
+  
+<span class="nl">B</span><span class="p">:</span> <span class="k">if</span> <span class="nx">v</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">goto</span> <span class="nx">A</span><span class="p">;</span> <span class="c1">// end of inner for loop</span>
+  <span class="nx">v</span> <span class="o">=</span> <span class="nx">v</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// perform this loop v times</span>
+  <span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// each time incrementing z, so really add y to z by end of inner loop</span>
+  
+  <span class="k">if</span> <span class="nx">u</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">goto</span> <span class="nx">B</span><span class="p">;</span> <span class="c1">// return to start of inner loop</span>
+  
+<span class="nl">C</span><span class="p">:</span> <span class="nx">halt</span><span class="p">;</span>
+</code></pre></div></div>
 
         </section>
 
@@ -2006,23 +2978,6 @@ impose heap property on bad value now in root</code><br />
                     </p>
                 </section>
             
-
-            <!-- Share links section -->
-            <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-twitter" href="http://twitter.com/share?text=Algorithmics 1&amp;url=https://fireredninja.github.io//level3/semester1/2017/12/26/algorithmics-1.html"
-        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://fireredninja.github.io//level3/semester1/2017/12/26/algorithmics-1.html"
-        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=https://fireredninja.github.io//level3/semester1/2017/12/26/algorithmics-1.html"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
 
             <!-- Disqus comments -->
             

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Computer Science Notes - My notes on CS Level 3</title>
+    <meta name="description" content="My CS notes" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/cs-notes/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/cs-notes/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/cs-notes">Home</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Networked Systems H</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2018-01-10">10 Jan 2018</time>
+                
+                    on Level3 and Semester2
+                
+            </section>
+            <br>
+            <br>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
+                
+                    <span class="blog-title">Computer Science Notes</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2018-01-10">10 Jan 2018</time>
+            
+                on Level3 and Semester2
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">Networked Systems H</h1> -->
+
+        <section class="post-content">
+            <h1 id="introduction">Introduction</h1>
+
+<p>Networked System: Autonomous computing devices that exchange data to perform some application goal and how they communicate across a network</p>
+
+<ul>
+  <li>internet</li>
+  <li>digital broadcast</li>
+  <li>mobile voice telephony</li>
+  <li>sensor networks</li>
+  <li>controller area networks
+<!--excerpt--></li>
+</ul>
+
+<p>Communication: Messages transferred from source to destination(s) via some communications channel<br />
+   How would you convert a message so that both source and destination understand it?<br />
+   Limitations:</p>
+
+<ul>
+  <li>size of messages is bounded on a channel at any one time</li>
+  <li>simplex - send/receive in only one direction (broadcasting)</li>
+  <li>half-duplex - send or receive, but not simultaneously (wifi)</li>
+  <li>full-duplex - send and receive at the same time (two cables, for sending and receiving)</li>
+</ul>
+
+<p>Information:</p>
+
+<ul>
+  <li>information theory - amount of info in a message can be characterised mathematically</li>
+  <li>capacity of channels can be modelled - physical limits exist here (amount, speed, power)</li>
+</ul>
+
+<p>Signals:</p>
+
+<ul>
+  <li>the physical form of a message - usually a wave</li>
+  <li>analogue - smooth continuation of values</li>
+  <li>digital - sequence of discrete symbols</li>
+  <li>coding - mapping information to symbols</li>
+</ul>
+
+<p>Analogue:</p>
+
+<ul>
+  <li>amplitude directly codes value of interest</li>
+  <li>can be arbitrarily accurate</li>
+  <li>susceptible to noise and interference</li>
+  <li>difficult to process with digital electronics
+    <ul>
+      <li>sample the signal at a suitable rate</li>
+      <li>quantise to nearest allowable discrete value</li>
+      <li>convert to digital representation</li>
+      <li><strong>sampling theorem</strong> dictates rate of sampling</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Digital:</p>
+
+<ul>
+  <li>fixed alphabet</li>
+  <li>underlying channel is almost always analogue</li>
+  <li>modulation - map a digital signal onto the channel</li>
+  <li>uses binary encoding</li>
+</ul>
+
+<p>Networked systems often use non-binary encoding:</p>
+
+<ul>
+  <li>complex modulation schemes with either 16, 64 or 256 possible symbols</li>
+  <li>baud rate - number of symbols transmitted per second
+    <ul>
+      <li>can differ from bit rate</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Channels and Network Links:</p>
+
+<ul>
+  <li>signal may be directly conveyed or modulated onto an underlying carrier</li>
+  <li>link - the combination of signal and channel
+    <ul>
+      <li>directly connects 1+ hosts (ethernet)</li>
+      <li>network comprises several links connected together (WAN)</li>
+      <li>switches/routers - connects the links</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Circuit Switched Networks:</p>
+
+<ul>
+  <li>dedicated circuit for A and B to communicate</li>
+  <li>exchange arbitrary length messages</li>
+  <li>guaranteed capacity once circuit is created</li>
+  <li>can block other communications</li>
+  <li>capacity of network gives blocking probability</li>
+  <li>traditional telephone network</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/circuit_switched.jpg" nopin="nopin" /></p>
+
+<p>Packet Switched Networks:</p>
+
+<ul>
+  <li>messages split into small packets before transmission
+    <ul>
+      <li>size constraint</li>
+    </ul>
+  </li>
+  <li>A-B and C-D can communicate all the time</li>
+  <li>share bottleneck link</li>
+  <li>connectivity guaranteed</li>
+  <li>available capacity varies based on other people on the network</li>
+  <li>internet</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/packet_switched.jpg" nopin="nopin" /></p>
+
+<p>All networked systems are build using these basic components:</p>
+
+<ul>
+  <li>hosts - source and destination(s)</li>
+  <li>links - physical realisation of channel</li>
+  <li>switches/routers - connect multiple links</li>
+</ul>
+
+<h2 id="network-protocols">Network Protocols</h2>
+
+<p>Network protocols give meaning to the messages that are exchanged<br />
+   Messages follow some well known <strong>syntax</strong>, and have agreed <strong>semantics</strong></p>
+
+<ul>
+  <li>an agreed language for encoding messages</li>
+  <li>rules defining what messages mean and when they can be sent</li>
+  <li>define the network behaviour</li>
+</ul>
+
+<p>Syntax:</p>
+
+<ul>
+  <li>protocol data units (PDU) - types of message</li>
+  <li>each PDU has a particular syntax
+    <ul>
+      <li>decribing what info is included and how it’s formatted</li>
+      <li>may be formatted as textual info or binary data
+        <ul>
+          <li>textual PDU - has syntax and grammar that describes its format</li>
+          <li>binary PDU - similar rules</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>define what messages are legal to send</li>
+</ul>
+
+<p>Semantics:</p>
+
+<ul>
+  <li>define when PDUs can be sent, and what response is needed
+    <ul>
+      <li>who can send and when</li>
+      <li>host roles</li>
+      <li>what the communicating entities are</li>
+      <li>how errors are handled</li>
+    </ul>
+  </li>
+  <li>described with state-transition diagram
+    <ul>
+      <li>states - stages of protocol operation</li>
+      <li>transitions - in response to PDUs, may result in other PDUs being sent</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/state_transmission.jpg" nopin="nopin" /></p>
+
+<p>Morse Code:</p>
+
+<ul>
+  <li>signals on electrical cable form a channel</li>
+  <li>syntax - pattern of dots and dashes</li>
+  <li>semantics - different gap lengths to signal end of word, and “STOP” for end of message</li>
+</ul>
+
+<p>Protocol Layering:</p>
+
+<ul>
+  <li>organisation of communications systems (means of abstraction)</li>
+  <li>structured design reduces complexity</li>
+  <li>services - offered by a layer to the next higher layer</li>
+  <li>well defined interfaces
+    <ul>
+      <li>highest layer is communicating application</li>
+      <li>lowest layer is physical communication channel</li>
+    </ul>
+  </li>
+  <li>peers at a layer <code class="highlighter-rouge">i</code> communicate using layer <code class="highlighter-rouge">i</code> protocol
+    <ul>
+      <li>using lower layer services</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Example with a web browser talking to web server:</p>
+
+<p><img src="/cs-notes/assets/images/ns/protocol_layering.jpg" nopin="nopin" /></p>
+
+<p>OSI Reference Model:</p>
+
+<ul>
+  <li>standard way of thinking about layered protocol design</li>
+  <li>design tool</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/osi.jpg" nopin="nopin" /></p>
+
+<p>Physical Layer:</p>
+
+<ul>
+  <li>defines characteristics of cable/optic fibre
+    <ul>
+      <li>size and shape of plugs</li>
+      <li>cable length</li>
+      <li>type of cable
+        <ul>
+          <li>electrical voltage</li>
+          <li>current</li>
+          <li>modulation</li>
+        </ul>
+      </li>
+      <li>type of fibre
+        <ul>
+          <li>single or multi-mode</li>
+          <li>optical clarity</li>
+          <li>colour</li>
+          <li>power output</li>
+          <li>modulation of laser</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>wireless
+    <ul>
+      <li>radio frequency</li>
+      <li>transmission power</li>
+      <li>modulation scheme</li>
+      <li>antenna type</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Data Link Layer:</p>
+
+<ul>
+  <li>structure and frame physical layer bit stream
+    <ul>
+      <li>split bit stream into messages</li>
+      <li>detect/correct errors</li>
+    </ul>
+  </li>
+  <li>perform media access control
+    <ul>
+      <li>assign addresses to hosts</li>
+      <li>arbitrate access to link</li>
+      <li>detemine when hosts can send messages</li>
+      <li>ensure fair access to link - flow control</li>
+    </ul>
+  </li>
+  <li>ethernet</li>
+</ul>
+
+<p>Network Layer:</p>
+
+<ul>
+  <li>interconnects links to form a WAN from source host –&gt; destination host
+    <ul>
+      <li>data delivery</li>
+      <li>naming and addressing</li>
+      <li>routing</li>
+      <li>flow control</li>
+    </ul>
+  </li>
+  <li>IP</li>
+</ul>
+
+<p>Transport Layer:</p>
+
+<ul>
+  <li>end-to-end transfer of data from source –&gt; destination
+    <ul>
+      <li>between session level service at the source, and corresponding service at the destination</li>
+      <li>provides reliability, ordering, framing, congestion control</li>
+    </ul>
+  </li>
+  <li>TCP</li>
+</ul>
+
+<p>Session Layer:</p>
+
+<ul>
+  <li>manages transport layer connections</li>
+  <li>functions
+    <ul>
+      <li>open TCP/IP connections to download webpage with HTTP</li>
+      <li>use SMTP to transfer email messages over a TCP/IP</li>
+      <li>coordinate control, audio and video flows for video conference</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Presentation Layer:</p>
+
+<ul>
+  <li>manages presentation, representation and conversion of data
+    <ul>
+      <li>character set</li>
+      <li>data markup langs.</li>
+      <li>data format conversion</li>
+      <li>content negotiation</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Application Layer:</p>
+
+<ul>
+  <li>user application protocols (not the app. programs themselves)</li>
+  <li>REST APIs/WebRTC</li>
+</ul>
+
+<p>Protocol Standards:</p>
+
+<ul>
+  <li>formal description of a protocol</li>
+  <li>ensure interoperability of diverse implementations</li>
+  <li>set procedures
+    <ul>
+      <li>open or closed standards development process</li>
+      <li>free or restricted standards availability</li>
+      <li>rules around disclosure of intellectual property rights</li>
+      <li>individual vs corporate vs national membership</li>
+      <li>lead technical dev. vs describing existing practices</li>
+      <li>collaborative vs combative process</li>
+    </ul>
+  </li>
+  <li>standards organisations
+    <ul>
+      <li>Internet Engineering Task Force</li>
+      <li>International Telecommunications Union</li>
+      <li>3rd Gen Partnership Project</li>
+      <li>World Wide Web Consortium</li>
+    </ul>
+  </li>
+</ul>
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+            
+                <figure class="author-image">
+                    <a class="img" href="/cs-notes" style="background-image: url(/cs-notes/assets/images/profile.png)">
+                    <span class="hidden">Dasha Shumitskiy's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> Dasha Shumitskiy </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        Here goes the author description. You might want to place some links too in here
+                    </p>
+                </section>
+            
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="/cs-notes">Computer Science Notes</a> &copy; 
+              2018 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/cs-notes/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/cs-notes/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/cs-notes/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>
