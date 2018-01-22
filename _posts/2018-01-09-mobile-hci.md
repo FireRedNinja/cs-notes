@@ -138,3 +138,38 @@ author: noel
 - eg: you can combine multiple fragments in a single activity to build a multi-pane UI and reuse a fragmet in multiple activities
 
 -------------------------------------------------------------
+
+# Lecture 3 - Constraints
+- How has mobiles changed?
+
+- Given the different types of phones what problems does software engineers face?
+
+- You wont have access to your favourite libraries
+
+- compatability problems
+    - less of an issue over time
+
+- diff platforms diff licencing
+
+- speed is an uissue but it has implications of battery life
+
+- coprocessor to save battery
+
+- memory often limited
+
+- allocating mem is more costly than not
+- forcing garbage collection causes hicups
+
+- ios has to manage manually
+
+- data cost money, energy, battery life
+
+- sensors
+
+- mobiles are limited in resources(data, memory, batterylife, processing power...)
+- but as time goes it becomes less important
+- always remember about memory
+- docs suck, libraries suck, but it sucks less over time
+- if you shitty app has smalltext noone can read
+- think about the users ( they are stupid)
+- 
