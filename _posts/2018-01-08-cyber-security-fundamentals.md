@@ -250,7 +250,7 @@ easy to implement in hardware
 ### DES
 - Project Lucifer
     - devide intor blocks
-    - 
+    -
 - Insecure Algorithm
 
 
@@ -311,7 +311,7 @@ easy to implement in hardware
     - dont have ot be secret
     - keeep secret key
     - different ini vecto with diff keys
-    - 
+    -
 - last block padding
     - ensure final block has correct lenght
 
@@ -343,8 +343,8 @@ easy to implement in hardware
 - neet  to limit
     - hash collision
     - birthday attack given 2 random message, should not produce the same digest
-- sha -1,2 - 
-- 
+- sha -1,2 -
+-
 ## Designing
 - DES in secret
 - AES in open competitions
@@ -460,11 +460,124 @@ easy to implement in hardware
 ## Tutorial
 1. a
 2. DAE is open, DES is closed. open i sbetter
-. AES is more cheaper. des on its own is insecure. 
+. AES is more cheaper. des on its own is insecure.
 3. tuxPenguin, cbc has the chain,
 4. there is a small amount of digests to cycle through
 5. s
 6. they are different algs, diff fundamentals, so cost/efort to attack is different
 7. encrypt message with private key, exchange, encrypt wih private key, exchange. not vulnerable to MITM attack, no way to make sure who you are talking to s who you are talking to
 8. not possible to get truely randomnumber, psudo there is structure, crypto, hard to determine what it means
-9. ifyou know theseed youcan guess the random number. 
+9. ifyou know theseed youcan guess the random number.
+
+------------------------------------------------------------
+
+# Lecture 4  - Authentication
+
+- Enrollment : establish credentials
+- Challenge & Response : Check validity of credentials
+
+## Local
+- Commonly used: Identity * Password
+- Store **salted** digest of passowrd for security
+  - MD5, SHA
+- when loggin in
+  - password salted & hashed
+  - compared with stored hash
+
+### Dictionary attacks
+- how to chose a Password
+- attackers can calculate variations of a password and form salts hashes
+  - if there is a mactch it we dound the password that is begin used
+- david kliein
+  - gets usernames, initias, login name
+  - femail and male usernames
+  - ...
+  - created permutations of above
+
+### salting
+- hava a random string or value and add to Password
+  - add randomness to password so harder to guess
+  - large salts are good
+- salt string is publicly vailable, each password has individual salt
+- dont store password as you are given, add some randomness
+- keep password securely
+
+### password complexity
+- uPPer & lowwer case
+- numbers
+- dont common words
+- use special characters
+- at lease X long
+
+- entropy
+  - how much information is carried in a single characters
+  - first character ~ 4.7bits
+  - 2-8 ~2.3bits per characters9=> ~1.5bits per character
+
+### Passphrases
+- trend
+- long and easy to remmeber
+- depending on what device you use, use different passowrd
+
+## Remote
+- What is a secure channel
+
+- there might be someone evesdroppting
+  - impersonating the sendee
+  - they can manipulate it
+
+- how to talk securely
+  - we can use Cryptography
+  -
+- how to prevent replau attackers
+  - ensure message freshness
+  - mayinclude identity & timestamps
+
+### Brokered Authentication
+- have a trusted third Party
+- we trust Ted
+- trusting thirdparty for keys
+  - we are assuming hes good
+  - we are trusting him to be honest
+
+### Needham-Schroeder Protocols
+- based off deffie Hellman
+- trusted key server tha generates session keys
+
+
+- asymemetric public key
+
+- both symmetric and assymetric are suscepible to replay attackers
+
+- flaw
+  - ryan can get alice's id and send it to ryan
+
+
+### User Authentication in a Distributed systems
+#### client machine that autehntiactes
+
+#### client lef
+
+#### Mutual authentiaction
+
+
+## Kerberos
+- 3 headed dog
+- each network authenticated
+- each message autehnticated
+- each message encrypted
+
+
+### overview
+- sign to service
+  - alice signs in with Password used to cread shared Secret
+  - create a ticket to authorise with tichet services
+- get permission to talk to bob
+  - alice asks ticket serice for ticket to enable communcation with bob
+- Talk to bob
+  - alice uses ticke ot talk to bob
+- repeat spteps 2 & 3
+
+### signing intoservice
+- ticket contains who it was generated fo, and a key to enable communication wit ticket service
+- restricted lifetime to prevent replau attacks
