@@ -90,3 +90,130 @@ Event occurence:
   * executes
   * on completion, CPU resumes interrupted computation
   
+Interrupts:
+
+* transfer control to appropriate interrupt service routine
+  * invoke generic routine to examine interrupt info.
+    * call interrupt-specific handler
+  * table of pointers to interrupt routines is used
+    * low memory (first hundred locations or so)
+  * **interrupt vector** - array of addresses 
+    * indexed by unique device number
+* must save address of interrupted instruction
+  * stored on system stack
+  
+Storage:
+
+* programs run from rewritable main memory (D/RAM) but this is **volatile**
+* EEROM/ROM - stores factory installations/bootstrap program
+* magnetic disk - secondary storage
+* magnetic tape
+* cache
+* solid state disk
+* NVRAM - DRAM with battery backup power
+* ***load*** - move byte/word from main to internal register
+* ***store*** - move content of a register to main
+
+Intruction-execution cycle:
+
+* fetch instruction from memory
+* store in the instruction register
+* decode and execute intructions on operands
+* result may be stored back in memory
+
+### CPU Scheduling
+
+Multiprogramming:
+
+* maximise CPU utilisation
+* several processes kept in memory at one time
+  * when one process has to wait, OS takes all CPU from it and gives it to another process
+  * repeat
+  
+CPU/IO burst cycle:
+
+* process execution 
+  * CPU burst --> IO burst (repeat)
+    * exponential/hyperexponential frequency curve (lots of short CPU and not many long CPU bursts)
+    * IO-bound program has many short CPU bursts
+    * CPU-bound program might have a few long CPU bursts
+  * final CPU burst ends with system request to terminate execution
+  
+CPU scheduler:
+
+* short-term
+* select from list of processes that are ready to execute
+  * not necessarily FIFO
+  
+Preemptive scheduling - scheduling decisions may take place under the following 4 circumstances:
+
+1. process switching from running to waiting (IO or ***wait***)
+2. process switching from running to ready (interrupt)
+3. process switching from waiting to ready (completion of IO)
+4. process terminating
+
+* for ***1*** and ***4***, the scheduling scheme is **nonpreemptive**/**cooperative** (no choice in the matter)
+  * doesn't require special hardware (timer) needed for preemptive scheduling
+* preemptive results in race conditions when data is shared among processes
+  * while a process is updating data, it is preempted so that a second process can run
+  * 2nd tries to read data, which is in an inconsistent state
+* preemption affects design of OS kernel
+  * during processing a system call, kernel may be busy with an activity on behalf of a process
+  * may involve changing kernel data (eg IO queues)
+  * what if process is preempted in the middle of these changes and the kernel needs to read/modify the same structure?
+    * wait for system call to complete
+    * wait for IO block to take place before switching context
+    * ensures simple kernel structure
+    * poor support of real-time computing
+    
+Dispatcher:
+
+* gives CPU control to process selected by short-term scheduler
+  * switch context
+  * switch to user mode
+  * jump to proper location in user program
+* invoked during every process switch
+* dispatch latency - time taken to stop one process and start another
+
+Scheduling criteria - when choosing a CPU-scheduling algorithm:
+
+* CPU utilisation
+  * CPU should be as busy as possible
+  * ideally usage should be 40-90%
+* throughput
+  * number of processes completed per time unit
+  * 1 per hour for long processes
+  * 10 per second for short processes
+* turnaround time
+  * interval from time of submission of a process --> its completion
+  * sum of periods spent waiting to get into memory, waiting in ***ready*** queue, execution, and doing IO
+  * generally limited by speed of output device
+* waiting time
+  * alg. doesn't affect amount of time during which a process executes or does IO
+  * only affects waiting time
+  * sum of periods spent waiting
+* response time
+  * time from submission of request --> production of first response
+  * time to start responding, not time it takes to output the response
+  
+Desirable to maximise CPU utilisation and throughput, and minimise the others.  
+   In most cases, we optimise the average measure.  
+   A system with reasonable and predictable response time may be considered more desirable than one that is faster on average, but highly variable.
+   
+#### Scheduling Algorithms
+
+FIFO:
+
+* simple to understand and implement
+* average waiting time often quite long
+  * may vary substantially if CPU burst times vary greatly
+* convoy effect where processes wait for one big process to get off the CPU
+* nonpreemptive (only releases upon termination or IO)
+  * bad for time-sharing systems
+  
+Shortest-job-first:
+
+* associates with each process the length of the process' next CPU burst
+* CPU assigned to process with the smallest next CPU burst
+* FIFO to break ties
+* gives minimum average waiting time for a given set of processes
