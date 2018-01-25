@@ -225,3 +225,359 @@ author: noel
     - Discrete logarithm integrated encryption scheme
 
  ------------------
+
+
+# Lecture 3 - Introduction Cryptography 2
+
+
+why love crypto - guarantee
+## Block Cipher
+symmetric ciphers
+same key to encrypt & decrypt
+
+XOR with key
+initialisation vecotors
+
+take data
+keep encrypting until unreadable
+
+fast =
+easy to implement in hardware
+
+2 families
+    feistel, IDEA
+
+### DES
+- Project Lucifer
+    - devide intor blocks
+    -
+- Insecure Algorithm
+
+
+### Triple DES
+- modification
+- use DES 3 times
+- encrypt wiht 1 key
+- decrypt with 2nd key
+- encrypt with 3rd key
+- noone uses this anymore
+- if use same key there are backwards compatability
+- dont use this
+
+-is it just XOR? no
+
+- symmetric crypt is inherantly insecure
+
+- DES is insecure
+- replaced by
+- AES
+
+- copetition
+- Rijndael won
+
+### rijndael
+- permutations and substitutions
+- variable number of rounds dependent on key size
+
+- ECB -
+- CBC -
+- PCBC
+- CFB
+- OFB
+- CTR
+
+### ECB
+<!--diagram-->
+- take each text and map it to
+
+- break into blocks
+- encrypt and concatinate back
+
+- operating on each chunck individually
+- no block big enough for the wholemessage
+
+- problem
+    - you dont know when the blocks end
+    - order of blocks?
+
+### CBC
+<!-- diagram -->
+- ouput fed in to the next round
+- creates random noise
+- operates on each block individually
+
+## iv and padding
+- initialisation vectors
+    - dont have ot be secret
+    - keeep secret key
+    - different ini vecto with diff keys
+    -
+- last block padding
+    - ensure final block has correct lenght
+
+## Secret Sharing
+### Deffie-Hellman Key Exchange
+<!-- diagram -->
+
+
+
+## PRNGs
+- want to makesure they are truely random
+- virtually impossible
+- always have some sort of structure
+- - hidden deep inside the structure
+
+- cryptographic
+    - cannot be predicted from someof the numbers in the sequence
+
+
+## strats
+- computer clocks
+- keyboard latency
+- using random noise
+
+
+## Message Digests
+- given any message, easy to compute thedigest
+- given any hash, hard to compute themessage
+- neet  to limit
+    - hash collision
+    - birthday attack given 2 random message, should not produce the same digest
+- sha -1,2 -
+-
+## Designing
+- DES in secret
+- AES in open competitions
+
+- Kerckhoffs 2 Principle
+    - security in your algorithms should be in tyour algorithm and in your keys
+
+- Linus law
+    - many eyes, catch many bugs
+- NOTHING IS SECURE
+
+------------------------------------
+
+# Lecture 4 - Cryptography in the wild
+
+## Applied
+- Primatives & Schemes not enough for security
+- kes are just numers
+
+- alorithms
+    - which one to use
+
+> data at rest is data tat doesn't "move"
+
+
+
+- keymanagement is the real issue
+
+- perfect forward secrecy
+- end to end encryption
+
+
+
+- Securing data in flight
+    - data in flight is moved from onedomain to another
+
+- what kevek of the osi am i opperating at
+
+- key management
+
+- wha else is there?
+    - publoc key systems
+
+
+> DONT IMPLEMENT OR DESIGN YOUR OWN CRYPTO. unless you are a **trained** engineer
+
+- Theroetically secure != Implementation secure
+
+- use good standard libraries
+
+
+- you hav to ook at domain, cost and effort
+
+[keylength.com](http://www.keylength.com)
+
+
+- ISO 27K
+- guidence on howto do things
+- regulation of cryptographic controls
+    - what you need to be aware ofwhen implementing
+    - are there import/export restrctions
+
+- policies
+    - where we are we going to use it
+    - impac of policy
+
+- complience
+
+
+- what is your indsutry doing, what are the best practives
+- stakeholder expectations
+
+
+- Laws
+    - EU Laws
+    - British Laws
+
+
+
+## Advanced
+- Encryption Schemes
+- Signature Schemes
+- Secret Sharing Schemes
+- Provable Crytographic
+
+- how are these used
+
+- Authentication protocols
+- Anonymous Protocols
+- eVoting
+- Multi-Party Computation
+- Distributed Authorisation
+- Searching Encrypted Data
+
+
+
+## Attacking
+- if you want to attack the mathematics of encryptions, get a PHD
+
+### Attack the standard
+- make sure the system has a backdoor
+
+#### human factors
+- send your agents
+- rubber hose cryptoanalysis
+    - how can you do rubber-hose resistant crypto?
+
+### side channel attacks
+
+
+
+
+## Tutorial
+1. a
+2. DAE is open, DES is closed. open i sbetter
+. AES is more cheaper. des on its own is insecure.
+3. tuxPenguin, cbc has the chain,
+4. there is a small amount of digests to cycle through
+5. s
+6. they are different algs, diff fundamentals, so cost/efort to attack is different
+7. encrypt message with private key, exchange, encrypt wih private key, exchange. not vulnerable to MITM attack, no way to make sure who you are talking to s who you are talking to
+8. not possible to get truely randomnumber, psudo there is structure, crypto, hard to determine what it means
+9. ifyou know theseed youcan guess the random number.
+
+------------------------------------------------------------
+
+# Lecture 4  - Authentication
+
+- Enrollment : establish credentials
+- Challenge & Response : Check validity of credentials
+
+## Local
+- Commonly used: Identity * Password
+- Store **salted** digest of passowrd for security
+  - MD5, SHA
+- when loggin in
+  - password salted & hashed
+  - compared with stored hash
+
+### Dictionary attacks
+- how to chose a Password
+- attackers can calculate variations of a password and form salts hashes
+  - if there is a mactch it we dound the password that is begin used
+- david kliein
+  - gets usernames, initias, login name
+  - femail and male usernames
+  - ...
+  - created permutations of above
+
+### salting
+- hava a random string or value and add to Password
+  - add randomness to password so harder to guess
+  - large salts are good
+- salt string is publicly vailable, each password has individual salt
+- dont store password as you are given, add some randomness
+- keep password securely
+
+### password complexity
+- uPPer & lowwer case
+- numbers
+- dont common words
+- use special characters
+- at lease X long
+
+- entropy
+  - how much information is carried in a single characters
+  - first character ~ 4.7bits
+  - 2-8 ~2.3bits per characters9=> ~1.5bits per character
+
+### Passphrases
+- trend
+- long and easy to remmeber
+- depending on what device you use, use different passowrd
+
+## Remote
+- What is a secure channel
+
+- there might be someone evesdroppting
+  - impersonating the sendee
+  - they can manipulate it
+
+- how to talk securely
+  - we can use Cryptography
+  -
+- how to prevent replau attackers
+  - ensure message freshness
+  - mayinclude identity & timestamps
+
+### Brokered Authentication
+- have a trusted third Party
+- we trust Ted
+- trusting thirdparty for keys
+  - we are assuming hes good
+  - we are trusting him to be honest
+
+### Needham-Schroeder Protocols
+- based off deffie Hellman
+- trusted key server tha generates session keys
+
+
+- asymemetric public key
+
+- both symmetric and assymetric are suscepible to replay attackers
+
+- flaw
+  - ryan can get alice's id and send it to ryan
+
+
+### User Authentication in a Distributed systems
+#### client machine that autehntiactes
+
+#### client lef
+
+#### Mutual authentiaction
+
+
+## Kerberos
+- 3 headed dog
+- each network authenticated
+- each message autehnticated
+- each message encrypted
+
+
+### overview
+- sign to service
+  - alice signs in with Password used to cread shared Secret
+  - create a ticket to authorise with tichet services
+- get permission to talk to bob
+  - alice asks ticket serice for ticket to enable communcation with bob
+- Talk to bob
+  - alice uses ticke ot talk to bob
+- repeat spteps 2 & 3
+
+### signing intoservice
+- ticket contains who it was generated fo, and a key to enable communication wit ticket service
+- restricted lifetime to prevent replau attacks
