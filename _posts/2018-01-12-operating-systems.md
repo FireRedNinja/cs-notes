@@ -217,3 +217,101 @@ Shortest-job-first:
 * CPU assigned to process with the smallest next CPU burst
 * FIFO to break ties
 * gives minimum average waiting time for a given set of processes
+  * average waiting time less than FIFO
+* but, you need to know the length of the next CPU burst
+  * for long-term scheduling, can use the process time limit that a user specifies
+  * users are motivated to submit an accurate time
+    * lower value = faster response
+    * too low a value = time-limit-exceed error + resubmission
+* SJF cannot be used with short-term scheduling
+* can predict the next CPU burst
+  * exponential average of the measured lengths of previous bursts
+  * for `Tn` = length of `nth` CPU burst, and `Yn+1` = predicted value
+  * then for `0 <= A <= 1`, `Yn+1 = ATn + (1-A)Yn`
+    * `A` controls relative weight of recent and past history in the prediction
+  * this alg. can be preemptive/nonpreemptive
+    * the next CPU burst of a newly arrived process may be shorter than what is left of a currently existing process
+      * a preemptive will preempty the current process (shortest-remaining-time-first)
+      * a nonpreemptive will allow the current process to finish first
+      
+Priority:
+
+* CPU allocated to process with highest priority
+* equal-priority are scheduled as FIFO
+* here, assume low numbers represent high priority (but irl, different systems use different priority numbers)
+* internally defined priorities
+  * use some measurable quantity to compute priority
+  * time, memory limits, num. of open files etc
+* externally defined priorities
+  * set by OS criteria
+  * importance, type and amount of funds being paid for computer use etc
+* preemptive - preempt CPU if priority of new process is higher than current
+* nonpreemptive - put new process at head of ready queue
+* **indefinite blocking/starvation** - a process that is ready to run but waiting for the CPU
+  * low priority processes may wait indefinitely
+    * either they will eventually be run when the system is lightly loaded
+    * or the system will crash and lose all unfinished low priority processes
+ * solution - **aging**
+   * gradually increase priority of processes that wait for a long time
+   
+Round-robin:
+
+* designed for time-sharing systems
+* FIFO with added preemption
+* time slice is defined
+* ***ready*** queue treated as circular
+* scheduler goes around the queue, allocating CPU to each process for specified time interval
+* process may have CPU burst < 1 time quantum
+  * release CPU voluntarily
+* process may have CPU burst > 1 time quantum
+  * timer interrupt
+  * context switch
+  * process moved to tail of queue
+* average waiting time often long
+* preemptive
+* want the time quantum to be large with respect to the context-switch time
+  * if context switch is 10% of the time quantum, then 10% of CPU time is spent in context switching
+* turnaround time depends on time quantum
+  * can be improved if most processes finish their burst in a single time quantum
+  * context switching increases average turnaround time
+* if the time quantum is too large, RR scheduling degenerates to FIFO
+* generally, 80% of CPU bursts should be smaller than the time quantum
+
+Multilevel queue:
+
+* foreground/background processes
+  * different response time requirements
+  * different scheduling needs
+  * foreground may have external priority over background
+* partition ***ready*** queue into several queues
+  * processes permanently assigned to one queue based on some property
+  * each queue has its own scheduling alg.
+  * scheduling among the queues is commonly fixed-priority preemptive (foreground may have absolute priority over background)
+* queues can also be time-sliced
+  * eg 80% of CPU to foreground to RR
+  * 20% of CPU to background to FCFS (first come first served - FIFO)
+* low scheduling overhead
+* inflexible (processes stay in one queue all the time)
+  
+Multilevel feedback queue:
+
+* processes can move between queues
+* separate processes according to the characteristics of their bursts
+  * process using too much time --> moved to lower-priority queue
+  * leaves IO-bound and interactive processes in higher priority
+  * there is also aging so a low priority queue can be moved to a higher one
+* generally defined by the following parameters
+  * num. of queues
+  * scheduling alg. of each queue
+  * method to determine when to upgrade to higher-priority
+  * method to determine when to upgrade to lower-priority
+  * method to determine which queue a process will enter when it needs service
+* can be configured to match a specific system
+* most complex alg.
+
+#### Thread Scheduling
+
+OS schedules kernel-level threads (not processes)  
+   User-level threads managed by a thread library  
+   These threads must be mapped to a kernel-level thread (indirect and uses a lightweight process)
+   

@@ -541,6 +541,140 @@ Example with a web browser talking to web server:
   
 ###### Summary - combination of physical and data layers allows transmission of structured frames of data accross a single physical link
 
+### Bridging
+
+###### Link-layer Topology Evolution:
+
+* media access control assumes a single link
+  * on wired networks, with a single cable
+  * vulnerable to cable damage
+* hub - cable in a box
+  * no intelligence
+  * cable damage disconnects only one single host
+    * so doesn't partition the network
+* bridge - intelligent device
+  * understands media access control protocol 
+  * joins multiple links together
+  
+<img src="/cs-notes/assets/images/ns/bridge_types.jpg" nopin="nopin" />
+
+###### Extending Link-layer Networks:
+
+* hub - physical layer interconnection of links
+* equivalent to runnning a longer cable
+* doesn't improve network scalability
+
+* bridge - data layer interconnection of physical networks
+* understands and processes data link layer frames
+* identifies hosts
+* forwards frames of interest
+* automatic - no configuration needed
+* eg ethernet switches
+
+###### Bridge Operation:
+
+* learn addresses on each link
+  * observe sources of packets
+  * has **soft-state** timeout to respond to failure/node mobility
+* forward traffic as appropriate
+  * unicast based on host locations
+  * multicast based on group membership
+  * broadcast
+  
+The following are examples of communication on this setup of bridged links
+
+<img src="/cs-notes/assets/images/ns/bridge_operation.jpg" nopin="nopin" />
+  
+* on initialisation - neither bridge knows location of any hosts
+  * host A sends packet for host B
+    * received at bridge 1, which now records location of A
+    * location of B unknown, so bridge 1 floods packet to all outgoing links
+	  * which is also received at bridge 2, which doesn't know location of B
+	  * so flood the packet to all outgoing links (plus record location of A)
+	* B is one of the outgoing links from bridge 1
+	* packet received at B, so responds with a packet for A
+	  * received at bridge 1, which knows A's location
+	  * directly forward packet without flooding (plus record location of B)
+  * later, host E sends packet for host B
+    * received at bridge 2, which doesn't know location of B
+	* so floods packet to outgoing links (plus records location of E)
+	  * received at bridge 1, which knows B's location
+	  * directly forward packet to B (plus record how to reach E)
+  * over time, bridges learn location of every host, sending packets without flooding
+
+So:
+
+* learning protocol - finds hosts without config
+* flooding - ensure connectivity maintained even with no knowledge
+* performance never worse than a hub
+* use of soft state and timeouts - ensure knowledge of failed devices disappears
+* poor scalability - every bridge knows about every host
+
+###### Loops in Bridged Networks:
+
+<img src="/cs-notes/assets/images/ns/bridge_loops.jpg" nopin="nopin" />
+
+* host A sends packet for host X, which does not exist
+  * received at bridge 1, which doesn't know X's location
+  * flood to outgoing links
+    * received at bridges 2 and 3, which also don't know X's location
+	* flood to outgoing links
+	  * packets cross in transit between bridge 2 and 3
+	  * causes a loop unless countermeasures taken
+* solution - build **spanning tree** over network
+* forward packets along tree
+* model as an undirected graph `G`
+* tree over that graph comprised of all vertices and some edges of `G`
+* edges removed to eliminate loops
+  * leaves minimal edges that still connect to all vertices
+* so, previous graph now looks like this:
+
+<img src="/cs-notes/assets/images/ns/bridge_spanning.jpg" nopin="nopin" />
+
+###### Spanning Tree Algorithm:
+
+* developed by Radia Perlman
+* each bridge has globally unique address
+  * root bridge has lowest address
+  * periodically, each bridge informs its neighbours what it thinks the root's address is
+* determined root port - port with shortest path to root bridge
+  * each bridge has one except the root
+* for each LAN, select a **designated bridge** for it - bridge with shortest path to root (tie-break based on address)
+  * **designated port** - port connecting the designated bridge to LAN
+* enable all root ports and designated ports
+* disable all other ports
+* forward traffic through enabled ports
+
+<img src="/cs-notes/assets/images/ns/spanning_tree_alg.jpg" nopin="nopin" />
+
+So:
+
+* bridge 1 is root
+* root ports are `2/1` and `3/5`
+* designated bridges are
+  * 1 for hosts A, B, H and links α and β
+  * 2 for hosts F, G and link γ
+  * 3 for hosts C, D, E
+* designated ports are
+  * bridge 1: `1/1`, `1/2`, `1/3`, `1/4`, `1/5`
+  * bridge 2: `2/2`, `2/3`, `2/4`
+  * bridge 3: `3/2`, `3/3`, `3/4`
+* port `3/1` is neither a root nor designated
+  * it is **disabled**
+
+# Algorhyme
+
+**I think that I shall never see  
+   A graph more lovely than a tree.  
+   A tree whose crucial property  
+   Is loop-free connectivity.  
+   First the root must be selected.  
+   By ID it is elected.  
+   Least cost paths from root are traced.  
+   In the tree these paths are placed.  
+   A mesh is made by folks like me.  
+   Then bridges find a spanning tree.**
+
 <a name="internet_checksum"></a>
 
 ###### The Internet Checksum:
