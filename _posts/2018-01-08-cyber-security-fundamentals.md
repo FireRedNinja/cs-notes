@@ -229,66 +229,67 @@ author: noel
 
 # Lecture 3 - Introduction Cryptography 2
 
+- Why love crypto?
+  - Provides mathematical guarantee
+  - CIA
 
-why love crypto - guarantee
 ## Block Cipher
-symmetric ciphers
-same key to encrypt & decrypt
+- symmetric ciphers
+- same key to encrypt & decrypt
+- Bitwise operations on fixed size blocks of data
+  - XOR with key
+  - initialisation vectors
+  - take data
+  - keep encrypting until unreadable
+  - fast
+  - easy to implement in hardware
 
-XOR with key
-initialisation vecotors
-
-take data
-keep encrypting until unreadable
-
-fast =
-easy to implement in hardware
-
-2 families
-    feistel, IDEA
+- 2 families
+  - feistel, IDEA
 
 ### DES
 - Project Lucifer
-    - devide intor blocks
-    -
+  - several transforamtions repeated one after the other
+  - sub keys generated from one main key
 - Insecure Algorithm
+  - NSA reduced key-length to 56 bits
+  - This made it easier to bruteforce
 
 
 ### Triple DES
-- modification
 - use DES 3 times
-- encrypt wiht 1 key
-- decrypt with 2nd key
-- encrypt with 3rd key
+  - encrypt wiht 1 key
+  - decrypt with 2nd key
+  - encrypt with 3rd key
 - noone uses this anymore
 - if use same key there are backwards compatability
 - dont use this
 
--is it just XOR? no
+- is it just XOR? no
 
-- symmetric crypt is inherantly insecure
-
+### AES
+- symmetric crypto is inherantly insecure
 - DES is insecure
-- replaced by
-- AES
+- replaced by AES
 
-- copetition
-- Rijndael won
+- Rijndael won in a competition
 
-### rijndael
-- permutations and substitutions
+### Rijndael
+- Based on permutations and substitutions
+- Block and Key size
+  - 128, 192, 256, 512
 - variable number of rounds dependent on key size
+- Fast
+- implemented in hardware
+- currently no serious weakness
 
-- ECB -
-- CBC -
-- PCBC
-- CFB
-- OFB
-- CTR
+### Modes of Operation
+- ECB
+![ECB Encryption](/cs-notes/assets/images/csf/ECB_encryption.svg)
+![ECB Decryption](/cs-notes/assets/images/csf/ECB_decryption.svg)
+> [Wikipedia - Block cipher mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)
 
-### ECB
-<!--diagram-->
-- take each text and map it to
+- ECB can leave plaintext data patterns
 
 - break into blocks
 - encrypt and concatinate back
@@ -300,57 +301,62 @@ easy to implement in hardware
     - you dont know when the blocks end
     - order of blocks?
 
-### CBC
-<!-- diagram -->
+- CBC
+![CBC Encryption](/cs-notes/assets/images/csf/CBC_encryption.svg)
+![CBC Decryption](/cs-notes/assets/images/csf/CBC_encryption.svg)
+> [Wikipedia - Block cipher mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)
+
 - ouput fed in to the next round
 - creates random noise
 - operates on each block individually
 
-## iv and padding
+- PCBC
+- CFB
+- OFB
+- CTR
+
+### IV and Padding
 - initialisation vectors
-    - dont have ot be secret
-    - keeep secret key
-    - different ini vecto with diff keys
-    -
+    - dont have to be secret
+    - keep secret key
+    - different init block vector with diff keys
 - last block padding
-    - ensure final block has correct lenght
+    - ensure final block has correct length
 
 ## Secret Sharing
 ### Deffie-Hellman Key Exchange
-<!-- diagram -->
+![Deffie-Hellman](/cs-notes/assets/images/csf/Diffie-Hellman_Key_Exchange.png)
+> [Wikipedia - Diffie-Helman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)
 
-
-
-## PRNGs
+### PRNGs
 - want to makesure they are truely random
 - virtually impossible
 - always have some sort of structure
-- - hidden deep inside the structure
+  - hidden deep inside the structure
+    - enough to generate sequnce from a seubsequence
 
 - cryptographic
-    - cannot be predicted from someof the numbers in the sequence
+    - cannot be predicted from some of the numbers in the sequence
 
+### Generation Strats
+- Computer clocks
+- Keyboard latency
+- Using random noise
+- Basically you mash on your keyboard and it takes bits from the clock and mash it together
 
-## strats
-- computer clocks
-- keyboard latency
-- using random noise
-
-
-## Message Digests
-- given any message, easy to compute thedigest
-- given any hash, hard to compute themessage
-- neet  to limit
+### Message Digests
+- given any message, easy to compute the digest
+- given any hash, hard to compute the message
+- need to limit
     - hash collision
     - birthday attack given 2 random message, should not produce the same digest
-- sha -1,2 -
--
+
 ## Designing
 - DES in secret
 - AES in open competitions
 
 - Kerckhoffs 2 Principle
-    - security in your algorithms should be in tyour algorithm and in your keys
+    - security in your algorithms should be in your operations and in your keys
 
 - Linus law
     - many eyes, catch many bugs
@@ -362,67 +368,75 @@ easy to implement in hardware
 
 ## Applied
 - Primatives & Schemes not enough for security
-- kes are just numers
+- Key are just numbers
 
-- alorithms
-    - which one to use
+- Algorithms
+    - Which one to use?
 
-> data at rest is data tat doesn't "move"
+> Data at rest is data that doesn't "move"
+
+- Can be solved by crypto
+  - KEM/DEM
+  - Public Key Encryption, Symmetric Encryption...
+- Key management is the real issue
+  - Public Key Infrastructure: Centralised/Decentralised
+- Expensiveness of Encryption
+  - perfect forward secrecy
+  - end to end encryption
+  - additional mechanisms to manage permissions
 
 
-
-- keymanagement is the real issue
-
-- perfect forward secrecy
-- end to end encryption
-
-
+  > Data in flight is data beign moved from one domain to another
 
 - Securing data in flight
-    - data in flight is moved from onedomain to another
 
-- what kevek of the osi am i opperating at
-
-- key management
-
-- wha else is there?
-    - publoc key systems
-
+- Crypto to construct secure channels
+  - End-2-End Encryption
+- what level of the osi am i opperating at
+  - Network Layer has IPSec
+  - Transport Layer has TLS
+  - Application signal, Cryptocat, OTR...
+- Keys?
+  - Centralised/Decentralised
 
 > DONT IMPLEMENT OR DESIGN YOUR OWN CRYPTO. unless you are a **trained** engineer
 
 - Theroetically secure != Implementation secure
 
-- use good standard libraries
-
-
-- you hav to ook at domain, cost and effort
-
+- Use good standard libraries
+-
+- you have to look at domain, cost and effort
 [keylength.com](http://www.keylength.com)
 
-
-- ISO 27K
-- guidence on howto do things
-- regulation of cryptographic controls
-    - what you need to be aware ofwhen implementing
+### ISO 27K
+- Guidence on how to do things
+- Regulation of Cryptographic Controls
+    - what you need to be aware of when implementing
     - are there import/export restrctions
-
-- policies
+    - are there restrictions on using encryptions
+    - law enforced access to encrypted info
+    - get legal advice
+- Policies
     - where we are we going to use it
-    - impac of policy
+    - impact of policy
+    - roles and responsibilities
+    - management approach
+    - mobile data
+- key management
 
 - complience
-
-
-- what is your indsutry doing, what are the best practives
-- stakeholder expectations
-
-
+  - national and international Laws
+  - decrees
+  - industrial regulations
+  - codes of conduct
+  - stakeholder expectations
+  - contracts/agreements
+  - best practices
+  - company specific policies and standards & guidelines
+  - regulations/administratives orders
 - Laws
     - EU Laws
     - British Laws
-
-
 
 ## Advanced
 - Encryption Schemes
@@ -439,22 +453,47 @@ easy to implement in hardware
 - Distributed Authorisation
 - Searching Encrypted Data
 
-
-
 ## Attacking
 - if you want to attack the mathematics of encryptions, get a PHD
-
+    - factorising composite numbers
+    - taking discrete logarithms
 ### Attack the standard
 - make sure the system has a backdoor
 
-#### human factors
-- send your agents
+#### Attacking the System
+- Attackers cna
+    - evesdrop
+    - insert message
+    - impoersonate
+    - hijack
+    - DOS
+
+#### Human Factors
+- Espionage
+    - send your agents
 - rubber hose cryptoanalysis
     - how can you do rubber-hose resistant crypto?
+- Token Attacks
 
-### side channel attacks
+#### Code Vulnerability
+- just leave it to the experts
+- dont make your own
 
-
+#### Side channel attacks
+- Differential Power Analaysis
+    - estimate key lengths from power consumption of computations
+- Timing attacks
+    - find timings for computatioins
+- Electromagnetic attacks
+    - analasys the electromagnetic radiation
+- Ghost data
+    - non-deletion of sensitive data
+    - cold boot attack
+- Differential Fault Analaysis
+    - inducing faults in operation
+- Acoustic cryptanalysis
+    - listening to CPU output for computation noise
+- most of these are defeated by noise
 
 
 ## Tutorial
@@ -466,8 +505,8 @@ easy to implement in hardware
 5. s
 6. they are different algs, diff fundamentals, so cost/efort to attack is different
 7. encrypt message with private key, exchange, encrypt wih private key, exchange. not vulnerable to MITM attack, no way to make sure who you are talking to s who you are talking to
-8. not possible to get truely randomnumber, psudo there is structure, crypto, hard to determine what it means
-9. ifyou know theseed youcan guess the random number.
+8. not possible to get truely random number, psudo there is structure, crypto, hard to determine what it means
+9. ifyou know theseed you can guess the random number.
 
 ------------------------------------------------------------
 
@@ -475,9 +514,11 @@ easy to implement in hardware
 
 - Enrollment : establish credentials
 - Challenge & Response : Check validity of credentials
+- Styles
+    - Direct/Brokered
 
 ## Local
-- Commonly used: Identity * Password
+- Commonly used: (Identity * Password)
 - Store **salted** digest of passowrd for security
   - MD5, SHA
 - when loggin in
@@ -485,14 +526,15 @@ easy to implement in hardware
   - compared with stored hash
 
 ### Dictionary attacks
-- how to chose a Password
+- how to choose a Password
 - attackers can calculate variations of a password and form salts hashes
-  - if there is a mactch it we dound the password that is begin used
+  - if there is a match, we found the password that is begin used
 - david kliein
   - gets usernames, initias, login name
-  - femail and male usernames
-  - ...
+  - female and male names
+  - places, names of famous people, numbers, vulgar phrases, keyboard patterns
   - created permutations of above
+  - capitalisations from previous lists
 
 ### salting
 - hava a random string or value and add to Password
@@ -503,16 +545,17 @@ easy to implement in hardware
 - keep password securely
 
 ### password complexity
-- uPPer & lowwer case
+- UPPER & lower case
 - numbers
 - dont common words
 - use special characters
 - at lease X long
 
-- entropy
-  - how much information is carried in a single characters
-  - first character ~ 4.7bits
-  - 2-8 ~2.3bits per characters9=> ~1.5bits per character
+- entropy - how guessable
+    - can measure password strength using information theory
+    - how much information is carried in a single characters
+    - first character ~ 4.7bits
+    - 2-8 ~2.3bits per characters9=> ~1.5bits per character
 
 ### Passphrases
 - trend
@@ -535,49 +578,248 @@ easy to implement in hardware
 
 ### Brokered Authentication
 - have a trusted third Party
-- we trust Ted
 - trusting thirdparty for keys
-  - we are assuming hes good
+  - we are assuming he is good
   - we are trusting him to be honest
 
 ### Needham-Schroeder Protocols
 - based off deffie Hellman
 - trusted key server tha generates session keys
 
-
 - asymemetric public key
 
 - both symmetric and assymetric are suscepible to replay attackers
 
 - flaw
-  - ryan can get alice's id and send it to ryan
+    - ryan can get alice's id and send it to ryan
+- solution
+    - add ID to the message
+    - if ID changes, we know there is a man-in-the-middle
 
-
-### User Authentication in a Distributed systems
-#### client machine that autehntiactes
-
-#### client lef
-
-#### Mutual authentiaction
 
 
 ## Kerberos
-- 3 headed dog
+### User Authentication in a Distributed systems
+1. User based client auth
+2. client-led auth
+3. mutual auth
+
+### Kerberos
+- 3 headed dog of secure authenticated netowrk communication
 - each network authenticated
-- each message autehnticated
+- each message authenticated
 - each message encrypted
 
+- requires
+    - authentication service
+    - ticket granting service
 
 ### overview
 - sign to service
-  - alice signs in with Password used to cread shared Secret
-  - create a ticket to authorise with tichet services
-- get permission to talk to bob
-  - alice asks ticket serice for ticket to enable communcation with bob
-- Talk to bob
-  - alice uses ticke ot talk to bob
-- repeat spteps 2 & 3
+  - alice signs in with password used to create shared secret
+  - create a ticket to authorise with ticket services
+  - ticket contains who it was generated for, and a key to enable communication with ticket service
+  - restricted lifetime to prevent replay attacks
 
-### signing intoservice
-- ticket contains who it was generated fo, and a key to enable communication wit ticket service
-- restricted lifetime to prevent replau attacks
+- get permission to talk to bob
+  - alice asks ticket service for ticket to enable communcation with bob
+  - T~ttl is proof that Alice can use TGS
+  - timestamp is for freshness
+  - ticket granting service sends somthing for Bob
+- Talk to bob
+  - alice uses ticket to talk to bob
+  - Alice is sending Bob information on howto talk that could have only been created by TGS
+  - Modification of timestamp tells Alice, that Bob is who he says he is
+  - Bob already has K~B,TGS and this can gain access to K~A,B
+- repeat steps 2 & 3
+
+- Authentication Protocol based on Needham-Schroeder with fixes
+- Single-Sign on
+- Simplified public key variants
+
+- advantages
+    - auth on distributed system
+    - single-sign-on
+- disadvantages
+    - single point of failure
+    - not federated
+
+-----------------------------------
+
+## Tutorial
+1. w
+2. a
+3. a
+4. how you deal with enrolment.
+5. easy to remmber, more entropy so its harder to guess, easier to type on a different device like a mobile. easier to be attacked by over-the-shoulder attacks.
+6. a
+7. Password crackers
+8. a
+9. a
+10. a
+
+
+---------------------------------------------------------
+# Web security
+### How does it wokr
+- browser ask webserver for a website which might be connected t a backend
+- executed on the client
+
+### http
+- used in most transmition
+- stateless
+  - easier to implement
+  - must provide id with every transmission
+- no built in encryptions
+
+### GET
+- retrive index.hmtl
+- asks webserver for specific resourve
+- answer- get the resource you want
+- only for info retreival
+- can jave variables which is sent to webserver
+
+### POST
+- used to send data and retrive changed rescources
+- sending Data
+- sending credentials is worst way to use it
+
+### Cookies
+- data that a webserver can store in a client
+- like session id
+- should e complex
+- shoulnt be easyto guess
+
+
+### OWASP Top 10 Applicatoin Security Risk 2017
+1. Injection
+  - send data to a server that doesnt chack for the Data
+  - then used in a interpreter
+  - user provided data is used without sufficient checks
+  - eg SQL Injection
+  - stolen user data, creditcard Data
+  - DOS
+  - take over host
+2. broken auth
+  - able to bruteforce. since a lot of people use weak passwords
+  - incorrect implementation/lack of knowledge
+  - eg login page bruteforce
+  - compromise of systems
+  - money laundering
+  - unauth info disclosure
+3. sensitive data exposure
+  - be careful how you save your Data
+  - not putting enough though/energy into data protection
+  - eg. using automatic database encryption
+  - offences againt priv Laws
+  - loss of trust
+4. a way to retrive files that are not retriveable
+  - trusting external prvided inpout
+  - extract databaseinfo gathering
+5. broken access control
+  - ability to switch to more privlaged user/access to privlageed user
+  - trusting external provided input
+  - SQL Inj
+  - privelage escalation
+6. security misconfig
+  - insecure default configs
+  - Lack of knowledge
+  - enabling directory listing
+  - unauth Access
+  - sys takeover
+  - info gathering
+7. XSS
+  - injection
+  - user provided data is used witout sufficient checks
+  - data loss
+8. insecure deserialization
+  - influence control flow
+  - remote code execution
+  - accept serialised objects from instusted sources or user provided data without sufficient checks
+  - eg. supper cookie containing id, passowr, hashed
+    - attacker can cahgne those values
+  - privilae escalation
+  - remote code execution
+9. using components with known vulnerabilities
+  - lack of knowledge
+  - dont ignore software update notifications
+  - privlaged excalation
+  - data Lossremote code execution
+10. insufficient logging & monitoring
+  - without identifying an attak you cant attacks
+  - vulnerabuility scanning
+  - bruteforce password attackers
+  - being succussfully attacked
+
+--------------------------------------------------
+# Websecurity 2
+
+1. Injection
+- SQL Injection
+```SQL
+$user = $_POST['user'];
+$pass = $_POST['passoword'];
+$query = "select * from u_list where u_name = '$user' and password = '$pass';"
+```
+
+- Command Injection
+```SQL
+$cmd = "python get_data.py".$_GET['sort'];
+$list = system($cmd);
+```
+
+# blind sqlinjection
+- true or false Injection
+- more difficult but can lead to same Effectiveness
+
+
+how to prevent This
+#### NEVER TRUST USER PROVIDED INPUT
+- use functs to escape inputs
+- only use frameworks that are considered safe
+- use ```LIMIT```
+
+
+## broken auth
+- weak passwords
+- one password for all == single point of failure
+- use multi factor authenticator
+- password rotation
+
+- weak passowrd storage
+  - plain plaintext
+  - unsalted hashes
+  - weak hashes
+
+  - prevention
+    - use moden hash fn
+    - check for weak password
+    - pwd at least 8 char long
+    - harden against account enum attack
+    - multifactor auth
+    - log auth failure and aleart admins
+
+## broken access control
+- prevention
+  - dont let attacker modify the checks or metadata
+  - disable directory listing
+  - log access control failres and trigger alerts
+
+## XSS
+- Prevention
+  ### dont trust user input ffs
+  - use frameworks that already does this for you
+  - escape data
+
+
+
+### Tutorial
+1. w
+2. w
+3. w
+4. w
+5. w
+6. w
+7. w
+8. w
+9. w
