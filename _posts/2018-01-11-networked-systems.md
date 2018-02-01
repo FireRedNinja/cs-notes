@@ -674,6 +674,237 @@ So:
    In the tree these paths are placed.  
    A mesh is made by folks like me.  
    Then bridges find a spanning tree.**
+   
+### Internetworking
+
+###### Role of Network Layer:
+
+* first end-to-end layer in OSI reference model
+* end-to-end delivery of data
+  * across multiple link-layer hops
+  * across multiple autonomous systems
+* building an internet (interconnected networks - **not** capitalised, just a noun)
+  * each network administered separately (autonomous - makes independent policy and tech choices)
+  
+###### Components of an Internet:
+
+* common end-to-end network protocol
+  * seamless service to transport layer
+* set of gateway devices (routers)
+  * implements said protocol
+  * hides differences in link layer technologies
+  * must perform least amount of translation necessary
+  * framing, addressing, flow control, error detection/correction
+  
+###### The Internet (capitalised, proper noun):
+
+* globally interconnected networks running the **Internet Protocol**
+* 1965 - packet switching
+* 1969 - wide-area packet networks
+* 1973 - first non-US ARPANET sites
+* 1974 - initial version of IP
+* 1981 - access to ARPANET from non-DARPA-funded sites
+* 1983 - IPv4
+* 1992 - development of IPv6
+
+###### Internet Protocol:
+
+* packet delivery service
+* provides abstraction layer
+* simple, best effort, connectionless
+* uniform network and host addressing, uniform end-to-end connectivity, fragmentation and reassembly
+* global standard
+* the protocol stack is hourglass-shaped
+
+<img src="/cs-notes/assets/images/ns/protocol_stack.jpg" nopin="nopin" />
+
+###### IP Service Model:
+
+* connectionless - just send
+* best effort - no guarantees on packet delivery success
+* easy to run over any type of link layer
+* can easily simulate a circuit over packet, but simulating packets over a circuit is difficult
+
+###### Versions:
+
+* IPv4 - current production Internet
+* IPv6 - next gen Internet
+* IPv5 - experimental multimedia streaming protocol
+
+IPv4 packet format:
+
+* 32-bit addresses
+* will router fragmented packets that are larger than MTU
+* header contains checksum to detect transmission errors
+  * protects header only, not payload data
+
+<img src="/cs-notes/assets/images/ns/ipv4.jpg" nopin="nopin" />
+
+IPv6 packet format:
+
+* simpler header format
+* 128-bit addresses
+* removed support for fragmentation
+  * hard to implement for high rate links
+  * end-to-end principle
+* added flow label for DSCP
+  * groups related traffic flows together
+* no header checksum
+  * assumes data protected by a link layer checksum
+
+<img src="/cs-notes/assets/images/ns/ipv6.jpg" nopin="nopin" />
+
+###### Addressing:
+
+* every network interface on every host has a unique address
+  * hosts may change it over time to give illusion of privacy
+  
+###### Fragmentation:
+
+* link layer has maximum packet size (MTU)
+
+###### Loop Protection:
+
+* packets include a forwarding limit
+  * non-zero when packet is sent
+  * each router that forwards the packet reduces this value by 1
+  * if 0 reached, packet discarded
+* stops packets circling forever in case of network error
+
+###### Differentiated Services:
+
+* end systems can request special service from the network
+  * ask for low latency over high bandwidth
+  * emergency traffic prioritised
+  * background software updates asking for low priority
+* signalled by differentiated service code point (DSCP) in the header
+* provices hint to network, not a guarantee
+  * often stripped at network boundaries
+  * economic and network neutrality issues - who can set the DSCP?
+  
+###### Explicit Congestion Notification:
+
+* typically routers respond by dropping packets
+  * TP's can detect the loss and request retransmission if necessary
+* notification gives routers a way to signal approaching congestion
+  * if ECN == 00, notification is disabled
+  * if a sending host sets ECN = 10 or 01, routers will monitor link usage
+  * ECN == 11 signals need to reduce sending rate (congested)
+  
+###### Header Checksum:
+
+* used to detect transmission errors
+
+###### Transport Layer Protocol Identifier:
+
+* network packets include transport data as payload
+* must identify what protocol the transport layer uses
+  * TCP = 6
+  * UDP = 17
+  * DCCP = 33
+  * ICMP = 1
+  
+###### IPv4 or IPv6:
+
+* IPv4 has insufficient addresses left
+* primary goal of IPv6 is to increase size of address space - allow more hosts on network
+* it also simplifies the protocol - high-speed implementations easier
+* straight-foward to build apps that work with both versions
+* DNS query `getaddrinfo()` returns version used
+
+###### IP Addressing:
+
+* how to name hosts in a network
+  * does the address name the host, or its location at which it's attached to the network?
+* how they should be allocated
+  * hierarchical
+  * flat
+* address format
+  * human/machine readable
+  * structured/unstructured
+  * fixed length binary
+    * easier and faster for machines to process
+  * variable length textual
+    * easier for humans to read
+  * size
+  
+###### Identity and Location:
+
+* give hosts a consistent address, irrespective of their location
+* simple upper-layer protocols
+  * transport and app unaware of multi-homing or mobility
+* leave complexity to network layer
+  * must determine location of host before it can route data
+  * requires in-network DB to map identity to routable addresses (eg mobile phone numbers)
+* alternatively, address can indicate a host **location**
+  * address structure matches network structure (eg geographic phone numbers)
+  * simplifies network layer
+  * multi-homing/mobility must be handled by transport or apps (transport layer connections break when the host moves)
+  
+###### Address Allocation:
+
+* hierarchical
+  * allows routing on aggregate addresses
+    * eg +1 703 243 9422
+	* look at `+1`, know to route to US instantly
+  * forces address structure to match network topology
+  * requires rigid control of allocations
+* flat
+  * flexible allocations
+  * no aggregation --> not scalable
+  
+###### IP Addresses:
+
+* specify location of a network interface
+* allocated hierarchically
+* fixed length binary values
+* domain names are a separate **app level** namespace
+* both IPv4 and IPv6 addresses encode location
+  * **netmask** describes number of bits in network part of address
+  * network itself has the address with the host part equal to 0
+  * broadcast address for a network has all bits of host part equal to 1
+  * a host with several network interfaces will have one IP address per interface
+    * eg laptop with Ethernet and WiFi interfaces will have 2 IP addresses
+
+###### IPv4 Addresses:
+
+* 32-bit
+* IP address - `130.209.247.112 = 10000010 11010001 11110111 01110000`
+* netmask - `255.255.240.0 = 11111111 11111111 11110000 00000000`
+  * the `1's` are 20 bits long which refer to the network (130.209.240.0/20)
+* broadcast address - `130.209.255.255 = 10000010 11010001 11111111 11111111`
+* management - IANA administers the pool of unallocated addresses (4,294,967,296)
+  * assigned to regional Internet registries as needed
+  * RIRs allocate addresses to ISPs and large enterprises within their region
+  * ISPs allocate addresses to their customers
+* the last available RIR allocation was made on 3rd February 2011
+
+###### IPv6 Addresses:
+
+* provides 340,282,366,920,938,463,463,374,607,431,768,211,456 addresses
+* written as 8 separated 16-bit fields with `:` delimiter
+* usually written in shortened form (leading 0's in each field are suppressed)
+  * a field with all 0's is compressed to `::` (or more)
+  * the `::` must not be used to replace a single 16-bit field
+* local identifier part is 64 bits
+  * last 4 fields
+  * can be derived from Ethernet/WiFi MAC address
+  * or randomly chosen, with bit 6 set to 0 to give illusion of privacy
+* routers advertise the network part, and hosts auto-configure the address
+  * first 4 fields
+  * split into global routing prefix (up to 48 bits) and a subnet identifier
+* deployment issues
+  * requires changes to every single host, router, firewall and app
+  * many OS have already been updated
+  * backbone routers generally support IPv6
+  * home routers and firewalls starting to be updated
+  * many apps have been updated
+
+###### NAT:
+
+* no host changes
+* hugely complicated for peer-to-peer apps
+* difficult to debug problems/deploy new classes of app
 
 <a name="internet_checksum"></a>
 
