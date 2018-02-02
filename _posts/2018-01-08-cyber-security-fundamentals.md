@@ -512,7 +512,7 @@ author: noel
 
 # Lecture 4  - Authentication
 
-- Enrollment : establish credentials
+- Enrollment : Establish Credentials
 - Challenge & Response : Check validity of credentials
 - Styles
     - Direct/Brokered
@@ -521,12 +521,11 @@ author: noel
 - Commonly used: (Identity * Password)
 - Store **salted** digest of passowrd for security
   - MD5, SHA
-- when loggin in
+- when logging in
   - password salted & hashed
   - compared with stored hash
 
-### Dictionary attacks
-- how to choose a Password
+### Dictionary Attacks
 - attackers can calculate variations of a password and form salts hashes
   - if there is a match, we found the password that is begin used
 - david kliein
@@ -536,9 +535,9 @@ author: noel
   - created permutations of above
   - capitalisations from previous lists
 
-### salting
-- hava a random string or value and add to Password
-  - add randomness to password so harder to guess
+### Salting
+- a random string or value that is added to password before encryption
+  - add randomness to password so its harder to guess
   - large salts are good
 - salt string is publicly vailable, each password has individual salt
 - dont store password as you are given, add some randomness
@@ -547,15 +546,16 @@ author: noel
 ### password complexity
 - UPPER & lower case
 - numbers
-- dont common words
+- don't common words
 - use special characters
-- at lease X long
+- at lease X characters long
 
 - entropy - how guessable
     - can measure password strength using information theory
     - how much information is carried in a single characters
     - first character ~ 4.7bits
-    - 2-8 ~2.3bits per characters9=> ~1.5bits per character
+    - 2-8 ~2.3bits per character
+    - 9=> ~1.5bits per character
 
 ### Passphrases
 - trend
@@ -569,34 +569,36 @@ author: noel
   - impersonating the sendee
   - they can manipulate it
 
-- how to talk securely
-  - we can use Cryptography
-  -
-- how to prevent replau attackers
-  - ensure message freshness
-  - mayinclude identity & timestamps
+- how do we talk securely?
+  - we can use cryptography
+  - use secrecy with signature with appendix using KEM/DEM
+  - use symmetruc crypto & deffie-hellman
+
+- how to prevent replay attackers?
+  - ensure message freshness by adding
+      - random info
+      - identity & timestamps
 
 ### Brokered Authentication
 - have a trusted third Party
 - trusting thirdparty for keys
   - we are assuming he is good
   - we are trusting him to be honest
+- he might be malicious
 
 ### Needham-Schroeder Protocols
 - based off deffie Hellman
-- trusted key server tha generates session keys
+- trusted key server that generates session keys
 
-- asymemetric public key
+- symmetric & asymemetric public key
 
 - both symmetric and assymetric are suscepible to replay attackers
 
 - flaw
-    - ryan can get alice's id and send it to ryan
+    - ryan can get alice's id and send it to ken
 - solution
     - add ID to the message
     - if ID changes, we know there is a man-in-the-middle
-
-
 
 ## Kerberos
 ### User Authentication in a Distributed systems
@@ -625,16 +627,18 @@ author: noel
   - alice asks ticket service for ticket to enable communcation with bob
   - T~ttl is proof that Alice can use TGS
   - timestamp is for freshness
-  - ticket granting service sends somthing for Bob
+  - TGS sends somthing for Bob
 - Talk to bob
   - alice uses ticket to talk to bob
-  - Alice is sending Bob information on howto talk that could have only been created by TGS
+  - Alice is sending Bob information on how to talk that could have only been created by TGS
   - Modification of timestamp tells Alice, that Bob is who he says he is
-  - Bob already has K~B,TGS and this can gain access to K~A,B
+  - Bob already has K~B, TGS and this can gain access to K~A,B
 - repeat steps 2 & 3
 
 - Authentication Protocol based on Needham-Schroeder with fixes
 - Single-Sign on
+    - authenticate with AS and get timed access to system
+    - this ticket can be used to request access to other servicies like bob
 - Simplified public key variants
 
 - advantages
@@ -643,6 +647,8 @@ author: noel
 - disadvantages
     - single point of failure
     - not federated
+
+---------------------------------------------
 
 -----------------------------------
 
