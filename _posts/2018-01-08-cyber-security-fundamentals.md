@@ -863,13 +863,16 @@ Cookie: foo=bar
 --------------------------------------------------
 # Websecurity 2
 
-1. Injection
+## Injection
 - SQL Injection
 ```SQL
 $user = $_POST['user'];
 $pass = $_POST['passoword'];
 $query = "select * from u_list where u_name = '$user' and password = '$pass';"
+...
+if ($result > 0) {// user login successful
 ```
+- what could an attacker submit in order to gain access?
 
 - Command Injection
 ```SQL
@@ -877,58 +880,50 @@ $cmd = "python get_data.py".$_GET['sort'];
 $list = system($cmd);
 ```
 
-## blind sqlinjection
-- true or false Injection
-- more difficult but can lead to same Effectiveness
+- blind sqlinjection
+	- true or false Injection
+	- more difficult but can lead to same Effectiveness
 
 
-how to prevent This
-#### NEVER TRUST USER PROVIDED INPUT
-- use functs to escape inputs
-- only use frameworks that are considered safe
-- use ```LIMIT```
+- prevention
+	> NEVER TRUST USER PROVIDED INPUT
+	- use functions to escape inputs
+	- only use frameworks that are considered safe
+	- use ```LIMIT```
 
 
-## broken auth
+## Broken authentication
 - weak passwords
 - one password for all == single point of failure
 - use multi factor authenticator
 - password rotation
 
 - weak passowrd storage
-  - plain plaintext
-  - unsalted hashes
-  - weak hashes
+	- plain plaintext
+	- unsalted hashes
+	- weak hashes
 
-  - prevention
-    - use moden hash fn
-    - check for weak password
-    - pwd at least 8 char long
-    - harden against account enum attack
-    - multifactor auth
-    - log auth failure and aleart admins
+- prevention
+	- use moden hash function
+	- check for weak passwords
+	- passwords at least 8 char long
+	- harden against account enumeration attack
+	- multifactor authentication
+	- log auth failure and alert admins
 
 ## broken access control
 - prevention
-  - dont let attacker modify the checks or metadata
-  - disable directory listing
-  - log access control failres and trigger alerts
+	- don't let attacker modify the checks or metadata
+	- disable directory listing
+	- log access control failures and trigger alerts
 
 ## XSS
 - Prevention
-  ### dont trust user input ffs
-  - use frameworks that already does this for you
+  > DONT TRUST USER INPUT FFS
+  - use frameworks that automatically escapes this for you
   - escape data
 
 
+## Tutorial answers in moodle
 
-### Tutorial
-1. w
-2. w
-3. w
-4. w
-5. w
-6. w
-7. w
-8. w
-9. w
+--------------------------------
