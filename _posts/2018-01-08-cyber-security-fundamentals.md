@@ -649,6 +649,47 @@ author: noel
     - not federated
 
 ---------------------------------------------
+# Lecture 6 - Publc Key Infrastructure
+
+## PKI
+- Third party to deal with public keys
+- certificate authorities binds public keys to IDs
+    - when regestering your pub key
+    - when authority generates your public/private keys
+    - binding is done with digital signitures
+
+### PK Certificates
+- proof of identity
+- forged certificates?
+    - attackers need the ability to sign the certificate which is hard for them to do
+- fake certificates?
+    - Authority must berify the owner's ID before signing trhe certificate
+    - Need certificate authority's verifying key to check authenticity
+
+### Key Management
+- certificate issuing and publication
+- certificate revocation
+    - compromised keys
+    - identity change
+    - termination of membership
+- key pair Generation
+- private key escrow, backup, arhiving, and recovery
+- public key archiving
+- update
+- logging of actions
+
+## Certificate Chains
+- problem
+    - who trusts the trusters...
+    - how to balance certificate creation
+        - multiple certificate authorities at different levels
+- answer
+    - each authority verification key is signing by more trustworth body
+- Shape of chain
+- more trustwrth keys can be embedded in hardware
+    - so they are tamper resistant/tamper evident
+
+![Chain Shapes](/cs-notes/assets/images/csf/chainShapes.png)
 
 -----------------------------------
 
