@@ -708,11 +708,12 @@ author: noel
 
 ---------------------------------------------------------
 # Web security
-### How does it wokr
-- browser ask webserver for a website which might be connected t a backend
-- executed on the client
 
-### http
+## How does it work
+- browser ask webserver for a website which might be connected to a backend
+- the website is executed on the client
+
+### HTTP
 - used in most transmition
 - stateless
   - easier to implement
@@ -721,82 +722,143 @@ author: noel
 
 ### GET
 - retrive index.hmtl
-- asks webserver for specific resourve
-- answer- get the resource you want
-- only for info retreival
-- can jave variables which is sent to webserver
+- asks webserver for specific resource
+- answer - get the resource you want
+- should only be used for info retreival
+- can have variables which is sent to webserver
+```GET /index.html HTTP/1.1```
+```GET /index.html?foo=bar HTTP/1.1```
 
 ### POST
-- used to send data and retrive changed rescources
-- sending Data
+- used to send data and retrive changed resources
 - sending credentials is worst way to use it
+```
+POST /index.html HTTP/1.1
+Host:example.com
+Content-type:application/x-www-form-ulencoded
+Content-length: 7
+
+foo=bar
+```
 
 ### Cookies
 - data that a webserver can store in a client
-- like session id
-- should e complex
-- shoulnt be easyto guess
+    - like session id
+- should be complex
+- shouln't be easy to guess
+- mainly used to make sure that two request came from the same client
 
+#### Setting HTTP Cookies
+```
+HTTP/1.1 200 OK
+Content-type: text/html
+Set-Cookie: foo=bar
+
+...
+```
+
+#### Using HTTP Cookies
+```
+Get /index.html HTTP/1.1
+Host: example.com
+Cookie: foo=bar
+```
 
 ### OWASP Top 10 Applicatoin Security Risk 2017
 1. Injection
-  - send data to a server that doesnt chack for the Data
-  - then used in a interpreter
-  - user provided data is used without sufficient checks
-  - eg SQL Injection
-  - stolen user data, creditcard Data
-  - DOS
-  - take over host
-2. broken auth
-  - able to bruteforce. since a lot of people use weak passwords
-  - incorrect implementation/lack of knowledge
-  - eg login page bruteforce
-  - compromise of systems
-  - money laundering
-  - unauth info disclosure
+	- send data to a server that doesn't chack the data
+	- then used in a interpreter
+	- Main problem
+		- user provided data is used without sufficient checks
+	- eg SQL Injection
+	- results in
+		- stolen user data, creditcard Data
+		- DOS
+		- take over host
+2. broken authentication
+	- able to bruteforce. since a lot of people use weak passwords
+	- Main problem
+		- incorrect implementation/lack of knowledge
+	- eg login page bruteforce
+	- results in
+		- compromise of systems
+		- money laundering
+		- unauth info disclosure
 3. sensitive data exposure
-  - be careful how you save your Data
-  - not putting enough though/energy into data protection
-  - eg. using automatic database encryption
-  - offences againt priv Laws
-  - loss of trust
-4. a way to retrive files that are not retriveable
-  - trusting external prvided inpout
-  - extract databaseinfo gathering
+	- web apps and apis not protecting sensitive properly
+	- be careful how you save your Data
+	- main problem
+		-  not putting enough thought/energy into data protection
+	- eg. using automatic database encryption
+	- results in
+		- offences againt priv Laws
+		- loss of trust
+4. XXE
+    - a way to retrive files that are not retriveable
+    - Main problem
+        - trusting external prvided inpout
+    - eg
+    ```
+    <? xml version=“1.0” encoding=“ISO-8859-1”?>
+    <!DOCTYPE foo {
+        <!ELEMENT foo ANY >
+        <!ENTITY xxe SYSTEM “file:///etc/passwd”>]>
+        <foo>&xxe;</foo>
+    ```
+    - results in
+        - extract databaseinfo gathering
 5. broken access control
-  - ability to switch to more privlaged user/access to privlageed user
-  - trusting external provided input
-  - SQL Inj
-  - privelage escalation
+	- ability to switch to more privlaged user/access to privlageed user
+	- Main problem
+		- trusting external provided input
+	- eg
+	- SQL Inj
+	- results in
+		- privelage escalation
 6. security misconfig
-  - insecure default configs
-  - Lack of knowledge
-  - enabling directory listing
-  - unauth Access
-  - sys takeover
-  - info gathering
+	- insecure default configs
+	- Main problem
+		- Lack of knowledge
+	- eg
+		- enabling directory listing
+	- results in
+		- unauth Access
+		- sys takeover
+		- info gathering
 7. XSS
-  - injection
-  - user provided data is used witout sufficient checks
-  - data loss
+	- code injection
+	- Main problem
+		- user provided data is used witout sufficient checks
+	- results in
+		- data loss
 8. insecure deserialization
-  - influence control flow
-  - remote code execution
-  - accept serialised objects from instusted sources or user provided data without sufficient checks
-  - eg. supper cookie containing id, passowr, hashed
-    - attacker can cahgne those values
-  - privilae escalation
-  - remote code execution
+	- when an app receives hostile serialized objects
+	- influence control flow
+	- remote code execution
+	- Main problem
+		- accept serialised objects from instusted sources or user provided data without sufficient checks
+	- eg. 
+		- supper cookie containing id, passoword, hashed
+	- results in
+		- attacker can cahgne those values
+		- privilae escalation
+		- remote code execution
 9. using components with known vulnerabilities
-  - lack of knowledge
-  - dont ignore software update notifications
-  - privlaged excalation
-  - data Lossremote code execution
+	- Main problem
+		- lack of knowledge
+	- dont ignore software update notifications
+	- results in
+		- privlaged excalation
+		- data loss
+		- remote code execution
 10. insufficient logging & monitoring
-  - without identifying an attak you cant attacks
-  - vulnerabuility scanning
-  - bruteforce password attackers
-  - being succussfully attacked
+	- Main problem
+		- without identifying an attack you can't act
+	- eg
+		- vulnerabuility scanning
+		- bruteforce password attackers
+	- results in
+		- being succussfully attacked
 
 --------------------------------------------------
 # Websecurity 2
@@ -815,7 +877,7 @@ $cmd = "python get_data.py".$_GET['sort'];
 $list = system($cmd);
 ```
 
-# blind sqlinjection
+## blind sqlinjection
 - true or false Injection
 - more difficult but can lead to same Effectiveness
 
