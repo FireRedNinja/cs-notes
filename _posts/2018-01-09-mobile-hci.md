@@ -139,40 +139,135 @@ author: noel
 
 -------------------------------------------------------------
 
-# Lecture 3 - Constraints
+# Constraints
 - How has mobiles changed?
 
 - Given the different types of phones what problems does software engineers face?
 
+## OS
+- there are too many
+- Android
+- iOS
+- Windows
+- ...
+
+
+## Libraries
 - You wont have access to your favourite libraries
-
 - compatability problems
-    - less of an issue over time
+	- less of an issue over time
+- Poor docs
+- Different platforms different licencing
+- docs suck, libraries suck, but it sucks less over time
 
-- diff platforms diff licencing
+## Frameworks
+- Android SDK
+- Java
+- HTML5 & JS
+- ...
 
-- speed is an uissue but it has implications of battery life
+## Platforms
+- iOS
+	- restricts to ony apple products
+	- only able to make apps through Mac OS
+- Android
+	- supported by many companies
+	- can create apps in any Win/Mac/Linux
+- Windows
+	- RIP
 
+## Processing Power and Battery life
+- to extend battery life, can't use processor for long periods
+- Speed is an issue but it has implications of battery life
 - coprocessor to save battery
 
+## Memory
 - memory often limited
-
-- allocating mem is more costly than not
+- allocating memory is more costly than not
 - forcing garbage collection causes hicups
+- iOS has to manage this manually
 
-- ios has to manage manually
-
-- data cost money, energy, battery life
-
-- sensors
+## Data
+- Data cost money, energy, battery life
 
 - mobiles are limited in resources(data, memory, batterylife, processing power...)
 - but as time goes it becomes less important
 - always remember about memory
-- docs suck, libraries suck, but it sucks less over time
-- if you shitty app has smalltext noone can read
-- think about the users ( they are stupid)
-- 
+
+## Sensors
+- Camera
+- Accelerometer
+- Gyroscope
+- Magnetometer
+- Thermometer
+- Light Sensors
+- Proximity Sensors
+- Relative Humidity Sensors
+- Pressure Sensors
+- Microphone
+
+## Screens
+- Different Resolutions
+- Different types
+	- Resistive
+	- Capacitive
+
+## User and environment
+- think about users
+	- they are stupid
+- if you make a running app, make text and buttons big as it is harder to read when the mobile is shaking all the time
+
+
+
+- You basically can't get away with lazy coding
+
+
+# Android building blocks
+
+## Navigation
+- Descendant navigation
+	- allows users to descend down a screen hierarchy into a chld screen
+- Lateral navigation
+	- allows users to access sibling screens
+
+## Collections and section related siblings
+- Collection related screens
+	- represents individual items in the collection represended by the parent
+- Section-related screens
+	- represents different sections of information about the parent
+
+- Tabs
+	- Android is at the top
+	- iOS is at the bottom
+- Scrollable tabs
+- Swipe views
+- Lists
+- Grids
+- Carousels
+- Buttons
+- Text fields
+- Text selection
+- Seek bars and sliders
+- Progress
+- Activity
+- Selection controls
+- Dialogues
+- Alerts
+- Popups
+- Toasts
+- Pickers
+- Spinners
+- Search
+- Multi-Window Support
+- Picture-in-Picture
+- Drag and Drop
+
+## Cross-platform design issues
+- Android uses different design principles than iOS
+	- eg
+		- Android - Main font - Roboto
+		- iOS - Main font - San Francisco
+
 
 -------------------------------------------------------------
 
@@ -216,7 +311,7 @@ Examples:
   * well defined amount of detail
     * know where people are without crossing personal boundaries
     * only people in the house have access to it
-    
+
 ### Tangible Interaction:
 
 * tangible interface - things that think
@@ -228,7 +323,7 @@ Examples:
   * place physical source marker on tabletop display depicting map of city
   * detects the disaster and simulates impact
 * eg media blocks
-  * one block associated with a digital frontend (text, image etc) 
+  * one block associated with a digital frontend (text, image etc)
   * program a block by writing its contents on a whiteboard
   * take block anywhere to run it
     * eg to a printer
@@ -258,7 +353,7 @@ Examples:
   * encourage spatial thinking
   * can be distributed in environment
   * simultaneous interaction
-  
+
 ### Space-multiplexing:
 
 * graspable interface offers multiple input devices
@@ -267,7 +362,7 @@ Examples:
 * eg marble answering machine
   * marble colour corresponds to message sender
   * keep a message by putting it back in the machine/listen to it by putting it in your phone
-  
+
 ### Ambient user interfaces:
 
 * display info in the background
@@ -276,7 +371,7 @@ Examples:
 * eg dangling string network display
   * string attached to motor hangs from ceiling
   * speed of spinning corresponds to amount of network traffic
-  
+
 ### Scales of experience:
 
 * the distance of interaction between device and user
@@ -333,7 +428,7 @@ Designing interactive products to support people in their everyday and working l
 * evaluate designs
   * determing usability and acceptability of the product
   * involve users throughout the process
-  
+
 Tips:
 
 * beauty and elegance comes from simplicity
@@ -442,3 +537,140 @@ Bored
 Paper prototypes have lowest fidelity, followed by static wireframes linked together, then interactive prototypes, and finally fully coded prototypes.
 
 -------------------------------------------------------------
+
+# Design funnel
+- book - sketching user experiences
+- lots of different ideas and funnel it to few ideas
+
+- sketch
+- wirefram
+- mockup
+- prototypes
+
+- issues?
+    - problem?
+    - users?
+    - context?
+    - how you go about finding users so that you are in a possition to create a requirements?
+- - answer these qs
+    - whats exact problem you are trying to solved
+    - added value of using mobiles
+    - target user?
+
+- app defenisition
+    - features
+    - who the users aren
+    - filter the de
+- features
+    - write down features
+- user interviews
+    - potential user
+    - dont ask leading questions
+- ask user if we can record
+
+
+# Hooked - engaging users
+- book - Hooked - Nir Eyal
+
+- pleasure seeking -----> pain allevation
+- habits are not addicitons
+    - addicitons are self-destructive
+    - habits can be healthy/un-healthy
+
+- with enough frequency it can form a habit
+
+- Habit
+    - Trigger
+    - Action
+    - Variable Reward
+    - Investment
+    - Back to Trigger
+
+## Triggers
+- places
+- people
+- emotions
+- routines
+- situations
+
+- first step of the Hook
+- designer informs what to do next through external Triggers
+- user informs wha to do next through internal triggers
+- emotions provide frequent internal trigger
+
+
+## Action
+
+> Behaviour = Motivation + Ability + Trigger
+> B = M + A + T
+
+### Motivation
+- Level of motivation and ability determines if the action will occur
+
+### Ability
+- 6 factors can increas/ descrease ability
+    - time
+    - money
+    - physical effort
+    - brain cycles
+    - social deviance
+    - non-routines
+
+- simple action will povide rewards
+    - make sure clear trigger is represented
+    - increase ability to make it easier
+    - align to the right motivator
+
+## Reward
+- reward unpredictable like slot machines
+- understand cause and effect
+
+### the tribe
+- social rewards
+    - cooperation
+    - competeition
+    - recognition
+    - acceptance
+    - sex
+    - emathetic joy
+
+### the hunt
+- search for Resources
+    - food
+    - money
+    - information
+
+### the self
+- search for sensation
+    - mastery
+    - consistency
+    - competency
+    - completion
+
+- finite rewards decay
+    - as rewards become predictable, they become less interesting
+
+- Variable rewards are not enough
+    - you need to give them what they were looking for
+- dont control users
+    - they must have autonomy, but look for infinite variability and relive pain
+
+## Investment
+- user pays with something
+    - time
+    - money
+    - social capital
+    - effort
+    - emotional commitment
+    - personal data
+
+- investment increases likelihood of next pass
+    - anticipation of next rewards
+
+- make next cycle more likely by
+    - loading next trigger
+    - storing value
+    - creating preferences
+- we value things more if we put work into them
+
+- small amounts of work increases the likelihood of the user returning
