@@ -837,7 +837,7 @@ Cookie: foo=bar
 	- remote code execution
 	- Main problem
 		- accept serialised objects from instusted sources or user provided data without sufficient checks
-	- eg. 
+	- eg.
 		- supper cookie containing id, passoword, hashed
 	- results in
 		- attacker can cahgne those values
@@ -927,3 +927,276 @@ $list = system($cmd);
 ## Tutorial answers in moodle
 
 --------------------------------
+
+# Lecture 9 - Network Security
+## Important Nework Protocols
+### Data Link Layer IEEE 802.3
+- important information in an ethernet frame
+    - destination mac address
+    - source mac address
+    - payload
+    - checksum
+
+- MAC address
+    - 48bit
+    - first 24bit organisationally unique (OUI)
+    - rest of 24bit identifying NIC specific
+- special addresses
+    - broadcasters
+    - multicast
+
+### Data Link Layer IEEE 802.11
+- MAC for wifi
+- adds extra frame types
+    - Management frames
+    - Control frames
+    - Data frames
+- MAC address of the Access Point(AP) is added to the header
+### Network Layer
+#### IPv4
+- used for addressing
+- 32bit
+- private IP ranges;
+    - 10.0.0.0 to 10.255.255.255
+    - 172.16.0.0 to 172.31.255.255
+    - 192.168.0.0 to 192.168.255.255
+- important info
+    - source address
+    - destination address
+
+#### IPv6
+- 128 bit
+- 2^64 addresses
+- atateless auto config
+
+### Data Link Layer: ARP
+- Address Resolution Protocol
+- asks for MAC address for an IP adress
+- also used for duplicated IP addresses
+
+### Transport Layer
+- ports
+- 65532 ports
+- well known ports < 1024
+    - admin rights to open those ports
+- rest can open without permission (in linux at least)
+- additional registered ports
+- direct link between port and service
+
+- UDP
+    - connectionless
+        - fire and forget
+    - transmission not ensured
+- TCP
+    - 3-way handshake
+        - SYN (seq = x)
+        - SYN (seq = y); ACK x + 1
+        - ACK y + 1
+    - ensures order (seq)
+    - reliable data stream
+
+### Application Layer
+#### DNS
+- Domain Name System
+- translates domain name to IP address
+![DNS](/cs-notes/assets/images/csf/dns.PNG)
+## Network Structure
+### Wired
+![Wired Network](/cs-notes/assets/images/csf/wiredNetworkDesign.PNG)
+### Wireless (WiFi)
+![Wireless Network](/cs-notes/assets/images/csf/wirelessNetwork.PNG)
+### Interconnected
+![Interconnected](/cs-notes/assets/images/csf/interconnected.PNG)
+
+## Attack Vectors
+- clients
+- IP phones
+- server
+- switches/access points
+- router
+- ......
+
+### DOS
+- overload the target with requests
+    - eg
+        - SYN-Flood
+    - TCP-Queue overflow results in DoS
+### DDOS
+- problem: target might have too much POWAAH
+- solution: use multiple attackers
+    - fun with more friends
+    - minimum requirements: friends
+
+### ARP Flooding
+- switch
+    - takes MAC frame
+    - checks destination MAC
+    - looks up port number in an internal MAC lookup table
+    - forward the frame
+
+### MAC Flooding
+- switch gets the lookup table from
+    - observing traffic on physical ports
+    - extracting the source MAC address of connected port
+    - storing it
+- problem
+    - storage not infinite
+- exploit
+    - send a lot of frames with different soure addresses
+- when storage space runs out
+    - switch becomes a hub
+- gain?
+    - hub broadcasts a frame to all ports
+        - allows monitoring of all netowrk traffic
+    - reduce performance
+
+
+### ARP Poisoning
+- all clients store lookup tables
+    - ip to MAC
+    - arp helps to build this table
+    - this table's validity is not infinite
+- client asks who asks this ip
+    - server replies "ME"
+    - attacker replies "MEMEMEMEMEMEMEMMEM"
+- yelling as loud as possible helps
+- gain?
+    - all traffic redirected to attacker
+    - man-in-the-middle
+---------------------------------
+# Lecture 10 - Network Security 2
+## Attack Vendors
+### Fun with IPv6
+- problem
+    - auto configs enabled the IPv6 traffic
+    - windows pref ipv6 > ipv4
+        - without any settings
+        - enabled by default
+- MitM for all the networks traffic
+- Defence
+    - disable IPv6
+    - later on patched
+
+### Social Engineering
+- attaks users that aren't educated
+- Factors
+    - Technical
+        - power plugs
+        - ethernet sockets
+    - Human
+        - alertness/awareness of personal
+        - knowledge
+        - continuous education of staff
+- Defence
+    - Technical
+        - block unused ports at the switch
+    - human
+        - keep awareness high
+        - inform staff about methods
+            - keep it non technical
+
+### DNS Tunneling
+- send data to a blocked target
+- control a DNS Server
+- ability to send DNS lookup
+
+- domain names <= 253 characters
+    - with label <= 63 characters
+- messages base64 encoded
+- make sure you dont look up the same domain name twice
+
+## Defence
+### Firewall
+- strong defence
+- still trafic needs to come in and output
+- blocking everything is not an option
+- blocking everything is generally a good start
+    - white list vs black list
+- descisions beased on rule sets
+- rules can be classified into categories
+    - prerouting
+        - all acitons before a routing decision is made
+    - input
+        - actions on incoming traffic
+    - outout
+        - actions on outgoing traffic
+    - postrouting
+        - all actions after a routing decision is made
+- everytime you write down firewall rules
+    - it should be precise as possible
+        - <!-- i don't understand this-->
+        - ```src/dst ip```
+        - ```src/dst port```
+        - ```protocol```
+    - don't permit everything
+    - only permit necessary ports
+![DMZ Network](/cs-notes/assets/images/csf/dmzNetwork.PNG)
+
+### Proxy Server
+- used to control the flow from the inside to the outside
+- can specify all traffic to go through proxy server
+- can filter traffic and block traffic
+- can monitor traffic
+- perfomance improvements
+
+- different types of proxys
+    - HTTP
+    - SOCKS
+        - all kinds of traffic
+    - TOR (The Onion Router)
+    - ...
+- ssh socks proxy tunnel
+- traffic from lan to ssh is encrypted
+
+### IDS
+- monitoring traffic
+- filter malicious traffic
+    - signature based
+    - anomaly detection (ML based)
+- alarm admin if malicious traffic is found
+
+### IPS
+- same as IDS but
+    - can take actions automatically
+        - blocks ports, IP addresses ...
+
+### VPN
+- connects to a network through another one
+- connects to private network via public infrastructure
+    - secure connection via insecure channels
+- access to all private network's resources
+- can be used to circumvent restrictions
+![VPN](/cs-notes/assets/images/csf/vpn.PNG)
+
+## WiFi
+- no phsicall security (no cables)
+- potentially everybody can listen
+- jamming
+- deauthentication spoofing
+
+### Open Wifi
+- everyone can listening
+    - never use unencrypted services to transmit any important piece of information
+
+### Encrypted WiFi
+Wired Equivelent Privacy
+- sniff as much packets as you can
+- passive Attacks
+    - analyse the traffic
+- Active
+    - inject the traffic
+- outocme: key
+    - never use it
+
+#### WPA2
+- per packet keys
+- protected against replay attacks until octber 17
+- problem
+    - KRACK  recontructs the key thorugh replay attacks
+    - weak per-shared keys, allow brute force
+- management frames unencrypted
+    - deauthentication flooding
+- jamming
+    - medium accessible for every sender
+
+-------------------------------------------------
