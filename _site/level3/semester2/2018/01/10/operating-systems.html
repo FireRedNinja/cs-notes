@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Computer Science Notes - My notes on CS Level 3</title>
+    <meta name="description" content="My CS notes" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/cs-notes/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/cs-notes/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/cs-notes">Home</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Operating Systems H</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2018-01-10">10 Jan 2018</time>
+                
+                    on Level3 and Semester2
+                
+            </section>
+            <br>
+            <br>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="http://localhost:4000">
+                
+                    <span class="blog-title">Computer Science Notes</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2018-01-10">10 Jan 2018</time>
+            
+                on Level3 and Semester2
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">Operating Systems H</h1> -->
+
+        <section class="post-content">
+            <h3 id="introduction">Introduction</h3>
+
+<p>OS:</p>
+
+<ul>
+  <li>manages computer’s hardware</li>
+  <li>provides basis for application programs</li>
+  <li>intermediary between user and hardware</li>
+  <li>an environment within which other programs can do useful work
+<!--excerpt--></li>
+</ul>
+
+<p>Hardware:</p>
+
+<ul>
+  <li>CPU</li>
+  <li>memory</li>
+  <li>IO devices</li>
+</ul>
+
+<p>Application programs:</p>
+
+<ul>
+  <li>define ways in which the above resources are used to solve users’ computing problems</li>
+</ul>
+
+<p>User view:</p>
+
+<ol>
+  <li>PC - maximise ease of use for a single user to monopolise resources</li>
+  <li>mainframe - maximise resource utilisation for lots of users accessing through terminals</li>
+  <li>workstations - share resources, but also have dedicated resources, connected through networks of workstations and servers</li>
+  <li>mobile devices - similar to PC, with touch screen</li>
+</ol>
+
+<p>System view:</p>
+
+<ol>
+  <li>OS is resource allocator</li>
+  <li>OS controls IO devices and user programs - control program</li>
+</ol>
+
+<p>Moore’s Law - predicts that the number of transistors on an integrated circuit would double every 18 months</p>
+
+<p>Common definition of an OS:</p>
+
+<ul>
+  <li>the one program running at all times on the computer</li>
+  <li><strong>kernel</strong></li>
+  <li>there are also
+    <ul>
+      <li>system programs - associated with OS but not necessarily part of kernel</li>
+      <li>application programs - not associated with operation of the system</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Today, mobile OS include <strong>middleware</strong> as well as the kernel:</p>
+
+<ul>
+  <li>set of software frameworks that provide additional services to app devs</li>
+  <li>can support databases, multimedia and graphics</li>
+</ul>
+
+<h4 id="computer-system-operation">Computer-System Operation</h4>
+
+<p>Modern general-purpose computer system:</p>
+
+<ul>
+  <li>1+ CPUs</li>
+  <li>device controllers connected through common bus that provides access to shared memory
+    <ul>
+      <li>in charge of a specific type of device</li>
+    </ul>
+  </li>
+  <li>execute in parallel, competing for memory cycles
+    <ul>
+      <li>memory controller synchronises memory access</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Bootstrap</strong> program:</p>
+
+<ul>
+  <li>stored in ROM or electrically erasable ROM (EEROM)</li>
+  <li>firmware</li>
+  <li>initialises all aspects of system</li>
+  <li>locates OS kernel and loads it into memory</li>
+</ul>
+
+<p>Once kernel is loaded, it provides services to the system and users</p>
+
+<p>Services provided outside of the kernel:</p>
+
+<ul>
+  <li>system programs that are loaded into memory at boot time
+    <ul>
+      <li>system processes/daemons</li>
+    </ul>
+  </li>
+  <li>run while kernel is running</li>
+  <li>on UNIX, first process is “init”</li>
+  <li>once initial phase complete, system is fully booted and waits for some event to occur</li>
+</ul>
+
+<p>Event occurence:</p>
+
+<ul>
+  <li>signalled by <strong>interrupt</strong>
+    <ul>
+      <li>from hardware - send signal to CPU</li>
+      <li>from software - executing <strong>system call</strong></li>
+    </ul>
+  </li>
+  <li>CPU transfers execution to a fixed location
+    <ul>
+      <li>containing starting address where the service routine for the interrupt is located</li>
+      <li>executes</li>
+      <li>on completion, CPU resumes interrupted computation</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Interrupts:</p>
+
+<ul>
+  <li>transfer control to appropriate interrupt service routine
+    <ul>
+      <li>invoke generic routine to examine interrupt info.
+        <ul>
+          <li>call interrupt-specific handler</li>
+        </ul>
+      </li>
+      <li>table of pointers to interrupt routines is used
+        <ul>
+          <li>low memory (first hundred locations or so)</li>
+        </ul>
+      </li>
+      <li><strong>interrupt vector</strong> - array of addresses
+        <ul>
+          <li>indexed by unique device number</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>must save address of interrupted instruction
+    <ul>
+      <li>stored on system stack</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Storage:</p>
+
+<ul>
+  <li>programs run from rewritable main memory (D/RAM) but this is <strong>volatile</strong></li>
+  <li>EEROM/ROM - stores factory installations/bootstrap program</li>
+  <li>magnetic disk - secondary storage</li>
+  <li>magnetic tape</li>
+  <li>cache</li>
+  <li>solid state disk</li>
+  <li>NVRAM - DRAM with battery backup power</li>
+  <li><strong><em>load</em></strong> - move byte/word from main to internal register</li>
+  <li><strong><em>store</em></strong> - move content of a register to main</li>
+</ul>
+
+<p>Intruction-execution cycle:</p>
+
+<ul>
+  <li>fetch instruction from memory</li>
+  <li>store in the instruction register</li>
+  <li>decode and execute intructions on operands</li>
+  <li>result may be stored back in memory</li>
+</ul>
+
+<h3 id="cpu-scheduling">CPU Scheduling</h3>
+
+<p>Multiprogramming:</p>
+
+<ul>
+  <li>maximise CPU utilisation</li>
+  <li>several processes kept in memory at one time
+    <ul>
+      <li>when one process has to wait, OS takes all CPU from it and gives it to another process</li>
+      <li>repeat</li>
+    </ul>
+  </li>
+</ul>
+
+<p>CPU/IO burst cycle:</p>
+
+<ul>
+  <li>process execution
+    <ul>
+      <li>CPU burst –&gt; IO burst (repeat)
+        <ul>
+          <li>exponential/hyperexponential frequency curve (lots of short CPU and not many long CPU bursts)</li>
+          <li>IO-bound program has many short CPU bursts</li>
+          <li>CPU-bound program might have a few long CPU bursts</li>
+        </ul>
+      </li>
+      <li>final CPU burst ends with system request to terminate execution</li>
+    </ul>
+  </li>
+</ul>
+
+<p>CPU scheduler:</p>
+
+<ul>
+  <li>short-term</li>
+  <li>select from list of processes that are ready to execute
+    <ul>
+      <li>not necessarily FIFO</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Preemptive scheduling - scheduling decisions may take place under the following 4 circumstances:</p>
+
+<ol>
+  <li>process switching from running to waiting (IO or <strong><em>wait</em></strong>)</li>
+  <li>process switching from running to ready (interrupt)</li>
+  <li>process switching from waiting to ready (completion of IO)</li>
+  <li>process terminating</li>
+</ol>
+
+<ul>
+  <li>for <strong><em>1</em></strong> and <strong><em>4</em></strong>, the scheduling scheme is <strong>nonpreemptive</strong>/<strong>cooperative</strong> (no choice in the matter)
+    <ul>
+      <li>doesn’t require special hardware (timer) needed for preemptive scheduling</li>
+    </ul>
+  </li>
+  <li>preemptive results in race conditions when data is shared among processes
+    <ul>
+      <li>while a process is updating data, it is preempted so that a second process can run</li>
+      <li>2nd tries to read data, which is in an inconsistent state</li>
+    </ul>
+  </li>
+  <li>preemption affects design of OS kernel
+    <ul>
+      <li>during processing a system call, kernel may be busy with an activity on behalf of a process</li>
+      <li>may involve changing kernel data (eg IO queues)</li>
+      <li>what if process is preempted in the middle of these changes and the kernel needs to read/modify the same structure?
+        <ul>
+          <li>wait for system call to complete</li>
+          <li>wait for IO block to take place before switching context</li>
+          <li>ensures simple kernel structure</li>
+          <li>poor support of real-time computing</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Dispatcher:</p>
+
+<ul>
+  <li>gives CPU control to process selected by short-term scheduler
+    <ul>
+      <li>switch context</li>
+      <li>switch to user mode</li>
+      <li>jump to proper location in user program</li>
+    </ul>
+  </li>
+  <li>invoked during every process switch</li>
+  <li>dispatch latency - time taken to stop one process and start another</li>
+</ul>
+
+<p>Scheduling criteria - when choosing a CPU-scheduling algorithm:</p>
+
+<ul>
+  <li>CPU utilisation
+    <ul>
+      <li>CPU should be as busy as possible</li>
+      <li>ideally usage should be 40-90%</li>
+    </ul>
+  </li>
+  <li>throughput
+    <ul>
+      <li>number of processes completed per time unit</li>
+      <li>1 per hour for long processes</li>
+      <li>10 per second for short processes</li>
+    </ul>
+  </li>
+  <li>turnaround time
+    <ul>
+      <li>interval from time of submission of a process –&gt; its completion</li>
+      <li>sum of periods spent waiting to get into memory, waiting in <strong><em>ready</em></strong> queue, execution, and doing IO</li>
+      <li>generally limited by speed of output device</li>
+    </ul>
+  </li>
+  <li>waiting time
+    <ul>
+      <li>alg. doesn’t affect amount of time during which a process executes or does IO</li>
+      <li>only affects waiting time</li>
+      <li>sum of periods spent waiting</li>
+    </ul>
+  </li>
+  <li>response time
+    <ul>
+      <li>time from submission of request –&gt; production of first response</li>
+      <li>time to start responding, not time it takes to output the response</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Desirable to maximise CPU utilisation and throughput, and minimise the others.<br />
+   In most cases, we optimise the average measure.<br />
+   A system with reasonable and predictable response time may be considered more desirable than one that is faster on average, but highly variable.</p>
+
+<h4 id="scheduling-algorithms">Scheduling Algorithms</h4>
+
+<p>FIFO:</p>
+
+<ul>
+  <li>simple to understand and implement</li>
+  <li>average waiting time often quite long
+    <ul>
+      <li>may vary substantially if CPU burst times vary greatly</li>
+    </ul>
+  </li>
+  <li>convoy effect where processes wait for one big process to get off the CPU</li>
+  <li>nonpreemptive (only releases upon termination or IO)
+    <ul>
+      <li>bad for time-sharing systems</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Shortest-job-first:</p>
+
+<ul>
+  <li>associates with each process the length of the process’ next CPU burst</li>
+  <li>CPU assigned to process with the smallest next CPU burst</li>
+  <li>FIFO to break ties</li>
+  <li>gives minimum average waiting time for a given set of processes
+    <ul>
+      <li>average waiting time less than FIFO</li>
+    </ul>
+  </li>
+  <li>but, you need to know the length of the next CPU burst
+    <ul>
+      <li>for long-term scheduling, can use the process time limit that a user specifies</li>
+      <li>users are motivated to submit an accurate time
+        <ul>
+          <li>lower value = faster response</li>
+          <li>too low a value = time-limit-exceed error + resubmission</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>SJF cannot be used with short-term scheduling</li>
+  <li>can predict the next CPU burst
+    <ul>
+      <li>exponential average of the measured lengths of previous bursts</li>
+      <li>for <code class="highlighter-rouge">Tn</code> = length of <code class="highlighter-rouge">nth</code> CPU burst, and <code class="highlighter-rouge">Yn+1</code> = predicted value</li>
+      <li>then for <code class="highlighter-rouge">0 &lt;= A &lt;= 1</code>, <code class="highlighter-rouge">Yn+1 = ATn + (1-A)Yn</code>
+        <ul>
+          <li><code class="highlighter-rouge">A</code> controls relative weight of recent and past history in the prediction</li>
+        </ul>
+      </li>
+      <li>this alg. can be preemptive/nonpreemptive
+        <ul>
+          <li>the next CPU burst of a newly arrived process may be shorter than what is left of a currently existing process
+            <ul>
+              <li>a preemptive will preempty the current process (shortest-remaining-time-first)</li>
+              <li>a nonpreemptive will allow the current process to finish first</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Priority:</p>
+
+<ul>
+  <li>CPU allocated to process with highest priority</li>
+  <li>equal-priority are scheduled as FIFO</li>
+  <li>here, assume low numbers represent high priority (but irl, different systems use different priority numbers)</li>
+  <li>internally defined priorities
+    <ul>
+      <li>use some measurable quantity to compute priority</li>
+      <li>time, memory limits, num. of open files etc</li>
+    </ul>
+  </li>
+  <li>externally defined priorities
+    <ul>
+      <li>set by OS criteria</li>
+      <li>importance, type and amount of funds being paid for computer use etc</li>
+    </ul>
+  </li>
+  <li>preemptive - preempt CPU if priority of new process is higher than current</li>
+  <li>nonpreemptive - put new process at head of ready queue</li>
+  <li><strong>indefinite blocking/starvation</strong> - a process that is ready to run but waiting for the CPU
+    <ul>
+      <li>low priority processes may wait indefinitely
+        <ul>
+          <li>either they will eventually be run when the system is lightly loaded</li>
+          <li>or the system will crash and lose all unfinished low priority processes</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>solution - <strong>aging</strong>
+    <ul>
+      <li>gradually increase priority of processes that wait for a long time</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Round-robin:</p>
+
+<ul>
+  <li>designed for time-sharing systems</li>
+  <li>FIFO with added preemption</li>
+  <li>time slice is defined</li>
+  <li><strong><em>ready</em></strong> queue treated as circular</li>
+  <li>scheduler goes around the queue, allocating CPU to each process for specified time interval</li>
+  <li>process may have CPU burst &lt; 1 time quantum
+    <ul>
+      <li>release CPU voluntarily</li>
+    </ul>
+  </li>
+  <li>process may have CPU burst &gt; 1 time quantum
+    <ul>
+      <li>timer interrupt</li>
+      <li>context switch</li>
+      <li>process moved to tail of queue</li>
+    </ul>
+  </li>
+  <li>average waiting time often long</li>
+  <li>preemptive</li>
+  <li>want the time quantum to be large with respect to the context-switch time
+    <ul>
+      <li>if context switch is 10% of the time quantum, then 10% of CPU time is spent in context switching</li>
+    </ul>
+  </li>
+  <li>turnaround time depends on time quantum
+    <ul>
+      <li>can be improved if most processes finish their burst in a single time quantum</li>
+      <li>context switching increases average turnaround time</li>
+    </ul>
+  </li>
+  <li>if the time quantum is too large, RR scheduling degenerates to FIFO</li>
+  <li>generally, 80% of CPU bursts should be smaller than the time quantum</li>
+</ul>
+
+<p>Multilevel queue:</p>
+
+<ul>
+  <li>foreground/background processes
+    <ul>
+      <li>different response time requirements</li>
+      <li>different scheduling needs</li>
+      <li>foreground may have external priority over background</li>
+    </ul>
+  </li>
+  <li>partition <strong><em>ready</em></strong> queue into several queues
+    <ul>
+      <li>processes permanently assigned to one queue based on some property</li>
+      <li>each queue has its own scheduling alg.</li>
+      <li>scheduling among the queues is commonly fixed-priority preemptive (foreground may have absolute priority over background)</li>
+    </ul>
+  </li>
+  <li>queues can also be time-sliced
+    <ul>
+      <li>eg 80% of CPU to foreground to RR</li>
+      <li>20% of CPU to background to FCFS (first come first served - FIFO)</li>
+    </ul>
+  </li>
+  <li>low scheduling overhead</li>
+  <li>inflexible (processes stay in one queue all the time)</li>
+</ul>
+
+<p>Multilevel feedback queue:</p>
+
+<ul>
+  <li>processes can move between queues</li>
+  <li>separate processes according to the characteristics of their bursts
+    <ul>
+      <li>process using too much time –&gt; moved to lower-priority queue</li>
+      <li>leaves IO-bound and interactive processes in higher priority</li>
+      <li>there is also aging so a low priority queue can be moved to a higher one</li>
+    </ul>
+  </li>
+  <li>generally defined by the following parameters
+    <ul>
+      <li>num. of queues</li>
+      <li>scheduling alg. of each queue</li>
+      <li>method to determine when to upgrade to higher-priority</li>
+      <li>method to determine when to upgrade to lower-priority</li>
+      <li>method to determine which queue a process will enter when it needs service</li>
+    </ul>
+  </li>
+  <li>can be configured to match a specific system</li>
+  <li>most complex alg.</li>
+</ul>
+
+<h4 id="thread-scheduling">Thread Scheduling</h4>
+
+<p>OS schedules kernel-level threads (not processes)<br />
+   User-level threads managed by a thread library<br />
+   These threads must be mapped to a kernel-level thread (indirect and uses a lightweight process)</p>
+
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+            
+                <figure class="author-image">
+                    <a class="img" href="/cs-notes" style="background-image: url(/cs-notes/assets/images/profile.png)">
+                    <span class="hidden">Dasha Shumitskiy's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> Dasha Shumitskiy </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        Here goes the author description. You might want to place some links too in here
+                    </p>
+                </section>
+            
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="/cs-notes">Computer Science Notes</a> &copy; 
+              2018 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/cs-notes/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/cs-notes/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/cs-notes/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-108074430-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>

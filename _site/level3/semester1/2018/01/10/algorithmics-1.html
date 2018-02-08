@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
+            <a id="blog-logo" href="http://localhost:4000">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -820,9 +820,9 @@ impose heap property on bad value now in root</code><br />
 <p>For the graphs above:</p>
 
 <ul>
-  <li>adjacent - <code class="highlighter-rouge">{ a,z } Î E</code></li>
-  <li>non-adjacent - <code class="highlighter-rouge">{ a,b } ∉ E</code></li>
-  <li><code class="highlighter-rouge">a</code> is <strong>incident to</strong> edge <code class="highlighter-rouge">{ a,z }</code></li>
+  <li>adjacent - <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,z</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">Î</span><span class="w"> </span><span class="err">E</span></code></li>
+  <li>non-adjacent - <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,b</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">∉</span><span class="w"> </span><span class="err">E</span></code></li>
+  <li><code class="highlighter-rouge">a</code> is <strong>incident to</strong> edge <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">a,z</span><span class="w"> </span><span class="p">}</span></code></li>
   <li><code class="highlighter-rouge">a, x, b, y, c</code> is a path of length 4</li>
   <li><code class="highlighter-rouge">a, x, b, y, a</code> is a cycle of length 4</li>
   <li>all vertices have <strong>degree</strong> 3</li>
@@ -1416,14 +1416,14 @@ impose heap property on bad value now in root</code><br />
    HC question: does G contain a cycle that visits each vertex exactly once?</p>
 
 <p>TSDP instance: a set of <code class="highlighter-rouge">n</code> cities and integer distance <code class="highlighter-rouge">d(i, j)</code> between each pair of cities <code class="highlighter-rouge">i, j</code> and a target integer <code class="highlighter-rouge">K</code><br />
-   TSDP question: is there a permutation <code class="highlighter-rouge">p</code> of <code class="highlighter-rouge">{1, 2,..., n}</code> such that <code class="highlighter-rouge">d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) &lt;= K</code>?</p>
+   TSDP question: is there a permutation <code class="highlighter-rouge">p</code> of <code class="highlighter-rouge"><span class="p">{</span><span class="err">1,</span><span class="w"> </span><span class="err">2,...,</span><span class="w"> </span><span class="err">n</span><span class="p">}</span></code> such that <code class="highlighter-rouge">d(P1, P2) + d(P2, P3) + ... + d(Pn-1, Pn) + d(Pn, P1) &lt;= K</code>?</p>
 
 <ul>
   <li><code class="highlighter-rouge">G = (V, E)</code> is an instance of HC</li>
   <li>construct TSP <code class="highlighter-rouge">f(G)</code> where
     <ul>
       <li>cities = <code class="highlighter-rouge">V</code></li>
-      <li><code class="highlighter-rouge">d(u, v) = 1</code> if <code class="highlighter-rouge">{u, v} Î E</code> and <code class="highlighter-rouge">0</code> otherwise</li>
+      <li><code class="highlighter-rouge">d(u, v) = 1</code> if <code class="highlighter-rouge"><span class="p">{</span><span class="err">u,</span><span class="w"> </span><span class="err">v</span><span class="p">}</span><span class="w"> </span><span class="err">Î</span><span class="w"> </span><span class="err">E</span></code> and <code class="highlighter-rouge">0</code> otherwise</li>
       <li><code class="highlighter-rouge">K = |V|</code></li>
     </ul>
   </li>
@@ -1500,7 +1500,7 @@ impose heap property on bad value now in root</code><br />
 <ul>
   <li>K number of clauses of B</li>
   <li>vertices of G are pairs <code class="highlighter-rouge">(l, C)</code> where <code class="highlighter-rouge">l</code> is a literal clause of <code class="highlighter-rouge">C</code></li>
-  <li><code class="highlighter-rouge">{(l, C), (m, D)}</code> is an edge of G if and only if <code class="highlighter-rouge">l ≠ ¬m</code> and <code class="highlighter-rouge">C ≠ D</code>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">(l,</span><span class="w"> </span><span class="err">C),</span><span class="w"> </span><span class="err">(m,</span><span class="w"> </span><span class="err">D)</span><span class="p">}</span></code> is an edge of G if and only if <code class="highlighter-rouge">l ≠ ¬m</code> and <code class="highlighter-rouge">C ≠ D</code>
     <ul>
       <li>edge if distinct literals from different clauses can be satisfied simultaneously</li>
     </ul>
@@ -1660,7 +1660,7 @@ impose heap property on bad value now in root</code><br />
 
 <p>A word is a finite string over some given finite alphabet<br />
    Instance: two finite sequences of words <code class="highlighter-rouge">X1, ..., Xn</code> and <code class="highlighter-rouge">Y1, ..., Yn</code> (in the same alphabet)<br />
-   Question: does there exist a sequence <code class="highlighter-rouge">i1, i2, ..., ir</code> of integers chosen from <code class="highlighter-rouge">{1, ..., n}</code> such that <code class="highlighter-rouge">Xi1Xi2...Xir = Yi1Yi2...Yir</code>?</p>
+   Question: does there exist a sequence <code class="highlighter-rouge">i1, i2, ..., ir</code> of integers chosen from <code class="highlighter-rouge"><span class="p">{</span><span class="err">1,</span><span class="w"> </span><span class="err">...,</span><span class="w"> </span><span class="err">n</span><span class="p">}</span></code> such that <code class="highlighter-rouge">Xi1Xi2...Xir = Yi1Yi2...Yir</code>?</p>
 
 <p>For <code class="highlighter-rouge">n = 5</code></p>
 
@@ -1687,12 +1687,13 @@ impose heap property on bad value now in root</code><br />
 
 <p>The below program <code class="highlighter-rouge">T</code> will terminate if and only if input <code class="highlighter-rouge">n ≠ 1</code></p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="k">void</span> <span class="nx">t</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">public</span> <span class="k">void</span> <span class="nx">t</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 	  <span class="kc">null</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p>With a word “erratic”, <code class="highlighter-rouge">T</code> is called with <code class="highlighter-rouge">n = 7</code> sequence of values:<br />
    <code class="highlighter-rouge">22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1</code><br />
@@ -1866,7 +1867,7 @@ impose heap property on bad value now in root</code><br />
   </li>
 </ol>
 
-<p><strong>Note:</strong> <code class="highlighter-rouge">L(R*)</code> does not mean <code class="highlighter-rouge">{ r* | r ∈ L(R) }</code></p>
+<p><strong>Note:</strong> <code class="highlighter-rouge">L(R*)</code> does not mean <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">r*</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">r</span><span class="w"> </span><span class="err">∈</span><span class="w"> </span><span class="err">L(R)</span><span class="w"> </span><span class="p">}</span></code></p>
 
 <ul>
   <li>for certain regex’s, this cannot be recognised by any DFA</li>
@@ -1883,7 +1884,7 @@ impose heap property on bad value now in root</code><br />
 
 <p><img src="/cs-notes/assets/images/algs/regex_dfa.png" nopin="nopin" /></p>
 
-<p>A DFA can’t recognise <code class="highlighter-rouge">{ r* | r ∈ L(aa*bb*) }</code></p>
+<p>A DFA can’t recognise <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">r*</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">r</span><span class="w"> </span><span class="err">∈</span><span class="w"> </span><span class="err">L(aa*bb*)</span><span class="w"> </span><span class="p">}</span></code></p>
 
 <ul>
   <li>ie { (a<sup>m</sup>b<sup>n</sup>)<code class="highlighter-rouge">* |</code> m &gt; 0 and n &gt; 0 }</li>
@@ -1966,7 +1967,7 @@ impose heap property on bad value now in root</code><br />
 <p><img src="/cs-notes/assets/images/algs/pushdown_2.png" nopin="nopin" /></p>
 
 <ul>
-  <li>alphabet is <code class="highlighter-rouge">{a, b}</code></li>
+  <li>alphabet is <code class="highlighter-rouge"><span class="p">{</span><span class="err">a,</span><span class="w"> </span><span class="err">b</span><span class="p">}</span></code></li>
   <li><code class="highlighter-rouge">s0</code> is start state and <code class="highlighter-rouge">s0</code> and <code class="highlighter-rouge">s3</code> are the only accepting states</li>
   <li><code class="highlighter-rouge">(s0, ε, ε) --&gt; (s1, $)</code> move to <code class="highlighter-rouge">s1</code> and push <code class="highlighter-rouge">$</code> onto stack</li>
   <li><code class="highlighter-rouge">(s1, a, ε) --&gt; (s1, 1)</code> read <code class="highlighter-rouge">a</code> and push <code class="highlighter-rouge">1</code></li>
@@ -2233,7 +2234,7 @@ impose heap property on bad value now in root</code><br />
 
 <h6 id="heap-class-implementation-in-java">Heap class implementation in Java</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">class</span> <span class="nx">Heap</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">class</span> <span class="nx">Heap</span> <span class="p">{</span>
 
   <span class="kr">int</span> <span class="nx">size</span><span class="p">;</span>
   <span class="kr">int</span><span class="p">[]</span> <span class="nx">items</span><span class="p">;</span>
@@ -2317,7 +2318,8 @@ impose heap property on bad value now in root</code><br />
   <span class="nx">items</span><span class="p">[</span><span class="nx">current</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span> <span class="c1">// finalise location</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 <p><a name="heap_sort"></a></p>
 
 <h6 id="heapsort-pseudocode">Heapsort pseudocode</h6>
@@ -2344,7 +2346,7 @@ impose heap property on bad value now in root</code><br />
 
 <h6 id="radix-sort-pseudocode">Radix sort pseudocode</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">private</span> <span class="kr">int</span> <span class="nx">bits</span><span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">b</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">p</span><span class="p">)</span> <span class="c1">// helper method which would return the value represented by the b bits of x when starting at position p</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">private</span> <span class="kr">int</span> <span class="nx">bits</span><span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">b</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">p</span><span class="p">)</span> <span class="c1">// helper method which would return the value represented by the b bits of x when starting at position p</span>
 
 <span class="c1">// a is the sequence to be sorted</span>
 <span class="c1">// m is the number of bits in each item of a</span>
@@ -2365,7 +2367,7 @@ impose heap property on bad value now in root</code><br />
   <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">numBuckets</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="nx">bucket</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">clear</span><span class="p">();</span>
   
   <span class="c1">// distribute items in order</span>
-  <span class="k">for</span> <span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span> <span class="p">:</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">Item</span> <span class="nx">x</span> <span class="err">:</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">int</span> <span class="nx">k</span> <span class="o">=</span> <span class="nx">bits</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="p">(</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nx">b</span><span class="p">);</span> <span class="c1">// find correct bucket</span>
 	<span class="nx">bucket</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
   <span class="p">}</span>
@@ -2376,7 +2378,8 @@ impose heap property on bad value now in root</code><br />
   <span class="k">for</span> <span class="p">(</span><span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">numBuckets</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="nx">a</span><span class="p">.</span><span class="nx">addAll</span><span class="p">(</span><span class="nx">bucket</span><span class="p">[</span><span class="nx">j</span><span class="p">]);</span>
   
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="trie_alg"></a></p>
 
@@ -2384,8 +2387,8 @@ impose heap property on bad value now in root</code><br />
 
 <p><strong>Search:</strong></p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// search for a word w in a trie t</span>
-<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="k">of</span> <span class="nx">t</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// search for a word w in a trie t</span>
+<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="nx">of</span> <span class="nx">t</span><span class="p">;</span>
 <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// current position in w</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
@@ -2402,28 +2405,30 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
   <span class="k">else</span> <span class="k">return</span> <span class="s2">"absent"</span><span class="p">;</span> <span class="c1">// can't match current char</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><strong>Insert:</strong></p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// insert word w into trie t</span>
-<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="k">of</span> <span class="nx">t</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// insert word w into trie t</span>
+<span class="nx">Node</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">root</span> <span class="nx">of</span> <span class="nx">t</span><span class="p">;</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">w</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through chars of word</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="nx">has</span> <span class="nx">no</span> <span class="nx">child</span> <span class="nx">c</span> <span class="nx">labelled</span> <span class="nx">w</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="p">{</span>
     <span class="nx">create</span> <span class="nx">such</span> <span class="nx">a</span> <span class="nx">child</span> <span class="nx">c</span><span class="p">;</span>
-	<span class="nx">mark</span> <span class="nx">c</span> <span class="k">as</span> <span class="nx">intermediate</span><span class="p">;</span>
+	<span class="nx">mark</span> <span class="nx">c</span> <span class="nx">as</span> <span class="nx">intermediate</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span> <span class="c1">// move to child node</span>
 <span class="p">}</span>
-<span class="nx">mark</span> <span class="nx">n</span> <span class="k">as</span> <span class="nx">representing</span> <span class="nx">a</span> <span class="nx">word</span><span class="p">;</span>
-</code></pre></div></div>
+<span class="nx">mark</span> <span class="nx">n</span> <span class="nx">as</span> <span class="nx">representing</span> <span class="nx">a</span> <span class="nx">word</span><span class="p">;</span>
+</code></pre>
+</div>
 
 <p><a name="trie_class"></a></p>
 
 <h6 id="trie-class">Trie class</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kd">class</span> <span class="nx">Node</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">class</span> <span class="nx">Node</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="kr">char</span> <span class="nx">letter</span><span class="p">;</span> <span class="c1">// label of incoming branch</span>
   <span class="kr">private</span> <span class="kr">boolean</span> <span class="nx">isWord</span><span class="p">;</span> <span class="c1">// true when node represents a word</span>
@@ -2441,7 +2446,7 @@ impose heap property on bad value now in root</code><br />
   <span class="c1">// include accessors and mutators for the various components of a class</span>
 <span class="p">}</span>
 
-<span class="kr">public</span> <span class="kd">class</span> <span class="nx">Trie</span> <span class="p">{</span>
+<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Trie</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="nx">Node</span> <span class="nx">root</span><span class="p">;</span>
   
@@ -2450,13 +2455,14 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
   
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="huff_contruct"></a></p>
 
 <h6 id="huffman-tree-construction">Huffman tree construction</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// set up leaf nodes</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// set up leaf nodes</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">distinct</span> <span class="kr">char</span> <span class="nx">c</span> <span class="nx">occuring</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="nx">make</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">parentless</span> <span class="nx">node</span> <span class="nx">n</span><span class="p">;</span>
@@ -2469,10 +2475,10 @@ impose heap property on bad value now in root</code><br />
 <span class="p">}</span>
 
 <span class="c1">// construct branch nodes and links</span>
-<span class="k">while</span> <span class="p">(</span><span class="nx">num</span> <span class="k">of</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">num</span> <span class="nx">of</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="nx">make</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">parentless</span> <span class="nx">node</span> <span class="nx">z</span><span class="p">;</span>
-  <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">the</span> <span class="mi">2</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="k">of</span> <span class="nx">minimum</span> <span class="nx">weight</span><span class="p">;</span>
+  <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">the</span> <span class="mi">2</span> <span class="nx">parentless</span> <span class="nx">nodes</span> <span class="nx">of</span> <span class="nx">minimum</span> <span class="nx">weight</span><span class="p">;</span>
   <span class="nx">z</span><span class="p">.</span><span class="nx">setLeftChild</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
   <span class="nx">z</span><span class="p">.</span><span class="nx">setRightChild</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
   <span class="kr">int</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">getWeight</span><span class="p">()</span> <span class="o">+</span> <span class="nx">y</span><span class="p">.</span><span class="nx">getWeight</span><span class="p">();</span>
@@ -2480,19 +2486,20 @@ impose heap property on bad value now in root</code><br />
   
 <span class="p">}</span>
 <span class="c1">// the final z is root</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="lzw"></a></p>
 
 <h6 id="lzw-compression-1">LZW compression</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">set</span> <span class="nx">current</span> <span class="nx">text</span> <span class="nx">position</span> <span class="nx">i</span> <span class="nx">to</span> <span class="mi">0</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">set</span> <span class="nx">current</span> <span class="nx">text</span> <span class="nx">position</span> <span class="nx">i</span> <span class="nx">to</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nx">initialise</span> <span class="nx">codeword</span> <span class="nx">length</span> <span class="nx">k</span><span class="p">;</span>
 <span class="nx">initialise</span> <span class="nx">dictionary</span> <span class="nx">d</span><span class="p">;</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="nx">text</span> <span class="nx">t</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">exhausted</span><span class="p">)</span> <span class="p">{</span>
   
-  <span class="nx">identify</span> <span class="nx">longest</span> <span class="nx">string</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">starting</span> <span class="nx">at</span> <span class="nx">position</span> <span class="nx">i</span> <span class="k">of</span> <span class="nx">the</span> <span class="nx">text</span> <span class="nx">that</span> <span class="nx">is</span> <span class="nx">represented</span> <span class="k">in</span> <span class="nx">d</span><span class="p">;</span>
+  <span class="nx">identify</span> <span class="nx">longest</span> <span class="nx">string</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">starting</span> <span class="nx">at</span> <span class="nx">position</span> <span class="nx">i</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">text</span> <span class="nx">that</span> <span class="nx">is</span> <span class="nx">represented</span> <span class="k">in</span> <span class="nx">d</span><span class="p">;</span>
   <span class="nx">output</span> <span class="nx">codeword</span> <span class="k">for</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// using k bits</span>
   
   <span class="c1">// move to next position in t</span>
@@ -2502,16 +2509,17 @@ impose heap property on bad value now in root</code><br />
   <span class="nx">add</span> <span class="nx">string</span> <span class="nx">s</span><span class="o">+</span><span class="nx">c</span> <span class="nx">to</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">paired</span> <span class="kd">with</span> <span class="nx">next</span> <span class="nx">available</span> <span class="nx">codeword</span><span class="p">;</span> <span class="c1">// involves adding a new leaf node if d is represented by a trie</span>
   
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="lzw_decomp"></a></p>
 
 <h6 id="lzw-decompression">LZW decompression</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">initialise</span> <span class="nx">codeword</span> <span class="nx">length</span> <span class="nx">k</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">initialise</span> <span class="nx">codeword</span> <span class="nx">length</span> <span class="nx">k</span><span class="p">;</span>
 <span class="nx">initialise</span> <span class="nx">dictionary</span> <span class="nx">d</span><span class="p">;</span>
 
-<span class="nx">read</span> <span class="nx">first</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="k">from</span> <span class="nx">the</span> <span class="nx">compressed</span> <span class="nx">file</span> <span class="nx">f</span><span class="p">;</span> <span class="c1">// read k bits</span>
+<span class="nx">read</span> <span class="nx">first</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">compressed</span> <span class="nx">file</span> <span class="nx">f</span><span class="p">;</span> <span class="c1">// read k bits</span>
 <span class="nb">String</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">lookUp</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// look up codeword in d</span>
 <span class="nx">output</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// output decompressed string</span>
 
@@ -2521,7 +2529,7 @@ impose heap property on bad value now in root</code><br />
   
   <span class="k">if</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">is</span> <span class="nx">full</span><span class="p">)</span> <span class="nx">k</span><span class="o">++</span><span class="p">;</span>
   
-  <span class="kd">get</span> <span class="nx">next</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="k">from</span> <span class="nx">f</span><span class="p">;</span>
+  <span class="nx">get</span> <span class="nx">next</span> <span class="nx">codeword</span> <span class="nx">x</span> <span class="nx">from</span> <span class="nx">f</span><span class="p">;</span>
   <span class="nx">s</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">loopUp</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// look up codeword in d</span>
   <span class="nx">output</span> <span class="nx">s</span><span class="p">;</span> <span class="c1">// output decompressed string</span>
   
@@ -2529,13 +2537,14 @@ impose heap property on bad value now in root</code><br />
   <span class="nx">add</span> <span class="nx">newS</span> <span class="nx">to</span> <span class="nx">d</span> <span class="nx">paired</span> <span class="kd">with</span> <span class="nx">next</span> <span class="nx">available</span> <span class="nx">codeword</span><span class="p">;</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="brute_force"></a></p>
 
 <h6 id="brute-force-algorithm-1">Brute force algorithm</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs in t starting at position k, or -1 if no k exists</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs in t starting at position k, or -1 if no k exists</span>
 <span class="kr">public</span> <span class="kr">int</span> <span class="nx">bruteForce</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// length of string/pattern</span>
   <span class="kr">int</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// length of text</span>
@@ -2558,13 +2567,14 @@ impose heap property on bad value now in root</code><br />
   <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
   
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="kmp"></a></p>
 
 <h6 id="kmp-search-implementation">KMP search implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs from position k in t, or -1 if no k exists</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs from position k in t, or -1 if no k exists</span>
 <span class="kr">public</span> <span class="kr">int</span> <span class="nx">kmp</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
   
   <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
@@ -2594,13 +2604,14 @@ impose heap property on bad value now in root</code><br />
   <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// no occurence</span>
   
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="bm"></a></p>
 
 <h6 id="boyer-moore-implementation">Boyer-Moore implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs at k in t, or -1 if no k exists</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return smallest k such that s occurs at k in t, or -1 if no k exists</span>
 <span class="kr">public</span> <span class="kr">int</span> <span class="nx">bm</span><span class="p">(</span><span class="kr">char</span><span class="p">[]</span> <span class="nx">t</span><span class="p">,</span> <span class="kr">char</span><span class="p">[]</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kr">int</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
@@ -2628,14 +2639,15 @@ impose heap property on bad value now in root</code><br />
   <span class="k">else</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="adjacency_list"></a></p>
 
 <h6 id="adjacency-list-implementation">Adjacency list implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// an entry in the adjacency list</span>
-<span class="kr">public</span> <span class="kd">class</span> <span class="nx">AdjListNode</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// an entry in the adjacency list</span>
+<span class="kr">public</span> <span class="kr">class</span> <span class="nx">AdjListNode</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="kr">int</span> <span class="nx">vertexIndex</span><span class="p">;</span>
   <span class="c1">// possibly other fields eg weight, capacity...</span>
@@ -2654,8 +2666,8 @@ impose heap property on bad value now in root</code><br />
 <span class="p">}</span>
 
 <span class="c1">// a vertex</span>
-<span class="k">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
-<span class="kr">public</span> <span class="kd">class</span> <span class="nx">Vertex</span> <span class="p">{</span>
+<span class="kr">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
+<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Vertex</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="kr">int</span> <span class="nx">index</span><span class="p">;</span> <span class="c1">// the index of this vertex</span>
   <span class="kr">private</span> <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AjdListNode</span><span class="o">&gt;</span> <span class="nx">adjList</span><span class="p">;</span> <span class="c1">// and its adjacency list</span>
@@ -2683,8 +2695,8 @@ impose heap property on bad value now in root</code><br />
 <span class="p">}</span>
 
 <span class="c1">// a graph</span>
-<span class="k">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
-<span class="kr">public</span> <span class="kd">class</span> <span class="nx">Graph</span> <span class="p">{</span>
+<span class="kr">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">LinkedList</span><span class="p">;</span>
+<span class="kr">public</span> <span class="kr">class</span> <span class="nx">Graph</span> <span class="p">{</span>
 
   <span class="kr">private</span> <span class="nx">Vertex</span><span class="p">[]</span> <span class="nx">vertices</span><span class="p">;</span>
   <span class="kr">private</span> <span class="kr">int</span> <span class="nx">numVertices</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -2702,14 +2714,15 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="dfs"></a></p>
 
 <h6 id="depth-first-search-implementation">Depth-first search implementation</h6>
 
 <p>Add this to the previously defined <strong>vertex</strong> class:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kr">private</span> <span class="kr">boolean</span> <span class="nx">visited</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="kr">private</span> <span class="kr">boolean</span> <span class="nx">visited</span><span class="p">;</span>
    <span class="kr">private</span> <span class="kr">int</span> <span class="nx">pred</span><span class="p">;</span> <span class="c1">// index of predecessor vertex</span>
    
    <span class="kr">public</span> <span class="kr">boolean</span> <span class="nx">getVisited</span><span class="p">()</span> <span class="p">{</span>
@@ -2724,17 +2737,18 @@ impose heap property on bad value now in root</code><br />
    <span class="kr">public</span> <span class="k">void</span> <span class="nx">setPred</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
      <span class="nx">pred</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
    <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p>And add this to the previously defined <strong>graph</strong> class:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c1">// visit vertex v with predecessor p</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="c1">// visit vertex v with predecessor p</span>
    <span class="kr">private</span> <span class="k">void</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
    
      <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// update</span>
 	 <span class="nx">v</span><span class="p">.</span><span class="nx">setPred</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// set predecessor (-1 if none)</span>
 	 <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AdjListNode</span><span class="o">&gt;</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getAjdList</span><span class="p">();</span> <span class="c1">// get adj. list</span>
 	 
-	 <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="p">:</span> <span class="nx">L</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through all adjacent vertices</span>
+	 <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="err">:</span> <span class="nx">L</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through all adjacent vertices</span>
 	   <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getIndex</span><span class="p">();</span>
 	   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">vertices</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getVisited</span><span class="p">())</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">vertices</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getIndex</span><span class="p">());</span> <span class="c1">// if current vertex hasn't been visited, continue the search from there</span>
 	 <span class="p">}</span>
@@ -2744,19 +2758,20 @@ impose heap property on bad value now in root</code><br />
    <span class="c1">// carry out a df traversal</span>
    <span class="kr">public</span> <span class="k">void</span> <span class="nx">dfs</span><span class="p">()</span> <span class="p">{</span>
    
-     <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
-	 <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// if vertex not visited, start search there</span>
+     <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
+	 <span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="nx">visit</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// if vertex not visited, start search there</span>
    
    <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="bfs"></a></p>
 
 <h6 id="breadth-first-search-implementation">Breadth-first search implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setVisited</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// initialise</span>
 <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">Vertex</span><span class="o">&gt;</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-<span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">Vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">vertices</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// start search</span>
   
@@ -2769,7 +2784,7 @@ impose heap property on bad value now in root</code><br />
 	  <span class="nx">Vertex</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span> <span class="c1">// get next vertex to process</span>
 	  <span class="nx">LinkedList</span><span class="o">&lt;</span><span class="nx">AdjListNode</span><span class="o">&gt;</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">u</span><span class="p">.</span><span class="nx">getAdjList</span><span class="p">();</span> <span class="c1">// get its adj. list</span>
 	  
-	  <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="p">:</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through its adj. list</span>
+	  <span class="k">for</span> <span class="p">(</span><span class="nx">AdjListNode</span> <span class="nx">node</span> <span class="err">:</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// go through its adj. list</span>
 	  
 	    <span class="nx">Vertex</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">vertices</span><span class="p">[</span><span class="nx">node</span><span class="p">.</span><span class="nx">getVertexIndex</span><span class="p">()];</span> <span class="c1">// next vertex in list</span>
 		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">w</span><span class="p">.</span><span class="nx">getVisited</span><span class="p">())</span> <span class="p">{</span>
@@ -2787,13 +2802,14 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="dijkstra"></a></p>
 
 <h6 id="dijkstras-algorithm-implementation">Dijkstra’s algorithm implementation</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// S is set of vertices for which shortest path from u is known</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// S is set of vertices for which shortest path from u is known</span>
 <span class="c1">// d(w) is length of a shortest path from u to w passing only through vertices of S</span>
 <span class="nx">S</span> <span class="o">=</span> <span class="p">{</span><span class="nx">u</span><span class="p">};</span> <span class="c1">// initialise S</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">w</span><span class="p">)</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="o">=</span> <span class="nx">wt</span><span class="p">(</span><span class="nx">u</span><span class="p">,</span> <span class="nx">w</span><span class="p">);</span> <span class="c1">// initialise distances</span>
@@ -2805,34 +2821,36 @@ impose heap property on bad value now in root</code><br />
   <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">w</span> <span class="nx">not</span> <span class="k">in</span> <span class="nx">S</span> <span class="nx">and</span> <span class="nx">adjacent</span> <span class="nx">to</span> <span class="nx">v</span><span class="p">)</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="o">=</span> <span class="nx">min</span><span class="p">{</span> <span class="nx">d</span><span class="p">(</span><span class="nx">w</span><span class="p">),</span> <span class="nx">d</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">+</span> <span class="nx">wt</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">w</span><span class="p">)</span> <span class="p">};</span> <span class="c1">// perfom relaxation</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="non_deterministic"></a></p>
 
 <h6 id="graph-colouring---example-of-a-non-deterministic-alg">Graph colouring - example of a non-deterministic alg.</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// return true if graph g is k-colourable</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// return true if graph g is k-colourable</span>
 <span class="kr">boolean</span> <span class="nx">nDGC</span><span class="p">(</span><span class="nx">Graph</span> <span class="nx">g</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span> <span class="p">:</span> <span class="nx">g</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setColour</span><span class="p">(</span><span class="nx">nonDeterministicChoice</span><span class="p">(</span><span class="nx">k</span><span class="p">));</span> <span class="c1">// guess a colour for each vertex</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span> <span class="err">:</span> <span class="nx">g</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setColour</span><span class="p">(</span><span class="nx">nonDeterministicChoice</span><span class="p">(</span><span class="nx">k</span><span class="p">));</span> <span class="c1">// guess a colour for each vertex</span>
   
-  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">edge</span> <span class="p">{</span><span class="nx">u</span><span class="p">,</span><span class="nx">v</span><span class="p">}</span> <span class="p">:</span> <span class="nx">g</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">edge</span> <span class="p">{</span><span class="nx">u</span><span class="p">,</span><span class="nx">v</span><span class="p">}</span> <span class="err">:</span> <span class="nx">g</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">getColour</span><span class="p">()</span> <span class="o">==</span> <span class="nx">v</span><span class="p">.</span><span class="nx">getColour</span><span class="p">())</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// verify the colouring</span>
   <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="prim_jarnik"></a></p>
 
 <h6 id="prim-jarnik-algorithm-pseudocode">Prim-Jarnik algorithm pseudocode</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">set</span> <span class="nx">an</span> <span class="nx">arbitrary</span> <span class="nx">vertex</span> <span class="nx">r</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">a</span> <span class="nx">tree</span><span class="o">-</span><span class="nx">vertex</span> <span class="p">(</span><span class="nx">tv</span><span class="p">)</span>
-<span class="kd">set</span> <span class="nx">all</span> <span class="nx">other</span> <span class="nx">vertices</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">non</span><span class="o">-</span><span class="nx">tree</span><span class="o">-</span><span class="nx">vertices</span> <span class="p">(</span><span class="nx">ntv</span><span class="p">)</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">set</span> <span class="nx">an</span> <span class="nx">arbitrary</span> <span class="nx">vertex</span> <span class="nx">r</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">a</span> <span class="nx">tree</span><span class="o">-</span><span class="nx">vertex</span> <span class="p">(</span><span class="nx">tv</span><span class="p">)</span>
+<span class="nx">set</span> <span class="nx">all</span> <span class="nx">other</span> <span class="nx">vertices</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">non</span><span class="o">-</span><span class="nx">tree</span><span class="o">-</span><span class="nx">vertices</span> <span class="p">(</span><span class="nx">ntv</span><span class="p">)</span>
 
-<span class="k">while</span> <span class="p">(</span><span class="nx">size</span> <span class="k">of</span> <span class="nx">ntv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">size</span> <span class="nx">of</span> <span class="nx">ntv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="nx">find</span> <span class="nx">edge</span> <span class="nx">e</span> <span class="o">=</span> <span class="p">{</span><span class="nx">p</span><span class="p">,</span> <span class="nx">q</span><span class="p">}</span> <span class="k">of</span> <span class="nx">graph</span> <span class="nx">such</span> <span class="nx">that</span>
+  <span class="nx">find</span> <span class="nx">edge</span> <span class="nx">e</span> <span class="o">=</span> <span class="p">{</span><span class="nx">p</span><span class="p">,</span> <span class="nx">q</span><span class="p">}</span> <span class="nx">of</span> <span class="nx">graph</span> <span class="nx">such</span> <span class="nx">that</span>
     <span class="nx">p</span> <span class="nx">is</span> <span class="nx">a</span> <span class="nx">tv</span><span class="p">;</span>
 	<span class="nx">q</span> <span class="nx">is</span> <span class="nx">an</span> <span class="nx">ntv</span><span class="p">;</span>
 	<span class="nx">wt</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="nx">is</span> <span class="nx">minimised</span><span class="p">;</span>
@@ -2840,18 +2858,19 @@ impose heap property on bad value now in root</code><br />
   <span class="nx">make</span> <span class="nx">q</span> <span class="nx">a</span> <span class="nx">tv</span><span class="p">;</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="dijkstra_refinement"></a></p>
 
 <h6 id="dijkstras-refinement-to-the-prim-jarnik-algorithm">Dijkstra’s refinement to the Prim-Jarnik algorithm</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">set</span> <span class="nx">an</span> <span class="nx">arbitrary</span> <span class="nx">vertex</span> <span class="nx">r</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">a</span> <span class="nx">tree</span><span class="o">-</span><span class="nx">vertex</span> <span class="p">(</span><span class="nx">tv</span><span class="p">)</span>
-<span class="kd">set</span> <span class="nx">all</span> <span class="nx">other</span> <span class="nx">vertices</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">non</span><span class="o">-</span><span class="nx">tree</span><span class="o">-</span><span class="nx">vertices</span> <span class="p">(</span><span class="nx">ntv</span><span class="p">)</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">set</span> <span class="nx">an</span> <span class="nx">arbitrary</span> <span class="nx">vertex</span> <span class="nx">r</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">a</span> <span class="nx">tree</span><span class="o">-</span><span class="nx">vertex</span> <span class="p">(</span><span class="nx">tv</span><span class="p">)</span>
+<span class="nx">set</span> <span class="nx">all</span> <span class="nx">other</span> <span class="nx">vertices</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">non</span><span class="o">-</span><span class="nx">tree</span><span class="o">-</span><span class="nx">vertices</span> <span class="p">(</span><span class="nx">ntv</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">ntv</span> <span class="nx">s</span><span class="p">)</span> <span class="kd">set</span> <span class="nx">s</span><span class="p">.</span><span class="nx">bestTV</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span> <span class="c1">// r is the only tv</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">ntv</span> <span class="nx">s</span><span class="p">)</span> <span class="nx">set</span> <span class="nx">s</span><span class="p">.</span><span class="nx">bestTV</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span> <span class="c1">// r is the only tv</span>
 
-<span class="k">while</span> <span class="p">(</span><span class="nx">size</span> <span class="k">of</span> <span class="nx">ntv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">size</span> <span class="nx">of</span> <span class="nx">ntv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="nx">find</span> <span class="nx">ntv</span> <span class="nx">q</span> <span class="k">for</span> <span class="nx">which</span> <span class="nx">wt</span><span class="p">(</span> <span class="p">{</span><span class="nx">q</span><span class="p">,</span> <span class="nx">q</span><span class="p">.</span><span class="nx">bestTV</span><span class="p">}</span> <span class="p">)</span> <span class="nx">is</span> <span class="nx">minimal</span><span class="p">;</span>
   <span class="nx">adjoin</span> <span class="p">{</span><span class="nx">q</span><span class="p">,</span> <span class="nx">q</span><span class="p">.</span><span class="nx">bestTV</span><span class="p">}</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">tree</span><span class="p">;</span>
@@ -2859,24 +2878,25 @@ impose heap property on bad value now in root</code><br />
   <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">ntv</span> <span class="nx">s</span><span class="p">)</span> <span class="nx">update</span> <span class="nx">s</span><span class="p">.</span><span class="nx">bestTV</span><span class="p">;</span> <span class="c1">// update as tv set changed</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="topological_ordering"></a></p>
 
 <h6 id="topological-ordering-algorithm">Topological ordering algorithm</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// assume each vertex has 2 integer attributes, label and count</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// assume each vertex has 2 integer attributes, label and count</span>
 <span class="c1">// count is the number of incoming edges from unlabelled vertices</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span><span class="p">)</span> <span class="nx">v</span><span class="p">.</span><span class="nx">setCount</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">getInDegree</span><span class="p">());</span>
-<span class="kd">set</span> <span class="nx">up</span> <span class="nx">empty</span> <span class="nx">sourceQueue</span>
+<span class="nx">set</span> <span class="nx">up</span> <span class="nx">empty</span> <span class="nx">sourceQueue</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">vertex</span> <span class="nx">v</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">getCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">add</span> <span class="nx">v</span> <span class="nx">to</span> <span class="nx">sourceQueue</span><span class="p">;</span> <span class="c1">// add vertices with no incoming edges</span>
 
 <span class="kr">int</span> <span class="nx">nextLabel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// to give the topological order</span>
 <span class="k">while</span> <span class="p">(</span><span class="nx">sourceQueue</span> <span class="o">!</span><span class="nx">empty</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="nx">take</span> <span class="nx">v</span> <span class="k">from</span> <span class="nx">sourceQueue</span><span class="p">;</span>
+  <span class="nx">take</span> <span class="nx">v</span> <span class="nx">from</span> <span class="nx">sourceQueue</span><span class="p">;</span>
   <span class="nx">v</span><span class="p">.</span><span class="nx">setLabel</span><span class="p">(</span><span class="nx">nextLabel</span><span class="o">++</span><span class="p">);</span> <span class="c1">// label the vertex</span>
   <span class="k">for</span> <span class="p">(</span><span class="nx">each</span> <span class="nx">w</span> <span class="kd">with</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">w</span><span class="p">)</span> <span class="k">in</span> <span class="nx">E</span><span class="p">)</span> <span class="p">{</span>
   
@@ -2886,13 +2906,14 @@ impose heap property on bad value now in root</code><br />
   <span class="p">}</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="turing_palindrome"></a></p>
 
 <h6 id="java-method-for-the-palindrome-problem">Java method for the palindrome problem</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">boolean</span> <span class="nx">isPalindrome</span><span class="p">(</span><span class="nb">String</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">public</span> <span class="kr">boolean</span> <span class="nx">isPalindrome</span><span class="p">(</span><span class="nb">String</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kr">int</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
@@ -2900,16 +2921,17 @@ impose heap property on bad value now in root</code><br />
   <span class="k">else</span> <span class="k">return</span> <span class="nx">isPalindrome</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
 
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="turing_palindrome_2"></a></p>
 
 <h6 id="turing-machine-alg-for-the-palindrome-problem">Turing machine alg. for the palindrome problem</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">read</span> <span class="nx">symbol</span> <span class="k">in</span> <span class="nx">current</span> <span class="nx">square</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">read</span> <span class="nx">symbol</span> <span class="k">in</span> <span class="nx">current</span> <span class="nx">square</span><span class="p">;</span>
 <span class="nx">erase</span> <span class="k">this</span> <span class="nx">symbol</span><span class="p">;</span>
 <span class="nx">enter</span> <span class="nx">a</span> <span class="nx">state</span> <span class="nx">that</span> <span class="s2">"remembers"</span> <span class="nx">it</span><span class="p">;</span>
-<span class="nx">move</span> <span class="nx">head</span> <span class="nx">to</span> <span class="nx">end</span> <span class="k">of</span> <span class="nx">input</span><span class="p">;</span>
+<span class="nx">move</span> <span class="nx">head</span> <span class="nx">to</span> <span class="nx">end</span> <span class="nx">of</span> <span class="nx">input</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">only</span> <span class="nx">blank</span> <span class="nx">chars</span><span class="p">.</span> <span class="nx">remain</span><span class="p">)</span>
   <span class="nx">enter</span> <span class="nx">accepting</span> <span class="nx">state</span> <span class="nx">and</span> <span class="nx">halt</span><span class="p">;</span>
 <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">last</span> <span class="kr">char</span><span class="p">.</span> <span class="nx">matches</span> <span class="nx">the</span> <span class="nx">one</span> <span class="nx">erased</span><span class="p">)</span>
@@ -2919,27 +2941,29 @@ impose heap property on bad value now in root</code><br />
 <span class="k">if</span> <span class="p">(</span><span class="nx">no</span> <span class="nx">input</span> <span class="nx">left</span><span class="p">)</span>
   <span class="nx">enter</span> <span class="nx">accepting</span> <span class="nx">state</span> <span class="nx">and</span> <span class="nx">halt</span><span class="p">;</span>
 <span class="k">else</span>
-  <span class="nx">move</span> <span class="nx">to</span> <span class="nx">start</span> <span class="k">of</span> <span class="nx">remaining</span> <span class="nx">input</span><span class="p">;</span>
-  <span class="nx">repeat</span> <span class="k">from</span> <span class="nx">first</span> <span class="nx">step</span><span class="p">;</span>
-</code></pre></div></div>
+  <span class="nx">move</span> <span class="nx">to</span> <span class="nx">start</span> <span class="nx">of</span> <span class="nx">remaining</span> <span class="nx">input</span><span class="p">;</span>
+  <span class="nx">repeat</span> <span class="nx">from</span> <span class="nx">first</span> <span class="nx">step</span><span class="p">;</span>
+</code></pre>
+</div>
 
 <p><a name="turing_example"></a></p>
 
 <h6 id="turing-machine-alg-for-the-function-fk--k--1">Turing Machine alg. for the function <code class="highlighter-rouge">f(k) = k + 1</code></h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">move</span> <span class="nx">right</span> <span class="nx">seeking</span> <span class="nx">first</span> <span class="nx">blank</span> <span class="nx">square</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">move</span> <span class="nx">right</span> <span class="nx">seeking</span> <span class="nx">first</span> <span class="nx">blank</span> <span class="nx">square</span><span class="p">;</span>
 <span class="nx">move</span> <span class="nx">left</span> <span class="nx">looking</span> <span class="k">for</span> <span class="nx">first</span> <span class="mi">0</span> <span class="nx">or</span> <span class="nx">blank</span><span class="p">;</span>
-<span class="nx">when</span> <span class="mi">0</span> <span class="k">of</span> <span class="nx">blank</span> <span class="nx">found</span>
+<span class="nx">when</span> <span class="mi">0</span> <span class="nx">of</span> <span class="nx">blank</span> <span class="nx">found</span>
   <span class="nx">change</span> <span class="nx">it</span> <span class="nx">to</span> <span class="mi">1</span><span class="p">;</span>
   <span class="nx">move</span> <span class="nx">right</span> <span class="nx">changing</span> <span class="nx">each</span> <span class="mi">1</span> <span class="nx">to</span> <span class="mi">0</span><span class="p">;</span>
   <span class="nx">halt</span> <span class="nx">when</span> <span class="nx">blank</span> <span class="nx">square</span> <span class="nx">reached</span><span class="p">;</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p><a name="counter_program"></a></p>
 
 <h6 id="counter-program-to-evaluate-the-product-x-x-y-with-a-b-c-labels">Counter program to evaluate the product <code class="highlighter-rouge">x</code> x <code class="highlighter-rouge">y</code> (with <code class="highlighter-rouge">A, B, C</code> labels</h6>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// initialise some vars.</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// initialise some vars.</span>
 <span class="nx">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nx">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// finished product</span>
 
@@ -2955,7 +2979,8 @@ impose heap property on bad value now in root</code><br />
   <span class="k">if</span> <span class="nx">u</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">goto</span> <span class="nx">B</span><span class="p">;</span> <span class="c1">// return to start of inner loop</span>
   
 <span class="nl">C</span><span class="p">:</span> <span class="nx">halt</span><span class="p">;</span>
-</code></pre></div></div>
+</code></pre>
+</div>
 
         </section>
 
@@ -3006,7 +3031,7 @@ impose heap property on bad value now in root</code><br />
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_setAccount', 'UA-108074430-2']);
       _gaq.push(['_trackPageview']);
 
       (function() {

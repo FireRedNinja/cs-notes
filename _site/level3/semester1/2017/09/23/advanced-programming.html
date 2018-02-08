@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
+            <a id="blog-logo" href="http://localhost:4000">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -90,8 +90,9 @@
 <h2 id="edit---compile---link---execute-cycle">Edit - Compile - Link - Execute Cycle</h2>
 <ul>
   <li>Source Files &gt; Compiler &gt; Bin &gt; Linker &gt; Executable
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-o</span> <span class="nb">test </span>test.o
-</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gcc -o <span class="nb">test </span>test.o
+</code></pre>
+    </div>
   </li>
 </ul>
 
@@ -127,10 +128,11 @@
 <h2 id="makefiles">Makefiles</h2>
 <ul>
   <li>makes compiling bigger programs easier
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-c</span> mod_a.c
-gcc <span class="nt">-c</span> mod_b.c
-gcc <span class="nt">-c</span> mod_a.o mod_b.o <span class="nt">-o</span> app_x
-</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gcc -c mod_a.c
+gcc -c mod_b.c
+gcc -c mod_a.o mod_b.o -o app_x
+</code></pre>
+    </div>
   </li>
   <li>becomes</li>
 </ul>
@@ -145,7 +147,7 @@ mod_b.o: mod_b.c global.g
 	gcc -c mod_a.c
 </code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CFLAGS = -W -Wall
+<div class="highlighter-rouge"><pre class="highlight"><code>CFLAGS = -W -Wall
 %.o : %.c
 	gcc -c $(CFLAGS) $&lt; -o $@
 OBJECTS = mod_a.o mod_b.o
@@ -155,7 +157,8 @@ app_x: $(OBJECTS)
 
 mod_a.o: mod_a.c global.h
 mod_b.o: mod_b.c global.h
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <h1 id="lecture-2">Lecture 2</h1>
 <h1 id="overview-of-c">Overview of C</h1>
@@ -270,7 +273,7 @@ extern type varName;
 </ul>
 
 <h4 id="escape-sequences">escape sequences</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\a - alert (bell) character
+<div class="highlighter-rouge"><pre class="highlight"><code>\a - alert (bell) character
 \b - backspace
 \f - formfeed
 \n - newline
@@ -284,7 +287,8 @@ extern type varName;
 \ooo - octal number
 \xhh - hexadecimal number
 \0 - null character (EOS)
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <ul>
   <li>‘x’ - integer representing value of letter x</li>
@@ -317,8 +321,9 @@ enum months {JAN = 1; FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
 </ul>
 
 <h4 id="cast">cast</h4>
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="n">expression</span>
-</code></pre></div></div>
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="n">expression</span>
+</code></pre>
+</div>
 
 <pre><code class="language-C">++n // increments before value us used
 n++ // increments after value is used
@@ -677,8 +682,9 @@ free(); // deallocates memory that was malloced;
 
 <ul>
   <li>given
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./program hello world
-</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>./program hello world
+</code></pre>
+    </div>
   </li>
 </ul>
 
@@ -841,7 +847,7 @@ typedef char *String; // String is synonym for char *</p>
 Length *lengths; // ptr to (array of) Length
 String lineptr[MAXLINES]; // array of String
 Length strlen(String s); // prototype</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code>
 #### Unions
 - Variable that may hold objects of different types and sizes
 ```C
@@ -851,7 +857,8 @@ union const_value { // type declaration
 	char *sval;
 };
 union const_value val; // variable definition
-</code></pre></div></div>
+</code></pre>
+</div>
 <ul>
   <li>assignment to any union member turns all other members into garbage</li>
   <li>compiler doesn’t track this</li>
@@ -980,21 +987,24 @@ union const_value val; // variable definition
 <h4 id="conditional-variables">Conditional Variables</h4>
 <ul>
   <li>Can be called only if the thread owns the lock
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wait()
-</code></pre></div>    </div>
+    <div class="highlighter-rouge"><pre class="highlight"><code>wait()
+</code></pre>
+    </div>
   </li>
   <li>Releases the lock and blocked until another thread calls <code class="highlighter-rouge">signal()</code></li>
   <li>When unblocked, the thread owns the lock again</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>signal()
-</code></pre></div></div>
+<div class="highlighter-rouge"><pre class="highlight"><code>signal()
+</code></pre>
+</div>
 <ul>
   <li>If any threads are blocked waiting for a condition, then <em>one</em> of the blocked threads will be unblocked</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>broadcast()
-</code></pre></div></div>
+<div class="highlighter-rouge"><pre class="highlight"><code>broadcast()
+</code></pre>
+</div>
 <ul>
   <li>If any threads are blocked waiting for a condition, the  <em>all</em> of the blocked threads will be unblocked</li>
 </ul>
@@ -1101,7 +1111,7 @@ t.join(); // Wait to terminate
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_setAccount', 'UA-108074430-2']);
       _gaq.push(['_trackPageview']);
 
       (function() {

@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
+            <a id="blog-logo" href="http://localhost:4000">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -255,6 +255,826 @@
 
 <hr />
 
+<h1 id="constraints">Constraints</h1>
+<ul>
+  <li>
+    <p>How has mobiles changed?</p>
+  </li>
+  <li>
+    <p>Given the different types of phones what problems does software engineers face?</p>
+  </li>
+</ul>
+
+<h2 id="os">OS</h2>
+<ul>
+  <li>there are too many</li>
+  <li>Android</li>
+  <li>iOS</li>
+  <li>Windows</li>
+  <li>…</li>
+</ul>
+
+<h2 id="libraries">Libraries</h2>
+<ul>
+  <li>You wont have access to your favourite libraries</li>
+  <li>compatability problems
+    <ul>
+      <li>less of an issue over time</li>
+    </ul>
+  </li>
+  <li>Poor docs</li>
+  <li>Different platforms different licencing</li>
+  <li>docs suck, libraries suck, but it sucks less over time</li>
+</ul>
+
+<h2 id="frameworks">Frameworks</h2>
+<ul>
+  <li>Android SDK</li>
+  <li>Java</li>
+  <li>HTML5 &amp; JS</li>
+  <li>…</li>
+</ul>
+
+<h2 id="platforms">Platforms</h2>
+<ul>
+  <li>iOS
+    <ul>
+      <li>restricts to ony apple products</li>
+      <li>only able to make apps through Mac OS</li>
+    </ul>
+  </li>
+  <li>Android
+    <ul>
+      <li>supported by many companies</li>
+      <li>can create apps in any Win/Mac/Linux</li>
+    </ul>
+  </li>
+  <li>Windows
+    <ul>
+      <li>RIP</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="processing-power-and-battery-life">Processing Power and Battery life</h2>
+<ul>
+  <li>to extend battery life, can’t use processor for long periods</li>
+  <li>Speed is an issue but it has implications of battery life</li>
+  <li>coprocessor to save battery</li>
+</ul>
+
+<h2 id="memory">Memory</h2>
+<ul>
+  <li>memory often limited</li>
+  <li>allocating memory is more costly than not</li>
+  <li>forcing garbage collection causes hicups</li>
+  <li>iOS has to manage this manually</li>
+</ul>
+
+<h2 id="data">Data</h2>
+<ul>
+  <li>
+    <p>Data cost money, energy, battery life</p>
+  </li>
+  <li>mobiles are limited in resources(data, memory, batterylife, processing power…)</li>
+  <li>but as time goes it becomes less important</li>
+  <li>always remember about memory</li>
+</ul>
+
+<h2 id="sensors">Sensors</h2>
+<ul>
+  <li>Camera</li>
+  <li>Accelerometer</li>
+  <li>Gyroscope</li>
+  <li>Magnetometer</li>
+  <li>Thermometer</li>
+  <li>Light Sensors</li>
+  <li>Proximity Sensors</li>
+  <li>Relative Humidity Sensors</li>
+  <li>Pressure Sensors</li>
+  <li>Microphone</li>
+</ul>
+
+<h2 id="screens">Screens</h2>
+<ul>
+  <li>Different Resolutions</li>
+  <li>Different types
+    <ul>
+      <li>Resistive</li>
+      <li>Capacitive</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="user-and-environment">User and environment</h2>
+<ul>
+  <li>think about users
+    <ul>
+      <li>they are stupid</li>
+    </ul>
+  </li>
+  <li>
+    <p>if you make a running app, make text and buttons big as it is harder to read when the mobile is shaking all the time</p>
+  </li>
+  <li>You basically can’t get away with lazy coding</li>
+</ul>
+
+<h1 id="android-building-blocks">Android building blocks</h1>
+
+<h2 id="navigation">Navigation</h2>
+<ul>
+  <li>Descendant navigation
+    <ul>
+      <li>allows users to descend down a screen hierarchy into a chld screen</li>
+    </ul>
+  </li>
+  <li>Lateral navigation
+    <ul>
+      <li>allows users to access sibling screens</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="collections-and-section-related-siblings">Collections and section related siblings</h2>
+<ul>
+  <li>Collection related screens
+    <ul>
+      <li>represents individual items in the collection represended by the parent</li>
+    </ul>
+  </li>
+  <li>Section-related screens
+    <ul>
+      <li>represents different sections of information about the parent</li>
+    </ul>
+  </li>
+  <li>Tabs
+    <ul>
+      <li>Android is at the top</li>
+      <li>iOS is at the bottom</li>
+    </ul>
+  </li>
+  <li>Scrollable tabs</li>
+  <li>Swipe views</li>
+  <li>Lists</li>
+  <li>Grids</li>
+  <li>Carousels</li>
+  <li>Buttons</li>
+  <li>Text fields</li>
+  <li>Text selection</li>
+  <li>Seek bars and sliders</li>
+  <li>Progress</li>
+  <li>Activity</li>
+  <li>Selection controls</li>
+  <li>Dialogues</li>
+  <li>Alerts</li>
+  <li>Popups</li>
+  <li>Toasts</li>
+  <li>Pickers</li>
+  <li>Spinners</li>
+  <li>Search</li>
+  <li>Multi-Window Support</li>
+  <li>Picture-in-Picture</li>
+  <li>Drag and Drop</li>
+</ul>
+
+<h2 id="cross-platform-design-issues">Cross-platform design issues</h2>
+<ul>
+  <li>Android uses different design principles than iOS
+    <ul>
+      <li>eg
+        <ul>
+          <li>Android - Main font - Roboto</li>
+          <li>iOS - Main font - San Francisco</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="ubiquitous-computing">Ubiquitous Computing</h1>
+
+<h2 id="ubicompambience-intelligence">UbiComp/Ambience intelligence:</h2>
+
+<ul>
+  <li>post-desktop model of HCI</li>
+  <li>informatin processing integrated with everyday life</li>
+  <li>you may not even be aware that you’re using computing</li>
+  <li>contrasts traditional desktop computing</li>
+  <li>machines that fit the human environment</li>
+  <li>third era of computing (after mainframes and PCs)</li>
+</ul>
+
+<p>Weiser envisioned a world like this in ‘91 and then further in ‘96, calling the approach “calm computing”:</p>
+
+<ul>
+  <li>mobile and embedded processors communicating with each other</li>
+  <li>used to support everyday practices, making lives more <strong>convenient, comfortable and informed</strong></li>
+  <li>information appearing in centre of out attention when needed and disappear effortlessly when not</li>
+  <li>a central vision was our homes, things and environments being aware and adaptable</li>
+</ul>
+
+<p>Examples:</p>
+
+<ul>
+  <li>HP Cooltown
+    <ul>
+      <li>every object has a webpage</li>
+      <li>communicate with other objects</li>
+      <li>knows what you’re doing at all times through the environment around you</li>
+      <li>implications
+        <ul>
+          <li>false alarms</li>
+          <li>privacy</li>
+          <li>malicious access</li>
+          <li>making sure people’s valuable records aren’t distributed</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>NOKIA
+    <ul>
+      <li>wearable tech</li>
+    </ul>
+  </li>
+  <li>IBM
+    <ul>
+      <li>WAP-based flight check-in system</li>
+    </ul>
+  </li>
+  <li>Oyster travel in London</li>
+  <li>other projects that never made it onto the market</li>
+  <li>whereabouts clock
+    <ul>
+      <li>at a brief glance, get info on where family members are</li>
+      <li>well defined amount of detail
+        <ul>
+          <li>know where people are without crossing personal boundaries</li>
+          <li>only people in the house have access to it</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="tangible-interaction">Tangible Interaction:</h3>
+
+<ul>
+  <li>tangible interface - things that think
+    <ul>
+      <li>give physical form to digital info</li>
+      <li>use physical form to model interations with digital content
+        <ul>
+          <li>making it more intuitive/engaging</li>
+          <li>info directly graspable and manipulable</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>eg disaster simulation
+    <ul>
+      <li>place physical source marker on tabletop display depicting map of city</li>
+      <li>detects the disaster and simulates impact</li>
+    </ul>
+  </li>
+  <li>eg media blocks
+    <ul>
+      <li>one block associated with a digital frontend (text, image etc)</li>
+      <li>program a block by writing its contents on a whiteboard</li>
+      <li>take block anywhere to run it
+        <ul>
+          <li>eg to a printer</li>
+        </ul>
+      </li>
+      <li>transfer content easily</li>
+    </ul>
+  </li>
+  <li>eg Ishii
+    <ul>
+      <li>bottles with music inside</li>
+      <li>open bottle and music comes out</li>
+      <li>interact with different bottles to DJ</li>
+    </ul>
+  </li>
+  <li>eg shape-changing phones
+    <ul>
+      <li>shifting mass
+        <ul>
+          <li>weight inside phone to help you know what’s going on without looking at the screen</li>
+        </ul>
+      </li>
+      <li>shifting shape
+        <ul>
+          <li>thin –&gt; thick shows you where there is more content off-screen</li>
+        </ul>
+      </li>
+      <li>breathing
+        <ul>
+          <li>has a heartbeat</li>
+          <li>know when relaxed/something happening</li>
+          <li>calm it by patting</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>eg Shoogle
+    <ul>
+      <li>balls inside case physically jangle
+        <ul>
+          <li>eg different message senders get a different pitch of sound</li>
+        </ul>
+      </li>
+      <li>when this was tested, people didn’t get it
+        <ul>
+          <li>so important to initially demonstrate the system with a visual correspondence</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>advantages
+    <ul>
+      <li>natural for people to interact with physical objects</li>
+      <li>easy for anyone to interact with</li>
+      <li>playfulness</li>
+      <li>encourage spatial thinking</li>
+      <li>can be distributed in environment</li>
+      <li>simultaneous interaction</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="space-multiplexing">Space-multiplexing:</h3>
+
+<ul>
+  <li>graspable interface offers multiple input devices</li>
+  <li>input and output distributed over space</li>
+  <li>allows for simultaneous, but independent and persistent selection of objects</li>
+  <li>eg marble answering machine
+    <ul>
+      <li>marble colour corresponds to message sender</li>
+      <li>keep a message by putting it back in the machine/listen to it by putting it in your phone</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="ambient-user-interfaces">Ambient user interfaces:</h3>
+
+<ul>
+  <li>display info in the background</li>
+  <li>output only (no full interaction with system)</li>
+  <li>often visually appealing</li>
+  <li>eg dangling string network display
+    <ul>
+      <li>string attached to motor hangs from ceiling</li>
+      <li>speed of spinning corresponds to amount of network traffic</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="scales-of-experience">Scales of experience:</h3>
+
+<ul>
+  <li>the distance of interaction between device and user</li>
+  <li>1cm - badges, watches, fobs</li>
+  <li>10cm - mobile phones</li>
+  <li>1m - person-sized (exercise equipment)</li>
+  <li>10m - environmental (control rooms)</li>
+  <li>100m - architectural (large screens)</li>
+  <li>1km - urban (managing traffic flows)</li>
+</ul>
+
+<h3 id="internet-of-things">Internet of Things:</h3>
+
+<p>Uniquely identifiable embedded computing devices within Internet infrastructure.</p>
+
+<ul>
+  <li>everyday objects with network connectivity</li>
+  <li>ease of communication</li>
+  <li>ease of connecting 3rd world to the internet</li>
+  <li>currently 9-10 billion devices on the IoT</li>
+  <li>eg smart homes, body sensors with alarm for doctors</li>
+</ul>
+
+<h3 id="cyborgs">Cyborgs?</h3>
+
+<ul>
+  <li>constantly relying on a piece of tech</li>
+  <li>from behavioural standpoint, this is indistinguishable from us being implanted with tech</li>
+  <li>we’re getting used to the fact that we don’t need to constantly worry about our memory</li>
+  <li>if you control your phone, then by definition your phone is not remote from you</li>
+  <li>how does this behaviour shape what kind of digital surfaces we create?</li>
+</ul>
+
+<h3 id="merging-of-mobile-and-ubicomp">Merging of mobile and ubicomp:</h3>
+
+<ul>
+  <li>borders between mobile interaction and ubicomp are disappearing</li>
+  <li>phones are WiFi enabled, location aware and motion sensitive</li>
+  <li>many ubicomp inventions are happening through mobile devices, rather than building specially designed devices for them</li>
+  <li>services come to fruition when we make something new out of the sensors the phone already uses</li>
+</ul>
+
+<h3 id="who-is-in-charge">Who is in charge?</h3>
+
+<ul>
+  <li>normally app in charge of workflow</li>
+  <li>with ubicomp, who influences the interaction between user and computer?</li>
+</ul>
+
+<hr />
+
+<h1 id="interaction-design">Interaction Design</h1>
+
+<p>Designing interactive products to support people in their everyday and working lives.</p>
+
+<ul>
+  <li>identify needs and establish requirements
+    <ul>
+      <li>target users</li>
+    </ul>
+  </li>
+  <li>develop alternative designs
+    <ul>
+      <li>conceptual and physical design</li>
+    </ul>
+  </li>
+  <li>build interactive versions of the designs
+    <ul>
+      <li>paper-based prototypes</li>
+      <li>role-playing users</li>
+    </ul>
+  </li>
+  <li>evaluate designs
+    <ul>
+      <li>determing usability and acceptability of the product</li>
+      <li>involve users throughout the process</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Tips:</p>
+
+<ul>
+  <li>beauty and elegance comes from simplicity</li>
+  <li>don’t make the user think</li>
+  <li>go to the core of the matter</li>
+  <li>don’t just recreate a desktop app</li>
+  <li>design with the mobile user in mind from the start</li>
+</ul>
+
+<p>Desktop User:</p>
+
+<ul>
+  <li>stable connection</li>
+  <li>always plugged in</li>
+  <li>big screen</li>
+  <li>full attention</li>
+  <li>control over environment</li>
+</ul>
+
+<p>Mobile User:</p>
+
+<ul>
+  <li>unstable signal</li>
+  <li>network source changing</li>
+  <li>limited battery life</li>
+  <li>costly data plan</li>
+  <li>divided attention</li>
+  <li>small screen</li>
+  <li>limited input capabilities</li>
+</ul>
+
+<p>Mobile Opportunities:</p>
+
+<ul>
+  <li>GPS</li>
+  <li>gyroscope</li>
+  <li>accelerometer</li>
+  <li>compass</li>
+  <li>heart rate</li>
+  <li>camera</li>
+</ul>
+
+<h2 id="building-a-good-mobile-app">Building a good mobile app:</h2>
+
+<ul>
+  <li>understand
+    <ul>
+      <li>what can target device do</li>
+      <li>know your user</li>
+    </ul>
+  </li>
+  <li>imagine
+    <ul>
+      <li>enhance features with device’s capabilities</li>
+      <li>use unique features to take input/give feedback to users</li>
+    </ul>
+  </li>
+  <li>context
+    <ul>
+      <li>what is user doing</li>
+      <li>where is user</li>
+      <li>who or what is near user</li>
+      <li>who is user</li>
+    </ul>
+  </li>
+  <li>make use of online data
+    <ul>
+      <li>info from APIs</li>
+      <li>esp after relying on contextual data</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="skeuomorphism">Skeuomorphism:</h2>
+
+<p>Design concept of making items represented resemble their real-world counterparts.</p>
+
+<h2 id="finding-out-what-people-want">Finding out what people want:</h2>
+
+<ul>
+  <li>what are user’s values</li>
+  <li>what activities are performed</li>
+  <li>how does context constrain/facilitate these behaviours</li>
+  <li>what did people do before the task could be done on a phone</li>
+</ul>
+
+<h2 id="app-definition-statement">App definition statement:</h2>
+
+<p>Concist, concrete declaration of an app’s main purpose and intended audience.</p>
+
+<ul>
+  <li>created early in development
+    <ul>
+      <li>help turn an idea and list of features into a coherent product</li>
+      <li>use throughout development to decide if potential features and behaviours make sense</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>list all features you think the user might like</li>
+  <li>determine who users are</li>
+  <li>filter feature list through the audience definition</li>
+</ol>
+
+<h2 id="typical-mobile-app-behaviour">Typical mobile app behaviour:</h2>
+
+<p>Microtasking</p>
+
+<ul>
+  <li>getting things done in short bursts</li>
+  <li>quick access to info</li>
+  <li>accomodate the users in a hurry</li>
+  <li>optimise for brief recurring tasks</li>
+</ul>
+
+<p>Local</p>
+
+<ul>
+  <li>about things close by</li>
+  <li>who or what is available nearby</li>
+  <li>use sensors to reduce need to enter text and to narrow options</li>
+</ul>
+
+<p>Bored</p>
+
+<ul>
+  <li>games or entertainment focus</li>
+  <li>passing the time</li>
+</ul>
+
+<h2 id="paper-prototyping">Paper prototyping:</h2>
+
+<ul>
+  <li>give people something concrete they can interact with</li>
+  <li>focus on observing behaviour</li>
+  <li>don’t waste time making things look perfect</li>
+  <li>make changes <strong>during</strong> usability process</li>
+  <li>people on team can contribute to design</li>
+</ul>
+
+<h2 id="spectrum-of-prototypes">Spectrum of prototypes:</h2>
+
+<p>Paper prototypes have lowest fidelity, followed by static wireframes linked together, then interactive prototypes, and finally fully coded prototypes.</p>
+
+<hr />
+
+<h1 id="design-funnel">Design funnel</h1>
+<ul>
+  <li>book - sketching user experiences</li>
+  <li>
+    <p>lots of different ideas and funnel it to few ideas</p>
+  </li>
+  <li>sketch</li>
+  <li>wirefram</li>
+  <li>mockup</li>
+  <li>
+    <p>prototypes</p>
+  </li>
+  <li>issues?
+    <ul>
+      <li>problem?</li>
+      <li>users?</li>
+      <li>context?</li>
+      <li>how you go about finding users so that you are in a possition to create a requirements?</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>answer these qs
+        <ul>
+          <li>whats exact problem you are trying to solved</li>
+          <li>added value of using mobiles</li>
+          <li>target user?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>app defenisition
+    <ul>
+      <li>features</li>
+      <li>who the users aren</li>
+      <li>filter the de</li>
+    </ul>
+  </li>
+  <li>features
+    <ul>
+      <li>write down features</li>
+    </ul>
+  </li>
+  <li>user interviews
+    <ul>
+      <li>potential user</li>
+      <li>dont ask leading questions</li>
+    </ul>
+  </li>
+  <li>ask user if we can record</li>
+</ul>
+
+<h1 id="hooked---engaging-users">Hooked - engaging users</h1>
+<ul>
+  <li>
+    <p>book - Hooked - Nir Eyal</p>
+  </li>
+  <li>pleasure seeking —–&gt; pain allevation</li>
+  <li>habits are not addicitons
+    <ul>
+      <li>addicitons are self-destructive</li>
+      <li>habits can be healthy/un-healthy</li>
+    </ul>
+  </li>
+  <li>
+    <p>with enough frequency it can form a habit</p>
+  </li>
+  <li>Habit
+    <ul>
+      <li>Trigger</li>
+      <li>Action</li>
+      <li>Variable Reward</li>
+      <li>Investment</li>
+      <li>Back to Trigger</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="triggers">Triggers</h2>
+<ul>
+  <li>places</li>
+  <li>people</li>
+  <li>emotions</li>
+  <li>routines</li>
+  <li>
+    <p>situations</p>
+  </li>
+  <li>first step of the Hook</li>
+  <li>designer informs what to do next through external Triggers</li>
+  <li>user informs wha to do next through internal triggers</li>
+  <li>emotions provide frequent internal trigger</li>
+</ul>
+
+<h2 id="action">Action</h2>
+
+<blockquote>
+  <p>Behaviour = Motivation + Ability + Trigger
+B = M + A + T</p>
+</blockquote>
+
+<h3 id="motivation">Motivation</h3>
+<ul>
+  <li>Level of motivation and ability determines if the action will occur</li>
+</ul>
+
+<h3 id="ability">Ability</h3>
+<ul>
+  <li>6 factors can increas/ descrease ability
+    <ul>
+      <li>time</li>
+      <li>money</li>
+      <li>physical effort</li>
+      <li>brain cycles</li>
+      <li>social deviance</li>
+      <li>non-routines</li>
+    </ul>
+  </li>
+  <li>simple action will povide rewards
+    <ul>
+      <li>make sure clear trigger is represented</li>
+      <li>increase ability to make it easier</li>
+      <li>align to the right motivator</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reward">Reward</h2>
+<ul>
+  <li>reward unpredictable like slot machines</li>
+  <li>understand cause and effect</li>
+</ul>
+
+<h3 id="the-tribe">the tribe</h3>
+<ul>
+  <li>social rewards
+    <ul>
+      <li>cooperation</li>
+      <li>competeition</li>
+      <li>recognition</li>
+      <li>acceptance</li>
+      <li>sex</li>
+      <li>emathetic joy</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="the-hunt">the hunt</h3>
+<ul>
+  <li>search for Resources
+    <ul>
+      <li>food</li>
+      <li>money</li>
+      <li>information</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="the-self">the self</h3>
+<ul>
+  <li>search for sensation
+    <ul>
+      <li>mastery</li>
+      <li>consistency</li>
+      <li>competency</li>
+      <li>completion</li>
+    </ul>
+  </li>
+  <li>finite rewards decay
+    <ul>
+      <li>as rewards become predictable, they become less interesting</li>
+    </ul>
+  </li>
+  <li>Variable rewards are not enough
+    <ul>
+      <li>you need to give them what they were looking for</li>
+    </ul>
+  </li>
+  <li>dont control users
+    <ul>
+      <li>they must have autonomy, but look for infinite variability and relive pain</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="investment">Investment</h2>
+<ul>
+  <li>user pays with something
+    <ul>
+      <li>time</li>
+      <li>money</li>
+      <li>social capital</li>
+      <li>effort</li>
+      <li>emotional commitment</li>
+      <li>personal data</li>
+    </ul>
+  </li>
+  <li>investment increases likelihood of next pass
+    <ul>
+      <li>anticipation of next rewards</li>
+    </ul>
+  </li>
+  <li>make next cycle more likely by
+    <ul>
+      <li>loading next trigger</li>
+      <li>storing value</li>
+      <li>creating preferences</li>
+    </ul>
+  </li>
+  <li>
+    <p>we value things more if we put work into them</p>
+  </li>
+  <li>small amounts of work increases the likelihood of the user returning</li>
+</ul>
+
         </section>
 
         
@@ -304,7 +1124,7 @@
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_setAccount', 'UA-108074430-2']);
       _gaq.push(['_trackPageview']);
 
       (function() {

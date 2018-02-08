@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
+            <a id="blog-logo" href="http://localhost:4000">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -59,9 +59,9 @@
         <!-- <h1 class="post-title">Networked Systems H</h1> -->
 
         <section class="post-content">
-            <h1 id="introduction">Introduction</h1>
+            <h3 id="introduction">Introduction</h3>
 
-<p>Networked System: Autonomous computing devices that exchange data to perform some application goal and how they communicate across a network</p>
+<h6 id="networked-system-autonomous-computing-devices-that-exchange-data-to-perform-some-application-goal-and-how-they-communicate-across-a-network">Networked System: Autonomous computing devices that exchange data to perform some application goal and how they communicate across a network</h6>
 
 <ul>
   <li>internet</li>
@@ -83,14 +83,14 @@
   <li>full-duplex - send and receive at the same time (two cables, for sending and receiving)</li>
 </ul>
 
-<p>Information:</p>
+<h6 id="information">Information:</h6>
 
 <ul>
   <li>information theory - amount of info in a message can be characterised mathematically</li>
   <li>capacity of channels can be modelled - physical limits exist here (amount, speed, power)</li>
 </ul>
 
-<p>Signals:</p>
+<h6 id="signals">Signals:</h6>
 
 <ul>
   <li>the physical form of a message - usually a wave</li>
@@ -124,7 +124,7 @@
   <li>uses binary encoding</li>
 </ul>
 
-<p>Networked systems often use non-binary encoding:</p>
+<h6 id="networked-systems-often-use-non-binary-encoding">Networked systems often use non-binary encoding:</h6>
 
 <ul>
   <li>complex modulation schemes with either 16, 64 or 256 possible symbols</li>
@@ -135,7 +135,7 @@
   </li>
 </ul>
 
-<p>Channels and Network Links:</p>
+<h6 id="channels-and-network-links">Channels and Network Links:</h6>
 
 <ul>
   <li>signal may be directly conveyed or modulated onto an underlying carrier</li>
@@ -148,7 +148,7 @@
   </li>
 </ul>
 
-<p>Circuit Switched Networks:</p>
+<h6 id="circuit-switched-networks">Circuit Switched Networks:</h6>
 
 <ul>
   <li>dedicated circuit for A and B to communicate</li>
@@ -161,7 +161,7 @@
 
 <p><img src="/cs-notes/assets/images/ns/circuit_switched.jpg" nopin="nopin" /></p>
 
-<p>Packet Switched Networks:</p>
+<h6 id="packet-switched-networks">Packet Switched Networks:</h6>
 
 <ul>
   <li>messages split into small packets before transmission
@@ -186,7 +186,7 @@
   <li>switches/routers - connect multiple links</li>
 </ul>
 
-<h2 id="network-protocols">Network Protocols</h2>
+<h6 id="network-protocols">Network Protocols</h6>
 
 <p>Network protocols give meaning to the messages that are exchanged<br />
    Messages follow some well known <strong>syntax</strong>, and have agreed <strong>semantics</strong></p>
@@ -236,7 +236,7 @@
 
 <p><img src="/cs-notes/assets/images/ns/state_transmission.jpg" nopin="nopin" /></p>
 
-<p>Morse Code:</p>
+<h6 id="morse-code">Morse Code:</h6>
 
 <ul>
   <li>signals on electrical cable form a channel</li>
@@ -244,7 +244,7 @@
   <li>semantics - different gap lengths to signal end of word, and “STOP” for end of message</li>
 </ul>
 
-<p>Protocol Layering:</p>
+<h6 id="protocol-layering">Protocol Layering:</h6>
 
 <ul>
   <li>organisation of communications systems (means of abstraction)</li>
@@ -267,7 +267,7 @@
 
 <p><img src="/cs-notes/assets/images/ns/protocol_layering.jpg" nopin="nopin" /></p>
 
-<p>OSI Reference Model:</p>
+<h6 id="osi-reference-model">OSI Reference Model:</h6>
 
 <ul>
   <li>standard way of thinking about layered protocol design</li>
@@ -276,7 +276,7 @@
 
 <p><img src="/cs-notes/assets/images/ns/osi.jpg" nopin="nopin" /></p>
 
-<p>Physical Layer:</p>
+<h6 id="physical-layer">Physical Layer:</h6>
 
 <ul>
   <li>defines characteristics of cable/optic fibre
@@ -311,7 +311,7 @@
   </li>
 </ul>
 
-<p>Data Link Layer:</p>
+<h6 id="data-link-layer">Data Link Layer:</h6>
 
 <ul>
   <li>structure and frame physical layer bit stream
@@ -331,7 +331,7 @@
   <li>ethernet</li>
 </ul>
 
-<p>Network Layer:</p>
+<h6 id="network-layer">Network Layer:</h6>
 
 <ul>
   <li>interconnects links to form a WAN from source host –&gt; destination host
@@ -345,7 +345,7 @@
   <li>IP</li>
 </ul>
 
-<p>Transport Layer:</p>
+<h6 id="transport-layer">Transport Layer:</h6>
 
 <ul>
   <li>end-to-end transfer of data from source –&gt; destination
@@ -357,7 +357,7 @@
   <li>TCP</li>
 </ul>
 
-<p>Session Layer:</p>
+<h6 id="session-layer">Session Layer:</h6>
 
 <ul>
   <li>manages transport layer connections</li>
@@ -370,7 +370,7 @@
   </li>
 </ul>
 
-<p>Presentation Layer:</p>
+<h6 id="presentation-layer">Presentation Layer:</h6>
 
 <ul>
   <li>manages presentation, representation and conversion of data
@@ -383,14 +383,14 @@
   </li>
 </ul>
 
-<p>Application Layer:</p>
+<h6 id="application-layer">Application Layer:</h6>
 
 <ul>
   <li>user application protocols (not the app. programs themselves)</li>
   <li>REST APIs/WebRTC</li>
 </ul>
 
-<p>Protocol Standards:</p>
+<h6 id="protocol-standards">Protocol Standards:</h6>
 
 <ul>
   <li>formal description of a protocol</li>
@@ -414,6 +414,1143 @@
     </ul>
   </li>
 </ul>
+
+<h3 id="physical-and-data-link-layers">Physical and Data Link Layers</h3>
+
+<h6 id="physical-layer-1">Physical Layer:</h6>
+
+<ul>
+  <li>concerned with transmission of raw data bits
+    <ul>
+      <li>type of cable/wireless link</li>
+      <li>encoding bits onto that channel</li>
+      <li>capacity of the channel</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="wired-links">Wired Links:</h6>
+
+<ul>
+  <li>characteristics decided by standards bodies</li>
+  <li>size and shape of plugs</li>
+  <li>max cable length</li>
+  <li>type of cable - electrical voltage, current, modulation</li>
+  <li>type of fibre  - single/multi-mode, optical clarity, colour, power output, laser modulation</li>
+</ul>
+
+<h6 id="unshielded-twisted-pair">Unshielded Twisted Pair:</h6>
+
+<p><img src="/cs-notes/assets/images/ns/unshielded.jpg" nopin="nopin" /></p>
+
+<ul>
+  <li>2 wires twisted together</li>
+  <li>each pair is unidirectional</li>
+  <li>twists reduce interference and nosie pickup (by shielding each other)
+    <ul>
+      <li>more twists –&gt; less noise</li>
+    </ul>
+  </li>
+  <li>several miles of cable length possible at low data rates
+    <ul>
+      <li>longer cable –&gt; more noise</li>
+    </ul>
+  </li>
+  <li>ethernet, telephone lines</li>
+</ul>
+
+<h6 id="optical-fibre">Optical Fibre:</h6>
+
+<ul>
+  <li>glass core and cladding in plastic jacket for protection</li>
+  <li>unidirectional data
+    <ul>
+      <li>transmission laser at one end</li>
+      <li>photodetector at the other end</li>
+    </ul>
+  </li>
+  <li>light travels down the fibre</li>
+  <li>electromagnetic interference doesn’t affect light –&gt; very low noise</li>
+  <li>10s of Gbps over 100s of miles –&gt; very high capacity</li>
+  <li>cheap to make</li>
+  <li>relatively expensive lasers required to operate</li>
+</ul>
+
+<h6 id="wired-data-transmission">Wired Data Transmission:</h6>
+
+<ul>
+  <li>signal directly encoded onto channel
+    <ul>
+      <li>occupies baseband region</li>
+      <li>bandwidth is the frequency range used by signal</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="baseband-data-encoding">Baseband Data Encoding:</h6>
+
+<ul>
+  <li>encoded by varying the voltage in the cable/intensity of light in the fibre</li>
+  <li>encoding schemes - NRZ, NRZI, Manchester, 4B/5B</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/baseband.jpg" nopin="nopin" /></p>
+
+<h6 id="4b5b-encoding">4B/5B Encoding:</h6>
+
+<ul>
+  <li>Manchester encoding is inefficient - only 50% of link capacity is used</li>
+  <li>so, insert extra bits to break up sequences of the same bit
+    <ul>
+      <li>each 4-bit data symbol changed to a 5-bit code for transmission, and reversed at the receiver</li>
+      <li>then transmit 5-bit codes using NRZI</li>
+    </ul>
+  </li>
+  <li>this way, 80% of link capacity is used</li>
+  <li>ethernet
+    <ul>
+      <li>10Mbps with Manchester</li>
+      <li>100Mbps with 4B/5B</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="wireless-links">Wireless Links:</h6>
+
+<ul>
+  <li>use carrier modulation</li>
+  <li>performance affected by
+    <ul>
+      <li>carrier frequency</li>
+      <li>transmission power</li>
+      <li>modulation scheme</li>
+      <li>type of antenna</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="carrier-modulation">Carrier Modulation:</h6>
+
+<ul>
+  <li>carrier wave applied to channel at frequency F</li>
+  <li>signal modulated onto carrier</li>
+  <li>shifts signal from baseband to a higher carrier frequency</li>
+  <li>allow multiple signals on a single channel</li>
+  <li>can be used on wired links (ADSL and voice telephones sharing a phone line)</li>
+</ul>
+
+<h6 id="amplitude-frequency-phase-modulation">Amplitude, Frequency, Phase Modulation:</h6>
+
+<p><img src="/cs-notes/assets/images/ns/afpm.jpg" nopin="nopin" /></p>
+
+<h6 id="complex-modulations">Complex Modulations:</h6>
+
+<ul>
+  <li>use multiple levels of the modulated component
+    <ul>
+      <li>gigabit ethernet - amplitude modulation with 5 levels instead of binary signalling</li>
+    </ul>
+  </li>
+  <li>combine modulation schemes
+    <ul>
+      <li>vary phase and amplitude –&gt; quadrature amplitude modulation</li>
+    </ul>
+  </li>
+  <li>complex combinations regularly used</li>
+</ul>
+
+<h6 id="spread-spectrum-communication">Spread Spectrum Communication:</h6>
+
+<ul>
+  <li>single frequency channels prone to interference, so</li>
+  <li>repeatedly change carrier frequency many times/second</li>
+  <li>use pseudo-random sequence to choose which carrier frequency is used for each time slot
+    <ul>
+      <li>seed of random generator is a shared secret between sender and receiver</li>
+    </ul>
+  </li>
+  <li>802.11b Wi-Fi uses frequencies centered around 2.4GHz with phase modulation</li>
+</ul>
+
+<h6 id="bandwidth-and-channel-capacity">Bandwidth and Channel Capacity:</h6>
+
+<ul>
+  <li>bandwidth determins frequency range</li>
+  <li>digital signals?
+    <ul>
+      <li>sampling theorem - to accurately digitise an analogue signal, you need 2H samples/second</li>
+      <li>max transmission rate (R<sub>max</sub>) of digital signal depends on channel bandwidth (H)</li>
+      <li>number of discrete values per symbol (V)</li>
+      <li>R<sub>max</sub> = 2H log<sub>2</sub> V</li>
+    </ul>
+  </li>
+  <li>this would presumably give a perfect, noise-free channel</li>
+</ul>
+
+<h6 id="noise">Noise:</h6>
+
+<ul>
+  <li>electrical interference</li>
+  <li>cosmic radiation</li>
+  <li>thermal noise</li>
+  <li>can measure signal power <code class="highlighter-rouge">S</code> and noise floor <code class="highlighter-rouge">N</code> in a channel for signal-to-noise ratio <code class="highlighter-rouge">S/N</code>
+    <ul>
+      <li><code class="highlighter-rouge">dB = 10log10 S/N</code></li>
+    </ul>
+  </li>
+  <li>ADSL modems report <code class="highlighter-rouge">S/N ~30</code> for good quality</li>
+</ul>
+
+<h6 id="capacity-of-noisy-channel">Capacity of Noisy Channel:</h6>
+
+<ul>
+  <li>depends on noise type
+    <ul>
+      <li>uniform/bursty –&gt; affects all or some frequencies</li>
+      <li>Gaussian noise –&gt; noise that impacts all frequencies equally
+        <ul>
+          <li>R<sub>max</sub> of Gaussian = Hlog<sub>2</sub>(1 + S/N)</li>
+        </ul>
+      </li>
+      <li>dial-up modem bandwidth limitation</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="implication---bandwidth-and-signal-to-noise-ratio-limit-amount-of-info-that-can-be-transferred">Implication - bandwidth and signal-to-noise ratio limit amount of info. that can be transferred</h6>
+
+<h6 id="data-link-layer-1">Data Link Layer:</h6>
+
+<ul>
+  <li>arbitrate access to physical layer
+    <ul>
+      <li>identify devices</li>
+      <li>structure and frame the raw bitstream</li>
+      <li>detect and correct bit errors</li>
+      <li>control access to channel</li>
+    </ul>
+  </li>
+  <li>turn raw bitstream into structured comms. channel</li>
+</ul>
+
+<h6 id="addressing">Addressing:</h6>
+
+<ul>
+  <li>physical links can be point-to-point/multi-access
+    <ul>
+      <li>multi-access requires host addresses to identify senders/receivers</li>
+    </ul>
+  </li>
+  <li>host addresses - link-local/global scope
+    <ul>
+      <li>sufficient to be unique among the devices connected to a link</li>
+      <li>many data link protocols use globally unique addresses
+        <ul>
+          <li>simpler to implement if devices can move (don’t need to change address when connected to different link)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="framing-and-synchronisation">Framing and Synchronisation:</h6>
+
+<ul>
+  <li>raw bitstream unreliable
+    <ul>
+      <li>bits corrupted</li>
+      <li>timing disrupted</li>
+    </ul>
+  </li>
+  <li>data link corrects these problems
+    <ul>
+      <li>break bitstream into <strong>frames</strong></li>
+      <li>transmit and repair individual frames</li>
+      <li>limit scope of transmission errors</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="ethernet">Ethernet:</h6>
+
+<p><img src="/cs-notes/assets/images/ns/ethernet.jpg" nopin="nopin" /></p>
+
+<h6 id="synchronisation">Synchronisation:</h6>
+
+<ul>
+  <li>detecting start of message
+    <ul>
+      <li>leave gaps between frames
+        <ul>
+          <li>but physical layer doesn’t guarantee timing</li>
+        </ul>
+      </li>
+      <li>precede each frame with a length field
+        <ul>
+          <li>but length could be corrupted</li>
+        </ul>
+      </li>
+      <li>add <strong>start code</strong> to beginning of frame
+        <ul>
+          <li>a unique bit pattern</li>
+          <li>enables synchronisation after an error - wait for next start code, begin reading frame headers</li>
+          <li>start code should generate a regular pattern after physical layer coding</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>what if start code appears in data? <strong>bit stuffing</strong> can give a transparent channel
+    <ul>
+      <li>sender inserts <code class="highlighter-rouge">0</code> after sending 5 consecutive <code class="highlighter-rouge">1's</code> (unless start code)</li>
+      <li>receiver looks at 6th bit if it sees 5 consecutive <code class="highlighter-rouge">1's</code>
+        <ul>
+          <li>if 0, has been stuffed, so remove</li>
+          <li>if 1, look at 7th bit
+            <ul>
+              <li>if 0, start code</li>
+              <li>if 1, corrupt frame</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>this is a binary-level escape code</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/stuffing.jpg" nopin="nopin" /></p>
+
+<h6 id="error-detection">Error Detection:</h6>
+
+<ul>
+  <li>common in wireless systems</li>
+  <li>add error detecting code to each packet</li>
+  <li>parity codes
+    <ul>
+      <li>calculate <strong>parity</strong> of data
+        <ul>
+          <li>odd number of <code class="highlighter-rouge">1's</code> in data - parity 1</li>
+          <li>even number of <code class="highlighter-rouge">1's</code> in data - parity 0</li>
+          <li>parity bit is XOR of data bits</li>
+        </ul>
+      </li>
+      <li>send parity with data</li>
+      <li>check at receiver</li>
+    </ul>
+  </li>
+</ul>
+
+<p><a href="#internet_checksum">Example</a> - The Internet Checksum</p>
+
+<h6 id="other-error-detecting-codes">Other Error Detecting Codes:</h6>
+
+<ul>
+  <li>parity and checksums relatively weak
+    <ul>
+      <li>simple implementation</li>
+      <li>undetected errors likely</li>
+    </ul>
+  </li>
+  <li>cyclic redundancy code (CRC)
+    <ul>
+      <li>more complex</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="error-correction">Error Correction:</h6>
+
+<ul>
+  <li>extended error detecting codes to correct errors
+    <ul>
+      <li>transmit correcting code as additional data in each frame</li>
+      <li>receiver can correct errors without contacting sender</li>
+    </ul>
+  </li>
+  <li>Hamming code
+    <ul>
+      <li>at the sender
+        <ul>
+          <li>send <code class="highlighter-rouge">n</code> data bits and <code class="highlighter-rouge">k</code> check bits</li>
+          <li>each check bit codes parity for some data bits
+            <ul>
+              <li>starting at check bit <code class="highlighter-rouge">i</code></li>
+              <li>check <code class="highlighter-rouge">i</code> bits</li>
+              <li>skip <code class="highlighter-rouge">i</code> bits</li>
+              <li>repeat</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>at the receiver
+        <ul>
+          <li>set <code class="highlighter-rouge">counter = 0</code></li>
+          <li>recalculate check bits <code class="highlighter-rouge">k = 1, 2, 4, 8,...</code> in turn</li>
+          <li>if <code class="highlighter-rouge">k</code> incorrect, <code class="highlighter-rouge">counter += k</code></li>
+          <li>if <code class="highlighter-rouge">counter == 0</code>, no errors</li>
+          <li>else, bit <code class="highlighter-rouge">counter</code> is incorrect</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>allows receiver to detect and correct all possible errors that corrupt only a single bit (and some errors affecting multiple bits)</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/hamming.jpg" nopin="nopin" /></p>
+
+<ul>
+  <li>other error correcting codes tradeoff copmlexity and amount of data added for the ability to correct multi-bit errors</li>
+  <li>can also request retransmission as a way of fixing errors</li>
+</ul>
+
+<h6 id="media-access-control">Media Access Control:</h6>
+
+<ul>
+  <li>arbitrating access to a link
+    <ul>
+      <li>point-to-point typically 2 unidirectional links
+        <ul>
+          <li>separate cables for each direction</li>
+          <li>need framing in each direction</li>
+          <li>stop-and-wait/sliding-window for flow control</li>
+        </ul>
+      </li>
+      <li>multi-access typically share a bidirectional link
+        <ul>
+          <li>single cable - nodes contend for access to link</li>
+          <li>single radio frequency</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="link-contention">Link Contention:</h6>
+
+<ul>
+  <li>2 hosts transmit simultaneously –&gt; collision</li>
+  <li>signals overlap –&gt; garbage received</li>
+</ul>
+
+<h6 id="contention-based-mac">Contention-based MAC:</h6>
+
+<ul>
+  <li>2-stage access to channel
+    <ul>
+      <li>detect that collision will occur by listening to channel while/before sending</li>
+      <li>send if no collision/back off or retransmit data to avoid collision</li>
+    </ul>
+  </li>
+  <li>probabilistic, variable latency access to channel</li>
+</ul>
+
+<h6 id="aloha-network">ALOHA Network:</h6>
+
+<ul>
+  <li>developed at Uni of Hawaii in 1970</li>
+  <li>first wireless packet-switched network</li>
+  <li>uses contention-based MAC
+    <ul>
+      <li>try to transmit whenever data is available</li>
+      <li>if collision occurs, wait random amount of time, then retransmit</li>
+    </ul>
+  </li>
+  <li>poor performance
+    <ul>
+      <li>long delays</li>
+      <li>low channel utilisation</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="carrier-sense-multiple-access">Carrier Sense Multiple Access:</h6>
+
+<ul>
+  <li>when propagation delay low, listen before sending
+    <ul>
+      <li>if another transmission active, back off without sending anything</li>
+      <li>if link idle, send data immediately</li>
+    </ul>
+  </li>
+  <li>improves utilisation
+    <ul>
+      <li>only new sender backs off if channel is active</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="csmacd">CSMA/CD:</h6>
+
+<ul>
+  <li>high propagation delay –&gt; increased collision rate</li>
+  <li>CSMA updated with collision detection
+    <ul>
+      <li>listen to channel before and while transmitting</li>
+      <li>if collision, immediately stop sending, back off, and retransmit
+        <ul>
+          <li>collision still corrupts both packets</li>
+          <li>time channel blocked due to reduced collisions</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>ethernet, 802.11 Wi-Fi</li>
+  <li>how long is back-off interval?
+    <ul>
+      <li>should be random</li>
+      <li>should increase with number of collisions that affect a transmission
+        <ul>
+          <li>repeated collisions signal congestion</li>
+          <li>reduced transmission rate allows network to recover</li>
+        </ul>
+      </li>
+      <li>initial back off interval <code class="highlighter-rouge">x seconds +-50%</code></li>
+      <li>each repeated collision before success <code class="highlighter-rouge">x --&gt; 2x</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="summary---combination-of-physical-and-data-layers-allows-transmission-of-structured-frames-of-data-accross-a-single-physical-link">Summary - combination of physical and data layers allows transmission of structured frames of data accross a single physical link</h6>
+
+<h3 id="bridging">Bridging</h3>
+
+<h6 id="link-layer-topology-evolution">Link-layer Topology Evolution:</h6>
+
+<ul>
+  <li>media access control assumes a single link
+    <ul>
+      <li>on wired networks, with a single cable</li>
+      <li>vulnerable to cable damage</li>
+    </ul>
+  </li>
+  <li>hub - cable in a box
+    <ul>
+      <li>no intelligence</li>
+      <li>cable damage disconnects only one single host
+        <ul>
+          <li>so doesn’t partition the network</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>bridge - intelligent device
+    <ul>
+      <li>understands media access control protocol</li>
+      <li>joins multiple links together</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/bridge_types.jpg" nopin="nopin" /></p>
+
+<h6 id="extending-link-layer-networks">Extending Link-layer Networks:</h6>
+
+<ul>
+  <li>hub - physical layer interconnection of links</li>
+  <li>equivalent to runnning a longer cable</li>
+  <li>
+    <p>doesn’t improve network scalability</p>
+  </li>
+  <li>bridge - data layer interconnection of physical networks</li>
+  <li>understands and processes data link layer frames</li>
+  <li>identifies hosts</li>
+  <li>forwards frames of interest</li>
+  <li>automatic - no configuration needed</li>
+  <li>eg ethernet switches</li>
+</ul>
+
+<h6 id="bridge-operation">Bridge Operation:</h6>
+
+<ul>
+  <li>learn addresses on each link
+    <ul>
+      <li>observe sources of packets</li>
+      <li>has <strong>soft-state</strong> timeout to respond to failure/node mobility</li>
+    </ul>
+  </li>
+  <li>forward traffic as appropriate
+    <ul>
+      <li>unicast based on host locations</li>
+      <li>multicast based on group membership</li>
+      <li>broadcast</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The following are examples of communication on this setup of bridged links</p>
+
+<p><img src="/cs-notes/assets/images/ns/bridge_operation.jpg" nopin="nopin" /></p>
+
+<ul>
+  <li>on initialisation - neither bridge knows location of any hosts
+    <ul>
+      <li>host A sends packet for host B
+        <ul>
+          <li>received at bridge 1, which now records location of A</li>
+          <li>location of B unknown, so bridge 1 floods packet to all outgoing links
+            <ul>
+              <li>which is also received at bridge 2, which doesn’t know location of B</li>
+              <li>so flood the packet to all outgoing links (plus record location of A)</li>
+            </ul>
+          </li>
+          <li>B is one of the outgoing links from bridge 1</li>
+          <li>packet received at B, so responds with a packet for A
+            <ul>
+              <li>received at bridge 1, which knows A’s location</li>
+              <li>directly forward packet without flooding (plus record location of B)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>later, host E sends packet for host B
+        <ul>
+          <li>received at bridge 2, which doesn’t know location of B</li>
+          <li>so floods packet to outgoing links (plus records location of E)
+            <ul>
+              <li>received at bridge 1, which knows B’s location</li>
+              <li>directly forward packet to B (plus record how to reach E)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>over time, bridges learn location of every host, sending packets without flooding</li>
+    </ul>
+  </li>
+</ul>
+
+<p>So:</p>
+
+<ul>
+  <li>learning protocol - finds hosts without config</li>
+  <li>flooding - ensure connectivity maintained even with no knowledge</li>
+  <li>performance never worse than a hub</li>
+  <li>use of soft state and timeouts - ensure knowledge of failed devices disappears</li>
+  <li>poor scalability - every bridge knows about every host</li>
+</ul>
+
+<h6 id="loops-in-bridged-networks">Loops in Bridged Networks:</h6>
+
+<p><img src="/cs-notes/assets/images/ns/bridge_loops.jpg" nopin="nopin" /></p>
+
+<ul>
+  <li>host A sends packet for host X, which does not exist
+    <ul>
+      <li>received at bridge 1, which doesn’t know X’s location</li>
+      <li>flood to outgoing links
+        <ul>
+          <li>received at bridges 2 and 3, which also don’t know X’s location</li>
+          <li>flood to outgoing links
+            <ul>
+              <li>packets cross in transit between bridge 2 and 3</li>
+              <li>causes a loop unless countermeasures taken</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>solution - build <strong>spanning tree</strong> over network</li>
+  <li>forward packets along tree</li>
+  <li>model as an undirected graph <code class="highlighter-rouge">G</code></li>
+  <li>tree over that graph comprised of all vertices and some edges of <code class="highlighter-rouge">G</code></li>
+  <li>edges removed to eliminate loops
+    <ul>
+      <li>leaves minimal edges that still connect to all vertices</li>
+    </ul>
+  </li>
+  <li>so, previous graph now looks like this:</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/bridge_spanning.jpg" nopin="nopin" /></p>
+
+<h6 id="spanning-tree-algorithm">Spanning Tree Algorithm:</h6>
+
+<ul>
+  <li>developed by Radia Perlman</li>
+  <li>each bridge has globally unique address
+    <ul>
+      <li>root bridge has lowest address</li>
+      <li>periodically, each bridge informs its neighbours what it thinks the root’s address is</li>
+    </ul>
+  </li>
+  <li>determined root port - port with shortest path to root bridge
+    <ul>
+      <li>each bridge has one except the root</li>
+    </ul>
+  </li>
+  <li>for each LAN, select a <strong>designated bridge</strong> for it - bridge with shortest path to root (tie-break based on address)
+    <ul>
+      <li><strong>designated port</strong> - port connecting the designated bridge to LAN</li>
+    </ul>
+  </li>
+  <li>enable all root ports and designated ports</li>
+  <li>disable all other ports</li>
+  <li>forward traffic through enabled ports</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/spanning_tree_alg.jpg" nopin="nopin" /></p>
+
+<p>So:</p>
+
+<ul>
+  <li>bridge 1 is root</li>
+  <li>root ports are <code class="highlighter-rouge">2/1</code> and <code class="highlighter-rouge">3/5</code></li>
+  <li>designated bridges are
+    <ul>
+      <li>1 for hosts A, B, H and links α and β</li>
+      <li>2 for hosts F, G and link γ</li>
+      <li>3 for hosts C, D, E</li>
+    </ul>
+  </li>
+  <li>designated ports are
+    <ul>
+      <li>bridge 1: <code class="highlighter-rouge">1/1</code>, <code class="highlighter-rouge">1/2</code>, <code class="highlighter-rouge">1/3</code>, <code class="highlighter-rouge">1/4</code>, <code class="highlighter-rouge">1/5</code></li>
+      <li>bridge 2: <code class="highlighter-rouge">2/2</code>, <code class="highlighter-rouge">2/3</code>, <code class="highlighter-rouge">2/4</code></li>
+      <li>bridge 3: <code class="highlighter-rouge">3/2</code>, <code class="highlighter-rouge">3/3</code>, <code class="highlighter-rouge">3/4</code></li>
+    </ul>
+  </li>
+  <li>port <code class="highlighter-rouge">3/1</code> is neither a root nor designated
+    <ul>
+      <li>it is <strong>disabled</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="algorhyme">Algorhyme</h1>
+
+<p><strong>I think that I shall never see<br />
+   A graph more lovely than a tree.<br />
+   A tree whose crucial property<br />
+   Is loop-free connectivity.<br />
+   First the root must be selected.<br />
+   By ID it is elected.<br />
+   Least cost paths from root are traced.<br />
+   In the tree these paths are placed.<br />
+   A mesh is made by folks like me.<br />
+   Then bridges find a spanning tree.</strong></p>
+
+<h3 id="internetworking">Internetworking</h3>
+
+<h6 id="role-of-network-layer">Role of Network Layer:</h6>
+
+<ul>
+  <li>first end-to-end layer in OSI reference model</li>
+  <li>end-to-end delivery of data
+    <ul>
+      <li>across multiple link-layer hops</li>
+      <li>across multiple autonomous systems</li>
+    </ul>
+  </li>
+  <li>building an internet (interconnected networks - <strong>not</strong> capitalised, just a noun)
+    <ul>
+      <li>each network administered separately (autonomous - makes independent policy and tech choices)</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="components-of-an-internet">Components of an Internet:</h6>
+
+<ul>
+  <li>common end-to-end network protocol
+    <ul>
+      <li>seamless service to transport layer</li>
+    </ul>
+  </li>
+  <li>set of gateway devices (routers)
+    <ul>
+      <li>implements said protocol</li>
+      <li>hides differences in link layer technologies</li>
+      <li>must perform least amount of translation necessary</li>
+      <li>framing, addressing, flow control, error detection/correction</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="the-internet-capitalised-proper-noun">The Internet (capitalised, proper noun):</h6>
+
+<ul>
+  <li>globally interconnected networks running the <strong>Internet Protocol</strong></li>
+  <li>1965 - packet switching</li>
+  <li>1969 - wide-area packet networks</li>
+  <li>1973 - first non-US ARPANET sites</li>
+  <li>1974 - initial version of IP</li>
+  <li>1981 - access to ARPANET from non-DARPA-funded sites</li>
+  <li>1983 - IPv4</li>
+  <li>1992 - development of IPv6</li>
+</ul>
+
+<h6 id="internet-protocol">Internet Protocol:</h6>
+
+<ul>
+  <li>packet delivery service</li>
+  <li>provides abstraction layer</li>
+  <li>simple, best effort, connectionless</li>
+  <li>uniform network and host addressing, uniform end-to-end connectivity, fragmentation and reassembly</li>
+  <li>global standard</li>
+  <li>the protocol stack is hourglass-shaped</li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/protocol_stack.jpg" nopin="nopin" /></p>
+
+<h6 id="ip-service-model">IP Service Model:</h6>
+
+<ul>
+  <li>connectionless - just send</li>
+  <li>best effort - no guarantees on packet delivery success</li>
+  <li>easy to run over any type of link layer</li>
+  <li>can easily simulate a circuit over packet, but simulating packets over a circuit is difficult</li>
+</ul>
+
+<h6 id="versions">Versions:</h6>
+
+<ul>
+  <li>IPv4 - current production Internet</li>
+  <li>IPv6 - next gen Internet</li>
+  <li>IPv5 - experimental multimedia streaming protocol</li>
+</ul>
+
+<p>IPv4 packet format:</p>
+
+<ul>
+  <li>32-bit addresses</li>
+  <li>will router fragmented packets that are larger than MTU</li>
+  <li>header contains checksum to detect transmission errors
+    <ul>
+      <li>protects header only, not payload data</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/ipv4.jpg" nopin="nopin" /></p>
+
+<p>IPv6 packet format:</p>
+
+<ul>
+  <li>simpler header format</li>
+  <li>128-bit addresses</li>
+  <li>removed support for fragmentation
+    <ul>
+      <li>hard to implement for high rate links</li>
+      <li>end-to-end principle</li>
+    </ul>
+  </li>
+  <li>added flow label for DSCP
+    <ul>
+      <li>groups related traffic flows together</li>
+    </ul>
+  </li>
+  <li>no header checksum
+    <ul>
+      <li>assumes data protected by a link layer checksum</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/ns/ipv6.jpg" nopin="nopin" /></p>
+
+<h6 id="addressing-1">Addressing:</h6>
+
+<ul>
+  <li>every network interface on every host has a unique address
+    <ul>
+      <li>hosts may change it over time to give illusion of privacy</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="fragmentation">Fragmentation:</h6>
+
+<ul>
+  <li>link layer has maximum packet size (MTU)</li>
+</ul>
+
+<h6 id="loop-protection">Loop Protection:</h6>
+
+<ul>
+  <li>packets include a forwarding limit
+    <ul>
+      <li>non-zero when packet is sent</li>
+      <li>each router that forwards the packet reduces this value by 1</li>
+      <li>if 0 reached, packet discarded</li>
+    </ul>
+  </li>
+  <li>stops packets circling forever in case of network error</li>
+</ul>
+
+<h6 id="differentiated-services">Differentiated Services:</h6>
+
+<ul>
+  <li>end systems can request special service from the network
+    <ul>
+      <li>ask for low latency over high bandwidth</li>
+      <li>emergency traffic prioritised</li>
+      <li>background software updates asking for low priority</li>
+    </ul>
+  </li>
+  <li>signalled by differentiated service code point (DSCP) in the header</li>
+  <li>provices hint to network, not a guarantee
+    <ul>
+      <li>often stripped at network boundaries</li>
+      <li>economic and network neutrality issues - who can set the DSCP?</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="explicit-congestion-notification">Explicit Congestion Notification:</h6>
+
+<ul>
+  <li>typically routers respond by dropping packets
+    <ul>
+      <li>TP’s can detect the loss and request retransmission if necessary</li>
+    </ul>
+  </li>
+  <li>notification gives routers a way to signal approaching congestion
+    <ul>
+      <li>if ECN == 00, notification is disabled</li>
+      <li>if a sending host sets ECN = 10 or 01, routers will monitor link usage</li>
+      <li>ECN == 11 signals need to reduce sending rate (congested)</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="header-checksum">Header Checksum:</h6>
+
+<ul>
+  <li>used to detect transmission errors</li>
+</ul>
+
+<h6 id="transport-layer-protocol-identifier">Transport Layer Protocol Identifier:</h6>
+
+<ul>
+  <li>network packets include transport data as payload</li>
+  <li>must identify what protocol the transport layer uses
+    <ul>
+      <li>TCP = 6</li>
+      <li>UDP = 17</li>
+      <li>DCCP = 33</li>
+      <li>ICMP = 1</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="ipv4-or-ipv6">IPv4 or IPv6:</h6>
+
+<ul>
+  <li>IPv4 has insufficient addresses left</li>
+  <li>primary goal of IPv6 is to increase size of address space - allow more hosts on network</li>
+  <li>it also simplifies the protocol - high-speed implementations easier</li>
+  <li>straight-foward to build apps that work with both versions</li>
+  <li>DNS query <code class="highlighter-rouge">getaddrinfo()</code> returns version used</li>
+</ul>
+
+<h6 id="ip-addressing">IP Addressing:</h6>
+
+<ul>
+  <li>how to name hosts in a network
+    <ul>
+      <li>does the address name the host, or its location at which it’s attached to the network?</li>
+    </ul>
+  </li>
+  <li>how they should be allocated
+    <ul>
+      <li>hierarchical</li>
+      <li>flat</li>
+    </ul>
+  </li>
+  <li>address format
+    <ul>
+      <li>human/machine readable</li>
+      <li>structured/unstructured</li>
+      <li>fixed length binary
+        <ul>
+          <li>easier and faster for machines to process</li>
+        </ul>
+      </li>
+      <li>variable length textual
+        <ul>
+          <li>easier for humans to read</li>
+        </ul>
+      </li>
+      <li>size</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="identity-and-location">Identity and Location:</h6>
+
+<ul>
+  <li>give hosts a consistent address, irrespective of their location</li>
+  <li>simple upper-layer protocols
+    <ul>
+      <li>transport and app unaware of multi-homing or mobility</li>
+    </ul>
+  </li>
+  <li>leave complexity to network layer
+    <ul>
+      <li>must determine location of host before it can route data</li>
+      <li>requires in-network DB to map identity to routable addresses (eg mobile phone numbers)</li>
+    </ul>
+  </li>
+  <li>alternatively, address can indicate a host <strong>location</strong>
+    <ul>
+      <li>address structure matches network structure (eg geographic phone numbers)</li>
+      <li>simplifies network layer</li>
+      <li>multi-homing/mobility must be handled by transport or apps (transport layer connections break when the host moves)</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="address-allocation">Address Allocation:</h6>
+
+<ul>
+  <li>hierarchical
+    <ul>
+      <li>allows routing on aggregate addresses
+        <ul>
+          <li>eg +1 703 243 9422</li>
+          <li>look at <code class="highlighter-rouge">+1</code>, know to route to US instantly</li>
+        </ul>
+      </li>
+      <li>forces address structure to match network topology</li>
+      <li>requires rigid control of allocations</li>
+    </ul>
+  </li>
+  <li>flat
+    <ul>
+      <li>flexible allocations</li>
+      <li>no aggregation –&gt; not scalable</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="ip-addresses">IP Addresses:</h6>
+
+<ul>
+  <li>specify location of a network interface</li>
+  <li>allocated hierarchically</li>
+  <li>fixed length binary values</li>
+  <li>domain names are a separate <strong>app level</strong> namespace</li>
+  <li>both IPv4 and IPv6 addresses encode location
+    <ul>
+      <li><strong>netmask</strong> describes number of bits in network part of address</li>
+      <li>network itself has the address with the host part equal to 0</li>
+      <li>broadcast address for a network has all bits of host part equal to 1</li>
+      <li>a host with several network interfaces will have one IP address per interface
+        <ul>
+          <li>eg laptop with Ethernet and WiFi interfaces will have 2 IP addresses</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="ipv4-addresses">IPv4 Addresses:</h6>
+
+<ul>
+  <li>32-bit</li>
+  <li>IP address - <code class="highlighter-rouge">130.209.247.112 = 10000010 11010001 11110111 01110000</code></li>
+  <li>netmask - <code class="highlighter-rouge">255.255.240.0 = 11111111 11111111 11110000 00000000</code>
+    <ul>
+      <li>the <code class="highlighter-rouge">1's</code> are 20 bits long which refer to the network (130.209.240.0/20)</li>
+    </ul>
+  </li>
+  <li>broadcast address - <code class="highlighter-rouge">130.209.255.255 = 10000010 11010001 11111111 11111111</code></li>
+  <li>management - IANA administers the pool of unallocated addresses (4,294,967,296)
+    <ul>
+      <li>assigned to regional Internet registries as needed</li>
+      <li>RIRs allocate addresses to ISPs and large enterprises within their region</li>
+      <li>ISPs allocate addresses to their customers</li>
+    </ul>
+  </li>
+  <li>the last available RIR allocation was made on 3rd February 2011</li>
+</ul>
+
+<h6 id="ipv6-addresses">IPv6 Addresses:</h6>
+
+<ul>
+  <li>provides 340,282,366,920,938,463,463,374,607,431,768,211,456 addresses</li>
+  <li>written as 8 separated 16-bit fields with <code class="highlighter-rouge">:</code> delimiter</li>
+  <li>usually written in shortened form (leading 0’s in each field are suppressed)
+    <ul>
+      <li>a field with all 0’s is compressed to <code class="highlighter-rouge">::</code> (or more)</li>
+      <li>the <code class="highlighter-rouge">::</code> must not be used to replace a single 16-bit field</li>
+    </ul>
+  </li>
+  <li>local identifier part is 64 bits
+    <ul>
+      <li>last 4 fields</li>
+      <li>can be derived from Ethernet/WiFi MAC address</li>
+      <li>or randomly chosen, with bit 6 set to 0 to give illusion of privacy</li>
+    </ul>
+  </li>
+  <li>routers advertise the network part, and hosts auto-configure the address
+    <ul>
+      <li>first 4 fields</li>
+      <li>split into global routing prefix (up to 48 bits) and a subnet identifier</li>
+    </ul>
+  </li>
+  <li>deployment issues
+    <ul>
+      <li>requires changes to every single host, router, firewall and app</li>
+      <li>many OS have already been updated</li>
+      <li>backbone routers generally support IPv6</li>
+      <li>home routers and firewalls starting to be updated</li>
+      <li>many apps have been updated</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="nat">NAT:</h6>
+
+<ul>
+  <li>no host changes</li>
+  <li>hugely complicated for peer-to-peer apps</li>
+  <li>difficult to debug problems/deploy new classes of app</li>
+</ul>
+
+<p><a name="internet_checksum"></a></p>
+
+<h6 id="the-internet-checksum">The Internet Checksum:</h6>
+
+<ul>
+  <li>sum data values</li>
+  <li>send checksum in each frame</li>
+  <li>receiver recalculates checksum
+    <ul>
+      <li>mismatch –&gt; bit error</li>
+    </ul>
+  </li>
+  <li>more effective than parity codes
+    <ul>
+      <li>detect multiple bit errors</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;stdint.h&gt;
+</span><span class="c1">// assume data padded to a 16-bit boundary
+</span>
+<span class="kt">uint16_t</span>
+<span class="nf">internet_cksum</span><span class="p">(</span><span class="kt">uint16_t</span><span class="p">,</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">buflen</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kt">uint32_t</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="n">buflen</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+  
+    <span class="n">sum</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="n">buf</span><span class="o">++</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&amp;</span> <span class="mh">0xffff0000</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="c1">// carry occured, wrap around
+</span>	  <span class="n">sum</span> <span class="o">&amp;=</span> <span class="mh">0x0000ffff</span><span class="p">;</span>
+	  <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+  
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="o">~</span><span class="p">(</span><span class="n">sum</span> <span class="o">&amp;</span> <span class="mh">0x0000ffff</span><span class="p">);</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
 
         </section>
 
@@ -464,7 +1601,7 @@
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_setAccount', 'UA-108074430-2']);
       _gaq.push(['_trackPageview']);
 
       (function() {

@@ -42,7 +42,7 @@
         </header>
 
 <!--         <header class="post-header">
-            <a id="blog-logo" href="https://fireredninja.github.io/cs-notes/">
+            <a id="blog-logo" href="http://localhost:4000">
                 
                     <span class="blog-title">Computer Science Notes</span>
                 
@@ -366,6 +366,1648 @@
 
 <hr />
 
+<h1 id="lecture-3---introduction-cryptography-2">Lecture 3 - Introduction Cryptography 2</h1>
+
+<ul>
+  <li>Why love crypto?
+    <ul>
+      <li>Provides mathematical guarantee</li>
+      <li>CIA</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="block-cipher">Block Cipher</h2>
+<ul>
+  <li>symmetric ciphers</li>
+  <li>same key to encrypt &amp; decrypt</li>
+  <li>Bitwise operations on fixed size blocks of data
+    <ul>
+      <li>XOR with key</li>
+      <li>initialisation vectors</li>
+      <li>take data</li>
+      <li>keep encrypting until unreadable</li>
+      <li>fast</li>
+      <li>easy to implement in hardware</li>
+    </ul>
+  </li>
+  <li>2 families
+    <ul>
+      <li>feistel, IDEA</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="des">DES</h3>
+<ul>
+  <li>Project Lucifer
+    <ul>
+      <li>several transforamtions repeated one after the other</li>
+      <li>sub keys generated from one main key</li>
+    </ul>
+  </li>
+  <li>Insecure Algorithm
+    <ul>
+      <li>NSA reduced key-length to 56 bits</li>
+      <li>This made it easier to bruteforce</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="triple-des">Triple DES</h3>
+<ul>
+  <li>use DES 3 times
+    <ul>
+      <li>encrypt wiht 1 key</li>
+      <li>decrypt with 2nd key</li>
+      <li>encrypt with 3rd key</li>
+    </ul>
+  </li>
+  <li>noone uses this anymore</li>
+  <li>if use same key there are backwards compatability</li>
+  <li>
+    <p>dont use this</p>
+  </li>
+  <li>is it just XOR? no</li>
+</ul>
+
+<h3 id="aes">AES</h3>
+<ul>
+  <li>symmetric crypto is inherantly insecure</li>
+  <li>DES is insecure</li>
+  <li>
+    <p>replaced by AES</p>
+  </li>
+  <li>Rijndael won in a competition</li>
+</ul>
+
+<h3 id="rijndael">Rijndael</h3>
+<ul>
+  <li>Based on permutations and substitutions</li>
+  <li>Block and Key size
+    <ul>
+      <li>128, 192, 256, 512</li>
+    </ul>
+  </li>
+  <li>variable number of rounds dependent on key size</li>
+  <li>Fast</li>
+  <li>implemented in hardware</li>
+  <li>currently no serious weakness</li>
+</ul>
+
+<h3 id="modes-of-operation">Modes of Operation</h3>
+<ul>
+  <li>ECB
+<img src="/cs-notes/assets/images/csf/ECB_encryption.svg" alt="ECB Encryption" />
+<img src="/cs-notes/assets/images/csf/ECB_decryption.svg" alt="ECB Decryption" />
+    <blockquote>
+      <p><a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation">Wikipedia - Block cipher mode of operation</a></p>
+    </blockquote>
+  </li>
+  <li>
+    <p>ECB can leave plaintext data patterns</p>
+  </li>
+  <li>break into blocks</li>
+  <li>
+    <p>encrypt and concatinate back</p>
+  </li>
+  <li>operating on each chunck individually</li>
+  <li>
+    <p>no block big enough for the wholemessage</p>
+  </li>
+  <li>problem
+    <ul>
+      <li>you dont know when the blocks end</li>
+      <li>order of blocks?</li>
+    </ul>
+  </li>
+  <li>CBC
+<img src="/cs-notes/assets/images/csf/CBC_encryption.svg" alt="CBC Encryption" />
+<img src="/cs-notes/assets/images/csf/CBC_encryption.svg" alt="CBC Decryption" />
+    <blockquote>
+      <p><a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation">Wikipedia - Block cipher mode of operation</a></p>
+    </blockquote>
+  </li>
+  <li>ouput fed in to the next round</li>
+  <li>creates random noise</li>
+  <li>
+    <p>operates on each block individually</p>
+  </li>
+  <li>PCBC</li>
+  <li>CFB</li>
+  <li>OFB</li>
+  <li>CTR</li>
+</ul>
+
+<h3 id="iv-and-padding">IV and Padding</h3>
+<ul>
+  <li>initialisation vectors
+    <ul>
+      <li>dont have to be secret</li>
+      <li>keep secret key</li>
+      <li>different init block vector with diff keys</li>
+    </ul>
+  </li>
+  <li>last block padding
+    <ul>
+      <li>ensure final block has correct length</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="secret-sharing">Secret Sharing</h2>
+<h3 id="deffie-hellman-key-exchange">Deffie-Hellman Key Exchange</h3>
+<p><img src="/cs-notes/assets/images/csf/Diffie-Hellman_Key_Exchange.png" alt="Deffie-Hellman" /></p>
+<blockquote>
+  <p><a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange">Wikipedia - Diffie-Helman</a></p>
+</blockquote>
+
+<h3 id="prngs">PRNGs</h3>
+<ul>
+  <li>want to makesure they are truely random</li>
+  <li>virtually impossible</li>
+  <li>always have some sort of structure
+    <ul>
+      <li>hidden deep inside the structure
+        <ul>
+          <li>enough to generate sequnce from a seubsequence</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>cryptographic
+    <ul>
+      <li>cannot be predicted from some of the numbers in the sequence</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="generation-strats">Generation Strats</h3>
+<ul>
+  <li>Computer clocks</li>
+  <li>Keyboard latency</li>
+  <li>Using random noise</li>
+  <li>Basically you mash on your keyboard and it takes bits from the clock and mash it together</li>
+</ul>
+
+<h3 id="message-digests">Message Digests</h3>
+<ul>
+  <li>given any message, easy to compute the digest</li>
+  <li>given any hash, hard to compute the message</li>
+  <li>need to limit
+    <ul>
+      <li>hash collision</li>
+      <li>birthday attack given 2 random message, should not produce the same digest</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="designing">Designing</h2>
+<ul>
+  <li>DES in secret</li>
+  <li>
+    <p>AES in open competitions</p>
+  </li>
+  <li>Kerckhoffs 2 Principle
+    <ul>
+      <li>security in your algorithms should be in your operations and in your keys</li>
+    </ul>
+  </li>
+  <li>Linus law
+    <ul>
+      <li>many eyes, catch many bugs</li>
+    </ul>
+  </li>
+  <li>NOTHING IS SECURE</li>
+</ul>
+
+<hr />
+
+<h1 id="lecture-4---cryptography-in-the-wild">Lecture 4 - Cryptography in the wild</h1>
+
+<h2 id="applied">Applied</h2>
+<ul>
+  <li>Primatives &amp; Schemes not enough for security</li>
+  <li>
+    <p>Key are just numbers</p>
+  </li>
+  <li>Algorithms
+    <ul>
+      <li>Which one to use?</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Data at rest is data that doesn’t “move”</p>
+</blockquote>
+
+<ul>
+  <li>Can be solved by crypto
+    <ul>
+      <li>KEM/DEM</li>
+      <li>Public Key Encryption, Symmetric Encryption…</li>
+    </ul>
+  </li>
+  <li>Key management is the real issue
+    <ul>
+      <li>Public Key Infrastructure: Centralised/Decentralised</li>
+    </ul>
+  </li>
+  <li>Expensiveness of Encryption
+    <ul>
+      <li>perfect forward secrecy</li>
+      <li>end to end encryption</li>
+      <li>additional mechanisms to manage permissions</li>
+    </ul>
+
+    <blockquote>
+      <p>Data in flight is data beign moved from one domain to another</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Securing data in flight</p>
+  </li>
+  <li>Crypto to construct secure channels
+    <ul>
+      <li>End-2-End Encryption</li>
+    </ul>
+  </li>
+  <li>what level of the osi am i opperating at
+    <ul>
+      <li>Network Layer has IPSec</li>
+      <li>Transport Layer has TLS</li>
+      <li>Application signal, Cryptocat, OTR…</li>
+    </ul>
+  </li>
+  <li>Keys?
+    <ul>
+      <li>Centralised/Decentralised</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>DONT IMPLEMENT OR DESIGN YOUR OWN CRYPTO. unless you are a <strong>trained</strong> engineer</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Theroetically secure != Implementation secure</p>
+  </li>
+  <li>
+    <h2 id="use-good-standard-libraries">Use good standard libraries</h2>
+  </li>
+  <li>you have to look at domain, cost and effort
+<a href="http://www.keylength.com">keylength.com</a></li>
+</ul>
+
+<h3 id="iso-27k">ISO 27K</h3>
+<ul>
+  <li>Guidence on how to do things</li>
+  <li>Regulation of Cryptographic Controls
+    <ul>
+      <li>what you need to be aware of when implementing</li>
+      <li>are there import/export restrctions</li>
+      <li>are there restrictions on using encryptions</li>
+      <li>law enforced access to encrypted info</li>
+      <li>get legal advice</li>
+    </ul>
+  </li>
+  <li>Policies
+    <ul>
+      <li>where we are we going to use it</li>
+      <li>impact of policy</li>
+      <li>roles and responsibilities</li>
+      <li>management approach</li>
+      <li>mobile data</li>
+    </ul>
+  </li>
+  <li>
+    <p>key management</p>
+  </li>
+  <li>complience
+    <ul>
+      <li>national and international Laws</li>
+      <li>decrees</li>
+      <li>industrial regulations</li>
+      <li>codes of conduct</li>
+      <li>stakeholder expectations</li>
+      <li>contracts/agreements</li>
+      <li>best practices</li>
+      <li>company specific policies and standards &amp; guidelines</li>
+      <li>regulations/administratives orders</li>
+    </ul>
+  </li>
+  <li>Laws
+    <ul>
+      <li>EU Laws</li>
+      <li>British Laws</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="advanced">Advanced</h2>
+<ul>
+  <li>Encryption Schemes</li>
+  <li>Signature Schemes</li>
+  <li>Secret Sharing Schemes</li>
+  <li>
+    <p>Provable Crytographic</p>
+  </li>
+  <li>
+    <p>how are these used</p>
+  </li>
+  <li>Authentication protocols</li>
+  <li>Anonymous Protocols</li>
+  <li>eVoting</li>
+  <li>Multi-Party Computation</li>
+  <li>Distributed Authorisation</li>
+  <li>Searching Encrypted Data</li>
+</ul>
+
+<h2 id="attacking">Attacking</h2>
+<ul>
+  <li>if you want to attack the mathematics of encryptions, get a PHD
+    <ul>
+      <li>factorising composite numbers</li>
+      <li>taking discrete logarithms
+        <h3 id="attack-the-standard">Attack the standard</h3>
+      </li>
+    </ul>
+  </li>
+  <li>make sure the system has a backdoor</li>
+</ul>
+
+<h4 id="attacking-the-system">Attacking the System</h4>
+<ul>
+  <li>Attackers cna
+    <ul>
+      <li>evesdrop</li>
+      <li>insert message</li>
+      <li>impoersonate</li>
+      <li>hijack</li>
+      <li>DOS</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="human-factors">Human Factors</h4>
+<ul>
+  <li>Espionage
+    <ul>
+      <li>send your agents</li>
+    </ul>
+  </li>
+  <li>rubber hose cryptoanalysis
+    <ul>
+      <li>how can you do rubber-hose resistant crypto?</li>
+    </ul>
+  </li>
+  <li>Token Attacks</li>
+</ul>
+
+<h4 id="code-vulnerability">Code Vulnerability</h4>
+<ul>
+  <li>just leave it to the experts</li>
+  <li>dont make your own</li>
+</ul>
+
+<h4 id="side-channel-attacks">Side channel attacks</h4>
+<ul>
+  <li>Differential Power Analaysis
+    <ul>
+      <li>estimate key lengths from power consumption of computations</li>
+    </ul>
+  </li>
+  <li>Timing attacks
+    <ul>
+      <li>find timings for computatioins</li>
+    </ul>
+  </li>
+  <li>Electromagnetic attacks
+    <ul>
+      <li>analasys the electromagnetic radiation</li>
+    </ul>
+  </li>
+  <li>Ghost data
+    <ul>
+      <li>non-deletion of sensitive data</li>
+      <li>cold boot attack</li>
+    </ul>
+  </li>
+  <li>Differential Fault Analaysis
+    <ul>
+      <li>inducing faults in operation</li>
+    </ul>
+  </li>
+  <li>Acoustic cryptanalysis
+    <ul>
+      <li>listening to CPU output for computation noise</li>
+    </ul>
+  </li>
+  <li>most of these are defeated by noise</li>
+</ul>
+
+<h2 id="tutorial">Tutorial</h2>
+<ol>
+  <li>a</li>
+  <li>DAE is open, DES is closed. open i sbetter
+. AES is more cheaper. des on its own is insecure.</li>
+  <li>tuxPenguin, cbc has the chain,</li>
+  <li>there is a small amount of digests to cycle through</li>
+  <li>s</li>
+  <li>they are different algs, diff fundamentals, so cost/efort to attack is different</li>
+  <li>encrypt message with private key, exchange, encrypt wih private key, exchange. not vulnerable to MITM attack, no way to make sure who you are talking to s who you are talking to</li>
+  <li>not possible to get truely random number, psudo there is structure, crypto, hard to determine what it means</li>
+  <li>ifyou know theseed you can guess the random number.</li>
+</ol>
+
+<hr />
+
+<h1 id="lecture-4----authentication">Lecture 4  - Authentication</h1>
+
+<ul>
+  <li>Enrollment : Establish Credentials</li>
+  <li>Challenge &amp; Response : Check validity of credentials</li>
+  <li>Styles
+    <ul>
+      <li>Direct/Brokered</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="local">Local</h2>
+<ul>
+  <li>Commonly used: (Identity * Password)</li>
+  <li>Store <strong>salted</strong> digest of passowrd for security
+    <ul>
+      <li>MD5, SHA</li>
+    </ul>
+  </li>
+  <li>when logging in
+    <ul>
+      <li>password salted &amp; hashed</li>
+      <li>compared with stored hash</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dictionary-attacks">Dictionary Attacks</h3>
+<ul>
+  <li>attackers can calculate variations of a password and form salts hashes
+    <ul>
+      <li>if there is a match, we found the password that is begin used</li>
+    </ul>
+  </li>
+  <li>david kliein
+    <ul>
+      <li>gets usernames, initias, login name</li>
+      <li>female and male names</li>
+      <li>places, names of famous people, numbers, vulgar phrases, keyboard patterns</li>
+      <li>created permutations of above</li>
+      <li>capitalisations from previous lists</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="salting">Salting</h3>
+<ul>
+  <li>a random string or value that is added to password before encryption
+    <ul>
+      <li>add randomness to password so its harder to guess</li>
+      <li>large salts are good</li>
+    </ul>
+  </li>
+  <li>salt string is publicly vailable, each password has individual salt</li>
+  <li>dont store password as you are given, add some randomness</li>
+  <li>keep password securely</li>
+</ul>
+
+<h3 id="password-complexity">password complexity</h3>
+<ul>
+  <li>UPPER &amp; lower case</li>
+  <li>numbers</li>
+  <li>don’t common words</li>
+  <li>use special characters</li>
+  <li>
+    <p>at lease X characters long</p>
+  </li>
+  <li>entropy - how guessable
+    <ul>
+      <li>can measure password strength using information theory</li>
+      <li>how much information is carried in a single characters</li>
+      <li>first character ~ 4.7bits</li>
+      <li>2-8 ~2.3bits per character</li>
+      <li>9=&gt; ~1.5bits per character</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="passphrases">Passphrases</h3>
+<ul>
+  <li>trend</li>
+  <li>long and easy to remmeber</li>
+  <li>depending on what device you use, use different passowrd</li>
+</ul>
+
+<h2 id="remote">Remote</h2>
+<ul>
+  <li>
+    <p>What is a secure channel</p>
+  </li>
+  <li>there might be someone evesdroppting
+    <ul>
+      <li>impersonating the sendee</li>
+      <li>they can manipulate it</li>
+    </ul>
+  </li>
+  <li>how do we talk securely?
+    <ul>
+      <li>we can use cryptography</li>
+      <li>use secrecy with signature with appendix using KEM/DEM</li>
+      <li>use symmetruc crypto &amp; deffie-hellman</li>
+    </ul>
+  </li>
+  <li>how to prevent replay attackers?
+    <ul>
+      <li>ensure message freshness by adding
+        <ul>
+          <li>random info</li>
+          <li>identity &amp; timestamps</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="brokered-authentication">Brokered Authentication</h3>
+<ul>
+  <li>have a trusted third Party</li>
+  <li>trusting thirdparty for keys
+    <ul>
+      <li>we are assuming he is good</li>
+      <li>we are trusting him to be honest</li>
+    </ul>
+  </li>
+  <li>he might be malicious</li>
+</ul>
+
+<h3 id="needham-schroeder-protocols">Needham-Schroeder Protocols</h3>
+<ul>
+  <li>based off deffie Hellman</li>
+  <li>
+    <p>trusted key server that generates session keys</p>
+  </li>
+  <li>
+    <p>symmetric &amp; asymemetric public key</p>
+  </li>
+  <li>
+    <p>both symmetric and assymetric are suscepible to replay attackers</p>
+  </li>
+  <li>flaw
+    <ul>
+      <li>ryan can get alice’s id and send it to ken</li>
+    </ul>
+  </li>
+  <li>solution
+    <ul>
+      <li>add ID to the message</li>
+      <li>if ID changes, we know there is a man-in-the-middle</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="kerberos">Kerberos</h2>
+<h3 id="user-authentication-in-a-distributed-systems">User Authentication in a Distributed systems</h3>
+<ol>
+  <li>User based client auth</li>
+  <li>client-led auth</li>
+  <li>mutual auth</li>
+</ol>
+
+<h3 id="kerberos-1">Kerberos</h3>
+<ul>
+  <li>3 headed dog of secure authenticated netowrk communication</li>
+  <li>each network authenticated</li>
+  <li>each message authenticated</li>
+  <li>
+    <p>each message encrypted</p>
+  </li>
+  <li>requires
+    <ul>
+      <li>authentication service</li>
+      <li>ticket granting service</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="overview">overview</h3>
+<ul>
+  <li>sign to service
+    <ul>
+      <li>alice signs in with password used to create shared secret</li>
+      <li>create a ticket to authorise with ticket services</li>
+      <li>ticket contains who it was generated for, and a key to enable communication with ticket service</li>
+      <li>restricted lifetime to prevent replay attacks</li>
+    </ul>
+  </li>
+  <li>get permission to talk to bob
+    <ul>
+      <li>alice asks ticket service for ticket to enable communcation with bob</li>
+      <li>T~ttl is proof that Alice can use TGS</li>
+      <li>timestamp is for freshness</li>
+      <li>TGS sends somthing for Bob</li>
+    </ul>
+  </li>
+  <li>Talk to bob
+    <ul>
+      <li>alice uses ticket to talk to bob</li>
+      <li>Alice is sending Bob information on how to talk that could have only been created by TGS</li>
+      <li>Modification of timestamp tells Alice, that Bob is who he says he is</li>
+      <li>Bob already has K~B, TGS and this can gain access to K~A,B</li>
+    </ul>
+  </li>
+  <li>
+    <p>repeat steps 2 &amp; 3</p>
+  </li>
+  <li>Authentication Protocol based on Needham-Schroeder with fixes</li>
+  <li>Single-Sign on
+    <ul>
+      <li>authenticate with AS and get timed access to system</li>
+      <li>this ticket can be used to request access to other servicies like bob</li>
+    </ul>
+  </li>
+  <li>
+    <p>Simplified public key variants</p>
+  </li>
+  <li>advantages
+    <ul>
+      <li>auth on distributed system</li>
+      <li>single-sign-on</li>
+    </ul>
+  </li>
+  <li>disadvantages
+    <ul>
+      <li>single point of failure</li>
+      <li>not federated</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h1 id="lecture-6---publc-key-infrastructure">Lecture 6 - Publc Key Infrastructure</h1>
+
+<h2 id="pki">PKI</h2>
+<ul>
+  <li>Third party to deal with public keys</li>
+  <li>certificate authorities binds public keys to IDs
+    <ul>
+      <li>when regestering your pub key</li>
+      <li>when authority generates your public/private keys</li>
+      <li>binding is done with digital signitures</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pk-certificates">PK Certificates</h3>
+<ul>
+  <li>proof of identity</li>
+  <li>forged certificates?
+    <ul>
+      <li>attackers need the ability to sign the certificate which is hard for them to do</li>
+    </ul>
+  </li>
+  <li>fake certificates?
+    <ul>
+      <li>Authority must berify the owner’s ID before signing trhe certificate</li>
+      <li>Need certificate authority’s verifying key to check authenticity</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="key-management">Key Management</h3>
+<ul>
+  <li>certificate issuing and publication</li>
+  <li>certificate revocation
+    <ul>
+      <li>compromised keys</li>
+      <li>identity change</li>
+      <li>termination of membership</li>
+    </ul>
+  </li>
+  <li>key pair Generation</li>
+  <li>private key escrow, backup, arhiving, and recovery</li>
+  <li>public key archiving</li>
+  <li>update</li>
+  <li>logging of actions</li>
+</ul>
+
+<h2 id="certificate-chains">Certificate Chains</h2>
+<ul>
+  <li>problem
+    <ul>
+      <li>who trusts the trusters…</li>
+      <li>how to balance certificate creation
+        <ul>
+          <li>multiple certificate authorities at different levels</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>answer
+    <ul>
+      <li>each authority verification key is signing by more trustworth body</li>
+    </ul>
+  </li>
+  <li>Shape of chain</li>
+  <li>more trustwrth keys can be embedded in hardware
+    <ul>
+      <li>so they are tamper resistant/tamper evident</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/cs-notes/assets/images/csf/chainShapes.png" alt="Chain Shapes" /></p>
+
+<hr />
+
+<h2 id="tutorial-1">Tutorial</h2>
+<ol>
+  <li>w</li>
+  <li>a</li>
+  <li>a</li>
+  <li>how you deal with enrolment.</li>
+  <li>easy to remmber, more entropy so its harder to guess, easier to type on a different device like a mobile. easier to be attacked by over-the-shoulder attacks.</li>
+  <li>a</li>
+  <li>Password crackers</li>
+  <li>a</li>
+  <li>a</li>
+  <li>a</li>
+</ol>
+
+<hr />
+<h1 id="web-security">Web security</h1>
+
+<h2 id="how-does-it-work">How does it work</h2>
+<ul>
+  <li>browser ask webserver for a website which might be connected to a backend</li>
+  <li>the website is executed on the client</li>
+</ul>
+
+<h3 id="http">HTTP</h3>
+<ul>
+  <li>used in most transmition</li>
+  <li>stateless
+    <ul>
+      <li>easier to implement</li>
+      <li>must provide id with every transmission</li>
+    </ul>
+  </li>
+  <li>no built in encryptions</li>
+</ul>
+
+<h3 id="get">GET</h3>
+<ul>
+  <li>retrive index.hmtl</li>
+  <li>asks webserver for specific resource</li>
+  <li>answer - get the resource you want</li>
+  <li>should only be used for info retreival</li>
+  <li>can have variables which is sent to webserver</li>
+</ul>
+
+<p><code class="highlighter-rouge">GET /index.html HTTP/1.1</code></p>
+
+<p><code class="highlighter-rouge">GET /index.html?foo=bar HTTP/1.1</code></p>
+
+<h3 id="post">POST</h3>
+<ul>
+  <li>used to send data and retrive changed resources</li>
+  <li>sending credentials is worst way to use it</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>POST /index.html HTTP/1.1
+Host:example.com
+Content-type:application/x-www-form-ulencoded
+Content-length: 7
+
+foo=bar
+</code></pre>
+</div>
+
+<h3 id="cookies">Cookies</h3>
+<ul>
+  <li>data that a webserver can store in a client
+    <ul>
+      <li>like session id</li>
+    </ul>
+  </li>
+  <li>should be complex</li>
+  <li>shouln’t be easy to guess</li>
+  <li>mainly used to make sure that two request came from the same client</li>
+</ul>
+
+<h4 id="setting-http-cookies">Setting HTTP Cookies</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 200 OK
+Content-type: text/html
+Set-Cookie: foo=bar
+
+...
+</code></pre>
+</div>
+
+<h4 id="using-http-cookies">Using HTTP Cookies</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>Get /index.html HTTP/1.1
+Host: example.com
+Cookie: foo=bar
+</code></pre>
+</div>
+
+<h3 id="owasp-top-10-applicatoin-security-risk-2017">OWASP Top 10 Applicatoin Security Risk 2017</h3>
+<ol>
+  <li>Injection
+    <ul>
+      <li>send data to a server that doesn’t chack the data</li>
+      <li>then used in a interpreter</li>
+      <li>Main problem
+        <ul>
+          <li>user provided data is used without sufficient checks</li>
+        </ul>
+      </li>
+      <li>eg SQL Injection</li>
+      <li>results in
+        <ul>
+          <li>stolen user data, creditcard Data</li>
+          <li>DOS</li>
+          <li>take over host</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>broken authentication
+    <ul>
+      <li>able to bruteforce. since a lot of people use weak passwords</li>
+      <li>Main problem
+        <ul>
+          <li>incorrect implementation/lack of knowledge</li>
+        </ul>
+      </li>
+      <li>eg login page bruteforce</li>
+      <li>results in
+        <ul>
+          <li>compromise of systems</li>
+          <li>money laundering</li>
+          <li>unauth info disclosure</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>sensitive data exposure
+    <ul>
+      <li>web apps and apis not protecting sensitive properly</li>
+      <li>be careful how you save your Data</li>
+      <li>main problem
+        <ul>
+          <li>not putting enough thought/energy into data protection</li>
+        </ul>
+      </li>
+      <li>eg. using automatic database encryption</li>
+      <li>results in
+        <ul>
+          <li>offences againt priv Laws</li>
+          <li>loss of trust</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>XXE
+    <ul>
+      <li>a way to retrive files that are not retriveable</li>
+      <li>Main problem
+        <ul>
+          <li>trusting external prvided inpout</li>
+        </ul>
+      </li>
+      <li>eg
+        <div class="highlighter-rouge"><pre class="highlight"><code> <span class="cp">&lt;? xml version=“1.0” encoding=“ISO-8859-1”?&gt;</span>
+ <span class="cp">&lt;!DOCTYPE foo {
+  &lt;!ELEMENT foo ANY &gt;</span>
+  <span class="cp">&lt;!ENTITY xxe SYSTEM “file:///etc/passwd”&gt;</span>]&gt;
+  <span class="nt">&lt;foo&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/foo&gt;</span>
+</code></pre>
+        </div>
+      </li>
+      <li>results in
+        <ul>
+          <li>extract databaseinfo gathering</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>broken access control
+    <ul>
+      <li>ability to switch to more privlaged user/access to privlageed user</li>
+      <li>Main problem
+        <ul>
+          <li>trusting external provided input</li>
+        </ul>
+      </li>
+      <li>eg</li>
+      <li>SQL Inj</li>
+      <li>results in
+        <ul>
+          <li>privelage escalation</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>security misconfig
+    <ul>
+      <li>insecure default configs</li>
+      <li>Main problem
+        <ul>
+          <li>Lack of knowledge</li>
+        </ul>
+      </li>
+      <li>eg
+        <ul>
+          <li>enabling directory listing</li>
+        </ul>
+      </li>
+      <li>results in
+        <ul>
+          <li>unauth Access</li>
+          <li>sys takeover</li>
+          <li>info gathering</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>XSS
+    <ul>
+      <li>code injection</li>
+      <li>Main problem
+        <ul>
+          <li>user provided data is used witout sufficient checks</li>
+        </ul>
+      </li>
+      <li>results in
+        <ul>
+          <li>data loss</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>insecure deserialization
+    <ul>
+      <li>when an app receives hostile serialized objects</li>
+      <li>influence control flow</li>
+      <li>remote code execution</li>
+      <li>Main problem
+        <ul>
+          <li>accept serialised objects from instusted sources or user provided data without sufficient checks</li>
+        </ul>
+      </li>
+      <li>eg.
+        <ul>
+          <li>supper cookie containing id, passoword, hashed</li>
+        </ul>
+      </li>
+      <li>results in
+        <ul>
+          <li>attacker can cahgne those values</li>
+          <li>privilae escalation</li>
+          <li>remote code execution</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>using components with known vulnerabilities
+    <ul>
+      <li>Main problem
+        <ul>
+          <li>lack of knowledge</li>
+        </ul>
+      </li>
+      <li>dont ignore software update notifications</li>
+      <li>results in
+        <ul>
+          <li>privlaged excalation</li>
+          <li>data loss</li>
+          <li>remote code execution</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>insufficient logging &amp; monitoring
+    <ul>
+      <li>Main problem
+        <ul>
+          <li>without identifying an attack you can’t act</li>
+        </ul>
+      </li>
+      <li>eg
+        <ul>
+          <li>vulnerabuility scanning</li>
+          <li>bruteforce password attackers</li>
+        </ul>
+      </li>
+      <li>results in
+        <ul>
+          <li>being succussfully attacked</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+<h1 id="websecurity-2">Websecurity 2</h1>
+
+<h2 id="injection">Injection</h2>
+<ul>
+  <li>SQL Injection
+    <pre><code class="language-SQL">$user = $_POST['user'];
+$pass = $_POST['passoword'];
+$query = "select * from u_list where u_name = '$user' and password = '$pass';"
+...
+if ($result &gt; 0) {// user login successful
+</code></pre>
+  </li>
+  <li>
+    <p>what could an attacker submit in order to gain access?</p>
+  </li>
+  <li>Command Injection
+    <pre><code class="language-SQL">$cmd = "python get_data.py".$_GET['sort'];
+$list = system($cmd);
+</code></pre>
+  </li>
+  <li>blind sqlinjection
+    <ul>
+      <li>true or false Injection</li>
+      <li>more difficult but can lead to same Effectiveness</li>
+    </ul>
+  </li>
+  <li>prevention
+    <blockquote>
+      <p>NEVER TRUST USER PROVIDED INPUT</p>
+    </blockquote>
+    <ul>
+      <li>use functions to escape inputs</li>
+      <li>only use frameworks that are considered safe</li>
+      <li>use <code class="highlighter-rouge">LIMIT</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="broken-authentication">Broken authentication</h2>
+<ul>
+  <li>weak passwords</li>
+  <li>one password for all == single point of failure</li>
+  <li>use multi factor authenticator</li>
+  <li>
+    <p>password rotation</p>
+  </li>
+  <li>weak passowrd storage
+    <ul>
+      <li>plain plaintext</li>
+      <li>unsalted hashes</li>
+      <li>weak hashes</li>
+    </ul>
+  </li>
+  <li>prevention
+    <ul>
+      <li>use moden hash function</li>
+      <li>check for weak passwords</li>
+      <li>passwords at least 8 char long</li>
+      <li>harden against account enumeration attack</li>
+      <li>multifactor authentication</li>
+      <li>log auth failure and alert admins</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="broken-access-control">broken access control</h2>
+<ul>
+  <li>prevention
+    <ul>
+      <li>don’t let attacker modify the checks or metadata</li>
+      <li>disable directory listing</li>
+      <li>log access control failures and trigger alerts</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="xss">XSS</h2>
+<ul>
+  <li>Prevention
+    <blockquote>
+      <p>DONT TRUST USER INPUT FFS</p>
+    </blockquote>
+    <ul>
+      <li>use frameworks that automatically escapes this for you</li>
+      <li>escape data</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="tutorial-answers-in-moodle">Tutorial answers in moodle</h2>
+
+<hr />
+
+<h1 id="lecture-9---network-security">Lecture 9 - Network Security</h1>
+<h2 id="important-nework-protocols">Important Nework Protocols</h2>
+<h3 id="data-link-layer-ieee-8023">Data Link Layer IEEE 802.3</h3>
+<ul>
+  <li>important information in an ethernet frame
+    <ul>
+      <li>destination mac address</li>
+      <li>source mac address</li>
+      <li>payload</li>
+      <li>checksum</li>
+    </ul>
+  </li>
+  <li>MAC address
+    <ul>
+      <li>48bit</li>
+      <li>first 24bit organisationally unique (OUI)</li>
+      <li>rest of 24bit identifying NIC specific</li>
+    </ul>
+  </li>
+  <li>special addresses
+    <ul>
+      <li>broadcasters</li>
+      <li>multicast</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="data-link-layer-ieee-80211">Data Link Layer IEEE 802.11</h3>
+<ul>
+  <li>MAC for wifi</li>
+  <li>adds extra frame types
+    <ul>
+      <li>Management frames</li>
+      <li>Control frames</li>
+      <li>Data frames</li>
+    </ul>
+  </li>
+  <li>MAC address of the Access Point(AP) is added to the header
+    <h3 id="network-layer">Network Layer</h3>
+    <h4 id="ipv4">IPv4</h4>
+  </li>
+  <li>used for addressing</li>
+  <li>32bit</li>
+  <li>private IP ranges;
+    <ul>
+      <li>10.0.0.0 to 10.255.255.255</li>
+      <li>172.16.0.0 to 172.31.255.255</li>
+      <li>192.168.0.0 to 192.168.255.255</li>
+    </ul>
+  </li>
+  <li>important info
+    <ul>
+      <li>source address</li>
+      <li>destination address</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="ipv6">IPv6</h4>
+<ul>
+  <li>128 bit</li>
+  <li>2^64 addresses</li>
+  <li>atateless auto config</li>
+</ul>
+
+<h3 id="data-link-layer-arp">Data Link Layer: ARP</h3>
+<ul>
+  <li>Address Resolution Protocol</li>
+  <li>asks for MAC address for an IP adress</li>
+  <li>also used for duplicated IP addresses</li>
+</ul>
+
+<h3 id="transport-layer">Transport Layer</h3>
+<ul>
+  <li>ports</li>
+  <li>65532 ports</li>
+  <li>well known ports &lt; 1024
+    <ul>
+      <li>admin rights to open those ports</li>
+    </ul>
+  </li>
+  <li>rest can open without permission (in linux at least)</li>
+  <li>additional registered ports</li>
+  <li>
+    <p>direct link between port and service</p>
+  </li>
+  <li>UDP
+    <ul>
+      <li>connectionless
+        <ul>
+          <li>fire and forget</li>
+        </ul>
+      </li>
+      <li>transmission not ensured</li>
+    </ul>
+  </li>
+  <li>TCP
+    <ul>
+      <li>3-way handshake
+        <ul>
+          <li>SYN (seq = x)</li>
+          <li>SYN (seq = y); ACK x + 1</li>
+          <li>ACK y + 1</li>
+        </ul>
+      </li>
+      <li>ensures order (seq)</li>
+      <li>reliable data stream</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="application-layer">Application Layer</h3>
+<h4 id="dns">DNS</h4>
+<ul>
+  <li>Domain Name System</li>
+  <li>translates domain name to IP address
+<img src="/cs-notes/assets/images/csf/dns.PNG" alt="DNS" />
+    <h2 id="network-structure">Network Structure</h2>
+    <h3 id="wired">Wired</h3>
+    <p><img src="/cs-notes/assets/images/csf/wiredNetworkDesign.PNG" alt="Wired Network" /></p>
+    <h3 id="wireless-wifi">Wireless (WiFi)</h3>
+    <p><img src="/cs-notes/assets/images/csf/wirelessNetwork.PNG" alt="Wireless Network" /></p>
+    <h3 id="interconnected">Interconnected</h3>
+    <p><img src="/cs-notes/assets/images/csf/interconnected.PNG" alt="Interconnected" /></p>
+  </li>
+</ul>
+
+<h2 id="attack-vectors">Attack Vectors</h2>
+<ul>
+  <li>clients</li>
+  <li>IP phones</li>
+  <li>server</li>
+  <li>switches/access points</li>
+  <li>router</li>
+  <li>……</li>
+</ul>
+
+<h3 id="dos">DOS</h3>
+<ul>
+  <li>overload the target with requests
+    <ul>
+      <li>eg
+        <ul>
+          <li>SYN-Flood</li>
+        </ul>
+      </li>
+      <li>TCP-Queue overflow results in DoS
+        <h3 id="ddos">DDOS</h3>
+      </li>
+    </ul>
+  </li>
+  <li>problem: target might have too much POWAAH</li>
+  <li>solution: use multiple attackers
+    <ul>
+      <li>fun with more friends</li>
+      <li>minimum requirements: friends</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="arp-flooding">ARP Flooding</h3>
+<ul>
+  <li>switch
+    <ul>
+      <li>takes MAC frame</li>
+      <li>checks destination MAC</li>
+      <li>looks up port number in an internal MAC lookup table</li>
+      <li>forward the frame</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="mac-flooding">MAC Flooding</h3>
+<ul>
+  <li>switch gets the lookup table from
+    <ul>
+      <li>observing traffic on physical ports</li>
+      <li>extracting the source MAC address of connected port</li>
+      <li>storing it</li>
+    </ul>
+  </li>
+  <li>problem
+    <ul>
+      <li>storage not infinite</li>
+    </ul>
+  </li>
+  <li>exploit
+    <ul>
+      <li>send a lot of frames with different soure addresses</li>
+    </ul>
+  </li>
+  <li>when storage space runs out
+    <ul>
+      <li>switch becomes a hub</li>
+    </ul>
+  </li>
+  <li>gain?
+    <ul>
+      <li>hub broadcasts a frame to all ports
+        <ul>
+          <li>allows monitoring of all netowrk traffic</li>
+        </ul>
+      </li>
+      <li>reduce performance</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="arp-poisoning">ARP Poisoning</h3>
+<ul>
+  <li>all clients store lookup tables
+    <ul>
+      <li>ip to MAC</li>
+      <li>arp helps to build this table</li>
+      <li>this table’s validity is not infinite</li>
+    </ul>
+  </li>
+  <li>client asks who asks this ip
+    <ul>
+      <li>server replies “ME”</li>
+      <li>attacker replies “MEMEMEMEMEMEMEMMEM”</li>
+    </ul>
+  </li>
+  <li>yelling as loud as possible helps</li>
+  <li>gain?
+    <ul>
+      <li>all traffic redirected to attacker</li>
+      <li>
+        <h2 id="man-in-the-middle">man-in-the-middle</h2>
+        <h1 id="lecture-10---network-security-2">Lecture 10 - Network Security 2</h1>
+        <h2 id="attack-vendors">Attack Vendors</h2>
+        <h3 id="fun-with-ipv6">Fun with IPv6</h3>
+      </li>
+    </ul>
+  </li>
+  <li>problem
+    <ul>
+      <li>auto configs enabled the IPv6 traffic</li>
+      <li>windows pref ipv6 &gt; ipv4
+        <ul>
+          <li>without any settings</li>
+          <li>enabled by default</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>MitM for all the networks traffic</li>
+  <li>Defence
+    <ul>
+      <li>disable IPv6</li>
+      <li>later on patched</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="social-engineering">Social Engineering</h3>
+<ul>
+  <li>attaks users that aren’t educated</li>
+  <li>Factors
+    <ul>
+      <li>Technical
+        <ul>
+          <li>power plugs</li>
+          <li>ethernet sockets</li>
+        </ul>
+      </li>
+      <li>Human
+        <ul>
+          <li>alertness/awareness of personal</li>
+          <li>knowledge</li>
+          <li>continuous education of staff</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Defence
+    <ul>
+      <li>Technical
+        <ul>
+          <li>block unused ports at the switch</li>
+        </ul>
+      </li>
+      <li>human
+        <ul>
+          <li>keep awareness high</li>
+          <li>inform staff about methods
+            <ul>
+              <li>keep it non technical</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dns-tunneling">DNS Tunneling</h3>
+<ul>
+  <li>send data to a blocked target</li>
+  <li>control a DNS Server</li>
+  <li>
+    <p>ability to send DNS lookup</p>
+  </li>
+  <li>domain names &lt;= 253 characters
+    <ul>
+      <li>with label &lt;= 63 characters</li>
+    </ul>
+  </li>
+  <li>messages base64 encoded</li>
+  <li>make sure you dont look up the same domain name twice</li>
+</ul>
+
+<h2 id="defence">Defence</h2>
+<h3 id="firewall">Firewall</h3>
+<ul>
+  <li>strong defence</li>
+  <li>still trafic needs to come in and output</li>
+  <li>blocking everything is not an option</li>
+  <li>blocking everything is generally a good start
+    <ul>
+      <li>white list vs black list</li>
+    </ul>
+  </li>
+  <li>descisions beased on rule sets</li>
+  <li>rules can be classified into categories
+    <ul>
+      <li>prerouting
+        <ul>
+          <li>all acitons before a routing decision is made</li>
+        </ul>
+      </li>
+      <li>input
+        <ul>
+          <li>actions on incoming traffic</li>
+        </ul>
+      </li>
+      <li>outout
+        <ul>
+          <li>actions on outgoing traffic</li>
+        </ul>
+      </li>
+      <li>postrouting
+        <ul>
+          <li>all actions after a routing decision is made</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>everytime you write down firewall rules
+    <ul>
+      <li>it should be precise as possible
+        <ul>
+          <li>
+            <!-- i don't understand this-->
+          </li>
+          <li><code class="highlighter-rouge">src/dst ip</code></li>
+          <li><code class="highlighter-rouge">src/dst port</code></li>
+          <li><code class="highlighter-rouge">protocol</code></li>
+        </ul>
+      </li>
+      <li>don’t permit everything</li>
+      <li>only permit necessary ports
+<img src="/cs-notes/assets/images/csf/dmzNetwork.PNG" alt="DMZ Network" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="proxy-server">Proxy Server</h3>
+<ul>
+  <li>used to control the flow from the inside to the outside</li>
+  <li>can specify all traffic to go through proxy server</li>
+  <li>can filter traffic and block traffic</li>
+  <li>can monitor traffic</li>
+  <li>
+    <p>perfomance improvements</p>
+  </li>
+  <li>different types of proxys
+    <ul>
+      <li>HTTP</li>
+      <li>SOCKS
+        <ul>
+          <li>all kinds of traffic</li>
+        </ul>
+      </li>
+      <li>TOR (The Onion Router)</li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li>ssh socks proxy tunnel</li>
+  <li>traffic from lan to ssh is encrypted</li>
+</ul>
+
+<h3 id="ids">IDS</h3>
+<ul>
+  <li>monitoring traffic</li>
+  <li>filter malicious traffic
+    <ul>
+      <li>signature based</li>
+      <li>anomaly detection (ML based)</li>
+    </ul>
+  </li>
+  <li>alarm admin if malicious traffic is found</li>
+</ul>
+
+<h3 id="ips">IPS</h3>
+<ul>
+  <li>same as IDS but
+    <ul>
+      <li>can take actions automatically
+        <ul>
+          <li>blocks ports, IP addresses …</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="vpn">VPN</h3>
+<ul>
+  <li>connects to a network through another one</li>
+  <li>connects to private network via public infrastructure
+    <ul>
+      <li>secure connection via insecure channels</li>
+    </ul>
+  </li>
+  <li>access to all private network’s resources</li>
+  <li>can be used to circumvent restrictions
+<img src="/cs-notes/assets/images/csf/vpn.PNG" alt="VPN" /></li>
+</ul>
+
+<h2 id="wifi">WiFi</h2>
+<ul>
+  <li>no phsicall security (no cables)</li>
+  <li>potentially everybody can listen</li>
+  <li>jamming</li>
+  <li>deauthentication spoofing</li>
+</ul>
+
+<h3 id="open-wifi">Open Wifi</h3>
+<ul>
+  <li>everyone can listening
+    <ul>
+      <li>never use unencrypted services to transmit any important piece of information</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="encrypted-wifi">Encrypted WiFi</h3>
+<p>Wired Equivelent Privacy</p>
+<ul>
+  <li>sniff as much packets as you can</li>
+  <li>passive Attacks
+    <ul>
+      <li>analyse the traffic</li>
+    </ul>
+  </li>
+  <li>Active
+    <ul>
+      <li>inject the traffic</li>
+    </ul>
+  </li>
+  <li>outocme: key
+    <ul>
+      <li>never use it</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="wpa2">WPA2</h4>
+<ul>
+  <li>per packet keys</li>
+  <li>protected against replay attacks until octber 17</li>
+  <li>problem
+    <ul>
+      <li>KRACK  recontructs the key thorugh replay attacks</li>
+      <li>weak per-shared keys, allow brute force</li>
+    </ul>
+  </li>
+  <li>management frames unencrypted
+    <ul>
+      <li>deauthentication flooding</li>
+    </ul>
+  </li>
+  <li>jamming
+    <ul>
+      <li>medium accessible for every sender</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
         </section>
 
         
@@ -415,7 +2057,7 @@
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_setAccount', 'UA-108074430-2']);
       _gaq.push(['_trackPageview']);
 
       (function() {
