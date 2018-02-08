@@ -444,7 +444,7 @@ Example with a web browser talking to web server:
   * send parity with data
   * check at receiver
   
-[Example](#internet_checksum) - The Internet Checksum
+[Example](#internet_checksum)
 
 ###### Other Error Detecting Codes:
 
@@ -906,6 +906,138 @@ IPv6 packet format:
 * hugely complicated for peer-to-peer apps
 * difficult to debug problems/deploy new classes of app
 
+### Intra-Domain Routing
+
+###### Routing:
+
+* the network layer that routes data from source to destination across multiple hops
+* hopping across nodes
+  * learn network topology
+  * run routing algorithms to determine best path
+* end hosts usually only know the local network topology
+* gateway devices exchange topology information and decide on best route (routers)
+
+###### Unicast Routing:
+
+* one-to-one transmission
+* choice of alg. affected by
+  * intra-domain routing
+  * inter-domain routing
+  * politics and economics
+  
+###### Routing in the Internet:
+
+* different ISP groups have their own local networks
+* some nodes in a group are connected to nodes in another group
+* each network is an autonomous system
+  * with different technologies and policies
+  * distrust each other
+  
+###### Intra-Domain Unicast Routing:
+
+* routing within an autonomous system (AS)
+* no policy restrictions on who determines the topology/which links can be used
+* need efficient routing --> shortest path
+  * use distance vector - routing information protocol (RIP)
+  * use link state - open shortest path first routing (OSPF)
+  
+###### Distance Vector Protocols:
+
+* each node has vetor containing distance to every other node
+  * periodically exchange this info with neighbours
+  * routing table "converges" on a steady state
+  * unknown distance is ∞
+* send packets with least distance to destination
+* example
+  * <img src="/cs-notes/assets/images/ns/distance_vector_0.jpg" nopin="nopin" />
+  * time 0 - nodes initialised, know only their immediate neighbours
+  * time 1 - nodes also know neighbours of their neighbours, routing data has spread one hop
+  * time 2 - routing data has spread two hops, table complete
+  * time 3 - nodes continue to exchange distance metrics in case the topology changes
+  * time 4 - link between F and G fails, F and G notices, set the link distance to ∞, pass an update to A and D
+  * time 5 - A sets distance to G to ∞, D sets distance to F to ∞, both pass on news of link failure
+  * time 6 - C knows it can reach F and G in 2 hops via alternate paths, so advertise shorter routes, network begins to converge
+  * time 7 - eventually the network is stable in a new topology, as shown below
+  * <img src="/cs-notes/assets/images/ns/distance_vector_7.jpg" nopin="nopin" />
+  
+###### Count to Infinity Problem:
+
+* if link A-E fails
+  * A advertises distance ∞ to E at the same time that C advertises distance 2 to E
+  * B receives both, concludes that E can be reached in 3 hops via C, and advertises this to A
+  * C sets distance to E to ∞ and advertises this
+  * A receives advertisement from B, decides it can reach E in 4 hops via B, and advertises this to C
+  * C receives advertisement from A, decides it can reach E in 5 hops via A....
+* solution
+  1. define ∞ = 16
+     * bounds duration of disruption
+     * provided the network is never more than 16 hops across
+  2. split horizon
+     * when updating route, don't send the route learned from a neighbour back to that neighbour
+	 * prevents two-node loops
+	 * doesn't prevent three-node loops
+	 
+###### Distance Vector Limitations:
+
+* tries to minimise state at nodes --> slow to converge
+* count-to-infinity generally unsolvable - implies distance vector alg. only suitable for small networks
+
+###### Link State Protocols:
+
+* nodes know links to neighbours and cost of using those links
+  * link state information
+* flood this info.
+  * all nodes have complete map of network
+* each nodes calculates shortest path to every other node
+  * use this as routing table
+  
+###### Link State Information:
+
+* updates flooded on start-up and whenever topology changes
+* updates contain
+  * address of sender node
+  * list of directly connected neighbours of that node
+    * with cost
+  * a sequence number
+* example
+  * <img src="/cs-notes/assets/images/ns/flood_updates.jpg" nopin="nopin" />
+  * C sends update to each of its neighbours
+  * each receiver compares sequence number with that of the last update from C, if greater, forwards update on all links ecxept the one on which it was received
+  * this repeats until eventually the entire network has received the update
+  
+###### Calculate Shortest Paths:
+
+* nodes use Dijkstra's alg. to find optimal route to every other node
+  * shortest path by weight
+* [pseudocode](#dijkstra) of Dijkstra's alg.
+
+###### Forwarding and Route Updates:
+
+* static forwarding decision based on weights
+  * doesn't take into account network congestion
+* recalculate shortest paths on every update
+  * occur if a link fails/new link addded
+  
+###### Distance Vector vs Link State:
+
+* distance
+  * simple implementation
+  * routers only store distance to each other - O(n)
+  * suffers slow convergence - unsuitable for large networks
+* link state
+  * more complex
+  * requires each router to store complete map - O(n<sup>2</sup>)
+  * much faster convergence
+  
+###### Intra-Domain Routing in Practice:
+
+* within any network that operates as a single entity
+  * local, nationwide, or worldwide
+  * operates a single routing protocol
+  * running on IP routers within an AS
+  * typically with fibre connections and ethernet
+  * exchange routes to IP prefixes, representing regions in the topology
+
 <a name="internet_checksum"></a>
 
 ###### The Internet Checksum:
@@ -940,4 +1072,34 @@ internet_cksum(uint16_t, *buf, int buflen) {
   return ~(sum & 0x0000ffff);
 
 }
+```
+
+<a name="dijkstra"></a>
+
+###### Dijkstra's algorithm
+
+Definitions:
+
+* `N` - set of all nodes in graph
+* `l(i, j)` - weight of link from `i` to `j`
+* `s` - source node from which we're calculating paths
+
+For an undirected connected graph:
+
+```javascript
+
+M = {s} // set of nodes that have been checked
+for each n in N - {s}: // distance to directly connected neighbours
+  C(n) = l(s, n)
+  
+while (N != M):
+  c = ∞
+  for each n in (N - M):
+    if C(w) < c then w = n // find node w such that C(w) is minimum for all nodes in (N - M)
+  M += {w} // add one node at a time, starting with closest
+  for each n in (N - M):
+    if C(n) > C(w) + l(w, n) then C(n) = C(w) + l(w, n) // best route to n is via w
+	
+result = C(x) // cost of shortest path from s to x
+
 ```
