@@ -726,12 +726,15 @@ author: noel
 - answer - get the resource you want
 - should only be used for info retreival
 - can have variables which is sent to webserver
+
 ```GET /index.html HTTP/1.1```
+
 ```GET /index.html?foo=bar HTTP/1.1```
 
 ### POST
 - used to send data and retrive changed resources
 - sending credentials is worst way to use it
+
 ```
 POST /index.html HTTP/1.1
 Host:example.com
@@ -749,6 +752,7 @@ foo=bar
 - mainly used to make sure that two request came from the same client
 
 #### Setting HTTP Cookies
+
 ```
 HTTP/1.1 200 OK
 Content-type: text/html
