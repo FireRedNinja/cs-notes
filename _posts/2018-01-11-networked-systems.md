@@ -1037,6 +1037,254 @@ IPv6 packet format:
   * running on IP routers within an AS
   * typically with fibre connections and ethernet
   * exchange routes to IP prefixes, representing regions in the topology
+  
+### Inter-Domain Routing
+
+* unicast routing
+* find best route to destination network
+* treat each network as a single node
+* route without reference to internal network topology
+* each network is an autonomous system
+  * eg an ISP that operates a network and wants to participate in interdomain routing
+  * some organisations have more than one AS
+  * identified by a unique number allocated by the RIR
+* routing problem - finding best AS-level path from souce to destination
+  * treat each AS as a node on the routing graph
+  * treat connections between them as edges
+  
+###### Default Routes:
+
+* AS-level topology is
+  * well connected core networks
+  * sparsely connected edges
+  * edges get service from core networks
+* edge networks can use a default route to the core
+* core networks need full routing table - the default free zone (DFZ)
+
+<img src="/cs-notes/assets/images/ns/as_network.jpg" nopin="nopin" />
+
+###### Routing at the Edge:
+
+<img src="/cs-notes/assets/images/ns/edge_routing.jpg" nopin="nopin" />
+
+###### Routing in the DFZ:
+
+Well-connected core networks so need to know about every other network
+
+* DFZ has no default route
+* route based on policy (not necessarily shortest path), eg
+  * use one AS in preference over another
+  * use one AS only to reach addresses in the same range
+  * avoid ASes located in a particular country
+* requires complete AS-level topology info
+
+###### Routing Policy:
+
+* interdomain routing is between competitors
+  * unlikely to trust neighbours
+* consider policy restrictions on
+  * who can determine your topology
+  * which route data can follow
+* prefer control over routing, even if it means data doesn't follow the shortest path
+  * might pass through an expensive/competitor/political opponent's network
+  
+###### Border Gateway Protocol:
+
+Internet IDR uses the Border Gateway Protocol (BGP)
+
+* external BGP
+  * exchange routing info between ASes
+  * neighbouring systems configure an eBGP session to exchange routes
+  * runs over TCP between routers
+  * used to derive best route to each destination
+  * installed in routers to control forwarding
+* internal BGP
+  * propagate routing info to routers within an AS
+  * intra-domain routing protocol handles this
+  * iBGP distributes info on how to reach external destinations
+  
+###### Info exchanged with eBGP:
+
+* routers advertise lists of IP address ranges (prefixes) and their associated AS-level paths
+* combined to form a routing table
+  * prefix
+  * next hop
+  * AS path
+* example AS topology graph
+
+<img src="/cs-notes/assets/images/ns/as_topology.jpg" nopin="nopin" />
+
+###### eBGP Routing Policy:
+
+* each AS chooses what routes to advertise to neighbours
+* doesn't need to advertise everything it receives
+* common policy - Gao-Rexford rules
+  * routes from customers advertised to everyone
+  * routes from peers and providers only advertised to customers
+  * ensures AS graph is valley-free 
+  
+###### BGP Routing Decision Process:
+
+* routers receive path vectors from neighbours giving possible routes to prefixes
+  * filtered based on policy
+* choose what route to install for destination prefix in forwarding table
+  * based on criteria such as policy, shortest path etc
+  * doesn't always find a route (policy may prohibit)
+  * routes often not shortest path
+  * mapping business goals to BGP processes is poorly documented process
+  * many operational secrets
+  
+### The Transport Layer:
+
+* isolates upper layers from network layer
+  * hides network complexity
+  * hides problems within network
+* provides useful, convenient, easy service
+  * easy to understand service model
+  * easy to use API
+    * Berkeley Sockets
+	* Compare to Network Layer
+* functions
+  * addressing and multiplexing
+  * reliability
+  * framing
+  * congestion control
+* operates process-to-process, not host-to-host
+
+###### Addressing and Multiplexing:
+
+* NL address identifies a host
+* TL address identifies a user process (service with unique TL address) running on a host
+* provides demultiplexing point
+
+###### Reliability:
+
+* NL is unreliable
+  * best effort packet switching
+* TL enhances quality of service provided by network to match application needs
+  * appropriate end-to-end reliability
+  
+###### The End-to-End Argument:
+
+* better to place functionality within network or at end points?
+  * put necessary functions within network
+    * eg reliability service in TL
+	* if not guaranteed 100% reliability, app will have to check data anyway
+	* don't check data in network, leave to the end-to-end transport protocol, where check is visible to app
+  * this is one of the defining principles of the Internet
+  
+###### TL Reliability:
+
+* email/file transfer - all data must arrive in the order sent, time of delivery not strict
+* voice/video streaming - can tolerate small amount of data loss but requires timely delivery
+* NL provides timely but unreliable service
+* TL protocol adds reliability if needed
+
+###### Framing:
+
+* apps may wish to send structured data
+* TL responsible for maintaining boundaries
+  * **frame** original data if this is part of service model
+  
+###### Congestion and Flow Control:
+
+* TL controls app sending rate
+  * congestion control - match rate at which NL can deliver data
+  * flow control - match rate at which receiver can process data
+* end-to-end, since end points know characteristics of entire path
+* email/file transfer - elastic apps, faster is better, but don't care about sending rate
+* voice/video streaming - inelastic apps, have min/max sending rates, care about the actual sending rate
+* need range of congestion control algs at TL within network constraints
+
+###### Internet Transport Protocols:
+
+* User Datagram Protocol
+* Transmission Control Protocol
+* Datagram Congestion Control Protocol
+* Stream Control Transmission Protocol
+* each makes different design choices
+
+###### UDP:
+
+* simplest TP
+* exposes raw IP service to apps
+  * connectionless
+  * best effort
+  * framed, but unreliable
+  * no congestion control
+* adds 16-bit port number to identify services
+
+Service model:
+
+<img src="/cs-notes/assets/images/ns/udp_model.jpg" nopin="nopin" />
+
+Packet format:
+
+<img src="/cs-notes/assets/images/ns/udp_packet_format.jpg" nopin="nopin" />
+
+###### UDP apps:
+
+* for apps that prefer timeliness to reliability
+* must be able to tolerate data loss
+* must be able to adapt to congestion in app layer
+
+###### TCP:
+
+* reliable byte stream protocol over IP
+  * packets contain sequence number to detect loss
+  * lost packets are retransmitted
+  * data delivered to higher layers in order
+  * no gaps
+* added congestion control
+* adds 16-bit port number as service identifier
+* no framing
+  * app must impose structure
+  
+Service model:
+
+<img src="/cs-notes/assets/images/ns/tcp_model.jpg" nopin="nopin" />
+
+Packet format:
+
+<img src="/cs-notes/assets/images/ns/tcp_packet_format.jpg" nopin="nopin" />
+
+###### TCP apps:
+
+* for apps that require reliable data delivery and can tolerate timing variation
+* default choice for most apps
+
+###### DCCP:
+
+* unreliable
+* connection oriented
+* congestion controlled datagram service - alg negotiated at connection setup
+* potentially easier for NAT boxes and firewalls than UDP
+* adds 32-bit service code in addition to port number
+* use for streaming multimeda and IPTV
+
+###### SCTP:
+
+* reliable datagram service ordered per stream
+* multiple streams within a single association
+* multiple connection management
+  * fail-over from one IP address to another for reliable multi-horning
+* TCP-like congestion control
+* use for telephony signalling ("a better TCP")
+
+###### Deployment Considerations:
+
+* IP agnostic of the TL protocol
+* firewalls perform deep packet inspection and look beyond IP header to make policy decisions
+  * only secure policy is disallowing anything not understood
+  * so difficult to deploy new TPs (DCCP and SCTP) in the Internet
+  * so limits future evolution of the network
+  
+###### Tunnelling New Transports:
+
+* if protocols can't be deployed natively, they can be tunnelled
+* UDP passes through NATs and firewalls
+* native TPs do not
+* so tunnel new transport inside UDP packets
 
 <a name="internet_checksum"></a>
 
