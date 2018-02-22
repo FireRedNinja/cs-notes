@@ -1286,6 +1286,309 @@ Packet format:
 * native TPs do not
 * so tunnel new transport inside UDP packets
 
+### TCP and Congestion Control
+
+###### Berkeley Sockets API:
+
+* widely-used
+* low-level C
+* largely compatible cross-platform
+* sockets provice standard interface between network and app
+  * stream
+    * virtual circuit service
+	* map onto TCP connections
+  * datagram
+    * delivers individual packets
+	* map onto UDP connections
+* independent of network type
+  * commonly used with IP sockets, but not actually specific to any protocol
+  
+###### TCP Sockets:
+
+* server 
+  * initialises a file descriptor to a socket, then binds it
+  * listens for connections with the file descriptor
+  * accepts connections
+  * receive/send data across network
+  * close connection
+* client
+  * initialises a file descriptor to a socket
+  * connects to open server using the file descriptor
+  * receive/send data across network
+  * close file descriptor
+  
+###### TCP Socket Services:
+
+* service differentiation
+* connection-oriented
+* point-to-point
+* reliable, in-order delivery of a byte stream
+* congestion control
+* provided by OS via the API
+
+###### Client-server or Peer-to-peer?
+
+* sockets initially unbound
+* most commonly used as client-server
+  * one host listens and accepts connections on a well-known port
+  * other host makes the socket connect to that port on the server
+  * after connection, either side can send/receive data
+* simultaneous connections are possible
+
+###### TCP Port Number:
+
+* server must listen on a known port
+* do not distinguish between system and user ports - security problems
+* there is insufficient port space available
+* usually clients connect from randomly chosen port from ephemeral
+  * to prevent spoofing attacks
+* 0 - 1023
+  * well known system ports
+  * used by trusted OS services
+* 1024 - 49151
+  * registered user ports
+  * used by user apps and services
+* 49152 - 65535
+  * dynamic ephemeral ports
+  * for private use
+  * peer-to-peer apps
+  * source ports for TCP client connections
+  
+###### Setting up a TCP Connection:
+
+* **3-way handshake**
+* happens during `connect()/accept()` calls
+  * SYN and ACK flags in TCP header signal connection progress
+  * initial packet has SYN bit set
+    * includes randomly chosen initial sequence number
+  * reply also has SYN bit set and random number
+    * acknowledges initial packet
+  * handshake is complete by acknowledgement of second packet
+* combination ensures robustness
+  * random number give robustness to delayed packets or restarted hosts
+  * acknowledgements ensure reliability
+  
+<img src="/cs-notes/assets/images/ns/tcp_setup.jpg" nopin="nopin" />
+  
+###### Reading/Writing Data over TCP:
+
+* call `send()` to transmit data
+  * enqueues data for transmission
+  * data split into segments
+    * each placed in a TCP packet
+	* sent when allowed to by congestion control alg.
+	* segments have sequence numbers to be acknowledged by receiver
+	* several `send()` requests might be aggregated into a segment
+  * blocked until data can be written
+  * returns actual amount of data sent
+  * returns -1 `errno`
+* call `receive()` to read up to BUFLEN bytes of data from connection
+  * blocked until some data available/connection is closed
+  * returns number of bytes read from socket
+  * returns 0 if sender closed connection
+  * returns -1 `errno`
+  * received data is **not** null-terminated
+    * potential security risk
+  * data returned doesn't necessarily correspond to a single `send()` call
+  
+###### Application Level Framing:
+
+* apps must be written to cope with getting data in unpredictably sized chunks from `recv()`
+* ideally 
+  * all headers are received in one `recv()` call 
+  * then parsed to extract Content-Length
+  * then entire body is read
+* parsing can be complex if TCP splits response arbitrarily
+
+###### TCP is Reliable:
+
+* each packet has sequence and acknowledgement numbers
+  * sequence - counts how many bytes are sent
+  * acknowledgement - specifies next byte expected to be received
+    * cumulative position
+	* only acknowledge contiguous packets (neighbouring)
+	* lost packets --> receipt of subsequent packets trigger duplicate acknowledgements
+	  * retransmitted (invisible to app)
+	  
+###### How Loss is Detected:
+
+* triple duplicate ACK = 4 identical ACKs in a row
+  * some packets lost, but later packets arriving
+* timeout = receiver or network path has failed
+  * send data but acknowledgements stop returning
+  
+###### Packet Reordering:
+
+* packet delay --> reordering --> duplicate ACKs received
+* gives appearance of loss, when data was merely delayed
+* triple duplicate ACK used as indication of packet loss
+  * prevent reordered packets causing retransmissions
+* packets will only be delayed a little; if delayed enough that a triple duplicate ACK is generated, TCP will treat the packet as lost and send a retransmission
+
+###### Head of Line Blocking in TCP:
+
+* data always delivered in order, even after loss
+* a `recv()` for missing data will block until it arrives
+
+<img src="/cs-notes/assets/images/ns/tcp_blocking.jpg" nopin="nopin" />
+
+A complete TCP connection:
+
+<img src="/cs-notes/assets/images/ns/complete_tcp.jpg" nopin="nopin" />
+
+###### Congestion Control:
+
+* adapting transmission speed to match available end-to-end network capacity
+* prevents congestion collapse of network - where no useful work is done
+* congestion happens when packets send and delivered reaches maximum capacity
+* can be implemented at either network or transport layer
+  * network
+    * safe - ensures all TPs are congestion controlled
+	* requires all apps to use same CC scheme
+  * transport
+    * flexible - TPs can optimise CC for apps
+	* misbehaving transport can congest the network
+	
+###### CC Principles:
+
+* these ensure stability of network
+  * conservation of packets
+  * additive increase and multiplicative decrease of sending rate
+  
+###### Packet Conservation:
+
+* network has capacity
+  * `bandwidth x delay` is the product of the path
+* when in equilibrium at that capacity, send one packet for each acknowledgement received
+  * total packets in transit is constant (ACK clocking)
+* sending rate automatically reduced as network gets more congested --> delivers packets more slowly
+
+###### AIMD algs.:
+
+* adjust sending rate according to additive increase/multiplicative decrease alg.
+  * start slowly and increase gradually to find equilibrium
+    * add small amount to sending speed each time there is an interval without loss
+	* `wi = wi-1 + α` for each RTT where `α = 1`
+  * respond to congestion rapidly
+    * multiply sending window by some factor `β < 1` for each loss seen
+	* `wi = wi-1 * β` for each RTT where `β = 1/2`
+* faster reduction than increase --> stability
+
+###### Internet Congestion:
+
+* transport receives congestion signal from network, either
+  1. packet arrives at router but queue for outgoing is full --> packet discarded
+  2. packet arrives at router but queue for outgoing is getting close to full, and transport has signalled that it understands ECN --> router sends ECN-CE bit in packet header
+* TP detects congestion signal and reacts
+  * loss detected by receiver due to gap in sequence number space/receiver notices ECN-CE marker
+  * when no congestion signal --> gradual additive increase in sending rate
+  * when congestion signal --> multiplicative decrease in sending rate
+  * AIMD alg. following the CC principles
+
+###### TCP CC:
+
+* TCP uses window-based CC alg.
+  * **sliding window** onto available data - determines how much can be sent according to the AIMD alg.
+  * slow start and congestion avoidance
+  * gives approx. equal share of bandwidth to each flow that shares a link
+  
+###### TCP Reno Sliding Window Protocol:
+
+* state of the art in TCP as of ~1990
+* stop and wait
+  * transmit packet -->  wait for acknowledgement --> send next packet
+  * if no acknowledgement after some time --> retransmit
+  * limits sender to one frame outstanding --> poor performance
+* link utilisation
+  * stop and wait takes time `ts` to send a packet
+    * `ts = packet size / link bandwidth`
+  * acknowledgement returns `tRTT` seconds later
+  * link utilisation `U = ts / tRTT` - fraction of the time the link is in use sending packets
+    * ideally `U ~ 1.0`
+    * eg for gigabit link sending 1500 byte packet from GLA to LON
+	  * `ts = 1500 * 8 bits / 10^9 bits per second = 0.000012s`
+	  * `tRTT ~ 0.010s`
+	  * `U ~ 0.0012`
+	  * ie link is in use 0.12% of the time
+* sliding window improves on stop-and-wait by sending more than one packet before stopping for acknowledgement
+  * allow several frames to be outstanding
+  * acknowledgement received --> window slides along one packet
+  * how to size the window?
+    * should be `bandwidth x delay`, but neither are known to the sender
+	
+<img src="/cs-notes/assets/images/ns/sliding_window.jpg" nopin="nopin" />
+
+###### Choosing Initial Window Size Winit:
+
+* need to measure path capacity
+* start with small window --> increase until congestion
+  * `Winit` of one packet per round-trip is only safe option
+  * equivalent to stop-and-wait but overly pessimistic
+  * modern TCP uses intial window of 10 packets per RTT
+    * network capacity increased so Google thinks this is pretty safe
+
+###### Finding Link Capacity:
+
+* how to find correct window for path when new connection starts (slow start)
+* how to adapt to changes in available capacity once connection is running (congestion avoidance)
+* slow start
+  * `Winit = 1` packet per RTT
+  * need to rapidly increase to correct value for network
+    * each ACK increases window by 1
+	* on loss, immediately stop increasing window
+  * send two packets for each ACK
+  * window doubles on each round trip until loss occurs --> rapidly finds correct window size for the path
+  
+<img src="/cs-notes/assets/images/ns/slow_start.jpg" nopin="nopin" />
+
+* congestion avoidance
+  * mode to probe for changes in network capacity
+    * eg sharing connection with other traffic
+  * window increased by 1 packet per RTT
+  * slow, additive increase
+  * until congestion observed --> respond to loss
+* detecting congestion
+  * TCP uses cumulative positive ACKs --> 2 ways to detect congestion
+    1. triple duplicate ACK --> packet lost due to congestion
+	2. ACKs stop arriving --> no data reaching receiver --> link failed somewhere
+  * how long to wait before assuming ACKs have stopped
+    * `Trto = max (1 second, average RTT + (4 * RTT variance))`
+* responding to congestion
+  * loss by triple duplicate ACK
+    * transient congestion but data still being received
+	* multiple decrease in window `wi = wi-1 * 0.5`
+	* rapid reduction in sending speed allows congestion to clear quickly --> avoid congestion collapse
+  * loss by time-out
+    * no packets being received for a long time --> significant problem with network
+	* return to initial sending window --> probe for new capacity using slow start
+	* assume route changed and you know nothing about the new path
+	
+###### Congestion Window Evolution:
+
+Assuming `Winit = 1`:
+
+<img src="/cs-notes/assets/images/ns/tcp_window_evolution.jpg" nopin="nopin" />
+
+* buffering and throughput
+  * `buffer size = badwidth x delay`
+  * bottleneck queue never empty
+  * bottleneck link never idle --> sending rate varies, but receiver sees continuous flow
+  
+<img src="/cs-notes/assets/images/ns/tcp_buffering.jpg" nopin="nopin" />
+
+###### Performance and Limitations of TCP:
+
+* TCP CC highly effective at keeping bottleneck link fully utilised
+  * provided sufficient buffering in network
+  * packets queued in buffer --> delay
+  * TCP trades extra delay for high throughput
+* unless ECN used, TCP assumes loss due to congestion
+  * too much traffic queued at intermediate link --> some packets dropped
+  * this is not always true
+    * WiFi
+	* high speed long distance optical networks
+  * much research into improved TCP for wireless links
+
 <a name="internet_checksum"></a>
 
 ###### The Internet Checksum:
