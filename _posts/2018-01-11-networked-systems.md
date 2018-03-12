@@ -1588,6 +1588,292 @@ Assuming `Winit = 1`:
     * WiFi
 	* high speed long distance optical networks
   * much research into improved TCP for wireless links
+  
+### UDP and Network Address Translation
+
+###### Using UDP Datagrams:
+
+* unreliable
+* identifies apps via 16-bit port number
+  * UDP ports separate to TCP
+* peer-to-peer
+  * both peers must `bind()` to a known port
+* created with `socket()` using `SOCK_DGRAM` as socket type
+* no connections in UDP so don't use `connect()` or `accept()`
+
+###### Sending UDP Datagrams:
+
+* `sendto()` sends a single datagram
+* each call can send to a different address (but using the same socket)
+* or you can `connect()` to an address, then use `send()`
+* a `connect()` only sets the destination address for future packets
+
+###### Receiving UDP Datagrams:
+
+* `recv()` can read a single datagram
+* doesn't provide source address
+* `recvfrom()` fills in the source address
+
+###### UDP Framing and Reliability:
+
+* each datagram sent as exactly one IP packet
+  * could be fragmented in IPv4
+  * one `recvfrom()` per `sendto()`
+* transmission is unreliable
+  * packets may be
+    * lost
+	* delayed
+	* reordered
+	* duplicated
+  * app responsible for detecting and correcting
+  * requires sender to include a sequence number in each packet sent
+* framing provided
+  * data delivered a packet at a time
+  * unreliable
+  * app must organise data
+  
+###### Sequencing and Reliability:
+
+* need to provide sequencing, reliability and timing in apps
+  * sequence numbers/acknowledgements
+  * retransmission/forward error correction
+  * timing recovery
+  
+###### Congestion Control:
+
+* should be approx. fair to TCP
+* TCP covers many corner-cases that are easy to miss
+* QUIC builds on UDP to give a more sophisticated service
+* uidelines for writing UDP apps provided by IETF
+
+###### DNS:
+
+* most widely used UDP-based app
+* network operates entirely on IP addresses
+* DNS translates from user-visible names --> IP addresses
+* runs over UDP
+  * request-response protocol
+  * TCP connection setup and congestion control was too much overhead
+  * it is unclear if this design is appropriate, however
+* early internet didn't use DNS
+  * flat file "hosts.txt" listing all host names and addresses
+    * maintained by central NIC
+	* updated by email every few days
+	* manually installed in hosts
+  * DNS proposed in 1983 as distributed database
+  * solve scaling problems
+  
+###### DNS Operation:
+
+* hierarchy of DNS zones
+* one logical server per zone
+* delegation follows hierarchy
+* hop-by-hop name lookup
+  * follows hierarchy via root
+* results have TTL
+  * cached at intermediate servers
+  
+###### Network Address Translation:
+
+* IPv4 address space is exhausted and IPv6 is a long-term solution
+* widely deployed workaround --> NAT
+  * with serious consequences for transport layer
+  
+###### Connecting a Single Host:
+
+* ISP owns an IP address prefix
+* assign a customer a single address for a single host
+* no address translation
+
+###### Connecting Multiple Hosts:
+
+* what's supposed to happen
+  * customer acquires a router, which gets the customer's previous IP address
+  * ISP assigns new range of IP addresses from their prefix to customer
+  * customer gives each host an address from new range
+  * no address translation
+* what actually happens
+  * customer acquires NAT, which gets the customer's previous IP address
+  * customer gives each host a private address
+  * NAT performs address translation 
+    * rewrites packet headers to match its external IP address
+	* likely rewrites TCP/UDP port number
+	
+###### NAT and Private Address Ranges:
+
+* NAT hides private network behind a single public address
+* tries to give illusion of more address space
+
+###### NAT Problems:
+
+* many apps fail with NAT
+  * client-server apps with client behind NAT work without changes
+    * web and email
+  * client-server apps with server behind Nat fail
+    * need explicit port forwarding
+  * peer-to-peer apps fail
+    * complex ICE alg. needed to connect
+* no security benefits
+  * most NATs include firewall
+  * the NAT function gives no security/privacy benefits
+  
+###### Why Use NAT?
+
+* many ISPs have insufficient addresses to give
+* many customers don't want to pay for more addresses
+* to avoid re-numbering a network when changing to a new ISP
+  * hard-coding addresses, rather than DNS names, in config files and apps is a bad idea
+  * many people do it anyway
+    * so changing addresses is difficult
+* IPv6 tries to make this easier by providing better auto-configuration
+  * insufficient experience to know how well this works in practice
+  * some vendors offer IPv6-to-IPv6 NAT
+  
+###### Implications of NAT for TCP Connections:
+
+* outgoing connections create state in NAT
+  * need to send data periodically before timeout (2 hours recommended)
+* no state for incoming connections
+  * NAT can't know where to forward incoming connections without a manual config
+  * affects servers behind a NAT or peer-to-peer apps
+  
+###### Implications of NAT for UDP Flows:
+
+* NAT tends to have short timeouts for UDP (15 secs-2 mins recommended)
+  * not conneciton-oriented --> can't detect end of flows
+* peer-to-peer connections easier than TCP
+  * UDP NAT often more permissive about allowing incoming packets than TCP NAT
+  * many allow replies from anywhere to an open port
+  
+###### NAT Traversal Concepts:
+
+* referral server on public network used to discover external addresses/ports on NAT
+  * used to exchange possible connection addresses with peers
+* systematically try to make a connection using all possible combinations of addresses
+  * complex
+  * generates significant traffic overhead
+  
+### Security Considerations
+
+###### Network Monitoring and the Need for Encryption:
+
+* possible to intercept network traffic
+* many countries monitor traffic for legal reasons
+  * attackers
+* organisations may monitor traffic for business reasons
+  * quality/training
+  * to support network operations/troubleshooting
+* malicious users may monitor traffic on a link
+  * eg many Wi-Fi links have poor security --> observer all traffic on network
+  * eg hacked routers --> allow monitoring of backbone links
+  * can steal 
+    * data/user credentials
+	* identity
+  * can carry out active attacks
+  
+###### Symmetric Cryptography:
+
+* function converts plain text into cipher-text
+  * fast --> bulk encryption
+  * cipher-text is binary data and may need base64 encoding
+* conversation protected by secret key
+  * same key used to decrypt
+  * how to distribute key if it must be kept secret?
+  
+###### Public Key Cryptography:
+
+* public key
+  * needed to encrypt
+  * made available in well known directory
+  * solves key distribution problem
+* private key
+  * needed to decrypt
+  * must be secret
+* very slow to encrypt and decrypt
+
+###### Hybrid Cryptography:
+
+* use combination of public-key and symmetric crypto. for security and performance
+  * generate random, ephemeral **session** key that can be used with symmetric crypto. 
+  * use public key system to securely distribute the session key
+    * relatively fast due to small session key
+  * symmetric encryption is keyed using session key
+* eg Transport Layer Security used with HTTP
+
+###### Authentication:
+
+* **digital signature** made with cryptographic hash and public key cryptography
+* gives confidence that there is no man in the middle
+* used to prove origin of data
+
+###### Cryptographic Hash Functions:
+
+* generate fixed-length hash code of arbitrary length input value
+  * should not be able to derive input value from the hash
+  * should not be able to generate a message with the same hash as another
+* eg MD5 and SHA-1 (broken - DO NOT USE)
+* eg SHA-2/SHA-256
+
+###### Digital Signature Algorithms:
+
+* generating
+  * generate cryptographic hash of data
+  * encrypt hash with private key to give digital signature
+* verifying
+  * re-calculate cryptographic hash of data
+  * decrypt using public key
+  * compare with hash value --> should match
+  
+###### Existing Secure Protocols:
+
+* give confidentiality and authentication
+* IPSec - for VPNs
+* Secure Sockets Layer - obsolete, use TLS instead
+* Transport Layer Security - general purpose for TCP-based apps
+  * openSSL is popular but poor quality
+  * or use the system libraries for macOS/Windows
+* datagram TLS - securing UDP-based apps
+* secure RTP - securing interactive multimedia apps
+* secure shell (ssh) - securing remote login apps
+
+###### Key Escrow:
+
+* security failures tend to be due to bad implementations
+* exceptional access/key escrow systems will be discovered and exploited
+  * we don't have the expertise to secure these systems
+* design to limit access to keying material
+
+###### The Robustness Principle (Postel's Law):
+
+Be liberal in what you accept, and conservative in what you send.
+
+* software should deal with every conceivable error
+  * balande interoperability with security
+* best to assume that network is filled with malicious entities
+* don't be **too** liberal
+
+###### Validating Input Data:
+
+* networked apps are fundamentally dealing with info supplied by third parties
+  * data read may not conform to protocol
+    * ignorance and/or bugs
+	* malice
+* must validate all data before use
+
+###### Writing Secure Code:
+
+* carefully specify behaviour with both correct and incorrect inputs
+* carefully validate inputs and handle errors
+* take additional care if using type and memory unsafe languages
+  * these have additional failure modes
+* eg buffer overflow attack
+  * memory-safe languages check array bounds
+    * fail cleanly with an exception
+	* behaviour clearly defined at all times
+  * unsafe languages don't check
+    * typically results in core dumped/undefined behaviour
+* buffer overflow is one of main sources of security problems
+* if your code can be crashed by received network traffic, there is an exploitable buffer overflow
 
 <a name="internet_checksum"></a>
 
