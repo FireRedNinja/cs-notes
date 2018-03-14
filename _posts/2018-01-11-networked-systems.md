@@ -1875,6 +1875,216 @@ Be liberal in what you accept, and conservative in what you send.
 * buffer overflow is one of main sources of security problems
 * if your code can be crashed by received network traffic, there is an exploitable buffer overflow
 
+### Higher Layer Protocols
+
+3 more layers above the transport:
+
+* session
+* presentation
+* application
+* typically defined within an app/library rather than the kernel
+* ill-defined boundaries between them
+* goal of these - support app's needs
+  * setup/manage TL connections
+  * name/located app-level resources
+  * negotiate data forms/perform format conversion
+  * present data in appropriate manner
+  * implement app-level semantics
+* consider layering the app as a design aid rather than a required immplementation strategy
+
+###### Session Layer:
+
+Connections that an app may need
+
+* single client-server
+* group of clients + one server
+* group of clients + multiple servers
+* server-mediated peer-to-peer
+* point-to-point peer-to-peer
+* peer-to-peer group
+* any source multicast group
+* single source multicast
+
+###### Managing Connections:
+
+* finding participants
+  * look up name in directory (DNS/web search)
+  * server mediated connection (instant messaging)
+* setting up connections
+  * direct connect to named host --> NAT issues
+  * mediated service discovery --> peer-to-peer connection
+* how does session membership change?
+  * does group size vary?
+  * how rapidly do participants join/leave?
+  * are all participants aware of other group members?
+  
+###### User and Resource Mobility:
+
+* IP encodes location --> moving around breaks TL connections
+* session layer must find new location and establish new connections
+  * may be redirected by old location (HTTP redirect)
+  * mobile devices
+* complexity pushed up from network to higher layers
+
+###### Multiple Connections:
+
+* single session may span multiple transport connections
+  * eg one connection for loading page, then a connection for each image loaded
+  * eg in peer-to-peer file sharing, building a distributed hash table
+* SL coordinates connections
+
+###### Middleboxes and Cache:
+
+* web cache
+  * optimise performance
+  * move popular content closer to hosts
+* email server
+  * support disconnected operation by holding mail until user connects
+* SIP proxy servers/instant messaging servers
+  * locate users
+  * respond for offline users
+* only add middleboxes when absolutely necessary
+
+###### Presentation Layer:
+
+* manages presentation, representation and conversion
+  * media types + content negotiation
+  * channel encoding + format conversion
+  * internatiolisation + languages + character sets
+* provides common services
+
+###### Media Types:
+
+* identify format of data
+* formats are categorised into 8 top-level types
+  * with many subtypes
+    * each subtype has parameters (eg charset)
+* media types included in protocol headers to describe format
+
+###### Content Format Negotiation:
+
+* ensures sender and receiver share a common format
+* typically a kind of "offer-answer" exchange
+  * **offer** lists supported formats in list of preference
+  * receiver picks the highest one that it understands + includes this in its **answer**
+* negotiated in the time of one round-trip
+
+###### Channel Encoding:
+
+* exchanging text
+  * flexible + extensible
+    * high-level app layer protocols (email, web)
+  * these protocols can't directly send binary data
+    * eg older verion of `sendmail` used 8th bit to mark quoted data
+	* stripped it from data on input since email was guaranteed to be 7-bit ASCII only
+	* now must encode binary files sent as attachments
+  * data must be encoded to fit charset in use
+  * encoding must be signalled
+    * `Content-Transfer-Encoding` header
+	* may require negotiation of appropriate transfer encoding if data passing through several systems
+* exchanging binary
+  * highly optimised + efficient
+    * audio + video data
+	* low level/multimedia transport protocols (TCP/IP)
+* we prefer extensibility to performance, unless profiling shows that performance is a concern
+
+###### Designing a binary coding scheme:
+
+* must be backwards-compatible with text-only systems
+* some systems only support 7-bit ASCII
+* some systems enforce a maximum line length
+* must survive translation between character sets
+* must not use non-printing characters
+* must avoid escape characters that might be interpreted by the channel
+
+###### Base 64 Encoding:
+
+* textual encoding of binary
+* split each group of 3 bytes into four 6-bit values
+  * encode as text using lookup table below
+* use `=` characters to pad
+* encode no more than 76 chars per line
+* increases data size by 33% on average
+
+<img src="/cs-notes/assets/images/ns/encoding_table.jpg" nopin="nopin" />
+
+<img src="/cs-notes/assets/images/ns/encoding_example.jpg" nopin="nopin" />
+
+###### Sending Unencoded Binary Data:
+
+* sent in eg TCP/IP headers/audio-visual data
+* two issues
+  * byte ordering
+    * must convert from little-endian PC format to big-endian Internet format
+  * word size
+    * size of an integer (16/32/64-bit)
+	* representation of a floating point value
+	
+###### Internatiolisation (i18n):
+
+* decide which charset to use
+* ASCII, iso-8859-1 etc
+  * need to identify charset and language
+  * complex to convert between charsets
+* Unicode
+  * single charset that can represent all chars from all languages
+  * 21 bits per char
+  * several representations (eg UTF-8, UTF-32)
+  * still need to identify the language and code it separately to other languages
+    * handling order of writing
+	* grammar rules
+	* case conversion and case insensitive comparison
+	* handling accents
+  * let the app layer programmer worry about using the data
+  
+###### Unicode and UTF-8:
+
+* use Unicode in UTF-8 format
+* variable-length as in the picture below
+* backwards compatible with 7-bit ASCII chars
+  * in ASCII
+    * codes in ASCII coded identically
+    * non-ASCII values coded with high bit set
+  * no 0 octets occur with UTF-8 
+  * so it can be represented as a string in C
+* widely used in Internet protocols
+
+###### Application Layer:
+
+* protocol functions specific to app logic
+  * deliver email
+  * retrieve webpage
+  * stream video
+* issues
+  * types of messages needed
+    * app dependent
+	* difficult to give general guidelines
+  * how interactions occur
+  * how errors are reported
+
+###### Interaction Styles:
+
+How communication proceeds:
+
+* server announce presence to initial connection / wait for client to start?
+* explicit request for every response / can the server send unsolicited data?
+* lot of chatter / communication completes within single round-trip?
+
+###### Reducing Chatter:
+
+* RTT fixed by speed of light no matter how the network bandwidth is
+* chatty protocols take many round trips to complete a transaction
+* so send transaction in a single request --> get a single response
+
+###### Reporting Errors:
+
+* have an extensible framework for error reporting
+* many apps have 3-digit numeric code
+  * 1st - indicates response type
+  * last 2 - specific error
+* signal new error types
+* lets older clients give meaningful response
+
 <a name="internet_checksum"></a>
 
 ###### The Internet Checksum:
